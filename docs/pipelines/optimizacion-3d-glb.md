@@ -42,6 +42,57 @@ npx @gltf-transform/cli optimize input.glb output.glb \
 7. **prune** — elimina nodos/materiales sin usar
 8. **resample** — optimiza keyframes de animacion
 
+## CRITICO: Modelos con Specular-Glossiness (se ven blancos)
+
+Muchos modelos de Sketchfab usan la extension `KHR_materials_pbrSpecularGlossiness`
+en vez del estandar `pbrMetallicRoughness`. Google model-viewer NO renderiza
+Specular-Glossiness correctamente — el modelo se ve **completamente blanco**
+aunque las texturas esten embebidas.
+
+### Como detectar
+
+```bash
+node -e "
+const b = require('fs').readFileSync('modelo.glb');
+const jsonLen = b.readUInt32LE(12);
+const gltf = JSON.parse(b.slice(20, 20 + jsonLen).toString('utf8'));
+console.log('Extensions:', gltf.extensionsUsed);
+console.log('Material PBR:', gltf.materials?.[0]?.pbrMetallicRoughness?.baseColorTexture);
+"
+```
+
+Si ves `KHR_materials_pbrSpecularGlossiness` y `baseColorTexture: undefined` → necesita conversion.
+
+### Solucion: convertir con metalrough
+
+```bash
+# Paso 1: Convertir Specular-Glossiness → Metallic-Roughness
+npx @gltf-transform/cli metalrough input.glb converted.glb
+
+# Paso 2: Optimizar normalmente
+npx @gltf-transform/cli optimize converted.glb output.glb \
+  --compress draco --texture-compress webp
+```
+
+### Pipeline completo en un solo flujo
+
+```bash
+npx @gltf-transform/cli metalrough input.glb /tmp/mr.glb && \
+npx @gltf-transform/cli optimize /tmp/mr.glb output.glb \
+  --compress draco --texture-compress webp && \
+rm /tmp/mr.glb
+```
+
+### Resultados reales con este pipeline
+
+| Modelo | Problema | Original | Final | Reduccion |
+|--------|----------|----------|-------|-----------|
+| Urna Funeraria Zapoteca | Spec-Gloss, sin color | 69 MB | 2.1 MB | 96.9% |
+| Alebrije Mistico | Spec-Gloss, sin color | 4.8 MB | 437 KB | 91.1% |
+
+**IMPORTANTE:** `gltf-pipeline --keepLegacyExtensions false` NO convierte
+Specular-Glossiness. Solo `gltf-transform metalrough` funciona correctamente.
+
 ## Resultados reales (Alebrije 3D Creator)
 
 | Modelo | Original | Optimizado | Reduccion |
