@@ -74,12 +74,13 @@ export function useAudioEngine() {
 
   // Cleanup on unmount
   useEffect(() => {
+    const howls = howlsRef.current;
     return () => {
-      howlsRef.current.forEach((h) => {
+      howls.forEach((h) => {
         h.stop();
         h.unload();
       });
-      howlsRef.current.clear();
+      howls.clear();
     };
   }, []);
 

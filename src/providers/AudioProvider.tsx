@@ -80,10 +80,11 @@ export function AudioProvider({
   // Register pre-declared tracks on mount
   useEffect(() => {
     tracks.forEach((track) => registerTrack(track));
+    const howls = howlsRef.current;
     return () => {
       // Destroy all howls on unmount
-      howlsRef.current.forEach((h) => h.unload());
-      howlsRef.current.clear();
+      howls.forEach((h) => h.unload());
+      howls.clear();
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 

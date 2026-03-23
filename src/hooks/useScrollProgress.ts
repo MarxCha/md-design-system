@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, type RefObject } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap-config";
+import { ScrollTrigger } from "@/lib/gsap-config";
 
 interface UseScrollProgressReturn {
   progress: number;

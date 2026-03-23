@@ -90,9 +90,11 @@ export function SoundscapeProvider({
 
   // Cleanup on unmount
   useEffect(() => {
+    const ambient = ambientRef.current;
+    const cache = sfxCache.current;
     return () => {
-      ambientRef.current?.unload();
-      sfxCache.current.forEach((h) => h.unload());
+      ambient?.unload();
+      cache.forEach((h) => h.unload());
     };
   }, []);
 

@@ -3,47 +3,50 @@
   "description": "Design System compartido de MD Consultoría TI para CuentosIA, Palabras Vivas, dashboards y landing pages",
   "repo": "MarxCha/md-design-system",
   "stack": {
-    "framework": "Next.js 15.3.2",
+    "framework": "Next.js 15.5.14",
     "language": "TypeScript",
     "styling": "Tailwind CSS 4",
-    "components": "shadcn/ui",
+    "components": "shadcn/ui (20 components)",
     "animation": ["GSAP + ScrollTrigger", "Lenis", "Framer Motion"],
     "audio": "Howler.js",
     "3d": "Three.js + R3F",
     "state": "Zustand",
-    "other": ["Rive", "Lottie", "Lucide Icons", "CVA", "Zod"]
+    "testing": "Vitest 4.1 + Testing Library + happy-dom",
+    "other": ["Rive", "Lottie", "Lucide Icons", "CVA", "Zod", "Sonner", "cmdk"]
   },
-  "status": "scaffold-complete",
+  "status": "components-installed",
   "lastSession": "2026-03-23",
   "branch": "feat/design-system-scaffold",
   "pr": "https://github.com/MarxCha/md-design-system/pull/1",
   "stats": {
-    "sourceFiles": 47,
-    "components": 17,
+    "sourceFiles": 107,
+    "uiComponents": 20,
+    "customComponents": 17,
     "hooks": 7,
-    "demoPages": 3,
+    "testFiles": 10,
+    "testsPassing": 35,
+    "demoPages": 5,
     "typescriptErrors": 0
   },
   "knownIssues": [
     {
-      "id": "smb-io",
-      "description": "El proyecto vive en /Volumes/marxchavez-1/ que es un share SMB desde Mac Mini. npm install y next build son extremadamente lentos por red. Correr build/dev desde el Mac Mini directamente.",
-      "severity": "medium",
-      "workaround": "Ejecutar npm install/build/dev desde terminal local del Mac Mini"
+      "id": "node-version",
+      "description": "Node 25 causa SyntaxError en Next.js build. Usar Node 22 LTS.",
+      "severity": "high",
+      "workaround": "export PATH=\"/opt/homebrew/opt/node@22/bin:$PATH\" antes de npm commands"
     },
     {
       "id": "peer-deps",
       "description": "R3F tiene peer dependency conflicts con React 19. Usar --legacy-peer-deps en npm install.",
       "severity": "low",
-      "workaround": "npm install --legacy-peer-deps"
+      "workaround": "npm install --legacy-peer-deps (ya configurado en .npmrc)"
     }
   ],
   "nextSteps": [
-    "Verificar npm run build desde Mac Mini (disco local)",
-    "Instalar componentes shadcn/ui base (button, card, input, dialog, etc.)",
-    "Agregar Storybook o playground interactivo más completo",
     "Importar y adaptar componentes de CuentosIA/Palabras Vivas",
-    "Configurar exports del paquete para consumo por otros proyectos",
-    "Agregar tests con Vitest + Testing Library"
+    "Configurar Storybook o playground interactivo más completo",
+    "Agregar más tests (hooks custom, providers)",
+    "Configurar CI/CD (GitHub Actions)",
+    "Publicar como paquete npm privado"
   ]
 }

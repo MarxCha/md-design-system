@@ -2,26 +2,65 @@
   "name": "md-design-system",
   "version": "0.1.0",
   "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./ui": "./src/components/ui/index.ts",
+    "./hooks": "./src/hooks/index.ts",
+    "./styles": "./src/styles/globals.css",
+    "./theme": "./src/lib/theme.ts",
+    "./animation-presets": "./src/lib/animation-presets.ts",
+    "./utils": "./src/lib/utils.ts"
+  },
+  "typesVersions": {
+    "*": {
+      "ui": [
+        "./src/components/ui/index.ts"
+      ],
+      "hooks": [
+        "./src/hooks/index.ts"
+      ],
+      "theme": [
+        "./src/lib/theme.ts"
+      ],
+      "animation-presets": [
+        "./src/lib/animation-presets.ts"
+      ],
+      "utils": [
+        "./src/lib/utils.ts"
+      ]
+    }
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@eslint/eslintrc": "^3.3.5",
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.18.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
     "framer-motion": "^11.18.2",
     "gsap": "^3.12.7",
     "howler": "^2.2.4",
     "lenis": "^1.2.3",
     "lottie-react": "^2.4.0",
     "lucide-react": "^0.468.0",
-    "next": "15.3.2",
+    "next": "^15.5.14",
+    "next-themes": "^0.4.6",
+    "radix-ui": "^1.4.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "sonner": "^2.0.7",
+    "split-type": "^0.3.4",
     "tailwind-merge": "^2.6.0",
     "three": "^0.173.0",
     "zod": "^3.24.0",
@@ -29,14 +68,21 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/howler": "^2.2.12",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/three": "^0.173.0",
+    "@vitejs/plugin-react": "^6.0.1",
     "eslint": "^9",
-    "eslint-config-next": "15.3.2",
+    "eslint-config-next": "^15.5.14",
+    "happy-dom": "^20.8.7",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.1"
   }
 }

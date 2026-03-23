@@ -38,8 +38,6 @@ export function ParallaxLayer({
 
       // Calculate parallax distance based on element height and speed delta
       const container = el.closest("[data-parallax-container]") as HTMLElement | null;
-      const scrollTarget = container ?? document.documentElement;
-
       const isVertical = direction === "vertical";
 
       trigger = ScrollTrigger.create({

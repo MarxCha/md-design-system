@@ -33,8 +33,6 @@ export function ScrollScene({
   useEffect(() => {
     if (!sceneRef.current) return;
 
-    let gsapModule: typeof import("gsap") | null = null;
-    let scrollTriggerModule: typeof import("gsap/ScrollTrigger") | null = null;
     let trigger: import("gsap/ScrollTrigger").ScrollTrigger | null = null;
 
     const init = async () => {
@@ -43,8 +41,6 @@ export function ScrollScene({
         import("gsap/ScrollTrigger"),
       ]);
 
-      gsapModule = { gsap } as typeof import("gsap");
-      scrollTriggerModule = { ScrollTrigger } as typeof import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
 
       const el = sceneRef.current;

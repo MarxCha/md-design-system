@@ -1,6 +1,5 @@
 "use client";
 
-import type { ReactNode } from "react";
 import type { ProductData } from "@/types/product";
 import { ProductHero } from "@/components/product/ProductHero";
 import { VideoScrubPlayer } from "@/components/product/VideoScrubPlayer";
