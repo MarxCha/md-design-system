@@ -19,6 +19,12 @@ const demos = [
     href: "/animation-lab",
     accent: "bg-accent",
   },
+  {
+    title: "Product Showcase",
+    description: "Template estilo Apple: scroll cinematogr\u00e1fico, video scrub, parallax y specs.",
+    href: "/product-showcase",
+    accent: "bg-foreground",
+  },
 ];
 
 export default function Home() {

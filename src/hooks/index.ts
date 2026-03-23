@@ -5,3 +5,7 @@ export { useAudioEngine } from "./useAudioEngine";
 export { useRevealOnScroll } from "./useRevealOnScroll";
 export { useWordHighlight } from "./useWordHighlight";
 export { useReducedMotion } from "./useReducedMotion";
+export { useScrollTimeline } from "./useScrollTimeline";
+export { useScrubProgress } from "./useScrubProgress";
+export { useVideoScrub } from "./useVideoScrub";
+export { useAdaptiveQuality } from "./useAdaptiveQuality";
