@@ -66,7 +66,10 @@ const Model = () => {
         </h1>
 
         <div className="flex flex-col items-center mt-5">
-          <div className="w-full h-[75vh] md:h-[90vh] overflow-hidden relative" style={{ pointerEvents: "auto" }}>
+          <div
+            id="model-event-source"
+            className="w-full h-[75vh] md:h-[90vh] overflow-hidden relative"
+          >
             <ModelView
               index={1}
               groupRef={small}
@@ -100,7 +103,7 @@ const Model = () => {
               }}
               eventSource={
                 typeof document !== "undefined"
-                  ? (document.getElementById("iphone-15-root") ?? undefined)
+                  ? (document.getElementById("model-event-source") ?? undefined)
                   : undefined
               }
             >

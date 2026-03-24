@@ -6,7 +6,7 @@
     "framework": "Next.js 15.5.14",
     "language": "TypeScript",
     "styling": "Tailwind CSS 4",
-    "components": "shadcn/ui (20) + custom (17) + layout (2) + dashboard (5) + landing (5) + template-iphone (12)",
+    "components": "shadcn/ui (20) + custom (17) + layout (2) + dashboard (5) + landing (5) + responsive (5) + template-iphone (12)",
     "animation": ["GSAP + ScrollTrigger", "Lenis", "Framer Motion"],
     "charts": "Recharts",
     "audio": "Howler.js",
@@ -16,23 +16,24 @@
     "testing": "Vitest 4.1 + Testing Library + happy-dom + Playwright",
     "other": ["Lottie", "Lucide Icons", "CVA", "Zod", "Sonner", "cmdk"]
   },
-  "status": "iphone-15-template-complete",
-  "lastSession": "2026-03-23",
+  "status": "responsive-primitives-complete",
+  "lastSession": "2026-03-24",
   "branch": "feat/design-system-scaffold",
   "pr": "https://github.com/MarxCha/md-design-system/pull/1",
   "commits": 7,
   "stats": {
-    "sourceFiles": 148,
+    "sourceFiles": 165,
     "uiComponents": 20,
     "customComponents": 17,
     "layoutComponents": 2,
     "dashboardComponents": 5,
     "landingComponents": 5,
+    "responsiveComponents": 5,
     "templateComponents": 12,
-    "hooks": 7,
-    "testFiles": 17,
-    "testsPassing": 55,
-    "demoPages": 10,
+    "hooks": 8,
+    "testFiles": 23,
+    "testsPassing": 85,
+    "demoPages": 11,
     "templates": 1,
     "typescriptErrors": 0
   },
@@ -61,11 +62,11 @@
     "pending": ["zentry-awwwards", "gsap-macbook", "gsap-cocktails", "saas-boilerplate", "page-ui-shipixen", "cruip-open-react", "astrowind", "awesome-landing-pages"]
   },
   "nextSteps": [
+    "Integrar responsive primitives en medivista-pro (ResponsiveTable, FormGrid, MobileFilterSheet)",
     "Reconstruir template #2: Zentry Awwwards Clone (GSAP cinematographic)",
     "Integrar mapa Leaflet como componente reusable",
     "Setup Remotion para video generation pipeline",
     "Configurar CI/CD con GitHub Actions",
-    "Restaurar MCPs (Chrome DevTools + Docker) reiniciando sesión",
     "Agregar Storybook para documentación visual interactiva"
   ]
 }

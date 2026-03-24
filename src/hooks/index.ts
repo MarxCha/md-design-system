@@ -9,3 +9,5 @@ export { useScrollTimeline } from "./useScrollTimeline";
 export { useScrubProgress } from "./useScrubProgress";
 export { useVideoScrub } from "./useVideoScrub";
 export { useAdaptiveQuality } from "./useAdaptiveQuality";
+export { useBreakpoint } from "./useBreakpoint";
+export type { Breakpoint } from "./useBreakpoint";

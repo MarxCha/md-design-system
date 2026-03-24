@@ -22,6 +22,7 @@ export * from "./components/product";
 export * from "./components/layout";
 export * from "./components/dashboard";
 export * from "./components/landing";
+export * from "./components/responsive";
 
 // ─── Hooks ──────────────────────────────────────────────────
 export * from "./hooks";

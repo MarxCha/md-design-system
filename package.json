@@ -11,7 +11,9 @@
     "./styles": "./src/styles/globals.css",
     "./theme": "./src/lib/theme.ts",
     "./animation-presets": "./src/lib/animation-presets.ts",
-    "./utils": "./src/lib/utils.ts"
+    "./utils": "./src/lib/utils.ts",
+    "./responsive": "./src/components/responsive/index.ts",
+    "./lint": "./src/lint/index.ts"
   },
   "typesVersions": {
     "*": {
@@ -29,6 +31,12 @@
       ],
       "utils": [
         "./src/lib/utils.ts"
+      ],
+      "responsive": [
+        "./src/components/responsive/index.ts"
+      ],
+      "lint": [
+        "./src/lint/index.ts"
       ]
     }
   },
