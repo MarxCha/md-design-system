@@ -45,13 +45,11 @@ const VideoCarousel = () => {
       ease: "power2.inOut",
     });
 
-    // video animation to play the video when it is in the view
-    gsap.to("#video", {
-      scrollTrigger: {
-        trigger: "#video",
-        toggleActions: "restart none none none",
-      },
-      onComplete: () => {
+    // start video playback when scrolled into view
+    ScrollTrigger.create({
+      trigger: "#video",
+      start: "top 85%",
+      onEnter: () => {
         setVideo((pre) => ({
           ...pre,
           startPlay: true,
@@ -153,7 +151,14 @@ const VideoCarousel = () => {
         break;
 
       case "video-reset":
-        setVideo((pre) => ({ ...pre, videoId: 0, isLastVideo: false }));
+        setVideo((pre) => ({
+          ...pre,
+          videoId: 0,
+          isLastVideo: false,
+          isEnd: false,
+          startPlay: true,
+          isPlaying: true,
+        }));
         break;
 
       case "pause":

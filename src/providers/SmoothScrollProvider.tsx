@@ -8,7 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import Lenis from "lenis";
-import { gsap } from "@/lib/gsap-config";
+import { gsap, ScrollTrigger } from "@/lib/gsap-config";
 
 type SmoothScrollContextType = {
   lenis: Lenis | null;
@@ -32,7 +32,10 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     });
     lenisRef.current = lenis;
 
-    // Connect Lenis RAF to GSAP ticker for ScrollTrigger sync
+    // Connect Lenis scroll events to GSAP ScrollTrigger
+    lenis.on("scroll", ScrollTrigger.update);
+
+    // Connect Lenis RAF to GSAP ticker for sync
     const ticker = (time: number) => {
       lenis.raf(time * 1000);
     };
@@ -42,6 +45,7 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
 
     return () => {
       gsap.ticker.remove(ticker);
+      lenis.off("scroll", ScrollTrigger.update);
       lenis.destroy();
       lenisRef.current = null;
     };
