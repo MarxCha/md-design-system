@@ -19,6 +19,9 @@ export * from "./components/audio";
 export * from "./components/story";
 export * from "./components/three";
 export * from "./components/product";
+export * from "./components/layout";
+export * from "./components/dashboard";
+export * from "./components/landing";
 
 // ─── Hooks ──────────────────────────────────────────────────
 export * from "./hooks";
