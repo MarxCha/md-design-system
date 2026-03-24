@@ -41,7 +41,7 @@ type GLTFResult = GLTF & {
 const MODEL_PATH = "/templates/iphone-15/models/scene.glb";
 
 function IPhoneModel({ item, ...props }: IPhoneModelProps) {
-  const { nodes, materials } = useGLTF(MODEL_PATH) as GLTFResult;
+  const { nodes, materials } = useGLTF(MODEL_PATH) as unknown as GLTFResult;
   const texture = useTexture(item.img);
 
   useEffect(() => {
