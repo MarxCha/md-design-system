@@ -99,7 +99,7 @@ const Model = () => {
               }}
               eventSource={
                 typeof document !== "undefined"
-                  ? (document.getElementById("root") ?? undefined)
+                  ? (document.getElementById("__next") ?? undefined)
                   : undefined
               }
             >

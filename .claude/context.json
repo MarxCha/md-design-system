@@ -6,30 +6,34 @@
     "framework": "Next.js 15.5.14",
     "language": "TypeScript",
     "styling": "Tailwind CSS 4",
-    "components": "shadcn/ui (20) + custom (17) + layout (2) + dashboard (5) + landing (5)",
+    "components": "shadcn/ui (20) + custom (17) + layout (2) + dashboard (5) + landing (5) + template-iphone (12)",
     "animation": ["GSAP + ScrollTrigger", "Lenis", "Framer Motion"],
     "charts": "Recharts",
     "audio": "Howler.js",
-    "3d": "Three.js + R3F",
+    "3d": "Three.js + R3F v9.5 + drei v10.7",
+    "video": "Remotion v4.0.438",
     "state": "Zustand",
-    "testing": "Vitest 4.1 + Testing Library + happy-dom",
+    "testing": "Vitest 4.1 + Testing Library + happy-dom + Playwright",
     "other": ["Lottie", "Lucide Icons", "CVA", "Zod", "Sonner", "cmdk"]
   },
-  "status": "patterns-imported",
+  "status": "iphone-15-template-complete",
   "lastSession": "2026-03-23",
   "branch": "feat/design-system-scaffold",
   "pr": "https://github.com/MarxCha/md-design-system/pull/1",
+  "commits": 7,
   "stats": {
-    "sourceFiles": 131,
+    "sourceFiles": 148,
     "uiComponents": 20,
     "customComponents": 17,
     "layoutComponents": 2,
     "dashboardComponents": 5,
     "landingComponents": 5,
+    "templateComponents": 12,
     "hooks": 7,
     "testFiles": 17,
     "testsPassing": 55,
-    "demoPages": 9,
+    "demoPages": 10,
+    "templates": 1,
     "typescriptErrors": 0
   },
   "knownIssues": [
@@ -40,17 +44,28 @@
       "workaround": "export PATH=\"/opt/homebrew/opt/node@22/bin:$PATH\" antes de npm commands"
     },
     {
-      "id": "peer-deps",
-      "description": "R3F tiene peer dependency conflicts con React 19.",
+      "id": "mcp-restart",
+      "description": "Chrome DevTools MCP y Docker MCP se desconectan si se matan los procesos. Requieren reinicio de sesión de Claude Code.",
+      "severity": "medium",
+      "workaround": "Usar Playwright directo como alternativa. Reiniciar sesión de Claude Code para reconectar MCPs."
+    },
+    {
+      "id": "iphone-assets",
+      "description": "Videos (29.2MB) y modelo GLB (867KB) del iPhone 15 template están en .gitignore. Necesitan descargarse del repo original.",
       "severity": "low",
-      "workaround": "npm install --legacy-peer-deps"
+      "workaround": "git clone --depth 1 https://github.com/adrianhajdin/iphone.git /tmp/iphone-15-clone && copiar assets a public/templates/iphone-15/"
     }
   ],
+  "designVault": {
+    "completed": ["iphone-15-clone"],
+    "pending": ["zentry-awwwards", "gsap-macbook", "gsap-cocktails", "saas-boilerplate", "page-ui-shipixen", "cruip-open-react", "astrowind", "awesome-landing-pages"]
+  },
   "nextSteps": [
+    "Reconstruir template #2: Zentry Awwwards Clone (GSAP cinematographic)",
     "Integrar mapa Leaflet como componente reusable",
+    "Setup Remotion para video generation pipeline",
     "Configurar CI/CD con GitHub Actions",
-    "Publicar como paquete npm privado",
-    "Agregar Storybook para documentación visual interactiva",
-    "Más tests de integración y visual regression"
+    "Restaurar MCPs (Chrome DevTools + Docker) reiniciando sesión",
+    "Agregar Storybook para documentación visual interactiva"
   ]
 }

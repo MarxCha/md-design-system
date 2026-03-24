@@ -51,7 +51,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${instrumentSans.variable} ${dmSans.variable}`}
     >
-      <body className="min-h-dvh flex flex-col antialiased">
+      <body className="min-h-dvh flex flex-col antialiased" suppressHydrationWarning>
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>
