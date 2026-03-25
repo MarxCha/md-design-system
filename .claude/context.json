@@ -6,7 +6,7 @@
     "framework": "Next.js 15.5.14",
     "language": "TypeScript",
     "styling": "Tailwind CSS 4",
-    "components": "shadcn/ui (20) + custom (17) + layout (2) + dashboard (5) + landing (5) + responsive (5) + template-iphone (12)",
+    "components": "shadcn/ui (20) + custom (17) + layout (2) + dashboard (5) + landing (5) + responsive (5) + template-iphone (12) + template-zentry (10)",
     "animation": ["GSAP + ScrollTrigger", "Lenis", "Framer Motion"],
     "charts": "Recharts",
     "audio": "Howler.js",
@@ -16,7 +16,7 @@
     "testing": "Vitest 4.1 + Testing Library + happy-dom + Playwright",
     "other": ["Lottie", "Lucide Icons", "CVA", "Zod", "Sonner", "cmdk"]
   },
-  "status": "responsive-primitives-complete",
+  "status": "zentry-template-complete",
   "lastSession": "2026-03-24",
   "branch": "feat/design-system-scaffold",
   "pr": "https://github.com/MarxCha/md-design-system/pull/1",
@@ -34,7 +34,7 @@
     "testFiles": 23,
     "testsPassing": 85,
     "demoPages": 11,
-    "templates": 1,
+    "templates": 2,
     "typescriptErrors": 0
   },
   "knownIssues": [
@@ -58,7 +58,7 @@
     }
   ],
   "designVault": {
-    "completed": ["iphone-15-clone"],
+    "completed": ["iphone-15-clone", "zentry-awwwards"],
     "pending": ["zentry-awwwards", "gsap-macbook", "gsap-cocktails", "saas-boilerplate", "page-ui-shipixen", "cruip-open-react", "astrowind", "awesome-landing-pages"]
   },
   "nextSteps": [

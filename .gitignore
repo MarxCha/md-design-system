@@ -43,3 +43,5 @@ next-env.d.ts
 # Large binary assets for templates (download separately)
 public/templates/iphone-15/videos/
 public/templates/iphone-15/models/
+public/templates/zentry/videos/
+public/templates/zentry/audio/
