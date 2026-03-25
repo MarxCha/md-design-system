@@ -45,11 +45,13 @@ const VideoCarousel = () => {
       ease: "power2.inOut",
     });
 
-    // start video playback when scrolled into view
-    ScrollTrigger.create({
-      trigger: "#video",
-      start: "top 85%",
-      onEnter: () => {
+    // video animation to play the video when it is in the view
+    gsap.to("#video", {
+      scrollTrigger: {
+        trigger: "#video",
+        toggleActions: "restart none none none",
+      },
+      onComplete: () => {
         setVideo((pre) => ({
           ...pre,
           startPlay: true,
@@ -58,6 +60,28 @@ const VideoCarousel = () => {
       },
     });
   }, [isEnd, videoId]);
+
+  // Safari fallback: play video directly when visible (Safari blocks indirect .play())
+  useEffect(() => {
+    const firstVideo = videoRef.current[0];
+    if (!firstVideo) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Play directly in the observer callback — Safari trusts this context
+            firstVideo.play().catch(() => {});
+            setVideo((pre) => ({ ...pre, startPlay: true, isPlaying: true }));
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(firstVideo);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     let currentProgress = 0;
@@ -126,17 +150,16 @@ const VideoCarousel = () => {
         gsap.ticker.remove(animUpdate);
       }
     }
-  }, [videoId, startPlay, isPlaying]);
+  }, [videoId, startPlay]);
 
   useEffect(() => {
-    if (loadedData.length > 3) {
-      if (!isPlaying) {
-        videoRef.current[videoId]?.pause();
-      } else {
-        if (startPlay) {
-          videoRef.current[videoId]?.play();
-        }
-      }
+    const currentVideo = videoRef.current[videoId];
+    if (!currentVideo || !startPlay) return;
+
+    if (!isPlaying) {
+      currentVideo.pause();
+    } else {
+      currentVideo.play().catch(() => {});
     }
   }, [startPlay, videoId, isPlaying, loadedData]);
 
