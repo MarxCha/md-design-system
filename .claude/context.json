@@ -16,17 +16,17 @@
     "testing": "Vitest 4.1 + Testing Library + happy-dom + Playwright",
     "other": ["Lottie", "Lucide Icons", "CVA", "Zod", "Sonner", "cmdk"]
   },
-  "status": "zentry-wip-safari-fixed",
-  "lastSession": "2026-03-24",
+  "status": "motor-iva-prototype-complete",
+  "lastSession": "2026-03-29",
   "branch": "feat/design-system-scaffold",
   "pr": "https://github.com/MarxCha/md-design-system/pull/1",
-  "commits": 11,
+  "commits": 12,
   "stats": {
-    "sourceFiles": 185,
+    "sourceFiles": 189,
     "uiComponents": 20,
     "customComponents": 17,
     "layoutComponents": 2,
-    "dashboardComponents": 5,
+    "dashboardComponents": 8,
     "landingComponents": 5,
     "responsiveComponents": 5,
     "templateIphoneComponents": 12,
@@ -35,7 +35,7 @@
     "hooks": 8,
     "testFiles": 26,
     "testsPassing": 88,
-    "demoPages": 12,
+    "demoPages": 13,
     "templates": 2,
     "typescriptErrors": 0
   },
@@ -77,11 +77,11 @@
     "pending": ["gsap-macbook", "gsap-cocktails", "saas-boilerplate", "page-ui-shipixen", "cruip-open-react", "astrowind", "awesome-landing-pages"]
   },
   "nextSteps": [
+    "Motor IVA segunda pasada: HoloCard tilt, GlassmorphismCard, CountUp animations, framer-motion stagger",
+    "Migrar CFDI-Motor a DS (backlog en cfdi-motor/apps/web/src/DEUDA-TECNICA.md — P0 tokens, P1 KpiCard, P4 badges)",
     "Diseñar factory process para template porting (evitar CSS specificity hell)",
     "Terminar polish de Zentry template (grid Features, colores restantes)",
-    "Integrar responsive primitives + lint plugin en medivista-pro",
     "Template #3: GSAP MacBook Landing",
-    "Setup Remotion para video generation pipeline",
     "Configurar CI/CD con GitHub Actions"
   ]
 }

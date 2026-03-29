@@ -1,13 +1,13 @@
 # STATUS — md-design-system
-Ultima actualizacion: 2026-03-24 (sesion 005)
+Ultima actualizacion: 2026-03-29 (sesion 006)
 
-## Estado: ZENTRY WIP + RESPONSIVE PRIMITIVES COMPLETE
+## Estado: MOTOR IVA PROTOTYPE COMPLETE + CFDI-MOTOR AUDIT DONE
 
 Branch activo: `feat/design-system-scaffold`
 PR: https://github.com/MarxCha/md-design-system/pull/1
-Commits: 11
+Commits: 12
 
-## Lo que existe (~185 source files, 0 TS errors, 88 tests)
+## Lo que existe (~189 source files, 0 TS errors, 88 tests)
 
 ### Foundation
 - Next.js 15.5.14 + TypeScript + Tailwind 4 + shadcn/ui
@@ -16,20 +16,18 @@ Commits: 11
 - Vitest 4.1: 88 tests, 26 archivos, 100% passing
 - Package exports (., ./ui, ./hooks, ./styles, ./theme, ./utils, ./responsive, ./lint)
 
-### Responsive Primitives (NEW — session 005)
-- ResponsiveTable (table→cards on mobile)
-- FormGrid (responsive form layout)
-- MobileFilterSheet (inline→bottom sheet)
-- ResponsiveDialog (dialog→bottom sheet)
-- TouchActionBar (mobile-only floating actions)
+### Dashboard Components (8 total)
+- StatCard, BentoGrid/BentoCard, ChartContainer, ChartPalette (session 003)
+- IVAWaterfall — waterfall chart Cobrado→Pagado→Neto (session 006)
+- StatusTimeline — horizontal period tracker with status dots (session 006)
+- AlertFeed — severity-based alert feed with left border (session 006)
+
+### Responsive Primitives (session 005)
+- ResponsiveTable, FormGrid, MobileFilterSheet, ResponsiveDialog, TouchActionBar
 - useBreakpoint hook
 
-### ESLint Plugin (NEW — session 005)
-- no-hardcoded-colors (prevents bg-white, text-gray-500)
-- no-inline-styles (forces Tailwind)
-- require-aria-label (onClick without label)
-- require-image-alt (missing/placeholder alt text)
-- Configs: recommended (warn) + strict (error)
+### ESLint Plugin (session 005)
+- 4 rules: no-hardcoded-colors, no-inline-styles, require-aria-label, require-image-alt
 
 ### Cross-Project Patterns
 - AppSidebar + AppShell (from cfdi-motor)
@@ -40,27 +38,32 @@ Commits: 11
 - [x] iPhone 15 Pro Clone — 12 componentes, 3D model, VideoCarousel (Safari fixed), GSAP scroll
 - [~] Zentry Awwwards Clone — 10 componentes portados, CSS specificity WIP, needs factory process
 - [ ] GSAP MacBook Landing
-- [ ] GSAP Cocktails
-- [ ] SaaS Boilerplate
-- [ ] Page UI / Shipixen
-- [ ] Cruip Open React Template
-- [ ] AstroWind
-- [ ] Awesome Landing Pages
+- [ ] GSAP Cocktails + 5 mas pendientes
 
-### Demo Pages (12 rutas)
+### Demo Pages (13 rutas)
 - / (landing), /showcase, /playground, /animation-lab, /scroll-stories, /product-showcase
 - /demo-sidebar, /demo-dashboard, /demo-landing, /demo-responsive
+- /motor-iva (NEW — CFO dashboard prototype)
 - /templates/iphone-15, /templates/zentry
+
+## CFDI-Motor Audit (session 006)
+Auditoria completa de CFDI-Motor vs design system:
+- 200+ violaciones de DS en 17 archivos de paginas
+- Backlog creado: `cfdi-motor/apps/web/src/DEUDA-TECNICA.md`
+- P0: tokens --cfdi-* (8h), P1: KpiCard x3 (4h), P2: formatMXN x6 (2h)
+- P3: MESES x11 (1h), P4: badges x8+ (6h), P5: componentes duplicados (6h)
+- Total estimado: ~35h
 
 ## Issues conocidos
 - Node 25 no funciona — usar Node 22 LTS
 - Zentry CSS specificity: @theme inline no funciona en imported CSS, @layer pierde vs globals
 - Safari video autoplay: necesita IntersectionObserver fallback + .catch() en .play()
+- h1-h6 en globals.css tienen font-size fijo que overridea Tailwind — usar p tags o CSS layers
 - Assets de templates (videos 80MB+) en .gitignore
 
 ## Proximos pasos
+- [ ] Motor IVA segunda pasada: HoloCard tilt, GlassmorphismCard, CountUp, stagger
+- [ ] Migrar CFDI-Motor a DS (DEUDA-TECNICA.md: P0→P1→P4→P5→P2→P3→P6)
 - [ ] Factory process para template porting eficiente
 - [ ] Polish Zentry (grid Features, colores restantes)
-- [ ] Integrar responsive + lint en medivista-pro
 - [ ] Template #3: GSAP MacBook Landing
-- [ ] Remotion video pipeline

@@ -13,7 +13,8 @@
     "./animation-presets": "./src/lib/animation-presets.ts",
     "./utils": "./src/lib/utils.ts",
     "./responsive": "./src/components/responsive/index.ts",
-    "./lint": "./src/lint/index.ts"
+    "./lint": "./src/lint/index.ts",
+    "./video": "./src/components/video/index.ts"
   },
   "typesVersions": {
     "*": {
@@ -37,6 +38,9 @@
       ],
       "lint": [
         "./src/lint/index.ts"
+      ],
+      "video": [
+        "./src/components/video/index.ts"
       ]
     }
   },
@@ -47,7 +51,10 @@
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "video:studio": "npx remotion studio",
+    "video:render": "npx remotion render",
+    "video:preview": "npx remotion preview"
   },
   "dependencies": {
     "@eslint/eslintrc": "^3.3.5",
@@ -76,7 +83,7 @@
     "split-type": "^0.3.4",
     "tailwind-merge": "^2.6.0",
     "three": "^0.173.0",
-    "zod": "^3.24.0",
+    "zod": "^4.3.6",
     "zustand": "^5.0.0"
   },
   "devDependencies": {
