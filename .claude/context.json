@@ -6,27 +6,28 @@
     "framework": "Next.js 15.5.14",
     "language": "TypeScript",
     "styling": "Tailwind CSS 4",
-    "components": "shadcn/ui (20) + custom (17) + layout (2) + dashboard (5) + landing (5) + responsive (5) + template-iphone (12) + template-zentry (10)",
+    "components": "shadcn/ui (20) + custom (17) + layout (2) + dashboard (8) + landing (5) + responsive (5) + video (6) + template-iphone (12) + template-zentry (10)",
     "animation": ["GSAP + ScrollTrigger", "Lenis", "Framer Motion"],
     "charts": "Recharts",
     "audio": "Howler.js",
     "3d": "Three.js + R3F v9.5 + drei v10.7",
-    "video": "Remotion v4.0.438",
+    "video": "Remotion v4.0.438 (6 compositions: BrandReveal, DeviceMockup, TextHook, FeatureShowcase, CTAEnd, ProductDemo)",
     "state": "Zustand",
     "testing": "Vitest 4.1 + Testing Library + happy-dom + Playwright",
-    "other": ["Lottie", "Lucide Icons", "CVA", "Zod", "Sonner", "cmdk"]
+    "other": ["Lottie", "Lucide Icons", "CVA", "Zod 4.3.6", "Sonner", "cmdk"]
   },
-  "status": "motor-iva-prototype-complete",
+  "status": "remotion-pipeline-complete-auditor-redesign-shipped",
   "lastSession": "2026-03-29",
   "branch": "feat/design-system-scaffold",
   "pr": "https://github.com/MarxCha/md-design-system/pull/1",
-  "commits": 12,
+  "commits": 13,
   "stats": {
-    "sourceFiles": 189,
+    "sourceFiles": 200,
     "uiComponents": 20,
     "customComponents": 17,
     "layoutComponents": 2,
     "dashboardComponents": 8,
+    "videoComponents": 6,
     "landingComponents": 5,
     "responsiveComponents": 5,
     "templateIphoneComponents": 12,
@@ -35,7 +36,7 @@
     "hooks": 8,
     "testFiles": 26,
     "testsPassing": 88,
-    "demoPages": 13,
+    "demoPages": 14,
     "templates": 2,
     "typescriptErrors": 0
   },
@@ -48,40 +49,45 @@
     },
     {
       "id": "zentry-css-specificity",
-      "description": "Tailwind v4 @theme inline no funciona en CSS importado por layouts. @layer utilities pierde especificidad vs globals.css. Colores y fonts de templates se sobrescriben.",
+      "description": "Tailwind v4 @theme inline no funciona en CSS importado por layouts. @layer utilities pierde especificidad vs globals.css.",
       "severity": "high",
-      "workaround": "Usar clases CSS explícitas fuera de @layer, scoped bajo .template-name. Colores con prefijo (zn-blue-50). Fonts con font-family directo. Necesita factory process para template #3+."
+      "workaround": "Usar clases CSS explícitas fuera de @layer, scoped bajo .template-name."
     },
     {
       "id": "safari-video-autoplay",
-      "description": "Safari bloquea .play() indirecto (via setState→useEffect). loadedData.length checks fallan porque onLoadedMetadata no dispara para todos los videos.",
+      "description": "Safari bloquea .play() indirecto. loadedData.length checks fallan.",
       "severity": "medium",
-      "workaround": "IntersectionObserver con .play() directo en callback. Eliminar loadedData gates. .catch() en todos los .play()."
+      "workaround": "IntersectionObserver con .play() directo en callback."
     },
     {
-      "id": "zentry-assets",
-      "description": "Videos (51MB) y audio del Zentry template están en .gitignore.",
-      "severity": "low",
-      "workaround": "git clone --depth 1 https://github.com/adrianhajdin/award-winning-website.git /tmp/zentry-clone && copiar assets a public/templates/zentry/"
-    },
-    {
-      "id": "iphone-assets",
-      "description": "Videos (29.2MB) y modelo GLB (867KB) del iPhone 15 template están en .gitignore.",
-      "severity": "low",
-      "workaround": "git clone --depth 1 https://github.com/adrianhajdin/iphone.git /tmp/iphone-15-clone && copiar assets a public/templates/iphone-15/"
+      "id": "h1-h6-override",
+      "description": "globals.css h1-h6 font-size vars override Tailwind utilities.",
+      "severity": "medium",
+      "workaround": "Usar p tags o CSS layers para headings que necesiten Tailwind sizing."
     }
   ],
+  "crossProjectWork": {
+    "auditorCiudadano": {
+      "status": "redesign-shipped-to-vercel",
+      "urls": {
+        "citizen": "citizen-app-ruddy.vercel.app",
+        "admin": "admin-app-pearl-gamma.vercel.app",
+        "backend": "backend-seven-rho-lfztzeru9z.vercel.app"
+      },
+      "changes": "Full Tailwind v4 + shadcn/ui migration, 8 extracted components, responsive sidebar, Framer Motion transitions, Whisper transcribe route, Neon DB seeded"
+    }
+  },
   "designVault": {
     "completed": ["iphone-15-clone"],
     "inProgress": ["zentry-awwwards"],
     "pending": ["gsap-macbook", "gsap-cocktails", "saas-boilerplate", "page-ui-shipixen", "cruip-open-react", "astrowind", "awesome-landing-pages"]
   },
   "nextSteps": [
-    "Motor IVA segunda pasada: HoloCard tilt, GlassmorphismCard, CountUp animations, framer-motion stagger",
-    "Migrar CFDI-Motor a DS (backlog en cfdi-motor/apps/web/src/DEUDA-TECNICA.md — P0 tokens, P1 KpiCard, P4 badges)",
-    "Diseñar factory process para template porting (evitar CSS specificity hell)",
-    "Terminar polish de Zentry template (grid Features, colores restantes)",
+    "Motor IVA segunda pasada: HoloCard tilt, GlassmorphismCard, CountUp, stagger",
+    "Migrar CFDI-Motor a DS (DEUDA-TECNICA.md: P0 tokens, P1 KpiCard, P4 badges)",
+    "Factory process para template porting",
+    "Polish Zentry template",
     "Template #3: GSAP MacBook Landing",
-    "Configurar CI/CD con GitHub Actions"
+    "CI/CD con GitHub Actions"
   ]
 }
