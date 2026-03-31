@@ -6,38 +6,40 @@
     "framework": "Next.js 15.5.14",
     "language": "TypeScript",
     "styling": "Tailwind CSS 4",
-    "components": "shadcn/ui (20) + custom (17) + layout (2) + dashboard (8) + landing (5) + responsive (5) + video (6) + template-iphone (12) + template-zentry (10)",
+    "components": "shadcn/ui (20) + custom (17) + layout (2) + dashboard (8) + landing (5) + responsive (5) + video (6) + template-iphone (12) + template-zentry (10) + template-macbook (6) + template-saas (7)",
     "animation": ["GSAP + ScrollTrigger", "Lenis", "Framer Motion"],
     "charts": "Recharts",
     "audio": "Howler.js",
     "3d": "Three.js + R3F v9.5 + drei v10.7",
-    "video": "Remotion v4.0.438 (6 compositions: BrandReveal, DeviceMockup, TextHook, FeatureShowcase, CTAEnd, ProductDemo)",
+    "video": "Remotion v4.0.438 (6 compositions + VideoPlayer + /video skill + BrandSplash)",
     "state": "Zustand",
     "testing": "Vitest 4.1 + Testing Library + happy-dom + Playwright",
     "other": ["Lottie", "Lucide Icons", "CVA", "Zod 4.3.6", "Sonner", "cmdk"]
   },
-  "status": "remotion-pipeline-complete-auditor-redesign-shipped",
-  "lastSession": "2026-03-29",
+  "status": "factory-process-complete-4-templates-shipped",
+  "lastSession": "2026-03-31",
   "branch": "feat/design-system-scaffold",
   "pr": "https://github.com/MarxCha/md-design-system/pull/1",
-  "commits": 13,
+  "commits": 14,
   "stats": {
-    "sourceFiles": 200,
+    "sourceFiles": 210,
     "uiComponents": 20,
     "customComponents": 17,
     "layoutComponents": 2,
     "dashboardComponents": 8,
-    "videoComponents": 6,
+    "videoComponents": 7,
     "landingComponents": 5,
     "responsiveComponents": 5,
     "templateIphoneComponents": 12,
     "templateZentryComponents": 10,
+    "templateMacbookComponents": 6,
     "lintRules": 4,
     "hooks": 8,
     "testFiles": 26,
     "testsPassing": 88,
     "demoPages": 14,
-    "templates": 2,
+    "templates": 4,
+    "templateSaasComponents": 7,
     "typescriptErrors": 0
   },
   "knownIssues": [
@@ -64,30 +66,42 @@
       "description": "globals.css h1-h6 font-size vars override Tailwind utilities.",
       "severity": "medium",
       "workaround": "Usar p tags o CSS layers para headings que necesiten Tailwind sizing."
+    },
+    {
+      "id": "lint-rules-any",
+      "description": "src/lint/rules/no-inline-styles.ts y require-aria-label.ts tienen @typescript-eslint/no-explicit-any — bloquean npm run build.",
+      "severity": "medium",
+      "workaround": "Pre-existing issue. Fix: añadir // eslint-disable-next-line comments o tipar correctamente."
     }
   ],
   "crossProjectWork": {
     "auditorCiudadano": {
-      "status": "redesign-shipped-to-vercel",
+      "status": "redesign-shipped-splash-deployed",
       "urls": {
-        "citizen": "citizen-app-ruddy.vercel.app",
+        "citizen": "auditor-ciudadano.vercel.app",
         "admin": "admin-app-pearl-gamma.vercel.app",
         "backend": "backend-seven-rho-lfztzeru9z.vercel.app"
       },
-      "changes": "Full Tailwind v4 + shadcn/ui migration, 8 extracted components, responsive sidebar, Framer Motion transitions, Whisper transcribe route, Neon DB seeded"
+      "changes": "Full Tailwind v4 + shadcn/ui migration, 8 extracted components, BrandSplash on citizen + admin, Vercel build config fixed",
+      "note": "citizen-app-ruddy.vercel.app is STALE — correct citizen URL is auditor-ciudadano.vercel.app. Admin requires manual deploy: cd admin-app && npx vercel --prod"
     }
   },
   "designVault": {
-    "completed": ["iphone-15-clone"],
+    "completed": ["iphone-15-clone", "gsap-macbook", "saas-starter"],
     "inProgress": ["zentry-awwwards"],
-    "pending": ["gsap-macbook", "gsap-cocktails", "saas-boilerplate", "page-ui-shipixen", "cruip-open-react", "astrowind", "awesome-landing-pages"]
+    "pending": ["gsap-cocktails", "page-ui-shipixen", "cruip-open-react", "astrowind", "awesome-landing-pages"]
+  },
+  "videosRendered": {
+    "auditorCiudadanoReel": "out/auditor-ciudadano-reel.mp4 (1080x1920, 30s, 3.6MB)",
+    "auditorCiudadanoDemo": "out/auditor-ciudadano-demo.mp4 (1920x1080, 16.5s, 1.6MB)",
+    "guelaguetzaReel": "out/guelaguetza-reel.mp4 (1080x1920, 20.5s, 3.3MB)",
+    "guelaguetzaDemo": "out/guelaguetza-demo.mp4 (1920x1080, 16.5s, 2.1MB)"
   },
   "nextSteps": [
+    "Commit session 008: factory process + macbook + saas templates",
     "Motor IVA segunda pasada: HoloCard tilt, GlassmorphismCard, CountUp, stagger",
     "Migrar CFDI-Motor a DS (DEUDA-TECNICA.md: P0 tokens, P1 KpiCard, P4 badges)",
-    "Factory process para template porting",
-    "Polish Zentry template",
-    "Template #3: GSAP MacBook Landing",
+    "Template #5: GSAP Cocktails Landing (npm run template:new -- --slug=gsap-cocktails)",
     "CI/CD con GitHub Actions"
   ]
 }

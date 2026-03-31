@@ -1,0 +1,204 @@
+/* ─── GSAP MacBook Template — Custom Styles ─────────────────────────────────── */
+/* ALL rules scoped under .gsap-macbook-template to win over design system globals  */
+/* NO @layer utilities — that loses specificity to unscoped globals.                */
+/* Color utilities prefixed with gm- and !important for global scope.               */
+
+/* ─── Color Utilities (global scope, gm- prefix) ─────────────────────── */
+.text-gm-white    { color: #ffffff !important; }
+.text-gm-gray     { color: #9ca3af !important; }
+.text-gm-blue     { color: #3b82f6 !important; }
+.bg-gm-black      { background-color: #000000 !important; }
+.bg-gm-dark       { background-color: #111111 !important; }
+.bg-gm-card       { background-color: #1a1a1a !important; }
+
+/* ─── Base Styles ─────────────────────────────────────────────────────── */
+.gsap-macbook-template {
+  font-family: -apple-system, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+  background-color: #000000;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Reset: override design system heading color rules ───────────────── */
+.gsap-macbook-template h1,
+.gsap-macbook-template h2,
+.gsap-macbook-template h3,
+.gsap-macbook-template h4,
+.gsap-macbook-template h5,
+.gsap-macbook-template h6,
+.gsap-macbook-template p,
+.gsap-macbook-template span,
+.gsap-macbook-template div {
+  color: inherit;
+}
+
+/* ─── Gradient Text ───────────────────────────────────────────────────── */
+.gsap-macbook-template .gm-gradient-text {
+  background: linear-gradient(135deg, #5ac8fa 0%, #007aff 40%, #af52de 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ─── Hero Heading ────────────────────────────────────────────────────── */
+.gsap-macbook-template .gm-heading {
+  letter-spacing: -0.03em;
+}
+
+/* ─── Laptop Mockup — Hero ────────────────────────────────────────────── */
+.gsap-macbook-template .gm-laptop-hero {
+  perspective: 1200px;
+}
+
+/* ─── Laptop Frame (Display section) ─────────────────────────────────── */
+.gsap-macbook-template .gm-laptop-frame {
+  perspective: 1200px;
+}
+
+/* ─── Laptop Screen gradient (Display section) ───────────────────────── */
+.gsap-macbook-template .gm-laptop-screen {
+  --gm-screen-hue1: 220;
+  --gm-screen-hue2: 160;
+  background: linear-gradient(
+    135deg,
+    hsl(var(--gm-screen-hue1), 80%, 15%) 0%,
+    hsl(calc(var(--gm-screen-hue1) + 30), 60%, 10%) 40%,
+    hsl(var(--gm-screen-hue2), 70%, 8%) 100%
+  );
+}
+
+/* ─── Screen gradient overlay (Hero laptop) ──────────────────────────── */
+.gsap-macbook-template .gm-screen-gradient {
+  background: linear-gradient(
+    135deg,
+    hsl(220, 80%, 18%) 0%,
+    hsl(250, 60%, 12%) 45%,
+    hsl(180, 60%, 10%) 100%
+  );
+  animation: gm-screen-shift 8s ease-in-out infinite alternate;
+}
+
+/* ─── Feature Cards ───────────────────────────────────────────────────── */
+.gsap-macbook-template .gm-feature-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gsap-macbook-template .gm-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+/* ─── Metric value (large numbers) ───────────────────────────────────── */
+.gsap-macbook-template .gm-metric-value {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.gsap-macbook-template .gm-metric-big {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  line-height: 1;
+}
+
+/* ─── Horizontal scroll track ─────────────────────────────────────────── */
+.gsap-macbook-template .gm-horizontal-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  will-change: transform;
+}
+
+/* ─── Metric card (Performance section) ──────────────────────────────── */
+.gsap-macbook-template .gm-metric-card {
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.gsap-macbook-template .gm-metric-card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* ─── Specs grid ──────────────────────────────────────────────────────── */
+.gsap-macbook-template .gm-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .gsap-macbook-template .gm-spec-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+/* ─── CTA Buttons ─────────────────────────────────────────────────────── */
+.gsap-macbook-template .gm-btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+
+.gsap-macbook-template .gm-btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gsap-macbook-template .gm-btn-primary:hover::after {
+  opacity: 1;
+}
+
+.gsap-macbook-template .gm-btn-secondary {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── Radial gradient utility ─────────────────────────────────────────── */
+.gsap-macbook-template .bg-gradient-radial {
+  background-image: radial-gradient(var(--tw-gradient-stops));
+}
+
+/* ─── Keyframes ───────────────────────────────────────────────────────── */
+@keyframes gm-screen-shift {
+  0%   { filter: hue-rotate(0deg) brightness(1); }
+  50%  { filter: hue-rotate(20deg) brightness(1.08); }
+  100% { filter: hue-rotate(-15deg) brightness(0.95); }
+}
+
+@keyframes gm-pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 122, 255, 0.15); }
+  50%       { box-shadow: 0 0 40px rgba(0, 122, 255, 0.3); }
+}
+
+/* ─── Laptop ambient glow on hover ───────────────────────────────────── */
+.gsap-macbook-template .gm-laptop-frame:hover .gm-laptop-screen {
+  animation: gm-pulse-glow 3s ease-in-out infinite;
+}
+
+/* ─── Responsive adjustments ─────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .gsap-macbook-template .gm-laptop-hero {
+    max-width: 100%;
+  }
+
+  .gsap-macbook-template .gm-horizontal-track {
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .gsap-macbook-template .gm-metric-card {
+    width: 340px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gsap-macbook-template .gm-heading {
+    letter-spacing: -0.04em;
+  }
+}

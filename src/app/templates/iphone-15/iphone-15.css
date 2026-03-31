@@ -1,19 +1,16 @@
-/* ============================================================
-   iPhone 15 Pro Template — Custom Styles
-   Original: adrianhajdin/iphone (Tailwind v3 config ported to CSS)
-   ============================================================ */
+/* ─── iPhone 15 Pro Template — Custom Styles ─────────────────────────────── */
+/* ALL rules scoped under .iphone-15-template to win over design system globals */
+/* NO @layer utilities — that loses specificity to unscoped globals             */
 
-/* ---------- Custom Color Tokens ---------- */
-@theme inline {
-  --color-blue: #2997FF;
-  --color-gray: #86868b;
-  --color-gray-100: #94928d;
-  --color-gray-200: #afafaf;
-  --color-gray-300: #42424570;
-  --color-zinc: #101010;
-}
+/* ─── Color Utilities (ip prefix, global scope) ──────────────────────────── */
+.text-ip-blue    { color: #2997FF !important; }
+.text-ip-gray    { color: #86868b !important; }
+.text-ip-gray-100 { color: #94928d !important; }
+.text-ip-gray-200 { color: #afafaf !important; }
+.bg-ip-gray-300  { background-color: #42424570 !important; }
+.bg-ip-zinc      { background-color: #101010 !important; }
 
-/* ---------- Base Styles ---------- */
+/* ─── Base Styles ─────────────────────────────────────────────────────────── */
 .iphone-15-template {
   border-color: #3b3b3b;
 }
@@ -22,285 +19,296 @@
   touch-action: none;
 }
 
-/* ---------- Utility Classes ---------- */
-@layer utilities {
-  .screen-max-width {
-    margin-inline-start: auto;
-    margin-inline-end: auto;
-    position: relative;
-    max-width: 1120px;
-  }
-
-  .flex-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .nav-height {
-    height: calc(100vh - 60px);
-  }
-
-  .common-padding {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-
-  .section-heading {
-    color: #86868b;
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-    font-weight: 500;
-    opacity: 0;
-    transform: translateY(5rem);
-    margin-bottom: 1.25rem;
-  }
-
-  .feature-text {
-    color: #86868b;
-    max-width: 28rem;
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-    font-weight: 600;
-    opacity: 0;
-    transform: translateY(100px);
-  }
-
-  .feature-text-container {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 2.5rem;
-    gap: 1.25rem;
-  }
-
-  .feature-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transform: scale(1.5);
-    opacity: 0;
-  }
-
-  .feature-video-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    align-items: center;
-  }
-
-  .link {
-    color: #2997FF;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-    opacity: 0;
-    transform: translateY(5rem);
-  }
-
-  .control-btn {
-    margin-left: 1rem;
-    padding: 1rem;
-    border-radius: 9999px;
-    background-color: #42424570;
-    backdrop-filter: blur(12px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .hero-title {
-    text-align: center;
-    font-weight: 600;
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-    color: #94928d;
-    opacity: 0;
-  }
-
-  .btn {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    border-radius: 1.5rem;
-    background-color: #2997FF;
-    margin-top: 1.25rem;
-    margin-bottom: 1.25rem;
-    border: 1px solid transparent;
-  }
-
-  .hiw-title {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-    font-weight: 600;
-    text-align: center;
-  }
-
-  .hiw-subtitle {
-    color: #86868b;
-    font-weight: 600;
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-    text-align: center;
-  }
-
-  .hiw-video {
-    position: absolute;
-    width: 95%;
-    height: 90%;
-    border-radius: 56px;
-    overflow: hidden;
-  }
-
-  .hiw-text-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 6rem;
-  }
-
-  .hiw-text {
-    color: #86868b;
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-    font-weight: 400;
-  }
-
-  .hiw-bigtext {
-    color: white;
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-    font-weight: 400;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .video-carousel_container {
-    position: relative;
-    width: 88vw;
-    height: 35vh;
-  }
-
-  .color-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    border-radius: 9999px;
-    background-color: #42424570;
-    backdrop-filter: blur(12px);
-  }
-
-  .size-btn-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.25rem;
-    border-radius: 9999px;
-    background-color: #42424570;
-    backdrop-filter: blur(12px);
-    margin-left: 0.75rem;
-    gap: 0.25rem;
-  }
-
-  .size-btn {
-    width: 2.5rem;
-    height: 2.5rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    color: black;
-    border-radius: 9999px;
-    transition: all 0.3s;
-  }
-
-  .g_fadeIn {
-    opacity: 0;
-    transform: translateY(100px);
-  }
+/* ─── Reset: override design system heading color rules ───────────────────── */
+.iphone-15-template h1,
+.iphone-15-template h2,
+.iphone-15-template h3,
+.iphone-15-template h4,
+.iphone-15-template h5,
+.iphone-15-template h6,
+.iphone-15-template p,
+.iphone-15-template span,
+.iphone-15-template div {
+  color: inherit;
 }
 
-/* ---------- Responsive Overrides ---------- */
+/* ─── Scoped Utilities ────────────────────────────────────────────────────── */
+.iphone-15-template .screen-max-width {
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  position: relative;
+  max-width: 1120px;
+}
+
+.iphone-15-template .flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iphone-15-template .nav-height {
+  height: calc(100vh - 60px);
+}
+
+.iphone-15-template .common-padding {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.iphone-15-template .section-heading {
+  color: #86868b;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(5rem);
+  margin-bottom: 1.25rem;
+}
+
+.iphone-15-template .feature-text {
+  color: #86868b;
+  max-width: 28rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+.iphone-15-template .feature-text-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 2.5rem;
+  gap: 1.25rem;
+}
+
+.iphone-15-template .feature-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.5);
+  opacity: 0;
+}
+
+.iphone-15-template .feature-video-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.iphone-15-template .link {
+  color: #2997FF;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  opacity: 0;
+  transform: translateY(5rem);
+}
+
+.iphone-15-template .control-btn {
+  margin-left: 1rem;
+  padding: 1rem;
+  border-radius: 9999px;
+  background-color: #42424570;
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iphone-15-template .hero-title {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  color: #94928d;
+  opacity: 0;
+}
+
+.iphone-15-template .btn {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 1.5rem;
+  background-color: #2997FF;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid transparent;
+}
+
+.iphone-15-template .hiw-title {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.iphone-15-template .hiw-subtitle {
+  color: #86868b;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  text-align: center;
+}
+
+.iphone-15-template .hiw-video {
+  position: absolute;
+  width: 95%;
+  height: 90%;
+  border-radius: 56px;
+  overflow: hidden;
+}
+
+.iphone-15-template .hiw-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 6rem;
+}
+
+.iphone-15-template .hiw-text {
+  color: #86868b;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 400;
+}
+
+.iphone-15-template .hiw-bigtext {
+  color: white;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 400;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.iphone-15-template .video-carousel_container {
+  position: relative;
+  width: 88vw;
+  height: 35vh;
+}
+
+.iphone-15-template .color-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 9999px;
+  background-color: #42424570;
+  backdrop-filter: blur(12px);
+}
+
+.iphone-15-template .size-btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  border-radius: 9999px;
+  background-color: #42424570;
+  backdrop-filter: blur(12px);
+  margin-left: 0.75rem;
+  gap: 0.25rem;
+}
+
+.iphone-15-template .size-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: black;
+  border-radius: 9999px;
+  transition: all 0.3s;
+}
+
+.iphone-15-template .g_fadeIn {
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────────── */
 @media (min-width: 640px) {
-  .common-padding {
+  .iphone-15-template .common-padding {
     padding-top: 8rem;
     padding-bottom: 8rem;
     padding-left: 2.5rem;
     padding-right: 2.5rem;
   }
 
-  .video-carousel_container {
+  .iphone-15-template .video-carousel_container {
     width: 70vw;
     height: 50vh;
   }
 }
 
 @media (min-width: 768px) {
-  .section-heading {
+  .iphone-15-template .section-heading {
     font-size: 3rem;
     line-height: 1;
   }
 
-  .feature-text {
+  .iphone-15-template .feature-text {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
 
-  .feature-text-container {
+  .iphone-15-template .feature-text-container {
     flex-direction: row;
     margin-top: 4rem;
   }
 
-  .feature-video-container {
+  .iphone-15-template .feature-video-container {
     flex-direction: row;
   }
 
-  .hiw-title {
+  .iphone-15-template .hiw-title {
     font-size: 4.5rem;
     line-height: 1;
   }
 
-  .hiw-subtitle {
+  .iphone-15-template .hiw-subtitle {
     font-size: 1.5rem;
     line-height: 2rem;
   }
 
-  .hiw-text-container {
+  .iphone-15-template .hiw-text-container {
     flex-direction: row;
   }
 
-  .hiw-text {
+  .iphone-15-template .hiw-text {
     font-weight: 600;
   }
 
-  .hiw-bigtext {
+  .iphone-15-template .hiw-bigtext {
     font-size: 3rem;
     line-height: 1;
     font-weight: 600;
   }
 
-  .video-carousel_container {
+  .iphone-15-template .video-carousel_container {
     height: 70vh;
   }
 }
 
 @media (min-width: 1024px) {
-  .section-heading {
+  .iphone-15-template .section-heading {
     font-size: 3.75rem;
     line-height: 1;
     margin-bottom: 0;
@@ -308,17 +316,17 @@
 }
 
 @media (max-width: 767px) {
-  .hero-title {
+  .iphone-15-template .hero-title {
     margin-bottom: 2.5rem;
   }
 }
 
-/* ---------- Hover States ---------- */
-.link:hover {
+/* ─── Hover States ────────────────────────────────────────────────────────── */
+.iphone-15-template .link:hover {
   text-decoration: underline;
 }
 
-.btn:hover {
+.iphone-15-template .btn:hover {
   background-color: transparent;
   border-color: #2997FF;
   color: #2997FF;

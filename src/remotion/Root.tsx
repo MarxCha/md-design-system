@@ -9,7 +9,8 @@ import {
   ProductDemo,
   calculateProductDemoDuration,
 } from "../components/video/ProductDemo";
-import { VIDEO_FPS, VIDEO_SIZES, vc } from "../components/video/video-tokens";
+import { VIDEO_FPS, VIDEO_SIZES } from "../components/video/video-tokens";
+import { templateConfigs } from "./registry";
 
 /* ─── Shared config ─── */
 const auditorBrand = {
@@ -364,6 +365,36 @@ export const RemotionRoot: React.FC = () => {
         height={VIDEO_SIZES.horizontal.height}
         defaultProps={guelaguetzaHorizontalProps}
       />
+
+      {/* ─── Template Video Compositions (from registry) ─── */}
+      {Object.entries(templateConfigs).map(([name, config]) => (
+        <React.Fragment key={name}>
+          <Composition
+            id={`Template-${name}-Vertical`}
+            component={ProductDemo}
+            durationInFrames={calculateProductDemoDuration(
+              config.verticalProps,
+              VIDEO_FPS,
+            )}
+            fps={VIDEO_FPS}
+            width={VIDEO_SIZES.vertical.width}
+            height={VIDEO_SIZES.vertical.height}
+            defaultProps={config.verticalProps}
+          />
+          <Composition
+            id={`Template-${name}-Horizontal`}
+            component={ProductDemo}
+            durationInFrames={calculateProductDemoDuration(
+              config.horizontalProps,
+              VIDEO_FPS,
+            )}
+            fps={VIDEO_FPS}
+            width={VIDEO_SIZES.horizontal.width}
+            height={VIDEO_SIZES.horizontal.height}
+            defaultProps={config.horizontalProps}
+          />
+        </React.Fragment>
+      ))}
     </>
   );
 };
