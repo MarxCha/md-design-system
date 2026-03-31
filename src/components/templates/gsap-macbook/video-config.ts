@@ -1,46 +1,52 @@
 import { type ProductDemoProps } from "@/components/video/ProductDemo";
-import { TEMPLATE_NAME } from "./constants";
+import { TEMPLATE_NAME, heroContent, features as featureData } from "./constants";
 
 export const SLUG = "gsap-macbook";
 
 /** Brand colors for video compositions */
 export const brandColors = {
-  primary: "#000000",
-  accent: "#ffffff",
+  primary: "#3b82f6",
+  accent: "#a855f7",
   background: "#000000",
 };
 
 const brand = {
   tagline: TEMPLATE_NAME,
   bgColor: brandColors.background,
-  accentColor: brandColors.accent,
+  accentColor: brandColors.primary,
 };
 
 const hook = {
-  text: "TODO: compelling hook",
-  subtitle: "TODO: subtitle",
+  text: heroContent.subtitle,
+  subtitle: heroContent.tagline,
   bgColor: brandColors.background,
-  accentColor: brandColors.accent,
+  accentColor: brandColors.primary,
 };
 
 const features = {
-  heading: "Features",
-  features: [] as Array<{ icon: string; title: string; description: string }>,
+  heading: "Pro Features",
+  features: featureData.map((f) => ({
+    icon: f.icon,
+    title: f.title,
+    description: f.description,
+  })),
   bgColor: brandColors.background,
-  accentColor: brandColors.accent,
+  accentColor: brandColors.primary,
 };
 
 const cta = {
-  ctaText: "Learn more",
+  ctaText: "Explore the design",
   url: "consultoriamd.com.mx",
-  buttonColor: brandColors.accent,
+  buttonColor: brandColors.primary,
 };
 
 /** Vertical reel (1080x1920) */
 export const verticalProps: ProductDemoProps = {
   brand,
   hook,
-  screens: [],
+  screens: [
+    // Populate after: npm run template:screenshot -- --slug=gsap-macbook
+  ],
   features,
   cta,
   brandDuration: 3,
@@ -54,7 +60,9 @@ export const verticalProps: ProductDemoProps = {
 export const horizontalProps: ProductDemoProps = {
   brand,
   hook,
-  screens: [],
+  screens: [
+    // Populate after: npm run template:screenshot -- --slug=gsap-macbook
+  ],
   features,
   cta,
   brandDuration: 3,

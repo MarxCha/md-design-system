@@ -27,6 +27,7 @@ export default function Navbar() {
         <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
             <button
+              type="button"
               key={link}
               onClick={() => scrollTo(link)}
               className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
@@ -38,16 +39,17 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden items-center gap-3 md:flex">
-          <button className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900">
+          <button type="button" className="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900">
             Sign in
           </button>
-          <button className="ss-btn-primary rounded-lg px-4 py-2 text-sm font-semibold text-white transition-all hover:shadow-lg hover:shadow-indigo-200 active:scale-95">
+          <button type="button" className="ss-btn-primary rounded-lg px-4 py-2 text-sm font-semibold text-white transition-all hover:shadow-lg hover:shadow-indigo-200 active:scale-95">
             Get Started
           </button>
         </div>
 
         {/* Hamburger */}
         <button
+          type="button"
           className="flex flex-col items-center justify-center gap-1.5 p-2 md:hidden"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label="Toggle menu"
@@ -72,6 +74,7 @@ export default function Navbar() {
         <div className="flex flex-col gap-1 px-4 py-4">
           {navLinks.map((link) => (
             <button
+              type="button"
               key={link}
               onClick={() => scrollTo(link)}
               className="rounded-md px-3 py-2 text-left text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-slate-900"
@@ -80,10 +83,10 @@ export default function Navbar() {
             </button>
           ))}
           <div className="mt-2 flex flex-col gap-2 border-t border-slate-100 pt-3">
-            <button className="rounded-md px-3 py-2 text-left text-sm font-medium text-slate-600 hover:text-slate-900">
+            <button type="button" className="rounded-md px-3 py-2 text-left text-sm font-medium text-slate-600 hover:text-slate-900">
               Sign in
             </button>
-            <button className="ss-btn-primary rounded-lg px-4 py-2 text-sm font-semibold text-white">
+            <button type="button" className="ss-btn-primary rounded-lg px-4 py-2 text-sm font-semibold text-white">
               Get Started
             </button>
           </div>

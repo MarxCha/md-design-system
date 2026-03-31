@@ -4,12 +4,7 @@
 /* Color utilities prefixed with gm- and !important for global scope.               */
 
 /* ─── Color Utilities (global scope, gm- prefix) ─────────────────────── */
-.text-gm-white    { color: #ffffff !important; }
-.text-gm-gray     { color: #9ca3af !important; }
-.text-gm-blue     { color: #3b82f6 !important; }
-.bg-gm-black      { background-color: #000000 !important; }
-.bg-gm-dark       { background-color: #111111 !important; }
-.bg-gm-card       { background-color: #1a1a1a !important; }
+/* Reserved for future use — add gm- prefixed utilities here as needed */
 
 /* ─── Base Styles ─────────────────────────────────────────────────────── */
 .gsap-macbook-template {

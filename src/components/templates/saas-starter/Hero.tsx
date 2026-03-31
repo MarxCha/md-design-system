@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,6 +10,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => ScrollTrigger.refresh(), 200);
+    return () => clearTimeout(timer);
+  }, []);
 
   useGSAP(
     () => {
@@ -105,10 +110,10 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className="hero-ctas mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <button className="ss-btn-primary w-full rounded-xl px-7 py-3.5 text-base font-semibold text-white shadow-md shadow-indigo-200/60 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-indigo-200 active:scale-95 sm:w-auto">
+          <button type="button" className="ss-btn-primary w-full rounded-xl px-7 py-3.5 text-base font-semibold text-white shadow-md shadow-indigo-200/60 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-indigo-200 active:scale-95 sm:w-auto">
             {heroContent.ctaPrimary}
           </button>
-          <button className="w-full rounded-xl border border-slate-300 bg-white px-7 py-3.5 text-base font-semibold text-slate-700 transition-all hover:-translate-y-0.5 hover:border-slate-400 hover:shadow-md active:scale-95 sm:w-auto">
+          <button type="button" className="w-full rounded-xl border border-slate-300 bg-white px-7 py-3.5 text-base font-semibold text-slate-700 transition-all hover:-translate-y-0.5 hover:border-slate-400 hover:shadow-md active:scale-95 sm:w-auto">
             <span className="mr-2">▶</span>
             {heroContent.ctaSecondary}
           </button>
@@ -128,9 +133,9 @@ export default function Hero() {
           <div className="ss-glass-card overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl shadow-slate-200/80">
             {/* Browser chrome */}
             <div className="flex items-center gap-2 border-b border-slate-100 bg-slate-50 px-4 py-3">
-              <span className="h-3 w-3 rounded-full bg-red-400" />
-              <span className="h-3 w-3 rounded-full bg-yellow-400" />
-              <span className="h-3 w-3 rounded-full bg-green-400" />
+              <span className="h-3 w-3 rounded-full bg-red-400" aria-hidden="true" />
+              <span className="h-3 w-3 rounded-full bg-yellow-400" aria-hidden="true" />
+              <span className="h-3 w-3 rounded-full bg-green-400" aria-hidden="true" />
               <div className="ml-3 flex h-6 flex-1 items-center rounded-md bg-white px-3">
                 <span className="text-xs text-slate-400">app.acme.io/dashboard</span>
               </div>
@@ -261,6 +266,7 @@ export default function Hero() {
                       >
                         <div className="flex items-center gap-2">
                           <span
+                            aria-hidden="true"
                             className={`h-1.5 w-1.5 rounded-full ${dep.status === "Live" ? "bg-emerald-400" : "bg-amber-400"}`}
                           />
                           <span className="text-xs font-medium text-slate-700">

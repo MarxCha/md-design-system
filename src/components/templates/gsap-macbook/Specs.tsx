@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,61 +14,66 @@ const Specs = () => {
   const gridRef = useRef<HTMLDivElement>(null);
   const dividerRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const timer = setTimeout(() => ScrollTrigger.refresh(), 200);
+    return () => clearTimeout(timer);
+  }, []);
+
   useGSAP(
     () => {
       // Heading
-      gsap.fromTo(
-        headingRef.current,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: "top 85%",
-          },
-        }
-      );
+      gsap.set(headingRef.current, { opacity: 0, y: 40 });
+      ScrollTrigger.create({
+        trigger: headingRef.current,
+        start: "top 85%",
+        once: true,
+        onEnter: () => {
+          gsap.to(headingRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power3.out",
+          });
+        },
+      });
 
       // Divider line draw
-      gsap.fromTo(
-        dividerRef.current,
-        { scaleX: 0, transformOrigin: "left center" },
-        {
-          scaleX: 1,
-          duration: 1,
-          ease: "power2.inOut",
-          scrollTrigger: {
-            trigger: dividerRef.current,
-            start: "top 85%",
-          },
-        }
-      );
+      gsap.set(dividerRef.current, { scaleX: 0, transformOrigin: "left center" });
+      ScrollTrigger.create({
+        trigger: dividerRef.current,
+        start: "top 85%",
+        once: true,
+        onEnter: () => {
+          gsap.to(dividerRef.current, {
+            scaleX: 1,
+            duration: 1,
+            ease: "power2.inOut",
+          });
+        },
+      });
 
       // Stagger reveal each spec item
       if (!gridRef.current) return;
       const items = gridRef.current.querySelectorAll(".gm-spec-item");
 
-      gsap.fromTo(
-        items,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out",
-          stagger: {
-            amount: 0.8,
-            from: "start",
-          },
-          scrollTrigger: {
-            trigger: gridRef.current,
-            start: "top 80%",
-          },
-        }
-      );
+      gsap.set(items, { opacity: 0, y: 30 });
+      ScrollTrigger.create({
+        trigger: gridRef.current,
+        start: "top 80%",
+        once: true,
+        onEnter: () => {
+          gsap.to(items, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: {
+              amount: 0.8,
+              from: "start",
+            },
+          });
+        },
+      });
     },
     { scope: sectionRef }
   );
@@ -81,7 +86,7 @@ const Specs = () => {
     >
       <div className="mx-auto max-w-5xl">
         {/* Heading */}
-        <div ref={headingRef} className="mb-6 opacity-0">
+        <div ref={headingRef} className="mb-6">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-blue-400">
             Technical specifications
           </p>
@@ -103,7 +108,7 @@ const Specs = () => {
           {specs.map((spec) => (
             <div
               key={spec.label}
-              className="gm-spec-item group flex flex-col gap-2 rounded-xl border border-gray-800/60 bg-gray-900/40 p-6 opacity-0 transition-colors duration-300 hover:border-gray-700 hover:bg-gray-900/80"
+              className="gm-spec-item group flex flex-col gap-2 rounded-xl border border-gray-800/60 bg-gray-900/40 p-6 transition-colors duration-300 hover:border-gray-700 hover:bg-gray-900/80"
             >
               <span className="text-xs font-semibold uppercase tracking-widest text-gray-500 transition-colors duration-300 group-hover:text-gray-400">
                 {spec.label}

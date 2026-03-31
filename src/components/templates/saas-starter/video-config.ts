@@ -1,46 +1,52 @@
 import { type ProductDemoProps } from "@/components/video/ProductDemo";
-import { TEMPLATE_NAME } from "./constants";
+import { TEMPLATE_NAME, heroContent, features as featureData } from "./constants";
 
 export const SLUG = "saas-starter";
 
 /** Brand colors for video compositions */
 export const brandColors = {
-  primary: "#000000",
-  accent: "#ffffff",
-  background: "#000000",
+  primary: "#4F46E5",
+  accent: "#06B6D4",
+  background: "#FAFAFA",
 };
 
 const brand = {
   tagline: TEMPLATE_NAME,
-  bgColor: brandColors.background,
-  accentColor: brandColors.accent,
+  bgColor: "#0F172A",
+  accentColor: brandColors.primary,
 };
 
 const hook = {
-  text: "TODO: compelling hook",
-  subtitle: "TODO: subtitle",
-  bgColor: brandColors.background,
+  text: "Build faster. Ship smarter.",
+  subtitle: heroContent.badge,
+  bgColor: "#0F172A",
   accentColor: brandColors.accent,
 };
 
 const features = {
-  heading: "Features",
-  features: [] as Array<{ icon: string; title: string; description: string }>,
-  bgColor: brandColors.background,
+  heading: "Everything you need",
+  features: featureData.slice(0, 3).map((f) => ({
+    icon: f.icon,
+    title: f.title,
+    description: f.description,
+  })),
+  bgColor: "#0F172A",
   accentColor: brandColors.accent,
 };
 
 const cta = {
-  ctaText: "Learn more",
+  ctaText: heroContent.ctaPrimary,
   url: "consultoriamd.com.mx",
-  buttonColor: brandColors.accent,
+  buttonColor: brandColors.primary,
 };
 
 /** Vertical reel (1080x1920) */
 export const verticalProps: ProductDemoProps = {
   brand,
   hook,
-  screens: [],
+  screens: [
+    // Populate after: npm run template:screenshot -- --slug=saas-starter
+  ],
   features,
   cta,
   brandDuration: 3,
@@ -54,7 +60,9 @@ export const verticalProps: ProductDemoProps = {
 export const horizontalProps: ProductDemoProps = {
   brand,
   hook,
-  screens: [],
+  screens: [
+    // Populate after: npm run template:screenshot -- --slug=saas-starter
+  ],
   features,
   cta,
   brandDuration: 3,

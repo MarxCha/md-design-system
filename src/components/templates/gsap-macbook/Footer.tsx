@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -28,37 +28,42 @@ const Footer = () => {
   const ctaRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const timer = setTimeout(() => ScrollTrigger.refresh(), 200);
+    return () => clearTimeout(timer);
+  }, []);
+
   useGSAP(
     () => {
-      gsap.fromTo(
-        ctaRef.current,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ctaRef.current,
-            start: "top 85%",
-          },
-        }
-      );
+      gsap.set(ctaRef.current, { opacity: 0, y: 40 });
+      ScrollTrigger.create({
+        trigger: ctaRef.current,
+        start: "top 85%",
+        once: true,
+        onEnter: () => {
+          gsap.to(ctaRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power3.out",
+          });
+        },
+      });
 
-      gsap.fromTo(
-        linksRef.current,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: linksRef.current,
-            start: "top 90%",
-          },
-        }
-      );
+      gsap.set(linksRef.current, { opacity: 0, y: 20 });
+      ScrollTrigger.create({
+        trigger: linksRef.current,
+        start: "top 90%",
+        once: true,
+        onEnter: () => {
+          gsap.to(linksRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+          });
+        },
+      });
     },
     { scope: sectionRef }
   );
@@ -72,7 +77,7 @@ const Footer = () => {
       {/* CTA band */}
       <div
         ref={ctaRef}
-        className="flex flex-col items-center gap-8 border-t border-gray-800 px-6 py-20 text-center opacity-0 md:py-28"
+        className="flex flex-col items-center gap-8 border-t border-gray-800 px-6 py-20 text-center md:py-28"
       >
         <p className="text-xs font-semibold uppercase tracking-[0.25em] text-blue-400">
           Available now
@@ -105,7 +110,7 @@ const Footer = () => {
       </div>
 
       {/* Nav links */}
-      <div ref={linksRef} className="border-t border-gray-800 px-6 py-8 opacity-0">
+      <div ref={linksRef} className="border-t border-gray-800 px-6 py-8">
         <div className="mx-auto max-w-5xl">
           <nav
             aria-label="Footer navigation"

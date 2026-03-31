@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -13,23 +13,28 @@ const Display = () => {
   const laptopRef = useRef<HTMLDivElement>(null);
   const screenRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const timer = setTimeout(() => ScrollTrigger.refresh(), 200);
+    return () => clearTimeout(timer);
+  }, []);
+
   useGSAP(
     () => {
       // Heading fade up
-      gsap.fromTo(
-        headingRef.current,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: "top 85%",
-          },
-        }
-      );
+      gsap.set(headingRef.current, { opacity: 0, y: 50 });
+      ScrollTrigger.create({
+        trigger: headingRef.current,
+        start: "top 85%",
+        once: true,
+        onEnter: () => {
+          gsap.to(headingRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power3.out",
+          });
+        },
+      });
 
       // Pin section + zoom into laptop screen
       const tl = gsap.timeline({
@@ -86,7 +91,7 @@ const Display = () => {
       {/* Heading */}
       <div
         ref={headingRef}
-        className="relative z-10 mb-16 text-center opacity-0"
+        className="relative z-10 mb-16 text-center"
       >
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-blue-400">
           Stunning visuals

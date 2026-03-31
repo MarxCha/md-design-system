@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,23 +14,28 @@ const Features = () => {
   const headingRef = useRef<HTMLDivElement>(null);
   const valueRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => ScrollTrigger.refresh(), 200);
+    return () => clearTimeout(timer);
+  }, []);
+
   useGSAP(
     () => {
       // Section heading fade up
-      gsap.fromTo(
-        headingRef.current,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: "top 85%",
-          },
-        }
-      );
+      gsap.set(headingRef.current, { opacity: 0, y: 50 });
+      ScrollTrigger.create({
+        trigger: headingRef.current,
+        start: "top 85%",
+        once: true,
+        onEnter: () => {
+          gsap.to(headingRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power3.out",
+          });
+        },
+      });
 
       // Pin the features section and animate cards in sequence
       const cards = cardsRef.current.filter(Boolean);
@@ -38,21 +43,21 @@ const Features = () => {
       cards.forEach((card, i) => {
         const fromX = i % 2 === 0 ? -80 : 80;
 
-        gsap.fromTo(
-          card,
-          { opacity: 0, x: fromX, scale: 0.92 },
-          {
-            opacity: 1,
-            x: 0,
-            scale: 1,
-            duration: 0.9,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 80%",
-            },
-          }
-        );
+        gsap.set(card, { opacity: 0, x: fromX, scale: 0.92 });
+        ScrollTrigger.create({
+          trigger: card,
+          start: "top 80%",
+          once: true,
+          onEnter: () => {
+            gsap.to(card, {
+              opacity: 1,
+              x: 0,
+              scale: 1,
+              duration: 0.9,
+              ease: "power3.out",
+            });
+          },
+        });
 
         // Counter animation for the value badge
         const valueEl = valueRefs.current[i];
@@ -96,7 +101,7 @@ const Features = () => {
       className="relative w-full overflow-hidden bg-black px-6 py-24 md:py-36"
     >
       {/* Section label + heading */}
-      <div ref={headingRef} className="mx-auto mb-20 max-w-4xl text-center opacity-0">
+      <div ref={headingRef} className="mx-auto mb-20 max-w-4xl text-center">
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-blue-400">
           Built for the extraordinary
         </p>
@@ -116,7 +121,7 @@ const Features = () => {
           <div
             key={feature.title}
             ref={(el) => { cardsRef.current[i] = el; }}
-            className="gm-feature-card group relative flex flex-col gap-6 overflow-hidden rounded-2xl border border-gray-800 bg-gray-900/60 p-8 opacity-0 backdrop-blur-sm transition-colors duration-300 hover:border-gray-600"
+            className="gm-feature-card group relative flex flex-col gap-6 overflow-hidden rounded-2xl border border-gray-800 bg-gray-900/60 p-8 backdrop-blur-sm transition-colors duration-300 hover:border-gray-600"
           >
             {/* Top: icon + value */}
             <div className="flex items-start justify-between">

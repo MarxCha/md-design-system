@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,23 +14,28 @@ const Performance = () => {
   const headingRef = useRef<HTMLDivElement>(null);
   const valueRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => ScrollTrigger.refresh(), 200);
+    return () => clearTimeout(timer);
+  }, []);
+
   useGSAP(
     () => {
       // Heading reveal
-      gsap.fromTo(
-        headingRef.current,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: "top 85%",
-          },
-        }
-      );
+      gsap.set(headingRef.current, { opacity: 0, y: 40 });
+      ScrollTrigger.create({
+        trigger: headingRef.current,
+        start: "top 85%",
+        once: true,
+        onEnter: () => {
+          gsap.to(headingRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power3.out",
+          });
+        },
+      });
 
       // Horizontal scroll: pin section, translate track
       const track = trackRef.current;
@@ -105,7 +110,7 @@ const Performance = () => {
       {/* Section label + heading (stays fixed while pinned) */}
       <div
         ref={headingRef}
-        className="relative z-10 px-6 pt-20 pb-12 text-center opacity-0"
+        className="relative z-10 px-6 pt-20 pb-12 text-center"
       >
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-blue-400">
           Unprecedented performance

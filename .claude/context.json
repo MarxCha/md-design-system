@@ -20,9 +20,9 @@
   "lastSession": "2026-03-31",
   "branch": "feat/design-system-scaffold",
   "pr": "https://github.com/MarxCha/md-design-system/pull/1",
-  "commits": 14,
+  "commits": 15,
   "stats": {
-    "sourceFiles": 210,
+    "sourceFiles": 244,
     "uiComponents": 20,
     "customComponents": 17,
     "layoutComponents": 2,
@@ -98,10 +98,11 @@
     "guelaguetzaDemo": "out/guelaguetza-demo.mp4 (1920x1080, 16.5s, 2.1MB)"
   },
   "nextSteps": [
-    "Commit session 008: factory process + macbook + saas templates",
+    "Template #5: GSAP Cocktails Landing (npm run template:new -- --slug=gsap-cocktails)",
+    "Capture screenshots for MacBook + SaaS templates (npm run template:screenshot)",
+    "Render promotional videos for new templates via Remotion",
     "Motor IVA segunda pasada: HoloCard tilt, GlassmorphismCard, CountUp, stagger",
     "Migrar CFDI-Motor a DS (DEUDA-TECNICA.md: P0 tokens, P1 KpiCard, P4 badges)",
-    "Template #5: GSAP Cocktails Landing (npm run template:new -- --slug=gsap-cocktails)",
     "CI/CD con GitHub Actions"
   ]
 }

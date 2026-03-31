@@ -80,7 +80,7 @@ export default function Pricing() {
               key={plan.name}
               className={`pricing-card relative flex flex-col rounded-2xl border p-8 transition-all duration-300 ${
                 plan.highlighted
-                  ? "ss-pricing-popular scale-105 shadow-2xl shadow-indigo-200/60"
+                  ? "ss-pricing-popular shadow-2xl shadow-indigo-200/60"
                   : "border-slate-200 bg-white hover:-translate-y-1 hover:shadow-lg"
               }`}
             >
@@ -120,11 +120,14 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
-              <button className={`mt-auto w-full rounded-xl py-3 text-sm font-semibold transition-all duration-200 active:scale-95 ${
-                plan.highlighted
-                  ? "bg-white text-indigo-700 hover:bg-indigo-50 hover:shadow-md"
-                  : "ss-btn-primary text-white hover:shadow-md hover:shadow-indigo-200"
-              }`}>
+              <button
+                type="button"
+                className={`mt-auto w-full rounded-xl py-3 text-sm font-semibold transition-all duration-200 active:scale-95 ${
+                  plan.highlighted
+                    ? "bg-white text-indigo-700 hover:bg-indigo-50 hover:shadow-md"
+                    : "ss-btn-primary text-white hover:shadow-md hover:shadow-indigo-200"
+                }`}
+              >
                 {plan.cta}
               </button>
             </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -16,40 +16,32 @@ const Hero = () => {
   const laptopRef = useRef<HTMLDivElement>(null);
   const indicatorRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const timer = setTimeout(() => ScrollTrigger.refresh(), 200);
+    return () => clearTimeout(timer);
+  }, []);
+
   useGSAP(
     () => {
+      // Set initial states before timeline runs
+      gsap.set(headlineRef.current, { opacity: 0, y: 60 });
+      gsap.set(subtitleRef.current, { opacity: 0, y: 40 });
+      gsap.set(taglineRef.current, { opacity: 0, y: 30 });
+      gsap.set(laptopRef.current, { opacity: 0, scale: 0.88, y: 40 });
+      gsap.set(indicatorRef.current, { opacity: 0 });
+
       // Entrance: staggered fade-up
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      tl.fromTo(
-        headlineRef.current,
-        { opacity: 0, y: 60 },
-        { opacity: 1, y: 0, duration: 1.1 }
-      )
-        .fromTo(
-          subtitleRef.current,
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 0.9 },
-          "-=0.5"
-        )
-        .fromTo(
-          taglineRef.current,
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.8 },
-          "-=0.5"
-        )
-        .fromTo(
+      tl.to(headlineRef.current, { opacity: 1, y: 0, duration: 1.1 })
+        .to(subtitleRef.current, { opacity: 1, y: 0, duration: 0.9 }, "-=0.5")
+        .to(taglineRef.current, { opacity: 1, y: 0, duration: 0.8 }, "-=0.5")
+        .to(
           laptopRef.current,
-          { opacity: 0, scale: 0.88, y: 40 },
           { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: "power2.out" },
           "-=0.7"
         )
-        .fromTo(
-          indicatorRef.current,
-          { opacity: 0 },
-          { opacity: 1, duration: 0.6 },
-          "-=0.2"
-        );
+        .to(indicatorRef.current, { opacity: 1, duration: 0.6 }, "-=0.2");
 
       // Parallax scroll: laptop rises gently as user scrolls
       gsap.to(laptopRef.current, {
@@ -91,7 +83,7 @@ const Hero = () => {
       </div>
 
       {/* Headline */}
-      <div ref={headlineRef} className="relative z-10 text-center opacity-0">
+      <div ref={headlineRef} className="relative z-10 text-center">
         <h1 className="gm-heading text-[clamp(3.5rem,10vw,8rem)] font-bold leading-none tracking-tight text-white">
           {heroContent.title}
         </h1>
@@ -100,7 +92,7 @@ const Hero = () => {
       {/* Subtitle with gradient text */}
       <p
         ref={subtitleRef}
-        className="gm-gradient-text relative z-10 mt-4 text-center text-[clamp(1.5rem,4vw,3rem)] font-semibold leading-tight opacity-0"
+        className="gm-gradient-text relative z-10 mt-4 text-center text-[clamp(1.5rem,4vw,3rem)] font-semibold leading-tight"
       >
         {heroContent.subtitle}
       </p>
@@ -108,7 +100,7 @@ const Hero = () => {
       {/* Tagline */}
       <p
         ref={taglineRef}
-        className="relative z-10 mt-4 text-center text-[clamp(0.9rem,2vw,1.2rem)] font-light tracking-wide text-gray-400 opacity-0"
+        className="relative z-10 mt-4 text-center text-[clamp(0.9rem,2vw,1.2rem)] font-light tracking-wide text-gray-400"
       >
         {heroContent.tagline}
       </p>
@@ -116,7 +108,7 @@ const Hero = () => {
       {/* CSS Laptop Mockup */}
       <div
         ref={laptopRef}
-        className="gm-laptop-hero relative z-10 mt-12 w-full max-w-3xl opacity-0"
+        className="gm-laptop-hero relative z-10 mt-12 w-full max-w-3xl"
         aria-hidden="true"
       >
         {/* Lid / Screen */}
@@ -166,7 +158,7 @@ const Hero = () => {
       {/* Scroll Indicator */}
       <div
         ref={indicatorRef}
-        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 opacity-0"
+        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2"
       >
         <span className="text-xs tracking-widest text-gray-500 uppercase">Scroll</span>
         <div className="h-8 w-[1px] bg-gradient-to-b from-gray-500 to-transparent" />

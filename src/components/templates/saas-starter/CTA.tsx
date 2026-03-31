@@ -61,7 +61,9 @@ export default function CTA() {
             </p>
             {!submitted ? (
               <form onSubmit={handleSubmit} className="mx-auto mt-8 flex max-w-md flex-col items-stretch gap-3 sm:flex-row">
+                <label htmlFor="cta-email" className="sr-only">Work email</label>
                 <input
+                  id="cta-email"
                   type="email"
                   required
                   placeholder="Enter your work email"
