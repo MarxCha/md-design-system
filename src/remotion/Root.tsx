@@ -11,6 +11,10 @@ import {
 } from "../components/video/ProductDemo";
 import { VIDEO_FPS, VIDEO_SIZES } from "../components/video/video-tokens";
 import { templateConfigs } from "./registry";
+import {
+  verticalProps as rentaVertical,
+  horizontalProps as rentaHorizontal,
+} from "./renta-saas-config";
 
 /* ─── Shared config ─── */
 const auditorBrand = {
@@ -364,6 +368,34 @@ export const RemotionRoot: React.FC = () => {
         width={VIDEO_SIZES.horizontal.width}
         height={VIDEO_SIZES.horizontal.height}
         defaultProps={guelaguetzaHorizontalProps}
+      />
+
+      {/* ─── RentaSaaS ─── */}
+
+      <Composition
+        id="RentaSaaS-Vertical"
+        component={ProductDemo}
+        durationInFrames={calculateProductDemoDuration(
+          rentaVertical,
+          VIDEO_FPS,
+        )}
+        fps={VIDEO_FPS}
+        width={VIDEO_SIZES.vertical.width}
+        height={VIDEO_SIZES.vertical.height}
+        defaultProps={rentaVertical}
+      />
+
+      <Composition
+        id="RentaSaaS-Horizontal"
+        component={ProductDemo}
+        durationInFrames={calculateProductDemoDuration(
+          rentaHorizontal,
+          VIDEO_FPS,
+        )}
+        fps={VIDEO_FPS}
+        width={VIDEO_SIZES.horizontal.width}
+        height={VIDEO_SIZES.horizontal.height}
+        defaultProps={rentaHorizontal}
       />
 
       {/* ─── Template Video Compositions (from registry) ─── */}
