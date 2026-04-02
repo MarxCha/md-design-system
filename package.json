@@ -56,7 +56,8 @@
     "video:render": "npx remotion render",
     "video:preview": "npx remotion preview",
     "template:new": "node scripts/new-template.mjs",
-    "template:screenshot": "node scripts/capture-screenshots.mjs"
+    "template:screenshot": "node scripts/capture-screenshots.mjs",
+    "test:visual": "node scripts/visual-regression.mjs"
   },
   "dependencies": {
     "@eslint/eslintrc": "^3.3.5",

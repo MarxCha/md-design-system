@@ -1,3 +1,4 @@
+import { staticFile } from "remotion";
 import { type ProductDemoProps } from "@/components/video/ProductDemo";
 
 export const SLUG = "iphone-15";
@@ -56,7 +57,8 @@ export const verticalProps: ProductDemoProps = {
   brand,
   hook,
   screens: [
-    // TODO: Capture with `npm run template:screenshot -- --slug=iphone-15`
+    { screenshotSrc: staticFile("templates/iphone-15/screens/hero-mobile.png"), caption: "Titanium", device: "iphone" },
+    { screenshotSrc: staticFile("templates/iphone-15/screens/highlights-mobile.png"), caption: "Highlights", device: "iphone" },
   ],
   features,
   cta,
@@ -72,7 +74,8 @@ export const horizontalProps: ProductDemoProps = {
   brand,
   hook,
   screens: [
-    // TODO: Capture desktop screenshot
+    { screenshotSrc: staticFile("templates/iphone-15/screens/hero-desktop.png"), caption: "Titanium design", device: "laptop", zoom: 1.4 },
+    { screenshotSrc: staticFile("templates/iphone-15/screens/highlights-desktop.png"), caption: "Pro highlights", device: "laptop", zoom: 1.4 },
   ],
   features,
   cta,

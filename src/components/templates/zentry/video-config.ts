@@ -1,3 +1,4 @@
+import { staticFile } from "remotion";
 import { type ProductDemoProps } from "@/components/video/ProductDemo";
 import { HERO_TAGLINE, ABOUT_SUBHEADING } from "./constants";
 
@@ -58,7 +59,8 @@ export const verticalProps: ProductDemoProps = {
   brand,
   hook,
   screens: [
-    // TODO: Capture with `npm run template:screenshot -- --slug=zentry`
+    { screenshotSrc: staticFile("templates/zentry/screens/hero-mobile.png"), caption: "Zentry Universe", device: "iphone" },
+    { screenshotSrc: staticFile("templates/zentry/screens/about-mobile.png"), caption: "The Metagame", device: "iphone" },
   ],
   features,
   cta,
@@ -74,7 +76,8 @@ export const horizontalProps: ProductDemoProps = {
   brand,
   hook,
   screens: [
-    // TODO: Capture desktop screenshot
+    { screenshotSrc: staticFile("templates/zentry/screens/hero-desktop.png"), caption: "Enter the Universe", device: "laptop", zoom: 1.4 },
+    { screenshotSrc: staticFile("templates/zentry/screens/about-desktop.png"), caption: "About Zentry", device: "laptop", zoom: 1.4 },
   ],
   features,
   cta,
