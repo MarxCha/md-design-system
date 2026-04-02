@@ -13,6 +13,7 @@ import * as iphone15 from "../components/templates/iphone-15/video-config";
 import * as zentry from "../components/templates/zentry/video-config";
 import * as gsapMacbook from "../components/templates/gsap-macbook/video-config";
 import * as saasStarter from "../components/templates/saas-starter/video-config";
+import * as gsapCocktails from "../components/templates/gsap-cocktails/video-config";
 
 export interface TemplateVideoConfig {
   SLUG: string;
@@ -30,4 +31,5 @@ export const templateConfigs: Record<string, TemplateVideoConfig> = {
   Zentry: zentry,
   GsapMacbook: gsapMacbook,
   SaasStarter: saasStarter,
+  GsapCocktails: gsapCocktails,
 };

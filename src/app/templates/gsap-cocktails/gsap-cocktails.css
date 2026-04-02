@@ -1,0 +1,354 @@
+/* ─── GSAP Cocktails Template — Custom Styles ─────────────────────────────────── */
+/* ALL rules scoped under .gsap-cocktails-template to win over design system globals  */
+/* NO @layer utilities — that loses specificity to unscoped globals                   */
+
+/* ─── Web Fonts ───────────────────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500&display=swap");
+
+/* ─── Color Utilities (gc prefix, global scope) ──────────────────── */
+.text-gc-gold    { color: #D4A574 !important; }
+.text-gc-cream   { color: #F5F0E8 !important; }
+.bg-gc-dark      { background-color: #0A0A0A !important; }
+.bg-gc-burgundy  { background-color: #722F37 !important; }
+
+/* ─── Base Styles ─────────────────────────────────────────────────────── */
+.gsap-cocktails-template {
+  font-family: "Inter", system-ui, sans-serif;
+  color: #F5F0E8;
+  background-color: #0A0A0A;
+}
+
+/* ─── Reset: override design system heading color rules ───────────────── */
+.gsap-cocktails-template h1,
+.gsap-cocktails-template h2,
+.gsap-cocktails-template h3,
+.gsap-cocktails-template h4,
+.gsap-cocktails-template h5,
+.gsap-cocktails-template h6,
+.gsap-cocktails-template p,
+.gsap-cocktails-template span,
+.gsap-cocktails-template div {
+  color: inherit;
+}
+
+/* ─── Scoped Utilities ────────────────────────────────────────────────── */
+
+/* Logo */
+.gsap-cocktails-template .gc-logo {
+  font-family: "Playfair Display", Georgia, serif;
+  color: #D4A574;
+  letter-spacing: 0.15em;
+}
+
+/* Nav */
+.gsap-cocktails-template .gc-nav-link {
+  color: rgba(245, 240, 232, 0.6);
+}
+.gsap-cocktails-template .gc-nav-link:hover {
+  color: #D4A574;
+}
+
+.gsap-cocktails-template .gc-reserve-btn {
+  background-color: transparent;
+  border: 1px solid #D4A574;
+  color: #D4A574;
+}
+.gsap-cocktails-template .gc-reserve-btn:hover {
+  background-color: #D4A574;
+  color: #0A0A0A;
+}
+
+/* Hero */
+.gsap-cocktails-template .gc-tagline {
+  color: #D4A574;
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 300;
+}
+
+.gsap-cocktails-template .gc-hero-title {
+  font-family: "Playfair Display", Georgia, serif;
+  color: #F5F0E8;
+}
+
+.gsap-cocktails-template .gc-subtitle {
+  color: rgba(245, 240, 232, 0.6);
+  font-weight: 300;
+}
+
+.gsap-cocktails-template .gc-ambient-glow {
+  background: radial-gradient(
+    circle,
+    rgba(212, 165, 116, 0.08) 0%,
+    transparent 70%
+  );
+}
+
+/* Buttons */
+.gsap-cocktails-template .gc-btn-primary {
+  background-color: #D4A574;
+  color: #0A0A0A;
+}
+.gsap-cocktails-template .gc-btn-primary:hover {
+  background-color: #E0B888;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(212, 165, 116, 0.3);
+}
+
+.gsap-cocktails-template .gc-btn-outline {
+  background-color: transparent;
+  border: 1px solid rgba(245, 240, 232, 0.25);
+  color: #F5F0E8;
+}
+.gsap-cocktails-template .gc-btn-outline:hover {
+  border-color: #D4A574;
+  color: #D4A574;
+}
+
+/* Section headings */
+.gsap-cocktails-template .gc-section-heading {
+  font-family: "Playfair Display", Georgia, serif;
+  color: #F5F0E8;
+}
+
+.gsap-cocktails-template .gc-body-text {
+  color: rgba(245, 240, 232, 0.6);
+}
+
+/* About stats */
+.gsap-cocktails-template .gc-stat-card {
+  background: rgba(212, 165, 116, 0.06);
+  border: 1px solid rgba(212, 165, 116, 0.12);
+}
+.gsap-cocktails-template .gc-stat-value {
+  color: #D4A574;
+  font-family: "Playfair Display", Georgia, serif;
+}
+.gsap-cocktails-template .gc-stat-label {
+  color: rgba(245, 240, 232, 0.5);
+}
+
+/* Bar scene (CSS-only illustration) */
+.gsap-cocktails-template .gc-bar-scene {
+  background: linear-gradient(180deg, #1a0f05 0%, #0d0805 60%, #1a0a00 100%);
+}
+.gsap-cocktails-template .gc-shelf {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #3d2810 50%, transparent 100%);
+}
+.gsap-cocktails-template .gc-shelf-1 { top: 20%; }
+.gsap-cocktails-template .gc-shelf-2 { top: 40%; }
+.gsap-cocktails-template .gc-shelf-3 { top: 60%; }
+
+.gsap-cocktails-template .gc-bottle {
+  position: absolute;
+  width: 20px;
+  border-radius: 4px 4px 2px 2px;
+}
+.gsap-cocktails-template .gc-bottle-1 {
+  left: 18%; top: 8%; height: 48px;
+  background: linear-gradient(180deg, #D4A574 0%, #8B6940 100%);
+}
+.gsap-cocktails-template .gc-bottle-2 {
+  left: 30%; top: 10%; height: 40px;
+  background: linear-gradient(180deg, #A8C4B8 0%, #5A7A6E 100%);
+}
+.gsap-cocktails-template .gc-bottle-3 {
+  left: 50%; top: 28%; height: 45px;
+  background: linear-gradient(180deg, #C75B5B 0%, #7A2E2E 100%);
+}
+.gsap-cocktails-template .gc-bottle-4 {
+  left: 65%; top: 30%; height: 38px;
+  background: linear-gradient(180deg, #9B8EC4 0%, #5C527A 100%);
+}
+.gsap-cocktails-template .gc-bottle-5 {
+  left: 78%; top: 48%; height: 42px;
+  background: linear-gradient(180deg, #D4C574 0%, #8B8240 100%);
+}
+
+.gsap-cocktails-template .gc-bar-counter {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 25%;
+  background: linear-gradient(180deg, #2a1a0a 0%, #1a0f05 100%);
+  border-top: 2px solid rgba(212, 165, 116, 0.15);
+}
+
+.gsap-cocktails-template .gc-bar-light {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 200px;
+  background: radial-gradient(ellipse at top, rgba(212, 165, 116, 0.12) 0%, transparent 70%);
+}
+
+/* Decorative cocktail glass (CSS art) */
+.gsap-cocktails-template .gc-glass-stem {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 120px;
+  background: linear-gradient(180deg, rgba(245, 240, 232, 0.15), rgba(245, 240, 232, 0.05));
+}
+.gsap-cocktails-template .gc-glass-bowl {
+  position: absolute;
+  bottom: 170px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 160px;
+  border: 2px solid rgba(245, 240, 232, 0.1);
+  border-radius: 0 0 50% 50%;
+  clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
+}
+.gsap-cocktails-template .gc-glass-liquid {
+  position: absolute;
+  bottom: 170px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 100px;
+  background: linear-gradient(180deg, rgba(212, 165, 116, 0.3) 0%, rgba(212, 165, 116, 0.1) 100%);
+  border-radius: 0 0 50% 50%;
+  clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+}
+.gsap-cocktails-template .gc-glass-garnish {
+  position: absolute;
+  bottom: 310px;
+  left: calc(50% + 50px);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #D4A574;
+  opacity: 0.6;
+  box-shadow: 0 0 20px rgba(212, 165, 116, 0.3);
+}
+
+/* Scroll indicator */
+.gsap-cocktails-template .gc-scroll-indicator {
+  width: 24px;
+  height: 40px;
+  border: 1px solid rgba(245, 240, 232, 0.2);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+.gsap-cocktails-template .gc-scroll-dot {
+  width: 3px;
+  height: 8px;
+  background: #D4A574;
+  border-radius: 2px;
+  animation: gc-scroll-bounce 2s infinite;
+}
+
+/* Cocktail cards */
+.gsap-cocktails-template .gc-cocktail-card {
+  background: rgba(245, 240, 232, 0.03);
+  border: 1px solid rgba(245, 240, 232, 0.06);
+  cursor: pointer;
+}
+.gsap-cocktails-template .gc-cocktail-card:hover {
+  background: rgba(245, 240, 232, 0.06);
+  border-color: rgba(212, 165, 116, 0.15);
+}
+.gsap-cocktails-template .gc-cocktail-active {
+  background: rgba(212, 165, 116, 0.06);
+  border-color: rgba(212, 165, 116, 0.2);
+}
+
+.gsap-cocktails-template .gc-cocktail-name {
+  font-family: "Playfair Display", Georgia, serif;
+  color: #F5F0E8;
+}
+.gsap-cocktails-template .gc-cocktail-spirit {
+  color: #D4A574;
+  font-weight: 300;
+}
+.gsap-cocktails-template .gc-cocktail-desc {
+  color: rgba(245, 240, 232, 0.5);
+}
+.gsap-cocktails-template .gc-cocktail-price {
+  font-family: "Playfair Display", Georgia, serif;
+  color: #D4A574;
+}
+
+/* Experience cards */
+.gsap-cocktails-template .gc-experience-card {
+  background: rgba(245, 240, 232, 0.03);
+  border: 1px solid rgba(245, 240, 232, 0.06);
+}
+.gsap-cocktails-template .gc-experience-card:hover {
+  background: rgba(212, 165, 116, 0.06);
+  border-color: rgba(212, 165, 116, 0.15);
+  transform: translateY(-4px);
+}
+.gsap-cocktails-template .gc-experience-title {
+  font-family: "Playfair Display", Georgia, serif;
+  color: #F5F0E8;
+}
+.gsap-cocktails-template .gc-experience-desc {
+  color: rgba(245, 240, 232, 0.5);
+}
+
+/* Gallery */
+.gsap-cocktails-template .gc-gallery-label {
+  color: #F5F0E8;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* CTA section */
+.gsap-cocktails-template .gc-cta-section {
+  background: linear-gradient(180deg, #0A0A0A 0%, #1a0f05 50%, #0A0A0A 100%);
+}
+.gsap-cocktails-template .gc-cta-glow {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 165, 116, 0.06) 0%, transparent 60%);
+}
+.gsap-cocktails-template .gc-cta-heading {
+  font-family: "Playfair Display", Georgia, serif;
+  color: #D4A574;
+}
+
+/* Footer */
+.gsap-cocktails-template .gc-footer {
+  background-color: #050505;
+}
+.gsap-cocktails-template .gc-footer-heading {
+  color: #D4A574;
+}
+.gsap-cocktails-template .gc-footer-divider {
+  border-color: rgba(245, 240, 232, 0.08);
+}
+.gsap-cocktails-template .gc-social-link {
+  color: rgba(245, 240, 232, 0.6);
+}
+.gsap-cocktails-template .gc-social-link:hover {
+  color: #D4A574;
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .gsap-cocktails-template .gc-hero-title {
+    font-size: 2.5rem;
+  }
+  .gsap-cocktails-template .gc-section-heading {
+    font-size: 2rem;
+  }
+}
+
+/* ─── Keyframes ───────────────────────────────────────────────────────── */
+@keyframes gc-scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(10px); opacity: 0.3; }
+}
