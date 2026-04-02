@@ -1,9 +1,26 @@
 {
-  "name": "md-design-system",
+  "name": "@md-consultoria/design-system",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MarxCha/md-design-system.git"
+  },
+  "license": "MIT",
+  "author": "MD Consultoría TI",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
+  "files": [
+    "src/components",
+    "src/hooks",
+    "src/lib",
+    "src/styles",
+    "src/lint",
+    "src/index.ts"
+  ],
   "exports": {
     ".": "./src/index.ts",
     "./ui": "./src/components/ui/index.ts",
