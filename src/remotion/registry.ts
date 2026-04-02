@@ -18,6 +18,9 @@ import * as pageUi from "../components/templates/page-ui/video-config";
 import * as cruipOpen from "../components/templates/cruip-open/video-config";
 import * as astrowind from "../components/templates/astrowind/video-config";
 import * as aiSales from "../components/templates/ai-sales/video-config";
+import * as dashboardPro from "../components/templates/dashboard-pro/video-config";
+import * as formBuilder from "../components/templates/form-builder/video-config";
+import * as ecommerce from "../components/templates/ecommerce/video-config";
 
 export interface TemplateVideoConfig {
   SLUG: string;
@@ -40,4 +43,7 @@ export const templateConfigs: Record<string, TemplateVideoConfig> = {
   CruipOpen: cruipOpen,
   Astrowind: astrowind,
   AiSales: aiSales,
+  DashboardPro: dashboardPro,
+  FormBuilder: formBuilder,
+  Ecommerce: ecommerce,
 };
