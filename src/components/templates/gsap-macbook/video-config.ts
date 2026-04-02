@@ -1,3 +1,4 @@
+import { staticFile } from "remotion";
 import { type ProductDemoProps } from "@/components/video/ProductDemo";
 import { TEMPLATE_NAME, heroContent, features as featureData } from "./constants";
 
@@ -45,7 +46,8 @@ export const verticalProps: ProductDemoProps = {
   brand,
   hook,
   screens: [
-    // Populate after: npm run template:screenshot -- --slug=gsap-macbook
+    { screenshotSrc: staticFile("templates/gsap-macbook/screens/hero-mobile.png"), caption: "MacBook Pro", device: "iphone" },
+    { screenshotSrc: staticFile("templates/gsap-macbook/screens/features-mobile.png"), caption: "Pro Features", device: "iphone" },
   ],
   features,
   cta,
@@ -61,7 +63,8 @@ export const horizontalProps: ProductDemoProps = {
   brand,
   hook,
   screens: [
-    // Populate after: npm run template:screenshot -- --slug=gsap-macbook
+    { screenshotSrc: staticFile("templates/gsap-macbook/screens/hero-desktop.png"), caption: "Supercharged for pros", device: "laptop", zoom: 1.4 },
+    { screenshotSrc: staticFile("templates/gsap-macbook/screens/features-desktop.png"), caption: "Pro Features", device: "laptop", zoom: 1.4 },
   ],
   features,
   cta,

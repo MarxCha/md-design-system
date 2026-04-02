@@ -1,3 +1,4 @@
+import { staticFile } from "remotion";
 import { type ProductDemoProps } from "@/components/video/ProductDemo";
 import { TEMPLATE_NAME, heroContent, features as featureData } from "./constants";
 
@@ -45,7 +46,9 @@ export const verticalProps: ProductDemoProps = {
   brand,
   hook,
   screens: [
-    // Populate after: npm run template:screenshot -- --slug=gsap-cocktails
+    { screenshotSrc: staticFile("templates/gsap-cocktails/screens/hero-mobile.png"), caption: "Where Mixology Meets Art", device: "iphone" },
+    { screenshotSrc: staticFile("templates/gsap-cocktails/screens/menu-mobile.png"), caption: "Signature Cocktails", device: "iphone" },
+    { screenshotSrc: staticFile("templates/gsap-cocktails/screens/experience-mobile.png"), caption: "The Experience", device: "iphone" },
   ],
   features,
   cta,
@@ -61,7 +64,8 @@ export const horizontalProps: ProductDemoProps = {
   brand,
   hook,
   screens: [
-    // Populate after: npm run template:screenshot -- --slug=gsap-cocktails
+    { screenshotSrc: staticFile("templates/gsap-cocktails/screens/hero-desktop.png"), caption: "Artisan Cocktail Bar", device: "laptop", zoom: 1.4 },
+    { screenshotSrc: staticFile("templates/gsap-cocktails/screens/menu-desktop.png"), caption: "Signature Cocktails", device: "laptop", zoom: 1.4 },
   ],
   features,
   cta,

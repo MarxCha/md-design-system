@@ -1,3 +1,4 @@
+import { staticFile } from "remotion";
 import { type ProductDemoProps } from "@/components/video/ProductDemo";
 import { TEMPLATE_NAME, heroContent, features as featureData } from "./constants";
 
@@ -45,7 +46,9 @@ export const verticalProps: ProductDemoProps = {
   brand,
   hook,
   screens: [
-    // Populate after: npm run template:screenshot -- --slug=saas-starter
+    { screenshotSrc: staticFile("templates/saas-starter/screens/hero-mobile.png"), caption: "Build faster. Ship smarter.", device: "iphone" },
+    { screenshotSrc: staticFile("templates/saas-starter/screens/features-mobile.png"), caption: "Everything you need", device: "iphone" },
+    { screenshotSrc: staticFile("templates/saas-starter/screens/pricing-mobile.png"), caption: "Simple pricing", device: "iphone" },
   ],
   features,
   cta,
@@ -61,7 +64,8 @@ export const horizontalProps: ProductDemoProps = {
   brand,
   hook,
   screens: [
-    // Populate after: npm run template:screenshot -- --slug=saas-starter
+    { screenshotSrc: staticFile("templates/saas-starter/screens/hero-desktop.png"), caption: "Build faster. Ship smarter.", device: "laptop", zoom: 1.4 },
+    { screenshotSrc: staticFile("templates/saas-starter/screens/pricing-desktop.png"), caption: "Simple pricing", device: "laptop", zoom: 1.4 },
   ],
   features,
   cta,
