@@ -17,7 +17,6 @@ import {
 } from "lucide-react";
 
 import { BentoGrid, BentoCard } from "@/components/dashboard/BentoGrid";
-import { StatCard } from "@/components/dashboard/StatCard";
 import { IVAWaterfall } from "@/components/dashboard/IVAWaterfall";
 import { StatusTimeline } from "@/components/dashboard/StatusTimeline";
 import { AlertFeed } from "@/components/dashboard/AlertFeed";

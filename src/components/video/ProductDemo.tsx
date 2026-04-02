@@ -2,7 +2,7 @@ import React from "react";
 import { AbsoluteFill, Sequence, useVideoConfig } from "remotion";
 import { BrandReveal, type BrandRevealProps } from "./BrandReveal";
 import { TextHook, type TextHookProps } from "./TextHook";
-import { DeviceMockup, type DeviceMockupProps } from "./DeviceMockup";
+import { DeviceMockup } from "./DeviceMockup";
 import { FeatureShowcase, type FeatureShowcaseProps } from "./FeatureShowcase";
 import { CTAEnd, type CTAEndProps } from "./CTAEnd";
 import { VIDEO_FPS } from "./video-tokens";

@@ -1,16 +1,19 @@
 "use client";
 
+import Image from "next/image";
+
 import AnimatedTitle from "./AnimatedTitle";
 import Button from "./Button";
 
 interface ImageClipBoxProps {
   src: string;
   clipClass: string;
+  alt: string;
 }
 
-const ImageClipBox = ({ src, clipClass }: ImageClipBoxProps) => (
+const ImageClipBox = ({ src, clipClass, alt }: ImageClipBoxProps) => (
   <div className={clipClass}>
-    <img src={src} />
+    <Image src={src} alt={alt} fill className="object-cover" />
   </div>
 );
 
@@ -21,10 +24,12 @@ const Contact = () => {
         <div className="absolute -left-20 top-0 hidden h-full w-72 overflow-hidden sm:block lg:left-20 lg:w-96">
           <ImageClipBox
             src="/templates/zentry/img/contact-1.webp"
+            alt="Zentry contact scene 1"
             clipClass="contact-clip-path-1"
           />
           <ImageClipBox
             src="/templates/zentry/img/contact-2.webp"
+            alt="Zentry contact scene 2"
             clipClass="contact-clip-path-2 lg:translate-y-40 translate-y-60"
           />
         </div>
@@ -32,10 +37,12 @@ const Contact = () => {
         <div className="absolute -top-40 left-20 w-60 sm:top-1/2 md:left-auto md:right-10 lg:top-20 lg:w-80">
           <ImageClipBox
             src="/templates/zentry/img/swordman-partial.webp"
+            alt="Swordman partial"
             clipClass="absolute md:scale-125"
           />
           <ImageClipBox
             src="/templates/zentry/img/swordman.webp"
+            alt="Swordman"
             clipClass="sword-man-clip-path md:scale-125"
           />
         </div>

@@ -4,6 +4,7 @@ import clsx from "clsx";
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 import Button from "./Button";
 
@@ -74,7 +75,13 @@ const NavBar = () => {
         <nav className="flex size-full items-center justify-between p-4">
           {/* Logo and Product button */}
           <div className="flex items-center gap-7">
-            <img src="/templates/zentry/img/logo.png" alt="logo" className="w-10" />
+            <Image
+              src="/templates/zentry/img/logo.png"
+              alt="Zentry logo"
+              width={40}
+              height={40}
+              className="w-10"
+            />
 
             <Button
               id="product-button"

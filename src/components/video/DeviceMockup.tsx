@@ -4,7 +4,6 @@ import {
   Img,
   interpolate,
   spring,
-  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
@@ -87,7 +86,6 @@ export const DeviceMockup: React.FC<DeviceMockupProps> = ({
 
   // Fullscreen mode: iPhone in horizontal canvas — no frame, big screenshot
   const fullscreenWidth = width * 0.85;
-  const fullscreenHeight = height * 0.78;
 
   return (
     <AbsoluteFill

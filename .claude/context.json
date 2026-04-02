@@ -16,8 +16,8 @@
     "testing": "Vitest 4.1 + Testing Library + happy-dom + Playwright",
     "other": ["Lottie", "Lucide Icons", "CVA", "Zod 4.3.6", "Sonner", "cmdk"]
   },
-  "status": "factory-process-complete-4-templates-shipped",
-  "lastSession": "2026-03-31",
+  "status": "design-vault-complete-9-templates-audited",
+  "lastSession": "2026-04-02",
   "branch": "feat/design-system-scaffold",
   "pr": "https://github.com/MarxCha/md-design-system/pull/1",
   "commits": 15,
@@ -38,7 +38,7 @@
     "testFiles": 26,
     "testsPassing": 88,
     "demoPages": 14,
-    "templates": 4,
+    "templates": 9,
     "templateSaasComponents": 7,
     "typescriptErrors": 0
   },
@@ -87,9 +87,9 @@
     }
   },
   "designVault": {
-    "completed": ["iphone-15-clone", "gsap-macbook", "saas-starter"],
-    "inProgress": ["zentry-awwwards"],
-    "pending": ["gsap-cocktails", "page-ui-shipixen", "cruip-open-react", "astrowind", "awesome-landing-pages"]
+    "completed": ["iphone-15-clone", "zentry-awwwards", "gsap-macbook", "saas-starter", "gsap-cocktails", "page-ui-shipixen", "cruip-open-react", "astrowind", "ai-sales"],
+    "inProgress": [],
+    "pending": []
   },
   "videosRendered": {
     "auditorCiudadanoReel": "out/auditor-ciudadano-reel.mp4 (1080x1920, 30s, 3.6MB)",
@@ -98,11 +98,10 @@
     "guelaguetzaDemo": "out/guelaguetza-demo.mp4 (1920x1080, 16.5s, 2.1MB)"
   },
   "nextSteps": [
-    "Template #5: GSAP Cocktails Landing (npm run template:new -- --slug=gsap-cocktails)",
-    "Capture screenshots for MacBook + SaaS templates (npm run template:screenshot)",
-    "Render promotional videos for new templates via Remotion",
-    "Motor IVA segunda pasada: HoloCard tilt, GlassmorphismCard, CountUp, stagger",
-    "Migrar CFDI-Motor a DS (DEUDA-TECNICA.md: P0 tokens, P1 KpiCard, P4 badges)",
-    "CI/CD con GitHub Actions"
+    "Lint warnings cleanup (23 warnings: <img> → <Image />, unused vars)",
+    "CI/CD GitHub Actions (lint + build + visual regression on PR)",
+    "npm publish pipeline (@md-consultoria/design-system)",
+    "Interactive props playground (Storybook alternative, per-component)",
+    "Template variants (dashboard, form-heavy, e-commerce)"
   ]
 }

@@ -3,6 +3,7 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
+import Image from "next/image";
 
 import AnimatedTitle from "./AnimatedTitle";
 
@@ -51,10 +52,11 @@ const About = () => {
 
       <div className="h-dvh w-screen" id="clip">
         <div className="mask-clip-path about-image">
-          <img
+          <Image
             src="/templates/zentry/img/about.webp"
-            alt="Background"
-            className="absolute left-0 top-0 size-full object-cover"
+            alt="Zentry about background"
+            fill
+            className="absolute left-0 top-0 object-cover"
           />
         </div>
       </div>

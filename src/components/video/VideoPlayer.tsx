@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { Player, type PlayerRef } from "@remotion/player";
 import type { Orientation } from "./video-tokens";
 import { VIDEO_FPS, VIDEO_SIZES } from "./video-tokens";

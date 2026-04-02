@@ -2,15 +2,10 @@
 
 import gsap from "gsap";
 import { useRef } from "react";
+import Image from "next/image";
 
 import Button from "./Button";
 import AnimatedTitle from "./AnimatedTitle";
-
-interface FloatingImageProps {
-  frameRef: React.RefObject<HTMLImageElement | null>;
-  handleMouseMove: (e: React.MouseEvent<HTMLImageElement>) => void;
-  handleMouseLeave: () => void;
-}
 
 const Story = () => {
   const frameRef = useRef<HTMLImageElement>(null);
@@ -69,14 +64,15 @@ const Story = () => {
           <div className="story-img-container">
             <div className="story-img-mask">
               <div className="story-img-content">
-                <img
+                <Image
                   ref={frameRef}
                   onMouseMove={handleMouseMove}
                   onMouseLeave={handleMouseLeave}
                   onMouseUp={handleMouseLeave}
                   onMouseEnter={handleMouseLeave}
                   src="/templates/zentry/img/entrance.webp"
-                  alt="entrance.webp"
+                  alt="Story entrance to the hidden realm"
+                  fill
                   className="object-contain"
                 />
               </div>

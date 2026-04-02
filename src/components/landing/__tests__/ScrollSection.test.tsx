@@ -8,7 +8,6 @@ vi.mock("framer-motion", () => ({
       children,
       className,
       id,
-      ..._rest
     }: {
       children?: React.ReactNode;
       className?: string;

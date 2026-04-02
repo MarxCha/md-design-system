@@ -150,7 +150,7 @@ const VideoCarousel = () => {
         gsap.ticker.remove(animUpdate);
       }
     }
-  }, [videoId, startPlay]);
+  }, [videoId, startPlay, isPlaying]);
 
   useEffect(() => {
     const currentVideo = videoRef.current[videoId];

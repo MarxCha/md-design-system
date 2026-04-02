@@ -244,7 +244,7 @@ export default function DemoResponsivePage() {
             columns={columns}
             keyExtractor={(row) => row.id}
             onRowClick={(row) => alert(`Clicked: ${row.name}`)}
-            actions={(row) => (
+            actions={() => (
               <Button variant="ghost" size="icon" className="min-h-[44px] min-w-[44px]">
                 <Eye className="size-4" />
               </Button>
