@@ -14,6 +14,10 @@ import * as zentry from "../components/templates/zentry/video-config";
 import * as gsapMacbook from "../components/templates/gsap-macbook/video-config";
 import * as saasStarter from "../components/templates/saas-starter/video-config";
 import * as gsapCocktails from "../components/templates/gsap-cocktails/video-config";
+import * as pageUi from "../components/templates/page-ui/video-config";
+import * as cruipOpen from "../components/templates/cruip-open/video-config";
+import * as astrowind from "../components/templates/astrowind/video-config";
+import * as aiSales from "../components/templates/ai-sales/video-config";
 
 export interface TemplateVideoConfig {
   SLUG: string;
@@ -32,4 +36,8 @@ export const templateConfigs: Record<string, TemplateVideoConfig> = {
   GsapMacbook: gsapMacbook,
   SaasStarter: saasStarter,
   GsapCocktails: gsapCocktails,
+  PageUi: pageUi,
+  CruipOpen: cruipOpen,
+  Astrowind: astrowind,
+  AiSales: aiSales,
 };
