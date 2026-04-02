@@ -74,7 +74,7 @@ const rule: Rule.RuleModule = {
 
         // style={{ ... }} — check properties
         if (expr.type === "ObjectExpression") {
-          const hasDisallowed = expr.properties.some((prop: any) => {
+          const hasDisallowed = expr.properties.some((prop: { type: string; key: { type: string; name?: string; value?: string | number } }) => {
             if (prop.type !== "Property") return false;
             const key =
               prop.key.type === "Identifier"

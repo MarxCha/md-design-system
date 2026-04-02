@@ -15,11 +15,10 @@ const TEXT_CONTENT_ELEMENTS = new Set([
   "Button",
 ]);
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function hasTextContent(node: any): boolean {
+function hasTextContent(node: { type: string; children?: Array<{ type: string; value?: string }> }): boolean {
   if (node.type === "JSXElement") {
     const children = node.children ?? [];
-    return children.some((child: any) => {
+    return children.some((child: { type: string; value?: string }) => {
       if (child.type === "JSXText") {
         return (child.value ?? "").trim().length > 0;
       }
