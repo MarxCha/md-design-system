@@ -1,20 +1,20 @@
 # STATUS — md-design-system
-Ultima actualizacion: 2026-03-31 (sesion 008)
+Ultima actualizacion: 2026-04-04 (sesion 009)
 
-## Estado: FACTORY PROCESS COMPLETE + 4 TEMPLATES SHIPPED
+## Estado: DOCS-KIT MODULE SHIPPED + FACTORY PROCESS COMPLETE + 4 TEMPLATES
 
 Branch activo: `feat/design-system-scaffold`
 PR: https://github.com/MarxCha/md-design-system/pull/1
 Commits: 15
 
-## Lo que existe (~244 source files, 0 TS errors, 88 tests)
+## Lo que existe (~280 source files, 0 TS errors, 138 tests)
 
 ### Foundation
 - Next.js 15.5.14 + TypeScript + Tailwind 4 + shadcn/ui
 - 20 componentes shadcn/ui + 17 custom + 8 hooks + 2 providers
 - Design tokens HSL, dark mode, Instrument Sans + DM Sans
 - Vitest 4.1: 88 tests, 26 archivos, 100% passing
-- Package exports (., ./ui, ./hooks, ./styles, ./theme, ./utils, ./responsive, ./lint, ./video)
+- Package exports (., ./ui, ./hooks, ./styles, ./theme, ./utils, ./responsive, ./lint, ./video, ./docs-kit)
 
 ### Template & Video Factory Process (NEW — session 008)
 - Generator: `npm run template:new -- --slug=X --name="Y"` scaffolds 7 files + asset dirs
@@ -33,15 +33,35 @@ Commits: 15
 - [~] Zentry Awwwards Clone — 10 componentes, CSS specificity WIP
 - [ ] GSAP Cocktails + 4 mas pendientes
 
-### Remotion Video Pipeline
-- 6 composiciones: BrandReveal, DeviceMockup, TextHook, FeatureShowcase, CTAEnd, ProductDemo
+### Remotion Video Pipeline (10 composiciones)
+- Original 6: BrandReveal, DeviceMockup, TextHook, FeatureShowcase, CTAEnd, ProductDemo
+- NEW 4 pipelines (session 009):
+  - InfographicZoom — Pan/zoom animado sobre infografia PNG (Ken Burns por zonas)
+  - PitchDeck — Renderiza SlideDeckConfig de docs-kit como video con transiciones
+  - SocialClip — Clips cortos 10-15s para redes (stat + hook + CTA)
+  - AudiogramVideo — Video podcast (audio MP3 + infografia + waveform)
 - Registry pattern: Root.tsx iterates templateConfigs for compositions
 - 4 videos renderizados (Auditor Ciudadano + Guelaguetza)
 - video-config.ts en 4 templates (iPhone 15, Zentry, MacBook, SaaS)
+- Demo compositions: InfographicZoom-Demo, PitchDeck-Demo, SocialClip-Demo, AudiogramVideo-Demo
 
 ### Dashboard Components (8 total)
 - StatCard, BentoGrid/BentoCard, ChartContainer, ChartPalette
 - IVAWaterfall, StatusTimeline, AlertFeed
+
+### docs-kit — Document & Presentation Toolkit (NEW — session 009)
+- 3 formats: slide-deck (HTML interactivo), one-pager (print-ready), notebook-pack (NotebookLM)
+- Generator: `npm run docs:new [format] [slug] --name="X"` (or `all` for 3 formats)
+- Export: `npm run docs:export [slug]` outputs to out/docs/
+- SlideDeck React component with keyboard nav + click zones + a11y
+- 6 slide types: title, content, image, stats, quote, cta
+- 3 layout variants: dark-tech, clean-corporate, bold-creative
+- HTML standalone export (single .html, no dependencies, print support)
+- OnePager component with print CSS (@media print)
+- NotebookLM pack generator (single MD, split MDs, audio summary)
+- Theme bridge connects DS tokens to all document formats
+- Demo pages: /docs-kit, /docs-kit/slide-deck, /docs-kit/one-pager
+- 42 tests (types, theme-bridge, layouts, notebook-pack, export-html)
 
 ### Responsive Primitives + ESLint Plugin
 - 5 responsive components + useBreakpoint hook
@@ -51,6 +71,7 @@ Commits: 15
 - /, /showcase, /playground, /animation-lab, /scroll-stories, /product-showcase
 - /demo-sidebar, /demo-dashboard, /demo-landing, /demo-responsive
 - /motor-iva, /demo-video
+- /docs-kit, /docs-kit/slide-deck, /docs-kit/one-pager
 - /templates/iphone-15, /templates/zentry, /templates/gsap-macbook, /templates/saas-starter
 
 ## Cross-Project: Auditor Ciudadano (session 007)

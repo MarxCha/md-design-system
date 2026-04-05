@@ -31,7 +31,8 @@
     "./utils": "./src/lib/utils.ts",
     "./responsive": "./src/components/responsive/index.ts",
     "./lint": "./src/lint/index.ts",
-    "./video": "./src/components/video/index.ts"
+    "./video": "./src/components/video/index.ts",
+    "./docs-kit": "./src/docs-kit/index.ts"
   },
   "typesVersions": {
     "*": {
@@ -58,6 +59,9 @@
       ],
       "video": [
         "./src/components/video/index.ts"
+      ],
+      "docs-kit": [
+        "./src/docs-kit/index.ts"
       ]
     }
   },
@@ -72,6 +76,8 @@
     "video:studio": "npx remotion studio",
     "video:render": "npx remotion render",
     "video:preview": "npx remotion preview",
+    "docs:new": "node scripts/new-docs.mjs",
+    "docs:export": "node scripts/export-docs.mjs",
     "template:new": "node scripts/new-template.mjs",
     "template:screenshot": "node scripts/capture-screenshots.mjs",
     "test:visual": "node scripts/visual-regression.mjs"

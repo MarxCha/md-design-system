@@ -10,6 +10,19 @@ export {
 } from "./ProductDemo";
 export { VideoPlayer, type VideoPlayerProps } from "./VideoPlayer";
 export {
+  InfographicZoom,
+  calculateInfographicDuration,
+  type InfographicZoomProps,
+  type InfographicZone,
+} from "./InfographicZoom";
+export {
+  PitchDeck,
+  calculatePitchDeckDuration,
+  type PitchDeckProps,
+} from "./PitchDeck";
+export { SocialClip, type SocialClipProps } from "./SocialClip";
+export { AudiogramVideo, type AudiogramVideoProps } from "./AudiogramVideo";
+export {
   vc,
   vt,
   vs,

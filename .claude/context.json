@@ -16,8 +16,8 @@
     "testing": "Vitest 4.1 + Testing Library + happy-dom + Playwright",
     "other": ["Lottie", "Lucide Icons", "CVA", "Zod 4.3.6", "Sonner", "cmdk"]
   },
-  "status": "ecommerce-template-added",
-  "lastSession": "2026-03-31",
+  "status": "design-system-complete",
+  "lastSession": "2026-04-03",
   "branch": "feat/design-system-scaffold",
   "pr": "https://github.com/MarxCha/md-design-system/pull/1",
   "commits": 15,
@@ -105,10 +105,8 @@
     "guelaguetzaDemo": "out/guelaguetza-demo.mp4 (1920x1080, 16.5s, 2.1MB)"
   },
   "nextSteps": [
-    "Lint warnings cleanup (23 warnings: <img> → <Image />, unused vars)",
-    "CI/CD GitHub Actions (lint + build + visual regression on PR)",
-    "npm publish pipeline (@md-consultoria/design-system)",
-    "Interactive props playground (Storybook alternative, per-component)",
-    "Fix dashboard-pro/KPICards.tsx ScrollTrigger type error (blocks full build)"
+    "MediVista Pro design diagnosis — patient view redesign (nueva sesión)",
+    "Render promotional videos via Remotion for all 12 templates",
+    "Visual regression baselines maintenance (21 routes captured)"
   ]
 }

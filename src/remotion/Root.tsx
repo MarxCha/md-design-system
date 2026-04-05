@@ -9,6 +9,16 @@ import {
   ProductDemo,
   calculateProductDemoDuration,
 } from "../components/video/ProductDemo";
+import {
+  InfographicZoom,
+  calculateInfographicDuration,
+} from "../components/video/InfographicZoom";
+import {
+  PitchDeck,
+  calculatePitchDeckDuration,
+} from "../components/video/PitchDeck";
+import { SocialClip } from "../components/video/SocialClip";
+import { AudiogramVideo } from "../components/video/AudiogramVideo";
 import { VIDEO_FPS, VIDEO_SIZES } from "../components/video/video-tokens";
 import { templateConfigs } from "./registry";
 import {
@@ -396,6 +406,100 @@ export const RemotionRoot: React.FC = () => {
         width={VIDEO_SIZES.horizontal.width}
         height={VIDEO_SIZES.horizontal.height}
         defaultProps={rentaHorizontal}
+      />
+
+      {/* ─── New Pipelines: Infographic, PitchDeck, SocialClip, Audiogram ─── */}
+
+      <Composition
+        id="InfographicZoom-Demo"
+        component={InfographicZoom}
+        durationInFrames={calculateInfographicDuration(
+          {
+            imageSrc: staticFile("docs/metabase-mexico/infographic.png"),
+            zones: [
+              { x: 0, y: 0, w: 35, h: 50, label: "The Local Advantage", duration: 4 },
+              { x: 30, y: 0, w: 40, h: 45, label: "Pricing vs Global", duration: 4 },
+              { x: 60, y: 0, w: 40, h: 55, label: "4 Industry Verticals", duration: 5 },
+              { x: 0, y: 55, w: 50, h: 45, label: "Native Industry Logic", duration: 4 },
+            ],
+            overviewDuration: 3,
+            outroDuration: 2,
+          },
+          VIDEO_FPS,
+        )}
+        fps={VIDEO_FPS}
+        width={VIDEO_SIZES.horizontal.width}
+        height={VIDEO_SIZES.horizontal.height}
+        defaultProps={{
+          imageSrc: staticFile("docs/metabase-mexico/infographic.png"),
+          title: "MD Analytics — Business Intelligence para Mexico",
+          zones: [
+            { x: 0, y: 0, w: 35, h: 50, label: "The Local Advantage", duration: 4 },
+            { x: 30, y: 0, w: 40, h: 45, label: "Pricing vs Global", duration: 4 },
+            { x: 60, y: 0, w: 40, h: 55, label: "4 Industry Verticals", duration: 5 },
+            { x: 0, y: 55, w: 50, h: 45, label: "Native Industry Logic", duration: 4 },
+          ],
+        }}
+      />
+
+      <Composition
+        id="PitchDeck-Demo"
+        component={PitchDeck}
+        durationInFrames={calculatePitchDeckDuration(
+          {
+            title: "MD Analytics",
+            slides: [
+              { id: "1", type: "content", title: "El Problema", bullets: ["73% de PyMEs reportan con Excel", "Power BI: $10 USD + licencia MS", "Ninguna entiende BIMSA, NOM-127, IVA"] },
+              { id: "2", type: "stats", title: "Numeros", stats: [{ value: "$999", label: "MXN/mes" }, { value: "4", label: "Verticales" }, { value: "16", label: "Dashboards" }] },
+              { id: "3", type: "cta", title: "BI profesional, en español, a precio mexicano" },
+            ],
+            slideDuration: 5,
+            introDuration: 4,
+          },
+          VIDEO_FPS,
+        )}
+        fps={VIDEO_FPS}
+        width={VIDEO_SIZES.horizontal.width}
+        height={VIDEO_SIZES.horizontal.height}
+        defaultProps={{
+          title: "MD Analytics",
+          subtitle: "Business Intelligence para Mexico",
+          layout: "dark-tech" as const,
+          slides: [
+            { id: "1", type: "content" as const, title: "El Problema", bullets: ["73% de PyMEs reportan con Excel", "Power BI: $10 USD + licencia MS", "Ninguna entiende BIMSA, NOM-127, IVA"] },
+            { id: "2", type: "stats" as const, title: "Numeros", stats: [{ value: "$999", label: "MXN/mes" }, { value: "4", label: "Verticales" }, { value: "16", label: "Dashboards" }] },
+            { id: "3", type: "cta" as const, title: "BI profesional, en español, a precio mexicano" },
+          ],
+        }}
+      />
+
+      <Composition
+        id="SocialClip-Demo"
+        component={SocialClip}
+        durationInFrames={Math.round(12 * VIDEO_FPS)}
+        fps={VIDEO_FPS}
+        width={VIDEO_SIZES.vertical.width}
+        height={VIDEO_SIZES.vertical.height}
+        defaultProps={{
+          stat: { value: "73%", label: "de PyMEs usan Excel" },
+          hook: "MD Analytics: BI profesional a $999 MXN/mes",
+          ctaText: "Conoce mas",
+        }}
+      />
+
+      <Composition
+        id="AudiogramVideo-Demo"
+        component={AudiogramVideo}
+        durationInFrames={Math.round(30 * VIDEO_FPS)}
+        fps={VIDEO_FPS}
+        width={VIDEO_SIZES.horizontal.width}
+        height={VIDEO_SIZES.horizontal.height}
+        defaultProps={{
+          audioSrc: staticFile("docs/metabase-mexico/podcast.mp3"),
+          imageSrc: staticFile("docs/metabase-mexico/infographic.png"),
+          title: "MD Analytics Podcast",
+          subtitle: "Business Intelligence para Mexico",
+        }}
       />
 
       {/* ─── Template Video Compositions (from registry) ─── */}
