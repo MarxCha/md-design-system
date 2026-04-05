@@ -6,28 +6,30 @@
     "framework": "Next.js 15.5.14",
     "language": "TypeScript",
     "styling": "Tailwind CSS 4",
-    "components": "shadcn/ui (20) + custom (17) + layout (2) + dashboard (8) + landing (5) + responsive (5) + video (6) + template-iphone (12) + template-zentry (10) + template-macbook (6) + template-saas (7) + template-ecommerce (6)",
+    "components": "shadcn/ui (20) + custom (17) + layout (2) + dashboard (8) + landing (5) + responsive (5) + video (10) + docs-kit (8) + template-iphone (12) + template-zentry (10) + template-macbook (6) + template-saas (7) + template-ecommerce (6)",
     "animation": ["GSAP + ScrollTrigger", "Lenis", "Framer Motion"],
     "charts": "Recharts",
     "audio": "Howler.js",
     "3d": "Three.js + R3F v9.5 + drei v10.7",
-    "video": "Remotion v4.0.438 (6 compositions + VideoPlayer + /video skill + BrandSplash)",
+    "video": "Remotion v4.0.438 (10 compositions: 6 original + InfographicZoom + PitchDeck + SocialClip + AudiogramVideo)",
+    "docs": "docs-kit (slide-deck + one-pager + notebook-pack) + notebooklm-py v0.3.4",
     "state": "Zustand",
     "testing": "Vitest 4.1 + Testing Library + happy-dom + Playwright",
     "other": ["Lottie", "Lucide Icons", "CVA", "Zod 4.3.6", "Sonner", "cmdk"]
   },
-  "status": "design-system-complete",
-  "lastSession": "2026-04-03",
+  "status": "docs-kit-shipped-notebooklm-integrated",
+  "lastSession": "2026-04-04",
   "branch": "feat/design-system-scaffold",
   "pr": "https://github.com/MarxCha/md-design-system/pull/1",
-  "commits": 15,
+  "commits": 16,
   "stats": {
-    "sourceFiles": 257,
+    "sourceFiles": 280,
     "uiComponents": 20,
     "customComponents": 17,
     "layoutComponents": 2,
     "dashboardComponents": 8,
-    "videoComponents": 7,
+    "videoComponents": 10,
+    "docsKitComponents": 8,
     "landingComponents": 5,
     "responsiveComponents": 5,
     "templateIphoneComponents": 12,
@@ -37,9 +39,9 @@
     "templateEcommerceComponents": 6,
     "lintRules": 4,
     "hooks": 8,
-    "testFiles": 26,
-    "testsPassing": 88,
-    "demoPages": 15,
+    "testFiles": 32,
+    "testsPassing": 138,
+    "demoPages": 19,
     "templates": 10,
     "typescriptErrors": 0
   },
@@ -57,30 +59,42 @@
       "workaround": "Usar clases CSS explícitas fuera de @layer, scoped bajo .template-name."
     },
     {
-      "id": "safari-video-autoplay",
-      "description": "Safari bloquea .play() indirecto. loadedData.length checks fallan.",
-      "severity": "medium",
-      "workaround": "IntersectionObserver con .play() directo en callback."
-    },
-    {
       "id": "h1-h6-override",
       "description": "globals.css h1-h6 font-size vars override Tailwind utilities.",
       "severity": "medium",
       "workaround": "Usar p tags o CSS layers para headings que necesiten Tailwind sizing."
     },
     {
-      "id": "lint-rules-any",
-      "description": "src/lint/rules/no-inline-styles.ts y require-aria-label.ts tienen @typescript-eslint/no-explicit-any — bloquean npm run build.",
-      "severity": "medium",
-      "workaround": "Pre-existing issue. Fix: añadir // eslint-disable-next-line comments o tipar correctamente."
+      "id": "remotion-new-compositions",
+      "description": "4 nuevas composiciones (InfographicZoom, PitchDeck, SocialClip, AudiogramVideo) renderizan pero sin animaciones reales. CEO las rechazó.",
+      "severity": "high",
+      "workaround": "Reescribir usando primitivos de remotion-bits (clonado en ~/Projects/remotion-bits/). Handoff creado."
     },
     {
-      "id": "dashboard-pro-scrolltrigger",
-      "description": "dashboard-pro/KPICards.tsx usa dynamic gsap import pattern que falla tsc — typeof _ScrollTrigger mismatch.",
-      "severity": "medium",
-      "workaround": "Pre-existing. Fix: usar gsap.registerPlugin(ScrollTrigger) normal pattern como en otros templates."
+      "id": "notebooklm-login",
+      "description": "notebooklm login debe ejecutarse desde terminal real, no via ! en Claude Code (necesita ENTER interactivo).",
+      "severity": "low",
+      "workaround": "Usuario corre notebooklm login desde su terminal directamente."
     }
   ],
+  "docsKit": {
+    "formats": ["slide-deck", "one-pager", "notebook-pack"],
+    "slideTypes": ["title", "content", "image", "stats", "quote", "cta"],
+    "layouts": ["dark-tech", "clean-corporate", "bold-creative"],
+    "generator": "npm run docs:new [format] [slug] --name=\"X\"",
+    "export": "npm run docs:export [slug]"
+  },
+  "notebookLM": {
+    "venv": "~/Projects/md-design-system/.venv-nlm/",
+    "auth": "~/.notebooklm/storage_state.json",
+    "slideStyles": {
+      "studio": "DEFAULT — dark premium, device mockups, glass morphism",
+      "orange": "white bg, blood orange accent, creative agency",
+      "tech": "anti-gravity, blue-cyan gradients, artifact feel",
+      "neon": "warm gray bg, neon yellow, blueprint annotations"
+    },
+    "commands": ["/notebooklm (infographic + slides)", "/notebooklm-studio (all assets)", "/presentacion (local HTML slides)"]
+  },
   "crossProjectWork": {
     "auditorCiudadano": {
       "status": "redesign-shipped-splash-deployed",
@@ -88,15 +102,8 @@
         "citizen": "auditor-ciudadano.vercel.app",
         "admin": "admin-app-pearl-gamma.vercel.app",
         "backend": "backend-seven-rho-lfztzeru9z.vercel.app"
-      },
-      "changes": "Full Tailwind v4 + shadcn/ui migration, 8 extracted components, BrandSplash on citizen + admin, Vercel build config fixed",
-      "note": "citizen-app-ruddy.vercel.app is STALE — correct citizen URL is auditor-ciudadano.vercel.app. Admin requires manual deploy: cd admin-app && npx vercel --prod"
+      }
     }
-  },
-  "designVault": {
-    "completed": ["iphone-15-clone", "zentry-awwwards", "gsap-macbook", "saas-starter", "gsap-cocktails", "page-ui-shipixen", "cruip-open-react", "astrowind", "ai-sales", "ecommerce"],
-    "inProgress": [],
-    "pending": []
   },
   "videosRendered": {
     "auditorCiudadanoReel": "out/auditor-ciudadano-reel.mp4 (1080x1920, 30s, 3.6MB)",
@@ -105,8 +112,9 @@
     "guelaguetzaDemo": "out/guelaguetza-demo.mp4 (1920x1080, 16.5s, 2.1MB)"
   },
   "nextSteps": [
+    "Reescribir 4 composiciones Remotion con primitivos de remotion-bits (handoff listo)",
+    "Probar NotebookLM video generation para MD Analytics",
     "MediVista Pro design diagnosis — patient view redesign (nueva sesión)",
-    "Render promotional videos via Remotion for all 12 templates",
-    "Visual regression baselines maintenance (21 routes captured)"
+    "Render promotional videos via Remotion for all 12 templates"
   ]
 }
