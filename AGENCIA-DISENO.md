@@ -201,6 +201,101 @@ echo ""; echo "=== Smoke Test Completo ==="
 
 ---
 
+### 8. Pipeline Blender Headless PBR (PROBADO — abril 2026)
+
+**Estado:** FUNCIONAL — probado en produccion con ArquiMX
+**Blender:** 5.0.1 (`/opt/homebrew/bin/blender`)
+**CLI wrapper:** `cli-anything-blender` (pip, en PATH)
+**Motor:** Cycles GPU (Apple Metal)
+**Primer caso de uso:** Casa colonial mexicana para landing page de ArquiMX
+
+#### Pipeline probado
+
+```
+Script bpy (Python)
+    │
+    ├── 1. Geometria (mesh.primitive_cube_add, cylinder, etc.)
+    ├── 2. Materiales PBR procedurales (ShaderNodeTexNoise, Wave, Voronoi)
+    ├── 3. Iluminacion (Sun golden hour + Area fill + rim)
+    ├── 4. Camera (DOF, lens, position)
+    ├── 5. World (gradient sky via ShaderNodeTexGradient + ColorRamp)
+    │
+    ├── Render Cycles GPU → PNG (256 samples, denoising)
+    └── Export GLB (Draco compression) → 85KB web-ready
+```
+
+#### Materiales PBR procedurales disponibles
+
+| Material | Tecnica | Nodos | Uso |
+|----------|---------|-------|-----|
+| Stucco/Plaster | Noise + Bump | TexNoise → ColorRamp → BSDF + Bump | Paredes exteriores |
+| Barrel Tile | Wave bands + Bump | TexWave → ColorRamp → BSDF + Bump | Techos coloniales |
+| Cantera/Stone | Voronoi F1 + Bump | TexVoronoi → ColorRamp → BSDF + Bump | Zocalos, bases |
+| Wood Grain | Wave + Noise mix | TexWave + TexNoise → MixRGB → ColorRamp | Puertas, marcos |
+| Terracotta Tile | Checker + Noise | TexChecker + TexNoise → MixRGB → BSDF | Pisos |
+| Grass/Ground | Noise multi-stop | TexNoise → ColorRamp (3 stops) + Bump | Terreno |
+| Iron | Simple PBR | Metallic 0.85, Roughness 0.4 | Herreria |
+| Glass | Semi-transparent | Alpha 0.4, IOR 1.5, Roughness 0.05 | Ventanas |
+
+#### Comandos de ejecucion
+
+```bash
+# Render PNG (256 samples, Cycles GPU, denoising)
+/opt/homebrew/bin/blender --background --python script.py
+
+# Export GLB con Draco
+bpy.ops.export_scene.gltf(
+    filepath="output.glb",
+    export_format='GLB',
+    export_draco_mesh_compression_enable=True,
+    export_draco_mesh_compression_level=6,
+)
+
+# Render clay (swap all materials to uniform white)
+# Util para before/after comparisons
+```
+
+#### Tiempos medidos (Mac Mini M4)
+
+| Operacion | Tiempo | Output |
+|-----------|--------|--------|
+| Render 128 samples 1200x750 | ~15s | PNG ~200KB |
+| Render 256 samples 1400x875 | ~30s | PNG ~250KB |
+| Export GLB con Draco | ~2s | GLB 85KB |
+| Clay render (materiales simples) | ~10s | PNG ~150KB |
+
+#### Integracion con productos web
+
+El GLB exportado se usa directamente en React con R3F:
+
+```tsx
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Environment, useGLTF } from "@react-three/drei";
+
+function Model() {
+  const { scene } = useGLTF("/landing/house-colonial.glb");
+  return <primitive object={scene} />;
+}
+
+// Resultado: modelo 3D interactivo en la landing page
+// El usuario puede rotar con mouse/touch
+// Auto-rotate con OrbitControls autoRotate
+```
+
+#### Scripts de referencia
+
+| Script | Funcion | Producto |
+|--------|---------|----------|
+| `/tmp/render-pbr-house.py` | Casa colonial PBR completa | ArquiMX |
+| `/tmp/export-house-glb.py` | Export GLB con Draco | ArquiMX |
+| `/tmp/render-before-after.py` | Clay vs textured comparison | ArquiMX |
+
+> **TODO:** Mover scripts a `~/Creative/scripts/blender/` para persistencia.
+> **TODO:** Configurar Blender MCP (134 tools) como MCP server para control interactivo.
+> **TODO:** Pipeline TRELLIS: importar GLB → re-texturizar con PBR procedurales → bake → export.
+
+---
+
 ## Flujo de trabajo (actualizado)
 
 1. **Referencia:** Consultar Design Vault para patrones e inspiracion
