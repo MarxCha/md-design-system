@@ -3,46 +3,35 @@ import {
   AbsoluteFill,
   Img,
   interpolate,
-  Sequence,
+  spring,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
 import { vc, vt, vs, vr, springConfigs } from "./video-tokens";
-import { spring } from "remotion";
+import { GradientBackground } from "../../remotion/components/GradientBackground";
+import { ProgressBar } from "../../remotion/components/ProgressBar";
 
 /**
  * A zone within the infographic to highlight.
  * Coordinates are percentages (0-100) relative to the image.
  */
 export type InfographicZone = {
-  /** Left edge as percentage of image width */
   x: number;
-  /** Top edge as percentage of image height */
   y: number;
-  /** Width as percentage */
   w: number;
-  /** Height as percentage */
   h: number;
-  /** Optional label overlay */
   label?: string;
-  /** Duration in seconds for this zone */
   duration?: number;
 };
 
 export type InfographicZoomProps = {
-  /** Path to the infographic image */
   imageSrc: string;
-  /** Zones to pan/zoom into, in sequence */
   zones: InfographicZone[];
-  /** Duration in seconds for the initial full view */
   overviewDuration?: number;
-  /** Duration in seconds per zone (default for zones without own duration) */
   zoneDuration?: number;
-  /** Duration in seconds for the final full view */
   outroDuration?: number;
-  /** Background color */
   bgColor?: string;
-  /** Title overlay on the overview */
+  accentColor?: string;
   title?: string;
 };
 
@@ -53,20 +42,20 @@ export const InfographicZoom: React.FC<InfographicZoomProps> = ({
   zoneDuration = 4,
   outroDuration = 2,
   bgColor = vc.primary900,
+  accentColor = vc.accent,
   title,
 }) => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
 
-  // Calculate total frames
+  // ─── Calculate Phases ───
   const overviewFrames = Math.round(overviewDuration * fps);
   const zoneFramesList = zones.map((z) =>
-    Math.round((z.duration ?? zoneDuration) * fps)
+    Math.round((z.duration ?? zoneDuration) * fps),
   );
   const outroFrames = Math.round(outroDuration * fps);
   const totalZoneFrames = zoneFramesList.reduce((a, b) => a + b, 0);
 
-  // Determine which phase we're in
   let phase: "overview" | "zone" | "outro" = "overview";
   let zoneIndex = 0;
   let localFrame = frame;
@@ -90,7 +79,7 @@ export const InfographicZoom: React.FC<InfographicZoomProps> = ({
     localFrame = frame - overviewFrames - totalZoneFrames;
   }
 
-  // Calculate transform based on phase
+  // ─── Calculate Transform ───
   let scale = 1;
   let translateX = 0;
   let translateY = 0;
@@ -98,66 +87,126 @@ export const InfographicZoom: React.FC<InfographicZoomProps> = ({
   let labelOpacity = 0;
 
   if (phase === "overview") {
-    // Slight zoom-in during overview
-    scale = interpolate(localFrame, [0, overviewFrames], [1, 1.02], {
+    // Gentle Ken Burns zoom during overview
+    scale = interpolate(localFrame, [0, overviewFrames], [1, 1.04], {
       extrapolateRight: "clamp",
     });
   } else if (phase === "zone") {
     const zone = zones[zoneIndex];
     const zoneFrames = zoneFramesList[zoneIndex];
 
-    // Target scale: how much to zoom in (based on zone width)
     const targetScale = Math.min(100 / zone.w, 100 / zone.h) * 0.85;
-
-    // Target position: center on the zone
     const centerX = zone.x + zone.w / 2;
     const centerY = zone.y + zone.h / 2;
     const targetX = -(centerX - 50) * (targetScale / 100) * width * 0.01;
     const targetY = -(centerY - 50) * (targetScale / 100) * height * 0.01;
 
-    // Smooth transition in
-    const transitionIn = Math.min(zoneFrames * 0.3, fps * 0.8);
-    const progress = interpolate(localFrame, [0, transitionIn], [0, 1], {
-      extrapolateRight: "clamp",
+    // Spring-based transition (not linear)
+    const transitionFrames = Math.min(
+      Math.round(zoneFrames * 0.3),
+      Math.round(fps * 0.8),
+    );
+    const springProgress = spring({
+      frame: localFrame,
+      fps,
+      config: springConfigs.smooth,
+      durationInFrames: transitionFrames,
     });
 
-    // Ease
-    const eased = interpolate(progress, [0, 1], [0, 1]);
+    scale = interpolate(springProgress, [0, 1], [1, targetScale]);
+    translateX = interpolate(springProgress, [0, 1], [0, targetX]);
+    translateY = interpolate(springProgress, [0, 1], [0, targetY]);
 
-    scale = interpolate(eased, [0, 1], [1, targetScale]);
-    translateX = interpolate(eased, [0, 1], [0, targetX]);
-    translateY = interpolate(eased, [0, 1], [0, targetY]);
-
-    // Label
+    // Label with slide-up + blur entrance
     if (zone.label) {
       labelText = zone.label;
       labelOpacity = interpolate(
         localFrame,
-        [transitionIn, transitionIn + 10, zoneFrames - 15, zoneFrames - 5],
+        [
+          transitionFrames,
+          transitionFrames + 10,
+          zoneFrames - 15,
+          zoneFrames - 5,
+        ],
         [0, 1, 1, 0],
-        { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+        { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
       );
     }
   } else {
-    // Outro: zoom back out
-    const progress = interpolate(localFrame, [0, outroFrames * 0.5], [0, 1], {
-      extrapolateRight: "clamp",
+    // Outro: zoom back out with spring
+    const outroSpring = spring({
+      frame: localFrame,
+      fps,
+      config: springConfigs.gentle,
+      durationInFrames: Math.round(outroFrames * 0.6),
     });
-    scale = interpolate(progress, [0, 1], [1.5, 1]);
+    scale = interpolate(outroSpring, [0, 1], [1.5, 1]);
   }
 
-  // Title overlay for overview phase
-  const titleOpacity =
+  // ─── Title overlay for overview ───
+  const titleSpring =
     phase === "overview"
-      ? interpolate(localFrame, [fps * 0.5, fps * 1, overviewFrames - fps * 0.5, overviewFrames], [0, 1, 1, 0], {
-          extrapolateLeft: "clamp",
-          extrapolateRight: "clamp",
+      ? spring({
+          frame: Math.max(0, localFrame - Math.round(fps * 0.3)),
+          fps,
+          config: springConfigs.smooth,
+          durationInFrames: 25,
         })
+      : 0;
+
+  const titleExitOpacity =
+    phase === "overview"
+      ? interpolate(
+          localFrame,
+          [overviewFrames - Math.round(fps * 0.5), overviewFrames],
+          [1, 0],
+          { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
+        )
+      : 0;
+
+  const titleOpacity = Math.min(titleSpring, titleExitOpacity);
+
+  // ─── Zone indicator dots ───
+  const zoneProgress =
+    phase === "zone" ? (zoneIndex + 1) / zones.length : phase === "outro" ? 1 : 0;
+
+  // ─── Label slide-up animation ───
+  const labelSlideUp =
+    phase === "zone"
+      ? interpolate(
+          localFrame,
+          [
+            Math.min(Math.round(zoneFramesList[zoneIndex] * 0.3), Math.round(fps * 0.8)),
+            Math.min(Math.round(zoneFramesList[zoneIndex] * 0.3), Math.round(fps * 0.8)) + 10,
+          ],
+          [15, 0],
+          { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
+        )
+      : 0;
+
+  const labelBlur =
+    phase === "zone"
+      ? interpolate(
+          localFrame,
+          [
+            Math.min(Math.round(zoneFramesList[zoneIndex] * 0.3), Math.round(fps * 0.8)),
+            Math.min(Math.round(zoneFramesList[zoneIndex] * 0.3), Math.round(fps * 0.8)) + 8,
+          ],
+          [4, 0],
+          { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
+        )
       : 0;
 
   return (
     <AbsoluteFill style={{ backgroundColor: bgColor }}>
-      {/* Infographic image with transform */}
+      {/* Subtle gradient overlay */}
+      <GradientBackground
+        colors={[bgColor, `${accentColor}08`, bgColor]}
+        type="radial"
+        style={{ opacity: 0.5 }}
+      />
+
+      {/* Infographic image with spring-based transform */}
       <div
         style={{
           width: "100%",
@@ -175,12 +224,30 @@ export const InfographicZoom: React.FC<InfographicZoomProps> = ({
             height: "100%",
             objectFit: "contain",
             transform: `scale(${scale}) translate(${translateX}px, ${translateY}px)`,
-            transition: phase === "zone" ? "none" : undefined,
           }}
         />
       </div>
 
-      {/* Title overlay (overview phase) */}
+      {/* Zone vignette overlay — dims edges when zoomed */}
+      {phase === "zone" && (
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.4) 100%)",
+            opacity: interpolate(
+              localFrame,
+              [0, 15],
+              [0, 1],
+              { extrapolateRight: "clamp" },
+            ),
+            pointerEvents: "none",
+          }}
+        />
+      )}
+
+      {/* Title overlay (overview phase) with spring entrance */}
       {title && titleOpacity > 0 && (
         <div
           style={{
@@ -191,14 +258,16 @@ export const InfographicZoom: React.FC<InfographicZoomProps> = ({
             display: "flex",
             justifyContent: "center",
             opacity: titleOpacity,
+            transform: `translateY(${interpolate(titleSpring, [0, 1], [20, 0])}px)`,
           }}
         >
           <div
             style={{
-              backgroundColor: "rgba(0, 0, 0, 0.7)",
-              backdropFilter: "blur(8px)",
+              backgroundColor: "rgba(0, 0, 0, 0.75)",
+              backdropFilter: "blur(12px)",
               borderRadius: vr.lg,
               padding: `${vs[3]}px ${vs[8]}px`,
+              border: `1px solid ${accentColor}22`,
             }}
           >
             <span
@@ -215,7 +284,7 @@ export const InfographicZoom: React.FC<InfographicZoomProps> = ({
         </div>
       )}
 
-      {/* Zone label overlay */}
+      {/* Zone label with slide-up + blur entrance */}
       {labelText && labelOpacity > 0 && (
         <div
           style={{
@@ -226,16 +295,32 @@ export const InfographicZoom: React.FC<InfographicZoomProps> = ({
             display: "flex",
             justifyContent: "center",
             opacity: labelOpacity,
+            transform: `translateY(${labelSlideUp}px)`,
+            filter: `blur(${labelBlur}px)`,
           }}
         >
           <div
             style={{
-              backgroundColor: "rgba(0, 0, 0, 0.75)",
-              backdropFilter: "blur(8px)",
+              backgroundColor: "rgba(0, 0, 0, 0.8)",
+              backdropFilter: "blur(12px)",
               borderRadius: vr.md,
               padding: `${vs[2]}px ${vs[6]}px`,
+              display: "flex",
+              alignItems: "center",
+              gap: vs[2],
+              border: `1px solid ${accentColor}33`,
             }}
           >
+            {/* Accent dot */}
+            <div
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                backgroundColor: accentColor,
+                boxShadow: `0 0 8px ${accentColor}`,
+              }}
+            />
             <span
               style={{
                 fontFamily: vt.fontFamily.body,
@@ -249,6 +334,39 @@ export const InfographicZoom: React.FC<InfographicZoomProps> = ({
           </div>
         </div>
       )}
+
+      {/* Zone indicator dots (bottom-right) */}
+      {zones.length > 1 && (
+        <div
+          style={{
+            position: "absolute",
+            bottom: "3%",
+            right: "4%",
+            display: "flex",
+            gap: 6,
+            opacity: phase === "overview" ? 0 : 0.7,
+          }}
+        >
+          {zones.map((_, i) => (
+            <div
+              key={i}
+              style={{
+                width: i === zoneIndex && phase === "zone" ? 20 : 8,
+                height: 8,
+                borderRadius: 4,
+                backgroundColor:
+                  i <= zoneIndex || phase === "outro"
+                    ? accentColor
+                    : `${vc.white}44`,
+                transition: "width 0.3s ease",
+              }}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Progress bar */}
+      <ProgressBar color={accentColor} height={3} />
     </AbsoluteFill>
   );
 };
@@ -256,12 +374,13 @@ export const InfographicZoom: React.FC<InfographicZoomProps> = ({
 /** Calculate total duration in frames */
 export function calculateInfographicDuration(
   props: InfographicZoomProps,
-  fps: number = 30
+  fps: number = 30,
 ): number {
   const overview = Math.round((props.overviewDuration ?? 3) * fps);
   const zones = props.zones.reduce(
-    (acc, z) => acc + Math.round((z.duration ?? props.zoneDuration ?? 4) * fps),
-    0
+    (acc, z) =>
+      acc + Math.round((z.duration ?? props.zoneDuration ?? 4) * fps),
+    0,
   );
   const outro = Math.round((props.outroDuration ?? 2) * fps);
   return overview + zones + outro;

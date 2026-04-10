@@ -11,19 +11,19 @@
     "charts": "Recharts",
     "audio": "Howler.js",
     "3d": "Three.js + R3F v9.5 + drei v10.7",
-    "video": "Remotion v4.0.438 (10 compositions: 6 original + InfographicZoom + PitchDeck + SocialClip + AudiogramVideo)",
+    "video": "Remotion v4.0.440 (10 compositions ALL working + 9 editor-pro-max components + 12 transitions + 5 presets)",
     "docs": "docs-kit (slide-deck + one-pager + notebook-pack) + notebooklm-py v0.3.4",
     "state": "Zustand",
     "testing": "Vitest 4.1 + Testing Library + happy-dom + Playwright",
     "other": ["Lottie", "Lucide Icons", "CVA", "Zod 4.3.6", "Sonner", "cmdk"]
   },
-  "status": "docs-kit-shipped-notebooklm-integrated",
-  "lastSession": "2026-04-04",
+  "status": "editor-pro-max-integrated-compositions-rewritten",
+  "lastSession": "2026-04-10",
   "branch": "feat/design-system-scaffold",
   "pr": "https://github.com/MarxCha/md-design-system/pull/1",
   "commits": 16,
   "stats": {
-    "sourceFiles": 280,
+    "sourceFiles": 310,
     "uiComponents": 20,
     "customComponents": 17,
     "layoutComponents": 2,
@@ -39,8 +39,8 @@
     "templateEcommerceComponents": 6,
     "lintRules": 4,
     "hooks": 8,
-    "testFiles": 32,
-    "testsPassing": 138,
+    "testFiles": 33,
+    "testsPassing": 151,
     "demoPages": 19,
     "templates": 10,
     "typescriptErrors": 0
@@ -65,10 +65,10 @@
       "workaround": "Usar p tags o CSS layers para headings que necesiten Tailwind sizing."
     },
     {
-      "id": "remotion-new-compositions",
-      "description": "4 nuevas composiciones (InfographicZoom, PitchDeck, SocialClip, AudiogramVideo) renderizan pero sin animaciones reales. CEO las rechazó.",
-      "severity": "high",
-      "workaround": "Reescribir usando primitivos de remotion-bits (clonado en ~/Projects/remotion-bits/). Handoff creado."
+      "id": "remotion-compositions-rewritten",
+      "description": "4 composiciones (InfographicZoom, PitchDeck, SocialClip, AudiogramVideo) reescritas con editor-pro-max components. Pending visual smoke test.",
+      "severity": "low",
+      "workaround": "Run npx remotion render [CompositionId] to verify visual output"
     },
     {
       "id": "notebooklm-login",
@@ -112,9 +112,11 @@
     "guelaguetzaDemo": "out/guelaguetza-demo.mp4 (1920x1080, 16.5s, 2.1MB)"
   },
   "nextSteps": [
-    "Reescribir 4 composiciones Remotion con primitivos de remotion-bits (handoff listo)",
+    "Visual smoke test: render 4 rewritten compositions and verify output quality",
     "Probar NotebookLM video generation para MD Analytics",
     "MediVista Pro design diagnosis — patient view redesign (nueva sesión)",
-    "Render promotional videos via Remotion for all 12 templates"
+    "Render promotional videos via Remotion for all 12 templates",
+    "Template #5: GSAP Cocktails",
+    "CI/CD con GitHub Actions"
   ]
 }

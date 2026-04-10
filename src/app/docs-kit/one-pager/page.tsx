@@ -1,7 +1,7 @@
 "use client";
 
 import { OnePager } from "@/docs-kit/one-pager";
-import config from "@/docs-kit/one-pager/metabase-mexico/config";
+import config from "@/docs-kit/one-pager/crece-v2/config";
 
 export default function OnePagerDemoPage() {
   return (
