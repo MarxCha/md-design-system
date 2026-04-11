@@ -45,3 +45,6 @@ public/templates/iphone-15/videos/
 public/templates/iphone-15/models/
 public/templates/zentry/videos/
 public/templates/zentry/audio/
+
+# Graphify — regenerable knowledge graph, rebuilt via post-commit hook
+graphify-out/
