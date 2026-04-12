@@ -14,6 +14,10 @@ import {
   calculateInfographicDuration,
 } from "../components/video/InfographicZoom";
 import {
+  InfographicKenBurns,
+  calculateInfographicKenBurnsDuration,
+} from "../components/video/InfographicKenBurns";
+import {
   PitchDeck,
   calculatePitchDeckDuration,
 } from "../components/video/PitchDeck";
@@ -439,6 +443,22 @@ export const RemotionRoot: React.FC = () => {
             { x: 60, y: 0, w: 40, h: 55, label: "4 Industry Verticals", duration: 5 },
             { x: 0, y: 55, w: 50, h: 45, label: "Native Industry Logic", duration: 4 },
           ],
+        }}
+      />
+
+      <Composition
+        id="InfographicKenBurns-Demo"
+        component={InfographicKenBurns}
+        durationInFrames={calculateInfographicKenBurnsDuration(15, VIDEO_FPS)}
+        fps={VIDEO_FPS}
+        width={VIDEO_SIZES.horizontal.width}
+        height={VIDEO_SIZES.horizontal.height}
+        defaultProps={{
+          imageSrc: staticFile("docs/metabase-mexico/infographic.png"),
+          title: "MD Analytics",
+          subtitle: "Business Intelligence para Mexico",
+          direction: "zoomIn" as const,
+          intensity: 0.15,
         }}
       />
 

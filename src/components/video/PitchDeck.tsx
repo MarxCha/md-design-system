@@ -306,7 +306,7 @@ function StatsRenderer({
               }}
             >
               {/* Animated counter instead of static value */}
-              <Sequence from={delay}>
+              <Sequence from={delay} layout="none">
                 <AnimatedCounter
                   value={stat.value}
                   color={colors.accent}

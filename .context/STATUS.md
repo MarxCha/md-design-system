@@ -1,7 +1,48 @@
 # STATUS — md-design-system
-Ultima actualizacion: 2026-04-10 (sesion 012)
+Ultima actualizacion: 2026-04-11 (sesion 013)
 
-## Estado: EDITOR PRO MAX INTEGRATED + 4 COMPOSICIONES REESCRITAS
+## Estado: GRAPHIFY INSTALADO + GAP SEMÁNTICO DOCUMENTADO
+
+## Sesión 013 — Graphify setup + Remotion smoke test (2026-04-11)
+- Graphify hook post-commit instalado en repo principal (claude mode, AST code-only)
+- Worktree `../md-design-system-graphify-setup` branch `chore/graphify-setup` con `.gitignore` actualizado (entry `graphify-out/`)
+- Grafo inicial: 511 nodes, 635 edges, 44 communities sobre 383 files (1.5s)
+- Peer `brtbep8z` registró MCP `graphify-md-design-system` en `~/.claude.json`. Smoke test MCP pendiente de rearranque Claude Code.
+- Gap de búsqueda semántica NO resuelto — `/sc:index-repo` resulta ser un tokenizer de PROJECT_INDEX.md, no embeddings. Pospuesto (pgvector + bge-micro-v2 si se necesita).
+- DISCREPANCIA detectada: filesystem tiene 12 directorios de templates, STATUS.md abajo lista solo 5. NO arreglado en esta sesión (scope creep). Confirmado via `npx remotion compositions`: hay 12 template compositions registradas.
+
+### Remotion Smoke Test — 4/4 renders sin errores
+Output en `out/smoke-test-013/`:
+- InfographicZoom-Demo → infographic-zoom.mp4 (22s, 1920x1080, **24 MB** ⚠️ outlier)
+- PitchDeck-Demo → pitch-deck.mp4 (19s, 1920x1080, 1.3 MB ✅)
+- SocialClip-Demo → social-clip.mp4 (12s, 1080x1920, 1.3 MB ✅)
+- AudiogramVideo-Demo → audiogram.mp4 (30s, 1920x1080, 7.8 MB ✅)
+
+Alertas:
+- Los 4 archivos decodifican OK, se completó el encode sin warnings.
+
+### Validación visual (frames extraídos con ffmpeg)
+- **InfographicZoom-Demo — FAIL visual** (original, NO fix aplicado). Reescritura sesión 012 no se materializó. Pendiente (A) en sesión 014.
+- **PitchDeck-Demo — BUG FIXED ✅.** `<Sequence from={delay}>` default layout `absolute-fill` sacaba al counter del flex flow. Fix: `layout="none"`. Re-render `pitch-deck-fixed.mp4` validado — counter + label apilan limpio sin overlap.
+- **SocialClip-Demo — PASS completo.** Deep validation con frames narrow (5%, 15%, 92%) confirma: count-up 0→73% working, word stagger en hook visible, CTA button rendered. Paréntesis honesto cerrado.
+- **AudiogramVideo-Demo — PASS (mejor render).** Sin cambios.
+
+### Opción (B) Implementada: InfographicKenBurns ✅
+Ruta nueva aprobada por CEO para desbloquear BACKLOG #12 de md-research:
+- Nuevo: `src/components/video/InfographicKenBurns.tsx` (~100 líneas) usando FitImage con zoomIn + title overlay fade in/out
+- Registrado en `src/remotion/Root.tsx` como `InfographicKenBurns-Demo` (15s, 1920x1080)
+- Render raw: 27 MB → ffmpeg CRF 28 → 4.3 MB (6.3x reducción, target < 5 MB ✅)
+- Validación visual 5 frames: Ken Burns zoomIn perceptible 0%→95%, title fade in/out funcional, sin artifacts de compresión
+- `InfographicZoom.tsx` NO tocado (queda como evidencia para fix A)
+
+Archivos relevantes en `out/smoke-test-013/`:
+- `infographic-ken-burns-raw.mp4` (27 MB) y `infographic-ken-burns.mp4` (4.3 MB)
+- `pitch-deck-fixed.mp4` (1.3 MB) — PitchDeck con bug resuelto
+- `frames/ikb_*.png` (5 frames validación InfographicKenBurns)
+- `frames/sc_*.png` (10 frames deep validation SocialClip)
+- `frames/pitch-deck-fixed_50pct.png` (verificación del fix)
+
+## Estado previo: EDITOR PRO MAX INTEGRATED + 4 COMPOSICIONES REESCRITAS
 
 Branch activo: `feat/design-system-scaffold`
 PR: https://github.com/MarxCha/md-design-system/pull/1
