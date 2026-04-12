@@ -98,8 +98,8 @@ export const InfographicZoom: React.FC<InfographicZoomProps> = ({
     const targetScale = Math.min(100 / zone.w, 100 / zone.h) * 0.85;
     const centerX = zone.x + zone.w / 2;
     const centerY = zone.y + zone.h / 2;
-    const targetX = -(centerX - 50) * (targetScale / 100) * width * 0.01;
-    const targetY = -(centerY - 50) * (targetScale / 100) * height * 0.01;
+    const targetX = (50 - centerX) * width / 100;
+    const targetY = (50 - centerY) * height / 100;
 
     // Spring-based transition (not linear)
     const transitionFrames = Math.min(

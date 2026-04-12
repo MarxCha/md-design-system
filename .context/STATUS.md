@@ -1,7 +1,7 @@
 # STATUS — md-design-system
 Ultima actualizacion: 2026-04-11 (sesion 013)
 
-## Estado: GRAPHIFY INSTALADO + GAP SEMÁNTICO DOCUMENTADO
+## Estado: INFOGRAPHIC ZOOM FIXED + 12 TEMPLATES AUDITED
 
 ## Sesión 013 — Graphify setup + Remotion smoke test (2026-04-11)
 - Graphify hook post-commit instalado en repo principal (claude mode, AST code-only)
@@ -22,7 +22,7 @@ Alertas:
 - Los 4 archivos decodifican OK, se completó el encode sin warnings.
 
 ### Validación visual (frames extraídos con ffmpeg)
-- **InfographicZoom-Demo — FAIL visual** (original, NO fix aplicado). Reescritura sesión 012 no se materializó. Pendiente (A) en sesión 014.
+- **InfographicZoom-Demo — FIXED ✅ (sesión 014).** Bug: fórmula de traducción tenía factor espurio `(targetScale/100)` que reducía desplazamientos ~60x (10px vs 624px en canvas 1920px). Fix: `targetX = (50 - centerX) * width / 100`. Re-render validado: zone transitions visibles, labels+vignette+pagination dots funcionando. 23.9 MB raw → 4.7 MB CRF 28.
 - **PitchDeck-Demo — BUG FIXED ✅.** `<Sequence from={delay}>` default layout `absolute-fill` sacaba al counter del flex flow. Fix: `layout="none"`. Re-render `pitch-deck-fixed.mp4` validado — counter + label apilan limpio sin overlap.
 - **SocialClip-Demo — PASS completo.** Deep validation con frames narrow (5%, 15%, 92%) confirma: count-up 0→73% working, word stagger en hook visible, CTA button rendered. Paréntesis honesto cerrado.
 - **AudiogramVideo-Demo — PASS (mejor render).** Sin cambios.
@@ -87,12 +87,19 @@ Commits: 16+
 - Screenshot: `npm run template:screenshot -- --slug=X` Playwright retina 2x capture
 - CSS standard: scoped `.{slug}-template` selectors, NO @layer utilities
 
-### Templates (4 completed, 1 WIP)
-- [x] iPhone 15 Pro Clone — 12 componentes, 3D R3F, VideoCarousel, GSAP scroll
+### Templates (10 complete, 2 partial — 12 total)
+- [x] AI Sales — 7 componentes, sales landing
+- [x] Astrowind — 7 componentes, Astro-style wind theme
+- [x] Cruip Open — 5 componentes, open-source style
+- [x] Dashboard Pro — 5 componentes, pro dashboard layout
+- [x] Ecommerce — 6 componentes, e-commerce storefront
+- [x] Form Builder — 6 componentes, form construction UI
+- [x] GSAP Cocktails — 6 componentes, GSAP-animated cocktail landing
 - [x] GSAP MacBook Landing — 6 componentes, dark Apple-style, horizontal scroll
+- [~] iPhone 15 Pro Clone — 12 componentes (4 lightweight), 3D R3F, VideoCarousel, GSAP scroll
+- [x] Page UI — 7 componentes, page-building UI
 - [x] SaaS Starter — 7 componentes, Linear/Vercel-style, pricing tiers
-- [~] Zentry Awwwards Clone — 10 componentes, CSS specificity WIP
-- [ ] GSAP Cocktails + 4 mas pendientes
+- [~] Zentry Awwwards Clone — 10 componentes (2 lightweight), CSS specificity WIP
 
 ### docs-kit — Document & Presentation Toolkit
 - 3 formats: slide-deck, one-pager, notebook-pack
@@ -120,10 +127,11 @@ Commits: 16+
 - Lenis + gsap.from opacity:0 — usar gsap.set + ScrollTrigger.create + onEnter
 
 ## Proximos pasos
-- [ ] Render smoke test de las 4 composiciones reescritas (verificar visual)
-- [ ] Template #5: GSAP Cocktails (npm run template:new -- --slug=gsap-cocktails)
-- [ ] Capture screenshots MacBook + SaaS (npm run template:screenshot)
-- [ ] Render promotional videos via Remotion
+- [x] ~~Render smoke test de las 4 composiciones reescritas~~ (sesiones 013+014 — todos PASS)
+- [x] ~~Template #5+: GSAP Cocktails + 7 más~~ (12 templates existentes, 10 complete + 2 partial)
+- [ ] Capture screenshots para templates nuevos (ai-sales, astrowind, cruip-open, etc.)
+- [ ] Render promotional videos via Remotion (12 templates)
 - [ ] Motor IVA segunda pasada: HoloCard, CountUp, stagger
 - [ ] Migrar CFDI-Motor a DS (DEUDA-TECNICA.md)
 - [ ] CI/CD con GitHub Actions
+- [ ] mdmem construction (4-5 hrs dedicadas, ownership en md-design-system)
