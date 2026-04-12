@@ -17,18 +17,18 @@
     "testing": "Vitest 4.1 + Testing Library + happy-dom + Playwright",
     "other": ["Lottie", "Lucide Icons", "CVA", "Zod 4.3.6", "Sonner", "cmdk"]
   },
-  "status": "editor-pro-max-integrated-compositions-rewritten",
-  "lastSession": "2026-04-10",
+  "status": "graphify-installed-infographic-kenburns-shipped-pitchdeck-fixed",
+  "lastSession": "2026-04-11",
   "branch": "feat/design-system-scaffold",
   "pr": "https://github.com/MarxCha/md-design-system/pull/1",
-  "commits": 16,
+  "commits": 19,
   "stats": {
     "sourceFiles": 310,
     "uiComponents": 20,
     "customComponents": 17,
     "layoutComponents": 2,
     "dashboardComponents": 8,
-    "videoComponents": 10,
+    "videoComponents": 11,
     "docsKitComponents": 8,
     "landingComponents": 5,
     "responsiveComponents": 5,
@@ -65,10 +65,16 @@
       "workaround": "Usar p tags o CSS layers para headings que necesiten Tailwind sizing."
     },
     {
-      "id": "remotion-compositions-rewritten",
-      "description": "4 composiciones (InfographicZoom, PitchDeck, SocialClip, AudiogramVideo) reescritas con editor-pro-max components. Pending visual smoke test.",
+      "id": "infographic-zoom-broken",
+      "description": "InfographicZoom composition (session 012 rewrite) visually broken — frames static, zone transitions/vignette/pagination don't appear. InfographicKenBurns created as replacement (Option B).",
+      "severity": "medium",
+      "workaround": "Use InfographicKenBurns-Demo instead. Fix (A) in session 014 if desired."
+    },
+    {
+      "id": "graphify-mcp-pending-restart",
+      "description": "MCP graphify-md-design-system registered in ~/.claude.json but not yet loaded — requires Claude Code restart.",
       "severity": "low",
-      "workaround": "Run npx remotion render [CompositionId] to verify visual output"
+      "workaround": "/exit + claude to restart, then test with mcp__graphify-md-design-system__god_nodes()"
     },
     {
       "id": "notebooklm-login",
@@ -112,10 +118,13 @@
     "guelaguetzaDemo": "out/guelaguetza-demo.mp4 (1920x1080, 16.5s, 2.1MB)"
   },
   "nextSteps": [
-    "Visual smoke test: render 4 rewritten compositions and verify output quality",
+    "Rearrancar Claude Code + smoke test MCP graphify-md-design-system (god_nodes)",
+    "Fix (A) InfographicZoom — investigar por qué zones/vignette/pagination no se materializaron (o descartar)",
+    "mdmem construction — ownership transferido, sesión dedicada 4-5 hrs (leer analysis §5 de md-research)",
     "Probar NotebookLM video generation para MD Analytics",
     "MediVista Pro design diagnosis — patient view redesign (nueva sesión)",
     "Render promotional videos via Remotion for all 12 templates",
+    "Sincronizar STATUS.md con los 12 templates reales (vs 5 documentados)",
     "Template #5: GSAP Cocktails",
     "CI/CD con GitHub Actions"
   ]
