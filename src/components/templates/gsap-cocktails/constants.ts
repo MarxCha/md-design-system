@@ -1,99 +1,226 @@
 // ─── GSAP Cocktails Template — Constants & Content ───────────────────────────────
-// Single source of truth for all template copy.
-// video-config.ts imports from here to keep web + video in sync.
+// Faithful port of /tmp/gsap_cocktails/constants/index.js
+// Paths updated: /images/ → /templates/gsap-cocktails/images/
+//                /videos/ → /templates/gsap-cocktails/videos/
 
 export const TEMPLATE_SLUG = "gsap-cocktails";
 export const TEMPLATE_NAME = "GSAP Cocktails";
 
-/** Navigation items */
-export const navItems = ["Cocktails", "About", "Experience", "Reserve"];
+// ── Types ─────────────────────────────────────────────────────────────────────────
 
-/** Hero section content */
-export const heroContent = {
-  tagline: "Artisan Cocktail Bar",
-  title: "Where Mixology\nMeets Art",
-  subtitle: "Hand-crafted cocktails with locally sourced ingredients and a passion for perfection.",
-  ctaPrimary: "Reserve a Table",
-  ctaSecondary: "Our Menu",
-};
+export interface NavLink {
+  id: string;
+  title: string;
+}
 
-/** Featured cocktails */
-export const cocktails = [
+export interface DrinkItem {
+  name: string;
+  country: string;
+  detail: string;
+  price: string;
+}
+
+export interface ProfileItem {
+  imgPath: string;
+}
+
+export interface StoreInfo {
+  heading: string;
+  address: string;
+  contact: {
+    phone: string;
+    email: string;
+  };
+}
+
+export interface OpeningHour {
+  day: string;
+  time: string;
+}
+
+export interface Social {
+  name: string;
+  icon: string;
+  url: string;
+}
+
+export interface Cocktail {
+  id: number;
+  name: string;
+  image: string;
+  title: string;
+  description: string;
+}
+
+// ── Data ──────────────────────────────────────────────────────────────────────────
+
+export const navLinks: NavLink[] = [
   {
-    name: "Oaxaca Old Fashioned",
-    spirit: "Mezcal · Agave · Bitters",
-    description: "Smoky mezcal meets artisanal agave syrup, finished with Angostura and a charred orange peel.",
-    color: "#D4A574",
-    price: "$280",
+    id: "cocktails",
+    title: "Cocktails",
   },
   {
-    name: "Tokyo Highball",
-    spirit: "Japanese Whisky · Tonic · Yuzu",
-    description: "Crisp Suntory Toki over hand-cut ice, topped with artisanal tonic and fresh yuzu zest.",
-    color: "#A8C4B8",
-    price: "$320",
+    id: "about",
+    title: "About Us",
   },
   {
-    name: "Negroni Sbagliato",
-    spirit: "Campari · Vermouth · Prosecco",
-    description: "The Italian classic reimagined — bitter Campari, sweet vermouth, crowned with fine bubbles.",
-    color: "#C75B5B",
-    price: "$260",
+    id: "work",
+    title: "The Art",
   },
   {
-    name: "Lavender Gimlet",
-    spirit: "Gin · Lavender · Lime",
-    description: "London dry gin infused with Provençal lavender, brightened with fresh lime and a floral mist.",
-    color: "#9B8EC4",
-    price: "$290",
+    id: "contact",
+    title: "Contact",
   },
 ];
 
-/** About section */
-export const aboutContent = {
-  heading: "Crafted with Intention",
-  paragraph1: "Every cocktail tells a story. Our bartenders source ingredients from local markets, distill house syrups, and carve ice by hand.",
-  paragraph2: "Founded in 2019, we've served over 50,000 cocktails — each one made to order, never rushed, always memorable.",
-  stat1: { value: "50K+", label: "Cocktails Served" },
-  stat2: { value: "12", label: "House Spirits" },
-  stat3: { value: "4.9", label: "Rating" },
-};
-
-/** Experience / features section */
-export const features = [
+export const cocktailLists: DrinkItem[] = [
   {
-    icon: "🍸",
-    title: "Seasonal Menu",
-    description: "Rotating cocktails inspired by the freshest ingredients of the season",
+    name: "Chapel Hill Shiraz",
+    country: "AU",
+    detail: "Battle",
+    price: "$10",
   },
   {
-    icon: "🧊",
-    title: "Hand-Cut Ice",
-    description: "Every cube carved to order for perfect dilution and presentation",
+    name: "Caten Malbee",
+    country: "AU",
+    detail: "Battle",
+    price: "$49",
   },
   {
-    icon: "🎵",
-    title: "Live Jazz",
-    description: "Thursday through Saturday, curated sets from local artists",
+    name: "Rhino Pale Ale",
+    country: "CA",
+    detail: "750 ml",
+    price: "$20",
   },
   {
-    icon: "🌿",
-    title: "Garden to Glass",
-    description: "Herbs and botanicals grown on our rooftop garden",
+    name: "Irish Guinness",
+    country: "IE",
+    detail: "600 ml",
+    price: "$29",
   },
 ];
 
-/** Reservation CTA */
-export const ctaContent = {
-  heading: "Your Table Awaits",
-  subtitle: "Reserve your evening and let us craft something unforgettable.",
-  buttonText: "Make a Reservation",
-  note: "Walk-ins welcome · Open Tue–Sun · 6PM–2AM",
+export const mockTailLists: DrinkItem[] = [
+  {
+    name: "Tropical Bloom",
+    country: "US",
+    detail: "Battle",
+    price: "$10",
+  },
+  {
+    name: "Passionfruit Mint",
+    country: "US",
+    detail: "Battle",
+    price: "$49",
+  },
+  {
+    name: "Citrus Glow",
+    country: "CA",
+    detail: "750 ml",
+    price: "$20",
+  },
+  {
+    name: "Lavender Fizz",
+    country: "IE",
+    detail: "600 ml",
+    price: "$29",
+  },
+];
+
+export const profileLists: ProfileItem[] = [
+  {
+    imgPath: "/templates/gsap-cocktails/images/profile1.png",
+  },
+  {
+    imgPath: "/templates/gsap-cocktails/images/profile2.png",
+  },
+  {
+    imgPath: "/templates/gsap-cocktails/images/profile3.png",
+  },
+  {
+    imgPath: "/templates/gsap-cocktails/images/profile4.png",
+  },
+];
+
+export const featureLists: string[] = [
+  "Perfectly balanced blends",
+  "Garnished to perfection",
+  "Ice-cold every time",
+  "Expertly shaken & stirred",
+];
+
+export const goodLists: string[] = [
+  "Handpicked ingredients",
+  "Signature techniques",
+  "Bartending artistry in action",
+  "Freshly muddled flavors",
+];
+
+export const storeInfo: StoreInfo = {
+  heading: "Where to Find Us",
+  address: "456, Raq Blvd. #404, Los Angeles, CA 90210",
+  contact: {
+    phone: "(555) 987-6543",
+    email: "hello@jsmcocktail.com",
+  },
 };
 
-/** Footer links */
-export const footerLinks = {
-  visit: ["Tues–Thu: 6PM–12AM", "Fri–Sat: 6PM–2AM", "Sunday: 5PM–11PM"],
-  contact: ["hola@cocktailbar.mx", "+52 55 1234 5678", "Col. Roma Norte, CDMX"],
-  social: ["Instagram", "TikTok", "Spotify"],
-};
+export const openingHours: OpeningHour[] = [
+  { day: "Mon\u2013Thu", time: "11:00am \u2013 12am" },
+  { day: "Fri", time: "11:00am \u2013 2am" },
+  { day: "Sat", time: "9:00am \u2013 2am" },
+  { day: "Sun", time: "9:00am \u2013 1am" },
+];
+
+export const socials: Social[] = [
+  {
+    name: "Instagram",
+    icon: "/templates/gsap-cocktails/images/insta.png",
+    url: "#",
+  },
+  {
+    name: "X (Twitter)",
+    icon: "/templates/gsap-cocktails/images/x.png",
+    url: "#",
+  },
+  {
+    name: "Facebook",
+    icon: "/templates/gsap-cocktails/images/fb.png",
+    url: "#",
+  },
+];
+
+export const allCocktails: Cocktail[] = [
+  {
+    id: 1,
+    name: "Classic Mojito",
+    image: "/templates/gsap-cocktails/images/drink1.png",
+    title: "Simple Ingredients, Bold Flavor",
+    description:
+      "Made with tequila, lime juice, and orange liqueur, the Margarita is easy to make and full of character. Add a salted rim for the perfect drink on summer nights.",
+  },
+  {
+    id: 2,
+    name: "Raspberry Mojito",
+    image: "/templates/gsap-cocktails/images/drink2.png",
+    title: "A Zesty Classic That Never Fails",
+    description:
+      "The Margarita is a classic that balances tangy lime, smooth tequila, and a touch of sweetness. Shaken, frozen, or on the rocks\u2014it's always crisp & refreshing.",
+  },
+  {
+    id: 3,
+    name: "Violet Breeze",
+    image: "/templates/gsap-cocktails/images/drink3.png",
+    title: "Simple Ingredients, Bold Flavor",
+    description:
+      "Made with tequila, lime juice, and orange liqueur, the Margarita is easy to make and full of character. Add a salted rim for the perfect drink on summer nights.",
+  },
+  {
+    id: 4,
+    name: "Curacao Mojito",
+    image: "/templates/gsap-cocktails/images/drink4.png",
+    title: "Crafted With Care, Poured With Love",
+    description:
+      "Each cocktail is made with fresh ingredients and a passion for perfecting every pour, whether you're celebrating or simply relaxing.",
+  },
+];

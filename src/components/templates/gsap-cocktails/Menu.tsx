@@ -1,122 +1,143 @@
-"use client";
+'use client';
 
-import { useRef, useEffect, useState } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { cocktails } from "./constants";
+import { allCocktails } from './constants';
+import { useRef, useState } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 
-gsap.registerPlugin(ScrollTrigger);
+const Menu: React.FC = () => {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-const Menu = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(0);
-
-  useEffect(() => {
-    const timer = setTimeout(() => ScrollTrigger.refresh(), 200);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useGSAP(
-    () => {
-      gsap.set(headingRef.current, { opacity: 0, y: 50 });
-
-      ScrollTrigger.create({
-        trigger: headingRef.current,
-        start: "top 80%",
-        once: true,
-        onEnter: () => {
-          gsap.to(headingRef.current, {
-            opacity: 1,
-            y: 0,
-            duration: 0.9,
-            ease: "power3.out",
-          });
-        },
-      });
-
-      // Stagger cards
-      const cards = cardsRef.current?.querySelectorAll(".gc-cocktail-card");
-      if (cards) {
-        gsap.set(cards, { opacity: 0, y: 60 });
-        ScrollTrigger.create({
-          trigger: cardsRef.current,
-          start: "top 75%",
-          once: true,
-          onEnter: () => {
-            gsap.to(cards, {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              stagger: 0.15,
-              ease: "power3.out",
-            });
-          },
-        });
+  useGSAP(() => {
+    gsap.fromTo('#title', { opacity: 0 }, { opacity: 1, duration: 1 });
+    gsap.fromTo(
+      '.cocktail img',
+      { opacity: 0, xPercent: -100 },
+      {
+        xPercent: 0,
+        opacity: 1,
+        duration: 1,
+        ease: 'power1.inOut',
       }
-    },
-    { scope: sectionRef }
-  );
+    );
+    gsap.fromTo(
+      '.details h2',
+      { yPercent: 100, opacity: 0 },
+      {
+        yPercent: 0,
+        opacity: 100,
+        ease: 'power1.inOut',
+      }
+    );
+    gsap.fromTo(
+      '.details p',
+      { yPercent: 100, opacity: 0 },
+      {
+        yPercent: 0,
+        opacity: 100,
+        ease: 'power1.inOut',
+      }
+    );
+  }, [currentIndex]);
+
+  const totalCocktails = allCocktails.length;
+
+  const goToSlide = (index: number) => {
+    const newIndex = (index + totalCocktails) % totalCocktails;
+    setCurrentIndex(newIndex);
+  };
+
+  const getCocktailAt = (indexOffset: number) => {
+    return allCocktails[
+      (currentIndex + indexOffset + totalCocktails) % totalCocktails
+    ];
+  };
+
+  const currentCocktail = getCocktailAt(0);
+  const prevCocktail = getCocktailAt(-1);
+  const nextCocktail = getCocktailAt(1);
 
   return (
-    <section ref={sectionRef} className="relative px-6 py-24 md:px-12 lg:py-32">
-      <div className="mx-auto max-w-6xl">
-        <h2
-          ref={headingRef}
-          className="gc-section-heading mb-4 text-center text-4xl font-bold md:text-5xl"
-        >
-          Signature Cocktails
-        </h2>
-        <p className="gc-body-text mx-auto mb-16 max-w-md text-center text-lg">
-          Cada trago es una experiencia sensorial única
-        </p>
+    <section id="menu" aria-labelledby="menu-heading">
+      <img
+        src="/templates/gsap-cocktails/images/slider-left-leaf.png"
+        alt="left-leaf"
+        id="m-left-leaf"
+      />
+      <img
+        src="/templates/gsap-cocktails/images/slider-right-leaf.png"
+        alt="right-leaf"
+        id="m-right-leaf"
+      />
 
-        {/* Cocktail cards grid */}
-        <div ref={cardsRef} className="grid gap-6 md:grid-cols-2 lg:gap-8">
-          {cocktails.map((cocktail, i) => (
+      <h2 id="menu-heading" className="sr-only">
+        Cocktail Menu
+      </h2>
+
+      <nav className="cocktail-tabs" aria-label="Cocktail Navigation">
+        {allCocktails.map((cocktail, index) => {
+          const isActive = index === currentIndex;
+
+          return (
             <button
-              key={cocktail.name}
-              type="button"
-              className={`gc-cocktail-card group relative overflow-hidden rounded-2xl p-8 text-left transition-all ${
-                active === i ? "gc-cocktail-active" : ""
-              }`}
-              onClick={() => setActive(i)}
-              style={{ "--cocktail-color": cocktail.color } as React.CSSProperties}
+              key={cocktail.id}
+              className={`
+                ${
+                  isActive
+                    ? 'text-white border-white'
+                    : 'text-white/50 border-white/50'
+                }
+              `}
+              onClick={() => goToSlide(index)}
             >
-              {/* Color accent bar */}
-              <div
-                className="absolute left-0 top-0 h-full w-1 transition-all group-hover:w-2"
-                style={{ backgroundColor: cocktail.color }}
-                aria-hidden="true"
-              />
-
-              <div className="flex items-start justify-between">
-                <div className="flex-1 pl-4">
-                  <h3 className="gc-cocktail-name mb-1 text-xl font-bold md:text-2xl">
-                    {cocktail.name}
-                  </h3>
-                  <p className="gc-cocktail-spirit mb-3 text-sm uppercase tracking-wider">
-                    {cocktail.spirit}
-                  </p>
-                  <p className="gc-cocktail-desc text-sm leading-relaxed">
-                    {cocktail.description}
-                  </p>
-                </div>
-                <span className="gc-cocktail-price ml-4 text-2xl font-bold">
-                  {cocktail.price}
-                </span>
-              </div>
-
-              {/* Decorative circle */}
-              <div
-                className="gc-cocktail-circle pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full opacity-10 transition-transform group-hover:scale-150"
-                style={{ backgroundColor: cocktail.color }}
-                aria-hidden="true"
-              />
+              {cocktail.name}
             </button>
-          ))}
+          );
+        })}
+      </nav>
+
+      <div className="content">
+        <div className="arrows">
+          <button
+            className="text-left"
+            onClick={() => goToSlide(currentIndex - 1)}
+          >
+            <span>{prevCocktail.name}</span>
+            <img
+              src="/templates/gsap-cocktails/images/right-arrow.png"
+              alt="right-arrow"
+              aria-hidden="true"
+            />
+          </button>
+
+          <button
+            className="text-left"
+            onClick={() => goToSlide(currentIndex + 1)}
+          >
+            <span>{nextCocktail.name}</span>
+            <img
+              src="/templates/gsap-cocktails/images/left-arrow.png"
+              alt="left-arrow"
+              aria-hidden="true"
+            />
+          </button>
+        </div>
+
+        <div className="cocktail">
+          <img src={currentCocktail.image} className="object-contain" />
+        </div>
+
+        <div className="recipe">
+          <div ref={contentRef} className="info">
+            <p>Recipe for:</p>
+            <p id="title">{currentCocktail.name}</p>
+          </div>
+
+          <div className="details">
+            <h2>{currentCocktail.title}</h2>
+            <p>{currentCocktail.description}</p>
+          </div>
         </div>
       </div>
     </section>

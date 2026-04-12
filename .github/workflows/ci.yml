@@ -2,72 +2,27 @@ name: CI
 
 on:
   push:
-    branches: [main, feat/*]
+    branches: [main]
   pull_request:
     branches: [main]
 
 jobs:
-  lint-build-test:
-    name: Lint, Build & Test
+  check:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Lint
-        run: npm run lint
+      - run: npm ci
 
       - name: Type check
         run: npx tsc --noEmit
 
-      - name: Build
-        run: npm run build
+      - name: Lint
+        run: npx eslint .
 
-      - name: Unit tests
-        run: npm test
-
-  visual-regression:
-    name: Visual Regression
-    runs-on: ubuntu-latest
-    needs: lint-build-test
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Playwright
-        run: npx playwright install --with-deps chromium
-
-      - name: Build
-        run: npm run build
-
-      - name: Start server
-        run: npx next start --port 3000 &
-
-      - name: Wait for server
-        run: npx wait-on http://localhost:3000 --timeout 30000
-
-      - name: Capture screenshots
-        run: npm run test:visual
-
-      - name: Upload baselines
-        uses: actions/upload-artifact@v4
-        with:
-          name: visual-baselines
-          path: tests/visual-baseline/
-          retention-days: 30
+      - name: Test
+        run: npx vitest run

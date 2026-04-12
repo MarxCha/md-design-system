@@ -1,5 +1,6 @@
 import { type ProductDemoProps } from "@/components/video/ProductDemo";
 import { TEMPLATE_NAME } from "./constants";
+import { staticFile } from "remotion";
 
 export const SLUG = "form-builder";
 
@@ -44,7 +45,9 @@ const cta = {
 export const verticalProps: ProductDemoProps = {
   brand,
   hook,
-  screens: [],
+  screens: [
+    { screenshotSrc: staticFile("templates/form-builder/screens/form-builder-mobile.png"), caption: "Multi-step Wizard", device: "iphone" },
+  ],
   features,
   cta,
   brandDuration: 3,
@@ -58,7 +61,9 @@ export const verticalProps: ProductDemoProps = {
 export const horizontalProps: ProductDemoProps = {
   brand,
   hook,
-  screens: [],
+  screens: [
+    { screenshotSrc: staticFile("templates/form-builder/screens/form-builder-desktop.png"), caption: "Multi-step Form Wizard", device: "laptop", zoom: 1.4 },
+  ],
   features,
   cta,
   brandDuration: 3,

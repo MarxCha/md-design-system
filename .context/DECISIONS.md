@@ -1,5 +1,40 @@
 # Decisiones arquitecturales — md-design-system
 
+## 2026-04-12 (sesión 014)
+
+### InfographicZoom FIXED — bug de fórmula de traducción
+- **Bug:** `targetX = -(centerX - 50) * (targetScale / 100) * width * 0.01` tenía factor espurio `(targetScale/100)` que reducía desplazamientos ~60x (10px vs 624px en canvas 1920px).
+- **Fix:** `targetX = (50 - centerX) * width / 100` — derivado de CSS transform `scale(s) translate(tx,ty)` con transform-origin center.
+- **Resultado:** Zone transitions, labels, vignette, pagination dots todos visibles. 23.9 MB raw → 4.7 MB CRF 28.
+
+### Templates son scaffolds, no clones — requieren replicación desde repos fuente
+- **Hallazgo:** CEO comparó gsap-cocktails nuestra vs original (Velvet Pour). La nuestra no tiene las 35 imágenes de cocktails, usa contenido genérico, no se parece a la original.
+- **Diagnóstico:** se emularon los templates en vez de replicar del código fuente. Mismo error que con iPhone-15 y Zentry — no se aprendió la lección.
+- **Decisión:** REPLICAR del repo fuente, NO emular. Copiar assets reales, portar código, adaptar al stack.
+- **Impacto:** los "12 templates completos" del STATUS.md son en realidad scaffolds. Requieren replicación correcta antes de cualquier video.
+
+### Video Pipeline v2 — Playwright recording para templates A-tier
+- **Hallazgo:** Remotion ProductDemo con `screens: []` producía videos blancos. Incluso con screenshots conectados, el resultado es genérico vs la experiencia real del template.
+- **Decisión:** templates con scroll animations (8 A-tier) se graban con Playwright recording en vivo. Templates estáticos (4 B/C-tier) mantienen Remotion ProductDemo.
+- **Script:** `scripts/record-template.mjs` creado y validado con gsap-macbook.
+
+### Remotion Studio para iteración visual
+- **Problema:** flujo de render ciego → abrir MP4 → screenshot problema → enviar → diagnosticar → re-render. Múltiples ciclos desperdiciados.
+- **Decisión:** usar `npx remotion studio` para preview en vivo antes de renderizar a MP4.
+
+### CI/CD creado — .github/workflows/ci.yml
+- **Contenido:** push/PR a main → Node 22 → npm ci → tsc → eslint → vitest run.
+- **Template replicable:** enviado a md-research y documentado con 4 variantes para los 10 repos del ecosistema.
+
+### mdmem reasignado a md-research
+- **CEO decidió:** mdmem se prototipa en md-research, no en md-design-system. Se promueve cuando esté validado.
+- **Skeleton copiado** a `.context/references/mdmem-skeleton-reference.py` como referencia.
+
+### Duix.Avatar — backlog (prioridad media)
+- **Fuente:** peer o74z75r7 desde md-research.
+- **Qué es:** alternativa open source a HeyGen para avatares parlantes. Self-hosted, Docker, gratis.
+- **Acción:** spike de 2 hrs cuando haya necesidad concreta de demos con presentador virtual.
+
 ## 2026-04-11 (sesión 013)
 
 ### Graphify instalado como grafo estructural, no semántico

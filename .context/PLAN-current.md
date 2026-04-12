@@ -1,171 +1,110 @@
-# PLAN ACTIVO — Opción (B): InfographicKenBurns (ruta rápida)
+# PLAN ACTIVO — Template Replication Sprint + Video Pipeline v2
 
-**Fecha:** 2026-04-11 (sesión 013, post-smoke-test)
+**Fecha:** 2026-04-12 (sesión 014, post-sprint-review)
 **Owner:** Claude Code (md-design-system)
-**Decisión CEO:** Opción (B) aprobada. Desbloquea BACKLOG #12 md-research + decisión urgente #5.
-**ETA:** 45 min
+**Trigger:** CEO detectó que los 12 templates son scaffolds genéricos, no clones reales de los repos fuente.
+**Principio rector:** REPLICAR del repo fuente, NO emular desde cero. Copiar assets, portar código, adaptar al stack.
 
 ## Contexto
 
-- `InfographicZoom` (composition existente, sesión 012) visualmente NO funciona — frames 0%/50%/95% prácticamente idénticos. Zone transitions, vignette, pagination dots NO aparecen.
-- `FitImage` component (`src/remotion/components/FitImage.tsx`) está completo y probado: 6 direcciones Ken Burns, interpolación `progress` sobre duration, 0 dependencias externas.
-- Asset disponible: `public/docs/metabase-mexico/infographic.png` (ya usado por InfographicZoom + AudiogramVideo, confirmado funcionando en AudiogramVideo).
+Los templates fueron scaffoldeados con contenido genérico en vez de portar el código real de los repos originales. Resultado: páginas que no se parecen a las originales (ej: gsap-cocktails tiene 35 imágenes de cocktails/hojas que nunca se copiaron). Videos de templates vacíos son inútiles.
 
-## Diseño
+### Lecciones de sesiones previas
+- iPhone-15 y Zentry: se emularon en vez de replicar → costó mucho esfuerzo extra para arreglar
+- InfographicZoom: bug de fórmula (targetScale/100) no detectado hasta smoke test visual manual
+- Video configs con `screens: []` producen videos blancos sin detección temprana
+- Remotion Studio debería usarse para preview antes de render ciego
 
-**NO tocar `InfographicZoom.tsx`.** Plan aditivo: nueva composition alongside la rota.
+## Repos fuente (9 templates con referencia conocida)
 
-### Nuevo archivo: `src/components/video/InfographicKenBurns.tsx`
-```tsx
-import React from "react";
-import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
-import { FitImage } from "../../remotion/components/FitImage";
+| Template | Repo fuente | Demo |
+|----------|-------------|------|
+| iphone-15 | github.com/adrianhajdin/iphone | apple-iphone-v.vercel.app |
+| zentry | github.com/adrianhajdin/award-winning-website | — |
+| gsap-macbook | github.com/adrianhajdin/gsap_macbook_landing | — |
+| gsap-cocktails | github.com/adrianhajdin/gsap_cocktails | — |
+| saas-starter | github.com/ixartz/SaaS-Boilerplate | react-saas.com |
+| page-ui | github.com/danmindru/page-ui | pageui.shipixen.com |
+| cruip-open | github.com/cruip/open-react-template | open.cruip.com |
+| astrowind | github.com/onwidget/astrowind | astrowind.vercel.app |
+| ai-sales | — (pendiente localizar) | — |
 
-export interface InfographicKenBurnsProps {
-  imageSrc: string;
-  title?: string;
-  subtitle?: string;
-  direction?: "zoomIn" | "zoomOut" | "panLeft" | "panRight";
-  intensity?: number;  // 0-1, default 0.15
-}
+### Templates sin repo fuente conocido (3)
+- dashboard-pro, ecommerce, form-builder — posiblemente diseños originales MD Consultoría
 
-export const InfographicKenBurns: React.FC<InfographicKenBurnsProps> = ({
-  imageSrc,
-  title,
-  subtitle,
-  direction = "zoomIn",
-  intensity = 0.15,
-}) => {
-  const frame = useCurrentFrame();
-  const { durationInFrames, fps } = useVideoConfig();
+## FASE 1 — Audit de fidelidad (por template)
 
-  // Title overlay fade in/out (first 1s in, last 1s out)
-  const titleOpacity = interpolate(
-    frame,
-    [0, fps, durationInFrames - fps, durationInFrames],
-    [0, 1, 1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+Para cada template con repo fuente:
+1. Clonar repo original a /tmp/<slug>
+2. Comparar: assets (imágenes, fuentes), componentes, CSS/animaciones, estructura
+3. Documentar gap: qué falta, qué se inventó, qué se adaptó correctamente
+4. Categorizar: A (>80% fiel), B (40-80%), C (<40% — rehacer)
 
-  return (
-    <AbsoluteFill style={{ backgroundColor: "#0a0e1a" }}>
-      <FitImage
-        src={imageSrc}
-        fit="contain"
-        kenBurns={direction}
-        kenBurnsIntensity={intensity}
-      />
-      {title && (
-        <AbsoluteFill
-          style={{
-            justifyContent: "flex-end",
-            alignItems: "center",
-            paddingBottom: 60,
-            opacity: titleOpacity,
-            background: "linear-gradient(to top, rgba(10,14,26,0.85) 0%, transparent 40%)",
-          }}
-        >
-          <div style={{ textAlign: "center", color: "white", padding: "0 80px" }}>
-            <div style={{ fontSize: 48, fontWeight: 700, fontFamily: "serif", marginBottom: 12 }}>
-              {title}
-            </div>
-            {subtitle && (
-              <div style={{ fontSize: 24, opacity: 0.8, fontFamily: "sans-serif" }}>
-                {subtitle}
-              </div>
-            )}
-          </div>
-        </AbsoluteFill>
-      )}
-    </AbsoluteFill>
-  );
-};
+**Criterio de aceptación:** Tabla de fidelidad con score por template.
 
-export const calculateInfographicKenBurnsDuration = (
-  durationSeconds: number,
-  fps: number
-) => Math.round(durationSeconds * fps);
-```
+## FASE 2 — Replicación correcta (por prioridad)
 
-### Edit: `src/remotion/Root.tsx`
-Añadir import + Composition alongside `InfographicZoom-Demo`:
-```tsx
-import { InfographicKenBurns, calculateInfographicKenBurnsDuration } from "../components/video/InfographicKenBurns";
+Orden por valor visual (A-tier del audit de scroll):
+1. gsap-cocktails (11 scroll sections, 35 assets faltantes)
+2. gsap-macbook (12 scroll sections)
+3. astrowind (11 scroll sections)
+4. page-ui (10 scroll sections)
+5. ai-sales (9 scroll sections)
+6. cruip-open (8 scroll sections)
+7. ecommerce (7 scroll sections)
+8. saas-starter (7 scroll sections + Lenis)
+9. iphone-15 (Three.js, ya parcialmente portado)
+10. zentry (mouse-driven, ya parcialmente portado)
 
-// ... en el JSX, después de InfographicZoom-Demo:
-<Composition
-  id="InfographicKenBurns-Demo"
-  component={InfographicKenBurns}
-  durationInFrames={calculateInfographicKenBurnsDuration(15, VIDEO_FPS)}
-  fps={VIDEO_FPS}
-  width={VIDEO_SIZES.horizontal.width}
-  height={VIDEO_SIZES.horizontal.height}
-  defaultProps={{
-    imageSrc: staticFile("docs/metabase-mexico/infographic.png"),
-    title: "MD Analytics",
-    subtitle: "Business Intelligence para Mexico",
-    direction: "zoomIn" as const,
-    intensity: 0.15,
-  }}
-/>
-```
+Para cada template:
+1. Copiar TODOS los assets del repo original → public/templates/<slug>/
+2. Portar componentes JSX → TSX respetando estructura original
+3. Adaptar imports a Next.js App Router + Tailwind v4
+4. Preservar GSAP animations exactas del original
+5. Verificar visualmente vs demo original
+6. Capturar screenshots retina
 
-### Integración ffmpeg CRF 28 (post-process)
-Script simple, ejecutado manualmente en el smoke test:
-```bash
-ffmpeg -y -i out/smoke-test-013/infographic-ken-burns-raw.mp4 \
-  -c:v libx264 -crf 28 -preset slow \
-  out/smoke-test-013/infographic-ken-burns.mp4
-```
-No se agrega al pipeline automático todavía — eso es decisión de sesión 014 para integración en `npm run` scripts.
+**Criterio de aceptación:** Comparación visual lado a lado con <10% diferencia.
 
-## Sprint ejecución
+## FASE 3 — Video Pipeline v2
 
-### Sprint 1 — Create + register (15 min)
-1. Crear `src/components/video/InfographicKenBurns.tsx`
-2. Editar `src/remotion/Root.tsx` — import + Composition
-3. Verificar TypeScript: `npx tsc --noEmit`
-4. Verificar composition list: `npx remotion compositions | grep Ken`
+Solo después de templates verificados:
 
-**Aceptación:** `InfographicKenBurns-Demo` aparece en la lista, 0 TS errors.
+### Templates A-tier (8 con scroll):
+- Playwright recording → FFmpeg post (intro + compress)
+- Script: `scripts/record-template.mjs` (ya creado)
 
-### Sprint 2 — Render + post-process (10 min)
-1. `npx remotion render InfographicKenBurns-Demo out/smoke-test-013/infographic-ken-burns-raw.mp4`
-2. `ffmpeg -y -i raw.mp4 -c:v libx264 -crf 28 -preset slow infographic-ken-burns.mp4`
-3. Verificar tamaños: raw vs compressed. Target: compressed < 5 MB.
+### Templates B/C-tier (4 sin scroll):
+- Remotion ProductDemo con screenshots reales
+- Video configs con screenshots conectados (ya arreglado para 3)
 
-**Aceptación:** 2 archivos rendereados, compressed bajo 5 MB, sin errores.
+### Composiciones creativas:
+- Remotion puro (InfographicZoom ✅, InfographicKenBurns ✅, PitchDeck ✅, SocialClip ✅, AudiogramVideo ✅)
 
-### Sprint 3 — Visual validation (10 min)
-1. Extraer 5 frames con ffmpeg (0%, 25%, 50%, 75%, 95%) de la versión compressed
-2. Leer PNGs con Read tool
-3. Verificar que:
-   - Se ve la infografía completa (contain fit, letterboxed OK)
-   - Se ve el título "MD Analytics" con fade in/out
-   - Ken Burns zoomIn perceptible entre 0% y 95%
-   - No hay artifacts visibles por la compresión CRF 28
+### Herramientas disponibles:
+- Remotion Studio (preview en vivo antes de render)
+- Playwright recording (scroll en vivo)
+- FFmpeg 8.x (post-producción, sin drawtext)
+- Blender 5.0 + CLI skill (3D intros si se necesitan)
+- ImageMagick 7 (text overlays, cubre gap drawtext)
+- GIMP + Inkscape CLIs (assets estáticos)
 
-**Aceptación:** frames 0% y 95% son visualmente distintos (confirmar que Ken Burns animando).
+**Criterio de aceptación:** 24 videos (12 vertical + 12 horizontal) de templates que se parecen a los originales.
 
-### Sprint 4 — Reporte (10 min)
-1. Actualizar `.context/STATUS.md`
-2. Actualizar `.context/DECISIONS.md`
-3. Notificar peers `5ltrtdxj` y `brtbep8z` con resultado
-4. Reporte al CEO
+## FASE 4 — CI/CD + Publicación
 
-## Fuera de scope de (B)
-- NO arreglar `InfographicZoom.tsx` — eso es tarea (A) sesión 014
-- NO arreglar PitchDeck counter overlap bug — tarea (A) sesión 014
-- NO integrar ffmpeg post-process al pipeline `npm run` — decisión de integración sesión 014
-- NO mergear `chore/graphify-setup` — pendiente del CEO
-- NO reiniciar para smoke test MCP graphify — pendiente del CEO
+- GitHub Actions workflow creado (.github/workflows/ci.yml ✅)
+- Template YAML documentado en md-research para replicar en 9 repos
+- npm publish cuando templates estén verificados
+
+## Fuera de scope
+- mdmem (reasignado a md-research para prototipo)
+- Duix.Avatar (backlog, spike futuro)
+- Motor IVA segunda pasada (sesión dedicada)
+- CFDI-Motor migración (sesión dedicada)
 
 ## Riesgos
-- **FitImage con `fit="contain"` puede dejar bandas negras** si aspect ratio de la infografía ≠ 16:9. Mitigación: el background de `AbsoluteFill` es `#0a0e1a` (consistente con el design system dark), letterboxing es aceptable visualmente.
-- **Ken Burns con intensity=0.15** puede ser demasiado sutil o demasiado agresivo. Mitigación: arrancamos con 0.15 (visible pero no mareante), ajustamos si el frame-diff a 0% vs 95% es imperceptible.
-- **TypeScript errors** en Root.tsx si import path está mal. Mitigación: verificar con `npx tsc --noEmit` antes de render.
-
-## Post-completion
-- Reportar a `5ltrtdxj` para que pueda cerrar BACKLOG #12 en md-research con status `RESUELTO (Opción B implementada, A pendiente)`
-- Reportar a `brtbep8z` para que pase corrección al CEO
-- Pedir al peer la lista de tareas adicionales de md-research que mencionó el CEO
+1. **Assets con copyright** — repos fuente son open source pero verificar licencias
+2. **Fuentes custom** — originales usan Google Fonts o fonts embedidas, verificar disponibilidad
+3. **GSAP plugins** — algunos originales pueden usar GSAP premium (ScrollSmoother, SplitText)
+4. **Scope creep** — 9 templates es mucho para una sesión. Priorizar 2-3 A-tier primero.

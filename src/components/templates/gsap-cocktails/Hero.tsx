@@ -1,140 +1,124 @@
-"use client";
+'use client';
 
-import { useRef, useEffect } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { heroContent, navItems } from "./constants";
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { SplitText } from 'gsap/all';
+import { useRef } from 'react';
 
-gsap.registerPlugin(ScrollTrigger);
+const Hero: React.FC = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-const Hero = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const taglineRef = useRef<HTMLParagraphElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-  const glassRef = useRef<HTMLDivElement>(null);
-  const navRef = useRef<HTMLElement>(null);
+  useGSAP(() => {
+    const heroSplit = new SplitText('.title', {
+      type: 'chars, words',
+    });
 
-  useEffect(() => {
-    const timer = setTimeout(() => ScrollTrigger.refresh(), 200);
-    return () => clearTimeout(timer);
-  }, []);
+    const paragraphSplit = new SplitText('.subtitle', {
+      type: 'lines',
+    });
 
-  useGSAP(
-    () => {
-      gsap.set(navRef.current, { opacity: 0, y: -30 });
-      gsap.set(taglineRef.current, { opacity: 0, y: 30 });
-      gsap.set(titleRef.current, { opacity: 0, y: 60 });
-      gsap.set(subtitleRef.current, { opacity: 0, y: 40 });
-      gsap.set(ctaRef.current, { opacity: 0, y: 30 });
-      gsap.set(glassRef.current, { opacity: 0, scale: 0.8, rotate: -8 });
+    // Apply text-gradient class once before animating
+    heroSplit.chars.forEach((char: Element) =>
+      char.classList.add('text-gradient')
+    );
 
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    gsap.from(heroSplit.chars, {
+      yPercent: 100,
+      duration: 1.8,
+      ease: 'expo.out',
+      stagger: 0.06,
+    });
 
-      tl.to(navRef.current, { opacity: 1, y: 0, duration: 0.8 })
-        .to(taglineRef.current, { opacity: 1, y: 0, duration: 0.7 }, "-=0.3")
-        .to(titleRef.current, { opacity: 1, y: 0, duration: 1.1 }, "-=0.4")
-        .to(subtitleRef.current, { opacity: 1, y: 0, duration: 0.8 }, "-=0.5")
-        .to(ctaRef.current, { opacity: 1, y: 0, duration: 0.7 }, "-=0.4")
-        .to(
-          glassRef.current,
-          { opacity: 1, scale: 1, rotate: 0, duration: 1.2, ease: "power2.out" },
-          "-=0.8"
-        );
+    gsap.from(paragraphSplit.lines, {
+      opacity: 0,
+      yPercent: 100,
+      duration: 1.8,
+      ease: 'expo.out',
+      stagger: 0.06,
+      delay: 1,
+    });
 
-      // Parallax on scroll
-      gsap.to(glassRef.current, {
-        y: -120,
-        rotate: 5,
-        ease: "none",
+    gsap
+      .timeline({
         scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "bottom top",
+          trigger: '#hero',
+          start: 'top top',
+          end: 'bottom top',
           scrub: true,
         },
-      });
-    },
-    { scope: sectionRef }
-  );
+      })
+      .to('.right-leaf', { y: 200 }, 0)
+      .to('.left-leaf', { y: -200 }, 0)
+      .to('.arrow', { y: 100 }, 0);
+
+    const isMobile = window.innerWidth < 768;
+    const startValue = isMobile ? 'top 50%' : 'center 60%';
+    const endValue = isMobile ? '120% top' : 'bottom top';
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: 'video',
+        start: startValue,
+        end: endValue,
+        scrub: true,
+        pin: true,
+      },
+    });
+
+    if (videoRef.current) {
+      videoRef.current.onloadedmetadata = () => {
+        if (videoRef.current) {
+          tl.to(videoRef.current, {
+            currentTime: videoRef.current.duration,
+          });
+        }
+      };
+    }
+  }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative flex min-h-screen flex-col overflow-hidden"
-    >
-      {/* Ambient glow */}
-      <div
-        className="gc-ambient-glow absolute left-1/2 top-1/4 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full"
-        aria-hidden="true"
+    <section id="hero" className="noisy">
+      <h1 className="title relative z-20">MOJITO</h1>
+
+      <img
+        src="/templates/gsap-cocktails/images/hero-left-leaf.png"
+        alt="left-leaf"
+        className="left-leaf relative z-10"
+      />
+      <img
+        src="/templates/gsap-cocktails/images/hero-right-leaf.png"
+        alt="right-leaf"
+        className="right-leaf relative z-10"
       />
 
-      {/* Nav */}
-      <nav
-        ref={navRef}
-        className="relative z-10 flex items-center justify-between px-6 py-6 md:px-12"
-      >
-        <span className="gc-logo text-xl font-bold tracking-wider">
-          COCKTAIL
-        </span>
-        <div className="hidden items-center gap-8 md:flex">
-          {navItems.map((item) => (
-            <button
-              key={item}
-              type="button"
-              className="gc-nav-link text-sm uppercase tracking-widest transition-colors"
-            >
-              {item}
-            </button>
-          ))}
-        </div>
-        <button
-          type="button"
-          className="gc-reserve-btn rounded-full px-5 py-2 text-sm font-medium tracking-wide transition-all"
-        >
-          Reserve
-        </button>
-      </nav>
+      <div className="body relative z-20">
+        <div className="content">
+          <div className="space-y-5 hidden md:block">
+            <p>Cool. Crisp. Classic.</p>
+            <p className="subtitle">
+              Sip the Spirit <br /> of Summer
+            </p>
+          </div>
 
-      {/* Hero content */}
-      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 text-center">
-        <p ref={taglineRef} className="gc-tagline mb-4 text-sm uppercase tracking-[0.3em]">
-          {heroContent.tagline}
-        </p>
-        <h1 ref={titleRef} className="gc-hero-title mb-6 whitespace-pre-line text-5xl font-bold leading-[1.1] md:text-7xl lg:text-8xl">
-          {heroContent.title}
-        </h1>
-        <p ref={subtitleRef} className="gc-subtitle mb-10 max-w-lg text-lg md:text-xl">
-          {heroContent.subtitle}
-        </p>
-        <div ref={ctaRef} className="flex gap-4">
-          <button type="button" className="gc-btn-primary rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-wider transition-all">
-            {heroContent.ctaPrimary}
-          </button>
-          <button type="button" className="gc-btn-outline rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-wider transition-all">
-            {heroContent.ctaSecondary}
-          </button>
+          <div className="view-cocktails">
+            <p className="subtitle">
+              Every cocktail on our menu is a blend of premium ingredients,
+              creative flair, and timeless recipes — designed to delight your
+              senses.
+            </p>
+            <a href="#cocktails">View cocktails</a>
+          </div>
         </div>
       </div>
 
-      {/* Decorative cocktail glass */}
-      <div
-        ref={glassRef}
-        className="gc-glass-art pointer-events-none absolute right-[5%] top-[20%] hidden h-[500px] w-[300px] lg:block"
-        aria-hidden="true"
-      >
-        <div className="gc-glass-stem" />
-        <div className="gc-glass-bowl" />
-        <div className="gc-glass-liquid" />
-        <div className="gc-glass-garnish" />
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="gc-scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2" aria-hidden="true">
-        <div className="gc-scroll-dot" />
-      </div>
+      <video
+        ref={videoRef}
+        muted
+        playsInline
+        preload="auto"
+        src="/templates/gsap-cocktails/videos/output.mp4"
+        className="!z-0"
+      />
     </section>
   );
 };

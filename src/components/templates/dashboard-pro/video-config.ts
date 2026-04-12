@@ -1,5 +1,6 @@
 import { type ProductDemoProps } from "@/components/video/ProductDemo";
 import { TEMPLATE_NAME, kpiData, sidebarLinks } from "./constants";
+import { staticFile } from "remotion";
 
 export const SLUG = "dashboard-pro";
 
@@ -56,7 +57,9 @@ const cta = {
 export const verticalProps: ProductDemoProps = {
   brand,
   hook,
-  screens: [],
+  screens: [
+    { screenshotSrc: staticFile("templates/dashboard-pro/screens/dashboard-pro-mobile.png"), caption: "Live KPI Dashboard", device: "iphone" },
+  ],
   features,
   cta,
   brandDuration:   3,
@@ -70,7 +73,9 @@ export const verticalProps: ProductDemoProps = {
 export const horizontalProps: ProductDemoProps = {
   brand,
   hook,
-  screens: [],
+  screens: [
+    { screenshotSrc: staticFile("templates/dashboard-pro/screens/dashboard-pro-desktop.png"), caption: "SaaS Admin Dashboard", device: "laptop", zoom: 1.4 },
+  ],
   features,
   cta,
   brandDuration:   3,

@@ -1,7 +1,7 @@
 # STATUS — md-design-system
 Ultima actualizacion: 2026-04-11 (sesion 013)
 
-## Estado: INFOGRAPHIC ZOOM FIXED + 12 TEMPLATES AUDITED
+## Estado: FIDELITY AUDIT — 1 CLON REAL, 1 PARCIAL, 6 REWRITES GENÉRICOS
 
 ## Sesión 013 — Graphify setup + Remotion smoke test (2026-04-11)
 - Graphify hook post-commit instalado en repo principal (claude mode, AST code-only)
@@ -87,19 +87,19 @@ Commits: 16+
 - Screenshot: `npm run template:screenshot -- --slug=X` Playwright retina 2x capture
 - CSS standard: scoped `.{slug}-template` selectors, NO @layer utilities
 
-### Templates (10 complete, 2 partial — 12 total)
-- [x] AI Sales — 7 componentes, sales landing
-- [x] Astrowind — 7 componentes, Astro-style wind theme
-- [x] Cruip Open — 5 componentes, open-source style
-- [x] Dashboard Pro — 5 componentes, pro dashboard layout
-- [x] Ecommerce — 6 componentes, e-commerce storefront
-- [x] Form Builder — 6 componentes, form construction UI
-- [x] GSAP Cocktails — 6 componentes, GSAP-animated cocktail landing
-- [x] GSAP MacBook Landing — 6 componentes, dark Apple-style, horizontal scroll
-- [~] iPhone 15 Pro Clone — 12 componentes (4 lightweight), 3D R3F, VideoCarousel, GSAP scroll
-- [x] Page UI — 7 componentes, page-building UI
-- [x] SaaS Starter — 7 componentes, Linear/Vercel-style, pricing tiers
-- [~] Zentry Awwwards Clone — 10 componentes (2 lightweight), CSS specificity WIP
+### Templates — Fidelity Audit (sesión 014)
+- [x] Zentry — **A** clon fiel (images+videos+GSAP+fonts match original)
+- [~] iPhone 15 — **B** parcial (images OK, GSAP match, falta R3F model+VideoCarousel)
+- [!] GSAP Cocktails — **C** rewrite genérico (0/43 assets, GSAP inventado)
+- [!] GSAP MacBook — **C** rewrite genérico (0/46 assets, sin R3F, sin 3D)
+- [!] SaaS Starter — **C** rewrite (original NO tiene GSAP, le inventamos 51 refs)
+- [!] Page UI — **C** rewrite (original es lib 196 comps, nuestro 7 con GSAP inventado)
+- [!] Cruip Open — **C** rewrite (0/29 assets originales)
+- [!] Astrowind — **C** rewrite (original es Astro, nuestro GSAP inventado)
+- [?] AI Sales — sin repo fuente localizado
+- [?] Dashboard Pro — diseño original MD (no hay referencia externa)
+- [?] Ecommerce — diseño original MD (no hay referencia externa)
+- [?] Form Builder — diseño original MD (no hay referencia externa)
 
 ### docs-kit — Document & Presentation Toolkit
 - 3 formats: slide-deck, one-pager, notebook-pack

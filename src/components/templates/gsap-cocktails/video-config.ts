@@ -1,14 +1,14 @@
 import { staticFile } from "remotion";
 import { type ProductDemoProps } from "@/components/video/ProductDemo";
-import { TEMPLATE_NAME, heroContent, features as featureData } from "./constants";
 
 export const SLUG = "gsap-cocktails";
+const TEMPLATE_NAME = "Velvet Pour — Cocktail Bar";
 
 /** Brand colors for video compositions */
 export const brandColors = {
-  primary: "#D4A574",
+  primary: "#e7d393",
   accent: "#722F37",
-  background: "#0A0A0A",
+  background: "#000000",
 };
 
 const brand = {
@@ -18,25 +18,25 @@ const brand = {
 };
 
 const hook = {
-  text: heroContent.title.replace("\n", " "),
-  subtitle: heroContent.subtitle,
+  text: "Where Mixology Meets Art",
+  subtitle: "Hand-crafted cocktails with locally sourced ingredients",
   bgColor: brandColors.background,
   accentColor: brandColors.primary,
 };
 
 const features = {
   heading: "The Experience",
-  features: featureData.map((f) => ({
-    icon: f.icon,
-    title: f.title,
-    description: f.description,
-  })),
+  features: [
+    { icon: "🍸", title: "Classic Mojito", description: "Simple ingredients, bold flavor" },
+    { icon: "🌿", title: "Fresh Ingredients", description: "Handpicked from local markets" },
+    { icon: "✨", title: "Bartending Artistry", description: "Crafted with passion and precision" },
+  ],
   bgColor: brandColors.background,
   accentColor: brandColors.primary,
 };
 
 const cta = {
-  ctaText: heroContent.ctaPrimary,
+  ctaText: "View Cocktails",
   url: "consultoriamd.com.mx",
   buttonColor: brandColors.primary,
 };
@@ -46,9 +46,7 @@ export const verticalProps: ProductDemoProps = {
   brand,
   hook,
   screens: [
-    { screenshotSrc: staticFile("templates/gsap-cocktails/screens/hero-mobile.png"), caption: "Where Mixology Meets Art", device: "iphone" },
-    { screenshotSrc: staticFile("templates/gsap-cocktails/screens/menu-mobile.png"), caption: "Signature Cocktails", device: "iphone" },
-    { screenshotSrc: staticFile("templates/gsap-cocktails/screens/experience-mobile.png"), caption: "The Experience", device: "iphone" },
+    { screenshotSrc: staticFile("templates/gsap-cocktails/screens/gsap-cocktails-mobile.png"), caption: "Where Mixology Meets Art", device: "iphone" },
   ],
   features,
   cta,
@@ -64,8 +62,7 @@ export const horizontalProps: ProductDemoProps = {
   brand,
   hook,
   screens: [
-    { screenshotSrc: staticFile("templates/gsap-cocktails/screens/hero-desktop.png"), caption: "Artisan Cocktail Bar", device: "laptop", zoom: 1.4 },
-    { screenshotSrc: staticFile("templates/gsap-cocktails/screens/menu-desktop.png"), caption: "Signature Cocktails", device: "laptop", zoom: 1.4 },
+    { screenshotSrc: staticFile("templates/gsap-cocktails/screens/gsap-cocktails-desktop.png"), caption: "Velvet Pour — Cocktail Bar", device: "laptop", zoom: 1.4 },
   ],
   features,
   cta,

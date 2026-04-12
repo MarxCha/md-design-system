@@ -1,5 +1,6 @@
 import { type ProductDemoProps } from "@/components/video/ProductDemo";
 import { TEMPLATE_NAME, heroContent, products } from "./constants";
+import { staticFile } from "remotion";
 
 export const SLUG = "ecommerce";
 
@@ -57,7 +58,9 @@ const cta = {
 export const verticalProps: ProductDemoProps = {
   brand,
   hook,
-  screens: [],
+  screens: [
+    { screenshotSrc: staticFile("templates/ecommerce/screens/ecommerce-mobile.png"), caption: "Curated Collection", device: "iphone" },
+  ],
   features,
   cta,
   brandDuration: 3,
@@ -71,7 +74,9 @@ export const verticalProps: ProductDemoProps = {
 export const horizontalProps: ProductDemoProps = {
   brand,
   hook,
-  screens: [],
+  screens: [
+    { screenshotSrc: staticFile("templates/ecommerce/screens/ecommerce-desktop.png"), caption: "Maison Storefront", device: "laptop", zoom: 1.4 },
+  ],
   features,
   cta,
   brandDuration: 3,

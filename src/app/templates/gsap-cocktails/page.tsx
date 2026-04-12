@@ -1,16 +1,33 @@
 "use client";
 
-import { Hero, About, Menu, Experience, Gallery, CTA } from "@/components/templates/gsap-cocktails";
+import gsap from "gsap";
+import { ScrollTrigger, SplitText } from "gsap/all";
+
+import "@/components/templates/gsap-cocktails/gsap-cocktails.css";
+import {
+  Navbar,
+  Hero,
+  Cocktails,
+  About,
+  Art,
+  Menu,
+  Contact,
+} from "@/components/templates/gsap-cocktails";
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export default function GsapCocktailsPage() {
   return (
-    <main>
-      <Hero />
-      <About />
-      <Menu />
-      <Experience />
-      <Gallery />
-      <CTA />
-    </main>
+    <div className="gsap-cocktails-template">
+      <main className="relative">
+        <Navbar />
+        <Hero />
+        <Cocktails />
+        <About />
+        <Art />
+        <Menu />
+        <Contact />
+      </main>
+    </div>
   );
 }
