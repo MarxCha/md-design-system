@@ -17,11 +17,11 @@
     "testing": "Vitest 4.1 + Testing Library + happy-dom + Playwright",
     "other": ["Lottie", "Lucide Icons", "CVA", "Zod 4.3.6", "Sonner", "cmdk"]
   },
-  "status": "fidelity-audit-complete-gsap-cocktails-replicated-wip",
+  "status": "crece-v2-design-review-complete-ds-components-enhanced",
   "lastSession": "2026-04-12",
   "branch": "feat/design-system-scaffold",
   "pr": "https://github.com/MarxCha/md-design-system/pull/1",
-  "commits": 21,
+  "commits": 22,
   "stats": {
     "sourceFiles": 315,
     "testFiles": 33,
@@ -62,12 +62,12 @@
     "ci": [".github/workflows/ci.yml (created, Node 22, tsc+eslint+vitest)"]
   },
   "nextSteps": [
+    "Review cruzado del código CRECE v2 integrado por Carlos (StatCard, MobileFilterSheet, Lenis)",
+    "CRECE v2 siguiente sprint: md: breakpoints en 17 páginas + animaciones selectivas Framer Motion",
     "Polish gsap-cocktails hero: fix video z-index layering (textos/hojas encima del video)",
     "Replicate gsap-macbook from adrianhajdin/gsap_macbook_landing (46 assets + 3D)",
     "Replicate remaining C-grade templates from source repos",
     "Record promotional videos with Playwright (A-tier templates only, after replication)",
-    "Render videos for all 12 templates (Playwright recording for A-tier, Remotion for B/C)",
-    "mdmem — prototyping in md-research, promote when validated",
-    "Duix.Avatar spike (backlog, 2 hrs when needed)"
+    "mdmem — prototyping in md-research, promote when validated"
   ]
 }
