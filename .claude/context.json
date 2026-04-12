@@ -6,8 +6,8 @@
     "framework": "Next.js 15.5.14",
     "language": "TypeScript",
     "styling": "Tailwind CSS 4",
-    "components": "shadcn/ui (20) + custom (17) + layout (2) + dashboard (8) + landing (5) + responsive (5) + video (10) + docs-kit (8) + template-iphone (12) + template-zentry (10) + template-macbook (6) + template-saas (7) + template-ecommerce (6)",
-    "animation": ["GSAP + ScrollTrigger", "Lenis", "Framer Motion"],
+    "components": "shadcn/ui (20) + custom (17) + layout (2) + dashboard (8) + landing (5) + responsive (5) + video (10) + docs-kit (8)",
+    "animation": ["GSAP + ScrollTrigger + SplitText", "Lenis", "Framer Motion"],
     "charts": "Recharts",
     "audio": "Howler.js",
     "3d": "Three.js + R3F v9.5 + drei v10.7",
@@ -17,115 +17,57 @@
     "testing": "Vitest 4.1 + Testing Library + happy-dom + Playwright",
     "other": ["Lottie", "Lucide Icons", "CVA", "Zod 4.3.6", "Sonner", "cmdk"]
   },
-  "status": "graphify-installed-infographic-kenburns-shipped-pitchdeck-fixed",
-  "lastSession": "2026-04-11",
+  "status": "fidelity-audit-complete-gsap-cocktails-replicated-wip",
+  "lastSession": "2026-04-12",
   "branch": "feat/design-system-scaffold",
   "pr": "https://github.com/MarxCha/md-design-system/pull/1",
-  "commits": 19,
+  "commits": 21,
   "stats": {
-    "sourceFiles": 310,
-    "uiComponents": 20,
-    "customComponents": 17,
-    "layoutComponents": 2,
-    "dashboardComponents": 8,
-    "videoComponents": 11,
-    "docsKitComponents": 8,
-    "landingComponents": 5,
-    "responsiveComponents": 5,
-    "templateIphoneComponents": 12,
-    "templateZentryComponents": 10,
-    "templateMacbookComponents": 6,
-    "templateSaasComponents": 7,
-    "templateEcommerceComponents": 6,
-    "lintRules": 4,
-    "hooks": 8,
+    "sourceFiles": 315,
     "testFiles": 33,
     "testsPassing": 151,
     "demoPages": 19,
-    "templates": 10,
+    "templates": 12,
     "typescriptErrors": 0
+  },
+  "templateFidelity": {
+    "A": ["zentry"],
+    "B": ["iphone-15"],
+    "C": ["gsap-cocktails (WIP→replicating)", "gsap-macbook", "saas-starter", "page-ui", "cruip-open", "astrowind"],
+    "unaudited": ["ai-sales", "dashboard-pro", "ecommerce", "form-builder"]
   },
   "knownIssues": [
     {
       "id": "node-version",
       "description": "Node 25 causa SyntaxError en Next.js 15 builds. Usar Node 22 LTS.",
       "severity": "high",
-      "workaround": "export PATH=\"/opt/homebrew/opt/node@22/bin:$PATH\" antes de npm commands"
+      "workaround": "export PATH=\"/opt/homebrew/opt/node@22/bin:$PATH\""
     },
     {
-      "id": "zentry-css-specificity",
-      "description": "Tailwind v4 @theme inline no funciona en CSS importado por layouts. @layer utilities pierde especificidad vs globals.css.",
+      "id": "gsap-cocktails-hero-video",
+      "description": "Video del cocktail se muestra pero tapa textos y hojas. Z-index layering entre video/textos/hojas necesita polish.",
+      "severity": "medium",
+      "workaround": "Video está dentro de #hero con !z-0, textos con z-20, hojas con z-10. Falta ajuste fino."
+    },
+    {
+      "id": "templates-are-scaffolds",
+      "description": "6 de 8 templates auditados son rewrites genéricos (C-grade), no clones del repo fuente. Requieren replicación correcta.",
       "severity": "high",
-      "workaround": "Usar clases CSS explícitas fuera de @layer, scoped bajo .template-name."
-    },
-    {
-      "id": "h1-h6-override",
-      "description": "globals.css h1-h6 font-size vars override Tailwind utilities.",
-      "severity": "medium",
-      "workaround": "Usar p tags o CSS layers para headings que necesiten Tailwind sizing."
-    },
-    {
-      "id": "infographic-zoom-broken",
-      "description": "InfographicZoom composition (session 012 rewrite) visually broken — frames static, zone transitions/vignette/pagination don't appear. InfographicKenBurns created as replacement (Option B).",
-      "severity": "medium",
-      "workaround": "Use InfographicKenBurns-Demo instead. Fix (A) in session 014 if desired."
-    },
-    {
-      "id": "graphify-mcp-pending-restart",
-      "description": "MCP graphify-md-design-system registered in ~/.claude.json but not yet loaded — requires Claude Code restart.",
-      "severity": "low",
-      "workaround": "/exit + claude to restart, then test with mcp__graphify-md-design-system__god_nodes()"
-    },
-    {
-      "id": "notebooklm-login",
-      "description": "notebooklm login debe ejecutarse desde terminal real, no via ! en Claude Code (necesita ENTER interactivo).",
-      "severity": "low",
-      "workaround": "Usuario corre notebooklm login desde su terminal directamente."
+      "workaround": "Proceso: clonar repo original → copiar assets → portar código → verificar vs demo original"
     }
   ],
-  "docsKit": {
-    "formats": ["slide-deck", "one-pager", "notebook-pack"],
-    "slideTypes": ["title", "content", "image", "stats", "quote", "cta"],
-    "layouts": ["dark-tech", "clean-corporate", "bold-creative"],
-    "generator": "npm run docs:new [format] [slug] --name=\"X\"",
-    "export": "npm run docs:export [slug]"
-  },
-  "notebookLM": {
-    "venv": "~/Projects/md-design-system/.venv-nlm/",
-    "auth": "~/.notebooklm/storage_state.json",
-    "slideStyles": {
-      "studio": "DEFAULT — dark premium, device mockups, glass morphism",
-      "orange": "white bg, blood orange accent, creative agency",
-      "tech": "anti-gravity, blue-cyan gradients, artifact feel",
-      "neon": "warm gray bg, neon yellow, blueprint annotations"
-    },
-    "commands": ["/notebooklm (infographic + slides)", "/notebooklm-studio (all assets)", "/presentacion (local HTML slides)"]
-  },
-  "crossProjectWork": {
-    "auditorCiudadano": {
-      "status": "redesign-shipped-splash-deployed",
-      "urls": {
-        "citizen": "auditor-ciudadano.vercel.app",
-        "admin": "admin-app-pearl-gamma.vercel.app",
-        "backend": "backend-seven-rho-lfztzeru9z.vercel.app"
-      }
-    }
-  },
-  "videosRendered": {
-    "auditorCiudadanoReel": "out/auditor-ciudadano-reel.mp4 (1080x1920, 30s, 3.6MB)",
-    "auditorCiudadanoDemo": "out/auditor-ciudadano-demo.mp4 (1920x1080, 16.5s, 1.6MB)",
-    "guelaguetzaReel": "out/guelaguetza-reel.mp4 (1080x1920, 20.5s, 3.3MB)",
-    "guelaguetzaDemo": "out/guelaguetza-demo.mp4 (1920x1080, 16.5s, 2.1MB)"
+  "toolsAvailable": {
+    "video": ["Remotion 4.0 + Studio", "Playwright recording", "FFmpeg 8.x (sin drawtext)"],
+    "design": ["Blender 5.0 + CLI skill", "GIMP + CLI skill", "Inkscape 1.4 + CLI skill", "ImageMagick 7"],
+    "ci": [".github/workflows/ci.yml (created, Node 22, tsc+eslint+vitest)"]
   },
   "nextSteps": [
-    "Rearrancar Claude Code + smoke test MCP graphify-md-design-system (god_nodes)",
-    "Fix (A) InfographicZoom — investigar por qué zones/vignette/pagination no se materializaron (o descartar)",
-    "mdmem construction — ownership transferido, sesión dedicada 4-5 hrs (leer analysis §5 de md-research)",
-    "Probar NotebookLM video generation para MD Analytics",
-    "MediVista Pro design diagnosis — patient view redesign (nueva sesión)",
-    "Render promotional videos via Remotion for all 12 templates",
-    "Sincronizar STATUS.md con los 12 templates reales (vs 5 documentados)",
-    "Template #5: GSAP Cocktails",
-    "CI/CD con GitHub Actions"
+    "Polish gsap-cocktails hero: fix video z-index layering (textos/hojas encima del video)",
+    "Replicate gsap-macbook from adrianhajdin/gsap_macbook_landing (46 assets + 3D)",
+    "Replicate remaining C-grade templates from source repos",
+    "Record promotional videos with Playwright (A-tier templates only, after replication)",
+    "Render videos for all 12 templates (Playwright recording for A-tier, Remotion for B/C)",
+    "mdmem — prototyping in md-research, promote when validated",
+    "Duix.Avatar spike (backlog, 2 hrs when needed)"
   ]
 }

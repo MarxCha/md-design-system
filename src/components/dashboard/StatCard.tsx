@@ -5,22 +5,58 @@ import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { TrendingUp, TrendingDown, type LucideIcon } from "lucide-react";
 
+type StatCardVariant = "default" | "compact" | "hero";
+
 interface StatCardProps {
   label: string;
   value: string | number;
   icon?: LucideIcon;
   trend?: { value: number; label?: string };
+  description?: string;
+  variant?: StatCardVariant;
   className?: string;
 }
 
-function StatCard({ label, value, icon: Icon, trend, className }: StatCardProps) {
+const variantStyles: Record<StatCardVariant, { card: string; icon: string; value: string }> = {
+  default: {
+    card: "",
+    icon: "h-10 w-10",
+    value: "text-2xl",
+  },
+  compact: {
+    card: "py-0",
+    icon: "h-8 w-8",
+    value: "text-xl",
+  },
+  hero: {
+    card: "col-span-2",
+    icon: "h-12 w-12",
+    value: "text-3xl",
+  },
+};
+
+function StatCard({
+  label,
+  value,
+  icon: Icon,
+  trend,
+  description,
+  variant = "default",
+  className,
+}: StatCardProps) {
   const isPositive = trend ? trend.value >= 0 : undefined;
+  const styles = variantStyles[variant];
 
   return (
-    <Card className={cn("overflow-hidden", className)}>
+    <Card className={cn("overflow-hidden", styles.card, className)}>
       <CardContent className="flex items-start gap-4">
         {Icon && (
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+          <div
+            className={cn(
+              "flex shrink-0 items-center justify-center rounded-lg bg-primary/10",
+              styles.icon
+            )}
+          >
             <Icon className="h-5 w-5 text-primary" />
           </div>
         )}
@@ -29,9 +65,20 @@ function StatCard({ label, value, icon: Icon, trend, className }: StatCardProps)
           <span className="text-sm font-medium text-muted-foreground">
             {label}
           </span>
-          <span className="font-display text-2xl font-bold tracking-tight">
+          <span
+            className={cn(
+              "font-display font-bold tracking-tight",
+              styles.value
+            )}
+          >
             {value}
           </span>
+
+          {description && (
+            <span className="text-xs text-muted-foreground">
+              {description}
+            </span>
+          )}
 
           {trend && (
             <div className="flex items-center gap-1 text-xs">
@@ -61,4 +108,4 @@ function StatCard({ label, value, icon: Icon, trend, className }: StatCardProps)
 }
 
 export { StatCard };
-export type { StatCardProps };
+export type { StatCardProps, StatCardVariant };

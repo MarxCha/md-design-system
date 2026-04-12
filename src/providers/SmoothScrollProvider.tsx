@@ -8,7 +8,6 @@ import {
   type ReactNode,
 } from "react";
 import Lenis from "lenis";
-import { gsap, ScrollTrigger } from "@/lib/gsap-config";
 
 type SmoothScrollContextType = {
   lenis: Lenis | null;
@@ -22,7 +21,16 @@ export function useLenis() {
   return useContext(SmoothScrollContext);
 }
 
-export function SmoothScrollProvider({ children }: { children: ReactNode }) {
+interface SmoothScrollProviderProps {
+  children: ReactNode;
+  /** When true, syncs Lenis with GSAP ScrollTrigger. Requires gsap + ScrollTrigger. Default: false */
+  gsapSync?: boolean;
+}
+
+export function SmoothScrollProvider({
+  children,
+  gsapSync = false,
+}: SmoothScrollProviderProps) {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
@@ -32,24 +40,42 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     });
     lenisRef.current = lenis;
 
-    // Connect Lenis scroll events to GSAP ScrollTrigger
-    lenis.on("scroll", ScrollTrigger.update);
+    let cleanupGsap: (() => void) | undefined;
 
-    // Connect Lenis RAF to GSAP ticker for sync
-    const ticker = (time: number) => {
-      lenis.raf(time * 1000);
-    };
+    if (gsapSync) {
+      // Dynamically import GSAP only when needed — keeps Lenis usable standalone
+      import("@/lib/gsap-config").then(({ gsap, ScrollTrigger }) => {
+        lenis.on("scroll", ScrollTrigger.update);
 
-    gsap.ticker.add(ticker);
-    gsap.ticker.lagSmoothing(0);
+        const ticker = (time: number) => {
+          lenis.raf(time * 1000);
+        };
+        gsap.ticker.add(ticker);
+        gsap.ticker.lagSmoothing(0);
+
+        cleanupGsap = () => {
+          gsap.ticker.remove(ticker);
+          lenis.off("scroll", ScrollTrigger.update);
+        };
+      });
+    } else {
+      // Standalone RAF loop — no GSAP dependency
+      let rafId: number;
+      function raf(time: number) {
+        lenis.raf(time);
+        rafId = requestAnimationFrame(raf);
+      }
+      rafId = requestAnimationFrame(raf);
+
+      cleanupGsap = () => cancelAnimationFrame(rafId);
+    }
 
     return () => {
-      gsap.ticker.remove(ticker);
-      lenis.off("scroll", ScrollTrigger.update);
+      cleanupGsap?.();
       lenis.destroy();
       lenisRef.current = null;
     };
-  }, []);
+  }, [gsapSync]);
 
   return (
     <SmoothScrollContext.Provider value={{ lenis: lenisRef.current }}>
