@@ -128,6 +128,7 @@
     "@types/react-dom": "^19",
     "@types/three": "^0.173.0",
     "@vitejs/plugin-react": "^6.0.1",
+    "agentation": "^3.0.2",
     "eslint": "^9",
     "eslint-config-next": "^15.5.14",
     "happy-dom": "^20.8.7",

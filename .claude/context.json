@@ -6,7 +6,7 @@
     "framework": "Next.js 15.5.14",
     "language": "TypeScript",
     "styling": "Tailwind CSS 4",
-    "components": "shadcn/ui (20) + custom (17) + layout (2) + dashboard (8) + landing (5) + responsive (5) + video (10) + docs-kit (8)",
+    "components": "shadcn/ui (20) + custom (17) + layout (2) + dashboard (8) + landing (5) + responsive (5) + scroll (4) + navigation (4) + video (10) + docs-kit (8)",
     "animation": ["GSAP + ScrollTrigger + SplitText", "Lenis", "Framer Motion"],
     "charts": "Recharts",
     "audio": "Howler.js",
@@ -17,11 +17,11 @@
     "testing": "Vitest 4.1 + Testing Library + happy-dom + Playwright",
     "other": ["Lottie", "Lucide Icons", "CVA", "Zod 4.3.6", "Sonner", "cmdk"]
   },
-  "status": "mcp-stdio-http-migration-researched-cyanheads-installed",
-  "lastSession": "2026-04-12",
+  "status": "flor-session-017-design-items-merged-cinematic-scroll-page-transitions",
+  "lastSession": "2026-04-13",
   "branch": "feat/design-system-scaffold",
   "pr": "https://github.com/MarxCha/md-design-system/pull/1",
-  "commits": 23,
+  "commits": 28,
   "stats": {
     "sourceFiles": 315,
     "testFiles": 33,
@@ -62,8 +62,9 @@
     "ci": [".github/workflows/ci.yml (created, Node 22, tsc+eslint+vitest)"]
   },
   "nextSteps": [
-    "Verify Obsidian MCP via HTTP (cyanheads port 3010) + aaronsb plugin (port 3001) after session restart",
-    "Verify md-design-system notes in Obsidian vault (7 wikilinks connected by Jess)",
+    "Test CinematicSection in AgroRentable landing (primary target for cinematic scroll)",
+    "Test PageTransition in product layout.tsx (crossfade or reveal preset)",
+    "Render InfographicZoom-Demo with Remotion Studio to verify Ruta B fix visually",
     "Review cruzado del código CRECE v2 integrado por Carlos (StatCard, MobileFilterSheet, Lenis)",
     "CRECE v2 siguiente sprint: md: breakpoints en 17 páginas + animaciones selectivas Framer Motion",
     "Polish gsap-cocktails hero: fix video z-index layering (textos/hojas encima del video)",

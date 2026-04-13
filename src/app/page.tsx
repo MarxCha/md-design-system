@@ -42,7 +42,7 @@ export default function Home() {
           y todos los proyectos de MD Consultoria.
         </p>
 
-        <div className="grid gap-6 sm:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {demos.map((demo) => (
             <Link
               key={demo.href}
@@ -52,7 +52,7 @@ export default function Home() {
               <div
                 className={`mb-4 h-1.5 w-12 rounded-full ${demo.accent} transition-all duration-300 group-hover:w-20`}
               />
-              <h2 className="mb-2 font-display text-xl font-bold">{demo.title}</h2>
+              <p className="mb-2 font-display text-lg font-bold lg:text-xl">{demo.title}</p>
               <p className="text-sm text-muted-foreground">{demo.description}</p>
             </Link>
           ))}

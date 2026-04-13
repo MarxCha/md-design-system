@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Instrument_Sans, DM_Sans } from "next/font/google";
 import "@/styles/globals.css";
 import { SmoothScrollProvider } from "@/providers/SmoothScrollProvider";
+import { AgentationWrapper } from "@/components/dev/AgentationWrapper";
 
 /* ============================================================
    Fonts — Instrument Sans (display) + DM Sans (body)
@@ -53,6 +54,7 @@ export default function RootLayout({
     >
       <body className="min-h-dvh flex flex-col antialiased" suppressHydrationWarning>
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        <AgentationWrapper />
       </body>
     </html>
   );

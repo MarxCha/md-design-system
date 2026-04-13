@@ -1,7 +1,7 @@
 # STATUS — md-design-system
-Ultima actualizacion: 2026-04-11 (sesion 013)
+Ultima actualizacion: 2026-04-13 (sesion 017)
 
-## Estado: FIDELITY AUDIT — 1 CLON REAL, 1 PARCIAL, 6 REWRITES GENÉRICOS
+## Estado: VISUAL ANNOTATION RESEARCH COMPLETE → SPRINT 0 NEXT
 
 ## Sesión 013 — Graphify setup + Remotion smoke test (2026-04-11)
 - Graphify hook post-commit instalado en repo principal (claude mode, AST code-only)
@@ -126,12 +126,24 @@ Commits: 16+
 - h1-h6 globals.css override Tailwind — usar p tags
 - Lenis + gsap.from opacity:0 — usar gsap.set + ScrollTrigger.create + onEnter
 
+## Sesión 017 — Peer coordination + Chrome DevTools + Visual Annotation Research (2026-04-13)
+- 5 peers coordinados (Jess, Carlos, Pam, Gem, Flor) — worktree rule verified, 0 colisiones
+- Carlos (CRECE v2): 10 design decisions recovered and sent, 8/10 implemented
+- Chrome DevTools MCP: root cause found (Chrome 147 blocks debugging on default data dir), workaround documented
+- Flor merge: 3 commits (InfographicZoom fix, CinematicSection, PageTransition) — commit 59a461a
+- Visual annotation research: 7 sources, 10+ tools evaluated
+  - Top 3: Agentation (#1 React+MCP), Vibe Annotations (#2 framework-agnostic), onUI (#3 GPL-3.0 8 MCP tools)
+  - Plan: Sprint 0 = install+test Agentation before template work
+
 ## Proximos pasos
+- [ ] **Sprint 0:** Instalar Agentation (o fallback) — habilitar flujo de anotación visual
+- [ ] Sprint 1: Polish gsap-cocktails (hero video z-index, scroll sections)
+- [ ] Sprint 2: Replicate gsap-macbook from source (46 assets + 3D)
+- [ ] Sprint 3: Remaining C-grade templates (CEO decides which)
+- [ ] Sprint 4: Video pipeline (Playwright recording + Remotion)
+- [ ] Sprint 5: npm publish + PR #1 update
 - [x] ~~Render smoke test de las 4 composiciones reescritas~~ (sesiones 013+014 — todos PASS)
-- [x] ~~Template #5+: GSAP Cocktails + 7 más~~ (12 templates existentes, 10 complete + 2 partial)
-- [ ] Capture screenshots para templates nuevos (ai-sales, astrowind, cruip-open, etc.)
-- [ ] Render promotional videos via Remotion (12 templates)
-- [ ] Motor IVA segunda pasada: HoloCard, CountUp, stagger
+- [x] ~~CRECE v2 design review~~ (sesión 015+017 — 10 decisiones, Carlos integró 8)
 - [ ] Migrar CFDI-Motor a DS (DEUDA-TECNICA.md)
 - [ ] CI/CD con GitHub Actions
 - [ ] mdmem construction (4-5 hrs dedicadas, ownership en md-design-system)

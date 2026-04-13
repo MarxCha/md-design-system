@@ -1,5 +1,29 @@
 # Decisiones arquitecturales — md-design-system
 
+## 2026-04-13 (sesión 017)
+
+### Visual Annotation Tool — Agentation como primera opción
+- **Contexto:** Investigación exhaustiva (7 fuentes: 3 análisis CEO, deep-research, alternativas agent, Gemini CLI, primer research) evaluó 10+ herramientas.
+- **Decisión:** Probar Agentation primero (React component + MCP bidireccional + animation freeze). Fallbacks: Vibe Annotations (Chrome ext, framework-agnostic), onUI (GPL-3.0, 8 MCP tools).
+- **Riesgo:** React 19 compatibility no confirmada, animation freeze vs GSAP/Lenis no probado. Pre-check obligatorio.
+- **Descartados:** Plannotator (no anota UI visual), Vercel Toolbar (formato opaco, sin selectores), Marker.io/BugHerd (SaaS pagado, sin MCP nativo comparable).
+
+### Chrome DevTools MCP — Root cause y workaround
+- **Bug:** Chrome 147 bloquea `--remote-debugging-port` en user-data-dir default. Mensaje: "DevTools remote debugging requires a non-default data directory."
+- **Workaround:** Copiar perfil real a `/tmp/chrome-debug-real` + crear `DevToolsActivePort` en ruta default.
+- **Resultado:** MCP conectado con perfil Marx Chavez (cookies, sesión activa).
+- **Actualizado en:** CLAUDE.md global (Gem actualizó documentación).
+
+### Merge de Flor — 3 componentes nuevos
+- **Commits:** 487bfba (InfographicZoom fix), bf01495 (CinematicSection), c25a639 (PageTransition), 59a461a (merge)
+- **Worktree:** feat/flor-infographic-fixes → mergeado a feat/design-system-scaffold sin conflictos.
+- **Protocolo:** Flor en worktree aislado, Enrique en repo principal. Protocolo de worktrees funcionó correctamente.
+
+### Templates C-grade — recomendación de descarte parcial (Gemini)
+- **astrowind:** Gemini recomienda descartar (rewrite total Astro→Next.js). Pendiente decisión CEO.
+- **page-ui:** Gemini recomienda solo 10 componentes visuales, no los 196 del original.
+- **saas-starter:** Original NO tiene GSAP — nuestro GSAP inventado (51 refs) debe quitarse.
+
 ## 2026-04-12 (sesión 014)
 
 ### InfographicZoom FIXED — bug de fórmula de traducción
