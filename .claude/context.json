@@ -17,11 +17,11 @@
     "testing": "Vitest 4.1 + Testing Library + happy-dom + Playwright",
     "other": ["Lottie", "Lucide Icons", "CVA", "Zod 4.3.6", "Sonner", "cmdk"]
   },
-  "status": "crece-v2-design-review-complete-ds-components-enhanced",
+  "status": "mcp-stdio-http-migration-researched-cyanheads-installed",
   "lastSession": "2026-04-12",
   "branch": "feat/design-system-scaffold",
   "pr": "https://github.com/MarxCha/md-design-system/pull/1",
-  "commits": 22,
+  "commits": 23,
   "stats": {
     "sourceFiles": 315,
     "testFiles": 33,
@@ -62,6 +62,8 @@
     "ci": [".github/workflows/ci.yml (created, Node 22, tsc+eslint+vitest)"]
   },
   "nextSteps": [
+    "Verify Obsidian MCP via HTTP (cyanheads port 3010) + aaronsb plugin (port 3001) after session restart",
+    "Verify md-design-system notes in Obsidian vault (7 wikilinks connected by Jess)",
     "Review cruzado del código CRECE v2 integrado por Carlos (StatCard, MobileFilterSheet, Lenis)",
     "CRECE v2 siguiente sprint: md: breakpoints en 17 páginas + animaciones selectivas Framer Motion",
     "Polish gsap-cocktails hero: fix video z-index layering (textos/hojas encima del video)",
