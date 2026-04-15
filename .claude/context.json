@@ -17,11 +17,11 @@
     "testing": "Vitest 4.1 + Testing Library + happy-dom + Playwright",
     "other": ["Lottie", "Lucide Icons", "CVA", "Zod 4.3.6", "Sonner", "cmdk"]
   },
-  "status": "agentation-integrated-visual-annotation-flow-validated",
-  "lastSession": "2026-04-13",
+  "status": "crece-landing-v1-shipped-6-sections-institutional-gold",
+  "lastSession": "2026-04-14",
   "branch": "feat/design-system-scaffold",
   "pr": "https://github.com/MarxCha/md-design-system/pull/1",
-  "commits": 29,
+  "commits": 30,
   "stats": {
     "sourceFiles": 315,
     "testFiles": 33,
@@ -63,14 +63,13 @@
     "ci": [".github/workflows/ci.yml (created, Node 22, tsc+eslint+vitest)"]
   },
   "nextSteps": [
-    "Sprint 1: Polish gsap-cocktails with Agentation feedback loop (hero video z-index, scroll sections)",
-    "Test Agentation animation freeze with GSAP ScrollTrigger + Lenis on gsap-cocktails",
-    "Restart Claude Code to activate agentation MCP tools natively (agentation_get_all_pending, etc.)",
-    "Start agentation-mcp server before dev: npx agentation-mcp server --port 4747",
+    "CRECE landing: CEO review with Agentation annotations on /landing/crece",
+    "CRECE landing Sprint C: responsive mobile audit + fix (6 sections)",
+    "CRECE landing Sprint D: handoff to Carlos (crece-v2), exportable components",
+    "CRECE landing: add testimonials section if Carlos provides quotes",
+    "CRECE landing: add video loop if dashboard real is available (avoid AI slop)",
+    "Resume Sprint 1: gsap-cocktails polish with Agentation feedback loop",
     "Sprint 2: Replicate gsap-macbook from source (46 assets + possible R3F 3D)",
-    "Sprint 3: CEO decides which C-grade templates to replicate vs discard",
-    "Sprint 4: Video pipeline (Playwright recording A-tier + Remotion static)",
-    "Review cruzado del código CRECE v2 integrado por Carlos",
-    "mdmem — prototyping in md-research, promote when validated"
+    "Start agentation-mcp server before dev: npx agentation-mcp server --port 4747"
   ]
 }
