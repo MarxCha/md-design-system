@@ -140,6 +140,41 @@
 }
 
 /* ============================================================
+   Dim Mode (intermedio · contraste medio · menos fatiga visual)
+   ============================================================ */
+.dim {
+  --background:   213 22% 18%;
+  --foreground:   213 12% 88%;
+
+  --card:         213 25% 22%;
+  --card-foreground: 213 12% 90%;
+
+  --popover:      213 25% 22%;
+  --popover-foreground: 213 12% 90%;
+
+  --primary:           38 62% 58%;
+  --primary-foreground: 38 60% 12%;
+
+  --secondary:           213 38% 30%;
+  --secondary-foreground: 0 0% 96%;
+
+  --accent:           160 70% 45%;
+  --accent-foreground: 0 0% 98%;
+
+  --destructive:           0 72% 56%;
+  --destructive-foreground: 0 0% 98%;
+
+  --muted:           213 22% 25%;
+  --muted-foreground: 213 14% 70%;
+
+  --border: 213 25% 30%;
+  --input:  213 25% 30%;
+  --ring:   38 62% 58%;
+
+  --shadow-color: 213 60% 4%;
+}
+
+/* ============================================================
    Dark Mode
    ============================================================ */
 .dark {
