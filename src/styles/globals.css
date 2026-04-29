@@ -210,6 +210,38 @@
 }
 
 /* ============================================================
+   Scroll Snap utility (opt-in)
+   Patrón: aplicá `.scroll-snap-y` al elemento scroller (html, body
+   o un contenedor con overflow-y:auto) y `.snap-section` a cada
+   sección que deba alinear al borde superior.
+   Variante: `proximity` (no obliga; encaja solo cerca del borde).
+   ============================================================ */
+.scroll-snap-y {
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+}
+/* Variante "strict" — mandatory: siempre encaja al borde de sección al
+   detener el scroll. Útil para landings tipo presentación. En secciones
+   más altas que el viewport el browser encaja al borde más cercano (top
+   o bottom de la sección), conservando scroll interno mientras la rueda
+   gira. */
+.scroll-snap-y-strict {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-snap-y,
+  .scroll-snap-y-strict {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
+}
+
+/* ============================================================
    Lenis Smooth Scroll
    ============================================================ */
 html.lenis {
