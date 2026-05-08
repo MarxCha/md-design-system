@@ -96,9 +96,18 @@ export default function CtaCards() {
      *   index 1 → pkc-circle-rotate-1 + pkc-card-rotate-and-shift-1
      *   index 2 → pkc-circle-rotate-2 + pkc-card-rotate-and-shift-2
      * All sourced from inline-gsap-blocks.js:406 (block 31).
+     *
+     * Initial positions set via GSAP so subsequent gsap.to(rotation) doesn't
+     * clobber the resting fan offsets (sampled from original cycle frames:
+     * ~25% card-width step horizontally, ~1% vertically per card).
      */
     circles.forEach((circle, index) => {
       const card = circle.querySelector<HTMLDivElement>(".pkc-card");
+
+      // Initial fan offset for this circle — preserved across GSAP animations.
+      const xPercent = index * 25;
+      const yPercent = index * 1;
+      gsap.set(circle, { xPercent, yPercent });
 
       const rotateTween = gsap.to(circle, {
         rotation: o,

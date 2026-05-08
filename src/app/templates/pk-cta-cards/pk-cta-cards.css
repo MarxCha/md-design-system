@@ -5,9 +5,9 @@
 /* ─── Base typography & color reset (AP-19 — scoped, NOT global) ───────────────── */
 .pkc-cta-cards-template {
   font-family: var(--pkc-font-body), system-ui, sans-serif;
-  /* Sage green background — verbatim from pieterkoopt.nl section_cta-cards. */
-  background-color: #90a088;
-  color: #1d2520;
+  /* Sage bg — sampled pixel #7a8b69 from cta-cards-original-cycle/scroll-04. */
+  background-color: #7a8b69;
+  color: #171c1c;
 }
 
 .pkc-cta-cards-template h2,
@@ -23,7 +23,7 @@
 .pkc-cta-cards-template .pkc-section_cta-cards {
   position: relative;
   width: 100%;
-  background-color: #90a088;
+  background-color: #7a8b69;
   /* Tall enough that .panel pin (block 30) has scroll runway. The pin runs
    * from "top top" to "bottom bottom" of .usp-cards-section. */
   min-height: 400vh;
@@ -93,7 +93,7 @@
   font-weight: 700;
   text-transform: uppercase;
   font-style: normal;
-  color: #1d2520;
+  color: #171c1c;
 }
 
 .pkc-cta-cards-template .pkc-heading-l.pkc-alt-heading {
@@ -101,14 +101,14 @@
   font-style: italic;
   font-weight: 500;
   text-transform: uppercase;
-  color: #1d2520;
+  color: #171c1c;
 }
 
 .pkc-cta-cards-template .pkc-paragraph-m {
   font-family: var(--pkc-font-body), system-ui, sans-serif;
   font-size: clamp(1rem, 1.2vw, 1.125rem);
   line-height: 1.6;
-  color: rgba(29, 37, 32, 0.85);
+  color: rgba(23, 28, 28, 0.85);
   max-width: 56ch;
   margin: 0;
 }
@@ -126,8 +126,8 @@
   align-self: flex-start;
   padding: 0.95rem 1.5rem;
   background-color: transparent;
-  color: #1d2520;
-  border: 1px solid #1d2520;
+  color: #171c1c;
+  border: 1px solid #171c1c;
   border-radius: 0.25rem;
   font-family: var(--pkc-font-body), system-ui, sans-serif;
   font-weight: 600;
@@ -141,7 +141,7 @@
 }
 
 .pkc-cta-cards-template .pkc-btn-animate-chars:hover {
-  background-color: #1d2520;
+  background-color: #171c1c;
   color: #f5f1ea;
 }
 
@@ -178,22 +178,27 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  justify-content: flex-start;
+  padding: 2rem clamp(1rem, 4vw, 4rem);
 }
 
 /* ─── .uc-circles — 3 polaroid cards stacked at SAME position ──────────────────── */
+/* Sampled from original (cta-cards-original-cycle/scroll-04): single card = 419px
+ * wide × 387px tall (~1.08 aspect, almost square). 3 fanned cards span ~625px.
+ * x-offset per card-step: ~103px = 25% of card width. */
 .pkc-cta-cards-template .pkc-uc-circles {
   position: relative;
-  width: min(560px, 90%);
-  aspect-ratio: 4 / 3;
+  /* Container sized to fit the FAN (single-card width + 2 horizontal steps). */
+  width: min(625px, 95%);
+  aspect-ratio: 1.08 / 1; /* square-ish, matches original */
 }
 
 /* Each .uc-circle = invisible pivot wrapper for one polaroid card. All 3 stack
  * at same position; GSAP block 31 rotates each by ±3°/0° as scroll progresses. */
 .pkc-cta-cards-template .pkc-uc-circle {
   position: absolute;
-  inset: 0;
+  /* Each card occupies LEFT 67% of container; siblings translate-x to fan right. */
+  inset: 0 33% 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -201,32 +206,32 @@
   will-change: transform;
 }
 
-/* The actual polaroid card — rotated/translated by GSAP per card. */
+/* The actual polaroid card — paper-like olive (DARKER than bg) per pixel sampling
+ * #6e7d5f. Subtle drop shadow, no border, rounded corners ~12px. */
 .pkc-cta-cards-template .pkc-uc-circle .pkc-card {
   width: 100%;
   height: 100%;
-  background: #c5cfaf; /* darker sage — paper card on lighter sage background */
-  border-radius: 0.25rem;
-  border: 1px solid rgba(29, 37, 32, 0.18);
+  background: #6e7d5f;
+  border-radius: 0.875rem;
   box-shadow:
-    0 18px 36px -16px rgba(29, 37, 32, 0.45),
-    0 4px 12px -4px rgba(29, 37, 32, 0.18);
-  padding: clamp(2rem, 4vw, 3rem);
+    0 24px 48px -24px rgba(23, 28, 28, 0.5),
+    0 8px 16px -8px rgba(23, 28, 28, 0.25);
+  padding: clamp(1.75rem, 3.2vw, 2.75rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transform-origin: center center;
   will-change: transform;
-  color: #1d2520;
+  color: #171c1c;
 }
 
 .pkc-cta-cards-template .pkc-uc-circle .pkc-card .pkc-heading-s {
   font-family: var(--pkc-font-body), system-ui, sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.01em;
-  color: #1d2520;
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  letter-spacing: -0.005em;
+  color: #171c1c;
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
   line-height: 1.05;
   margin: 0;
 }
@@ -234,36 +239,24 @@
 .pkc-cta-cards-template .pkc-uc-circle .pkc-card .pkc-paragraph-xl {
   font-family: var(--pkc-font-display), "Times New Roman", serif;
   font-style: italic;
-  font-size: clamp(1.05rem, 1.4vw, 1.35rem);
-  line-height: 1.4;
-  color: rgba(29, 37, 32, 0.85);
+  font-weight: 400;
+  font-size: clamp(1.1rem, 1.5vw, 1.45rem);
+  line-height: 1.35;
+  color: rgba(23, 28, 28, 0.8);
   margin: 0;
 }
 
 /* Stack order: card 0 in front (visible initially), card 1 middle, card 2 back.
- * Each card is slightly offset so the stack reads as physical paper layers.
- * GSAP block 31 then rotates+slides each card by its segment as user scrolls. */
+ * Initial fan x/y offsets are set in JS (gsap.set) so subsequent rotation
+ * tweens don't clobber them. Rotation jitter is applied via GSAP block 31. */
 .pkc-cta-cards-template .pkc-uc-circle:nth-child(1) {
   z-index: 3;
 }
 .pkc-cta-cards-template .pkc-uc-circle:nth-child(2) {
   z-index: 2;
-  transform: translate(2.5%, 3%) rotate(2deg);
 }
 .pkc-cta-cards-template .pkc-uc-circle:nth-child(3) {
   z-index: 1;
-  transform: translate(5%, 6%) rotate(4deg);
-}
-
-/* Initial card tilt — card 0 sits flat (front of stack). */
-.pkc-cta-cards-template .pkc-uc-circle:nth-child(1) .pkc-card {
-  transform: rotate(-2deg);
-}
-.pkc-cta-cards-template .pkc-uc-circle:nth-child(2) .pkc-card {
-  transform: rotate(0deg);
-}
-.pkc-cta-cards-template .pkc-uc-circle:nth-child(3) .pkc-card {
-  transform: rotate(0deg);
 }
 
 /* ─── Responsive layout adjustments (AP-11) ────────────────────────────────────── */
