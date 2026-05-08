@@ -1,0 +1,248 @@
+/* ─── PieterKoopt Stories-CTA Template — Custom Styles ────────────────────── */
+/* All rules scoped under .psc-stories-cta-template (AP-20: no @layer utilities) */
+/* Fonts injected by next/font/google in layout.tsx (--psc-font-* variables)    */
+
+/* ─── Base typography & color (AP-19 — scoped, NOT global) ─────────────────── */
+.psc-stories-cta-template {
+  font-family: var(--psc-font-body), system-ui, sans-serif;
+  color: #171c1c;
+  background-color: #f5f1ea;
+}
+
+.psc-stories-cta-template h2,
+.psc-stories-cta-template h3,
+.psc-stories-cta-template p,
+.psc-stories-cta-template span,
+.psc-stories-cta-template div,
+.psc-stories-cta-template a {
+  color: inherit;
+}
+
+/* ─── Section container ────────────────────────────────────────────────────── */
+.psc-stories-cta-template .psc-section_stories-cta {
+  position: relative;
+  width: 100%;
+  background-color: #f5f1ea;
+}
+
+.psc-stories-cta-template .psc-section-padding-128px {
+  padding-block: clamp(4rem, 8vw, 8rem);
+}
+
+.psc-stories-cta-template .psc-padding-global {
+  padding-inline: clamp(1.25rem, 4vw, 4rem);
+}
+
+.psc-stories-cta-template .psc-container-col-12 {
+  width: min(100%, 1440px);
+  margin-inline: auto;
+}
+
+/* ─── .stories-cta wrapper ─────────────────────────────────────────────────── */
+.psc-stories-cta-template .psc-stories-cta {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+/* ─── .image-parallax (substituted: static rounded video card) ─────────────── */
+.psc-stories-cta-template .psc-image-parallax {
+  position: relative;
+  width: 100%;
+  border-radius: clamp(1rem, 2vw, 1.75rem);
+  overflow: hidden;
+  background-color: #171c1c;
+  aspect-ratio: 16 / 9;
+  /* Soft top-down fade as a static substitute for Webflow's
+   * `.fade-bottom-custom` overlay. AP-16: documented substitution, not
+   * an invented animation. */
+  isolation: isolate;
+}
+
+.psc-stories-cta-template .psc-image-parallax::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 35%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0)
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.psc-stories-cta-template .psc-image-parallax_image,
+.psc-stories-cta-template .psc-video-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.psc-stories-cta-template .psc-video-cover video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ─── .stories-cta_content (heading + paragraph + CTA composition) ─────────── */
+.psc-stories-cta-template .psc-stories-cta_content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: end;
+}
+
+@media (min-width: 992px) {
+  .psc-stories-cta-template .psc-stories-cta_content {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 6rem);
+  }
+}
+
+.psc-stories-cta-template .psc-max-width-col-05 {
+  width: 100%;
+}
+
+.psc-stories-cta-template .psc-max-width-col-03 {
+  width: 100%;
+  max-width: 56ch;
+}
+
+/* ─── Heading (AP-19 — explicit scoped font override) ──────────────────────── */
+.psc-stories-cta-template .psc-heading-wrapper {
+  display: block;
+  font-family: var(--psc-font-display), "Times New Roman", serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  font-size: clamp(2.25rem, 6vw, 5rem);
+  margin: 0;
+  color: #171c1c;
+}
+
+.psc-stories-cta-template .psc-heading-l {
+  display: inline;
+  font-style: normal;
+}
+
+.psc-stories-cta-template .psc-heading-l.psc-alt-heading {
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(23, 28, 28, 0.78);
+}
+
+/* ─── Paragraph ───────────────────────────────────────────────────────────── */
+.psc-stories-cta-template .psc-paragraph-l {
+  font-family: var(--psc-font-body), system-ui, sans-serif;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  line-height: 1.55;
+  color: rgba(23, 28, 28, 0.74);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.psc-stories-cta-template .psc-stories-cta_title {
+  margin: 0;
+}
+
+/* ─── padding-top padding-48px (CTA spacing) ───────────────────────────────── */
+.psc-stories-cta-template .psc-padding-top {
+  padding-top: clamp(1.75rem, 3vw, 3rem);
+}
+
+.psc-stories-cta-template .psc-display-inlineflex {
+  display: inline-flex;
+}
+
+/* ─── CTA button (mirrors btn-animate-chars semantics) ─────────────────────── */
+.psc-stories-cta-template .psc-btn-animate-chars {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  align-self: flex-start;
+  padding: 0.95rem 1.5rem;
+  background-color: #171c1c;
+  color: #f5f1ea;
+  border: 1px solid #171c1c;
+  border-radius: 9999px;
+  font-family: var(--psc-font-body), system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.psc-stories-cta-template .psc-btn-animate-chars:hover,
+.psc-stories-cta-template .psc-btn-animate-chars:focus-visible {
+  background-color: #c5d36a;
+  color: #171c1c;
+  border-color: #c5d36a;
+  transform: translateY(-1px);
+}
+
+.psc-stories-cta-template .psc-btn-animate-chars:focus-visible {
+  outline: 2px solid #171c1c;
+  outline-offset: 3px;
+}
+
+.psc-stories-cta-template .psc-btn-animate-chars__text {
+  display: inline-block;
+}
+
+.psc-stories-cta-template .psc-button-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.75rem;
+  height: 0.75rem;
+  transform: rotate(90deg); /* button-icon {rotation-90} class semantic */
+}
+
+.psc-stories-cta-template .psc-icon-10px {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* ─── psc-line wrappers used by splitIntoLines() ──────────────────────────── */
+.psc-stories-cta-template .psc-line {
+  display: block;
+  overflow: hidden;
+}
+
+/* ─── Responsive tweaks (AP-11) ───────────────────────────────────────────── */
+@media (max-width: 991px) {
+  .psc-stories-cta-template .psc-stories-cta_content {
+    align-items: start;
+  }
+}
+
+@media (max-width: 480px) {
+  .psc-stories-cta-template .psc-btn-animate-chars {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .psc-stories-cta-template .psc-image-parallax {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ─── Reduced motion (a11y) ───────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .psc-stories-cta-template .psc-btn-animate-chars {
+    transition: none;
+  }
+  .psc-stories-cta-template .psc-btn-animate-chars:hover,
+  .psc-stories-cta-template .psc-btn-animate-chars:focus-visible {
+    transform: none;
+  }
+}

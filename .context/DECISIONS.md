@@ -1,5 +1,39 @@
 # Decisiones arquitecturales — md-design-system
 
+## 2026-05-08 (sesión 019 — Sprint 5)
+
+### Agent Team de 3 + Foreman validates parallel clone-site dispatch
+- **Contexto:** Tras shipping pk-hero (commit b81a4dd), CEO pidió clonar las 3 secciones restantes en paralelo via /orchestrator agent team.
+- **Decisión:** Dispatched 3 frontend-architect agents con write-zones EXCLUSIVAS por sección (clone-spec/{NN}.md + componentes + route + assets + screenshots scoped al slug). Foreman pre-flight: extracción de section HTMLs + dev server up. Foreman post-flight: integración + typecheck + commit.
+- **Resultado:** 3 secciones shipped en ~15 min wall-clock vs ~3-4h serial. Post-dispatch verify PASS por sección. Typecheck clean. Visual integration via route `/templates/pieterkoopt-full`.
+- **Trade-off aceptado:** ~3x token consumption (cada teammate full SKILL invocation). Aceptable vs el wall-clock saving.
+- **Lección:** Para parallel real (1 mensaje, 3 Agent calls simultáneos) se necesita 1 message-side dispatch, no 3 messages secuenciales. Pendiente como mejora.
+- **Anti-pattern evitado:** Teammate C honestly substituyó la `.image-parallax` Webflow opaca con CSS-only static (no inventó scroll-listener fake) — AP-16 respetado. Documentado en spec body.
+
+## 2026-05-08 (sesión 019)
+
+### Hugo-A Strict Spec Pre-Dispatch Pattern adoptado para `/clone-site`
+- **Contexto:** Sesión previa produjo "A3 cosplay" — sticky cards inventadas que no existían en pieterkoopt.nl, GSAP refs en SVGs estáticos. Codificados como AP-16 y AP-17 en `docs/arsenal-md/clone-anti-patterns.md`.
+- **Decisión:** Toda dispatch de builder ahora pasa por `post-dispatch-verify.py --validate-spec` PRE-dispatch (schema JSON estricto) y `--verify-output` POST-dispatch (cuenta `gsap.*` en TSX vs `animations_declared[]`; si declared==[] y output tiene gsap → BLOCK).
+- **Justificación:** Hugo's ADD model (cfdi-platform) probó que LLM-as-judge produce consensus errors correlated; gates deterministicas no.
+- **Trade-off aceptado:** Más fricción upfront en spec-writing; menos cosplay downstream. Sprint 1 hardening tomó ~2h pero el smoke test atrapó bugs reales (datetime auto-parse, integer→string keys en YAML).
+
+### 6-gate deterministic QA reemplaza LLM-as-judge `ui-visual-validator`
+- **Contexto:** Gemini cross-audit del plan original señaló: cross-LLM consensus tiene errores correlacionados; gates deterministicas no.
+- **Decisión:** Gates 1-6 implementadas en `qa-gates.py`: tag-hierarchy (Jaccard ≥80%), counts (±15% tags / ±50% classes), pixel-diff (SSIM ≥0.80 @ 3 breakpoints), animation-match (id+target+easing strings encontrados ≥70%), timing snapshots (GSAP pausado), CLS (<0.1).
+- **Calibración pendiente:** Gates 1+2 thresholds asumen Webflow→Tailwind aumenta div count; en pk-hero el rebuilt es MENOR que original (clean React). Sprint 4 documentó esta brecha para futura calibración.
+- **Trade-off aceptado:** El skill emite verdict mecánico que puede ser BLOCK aunque el clone sea bueno (caso pk-hero). Foreman debe interpretar con justificación documentada.
+
+### Substituciones de fonts proprietarias declaradas en spec
+- **Contexto:** Pieterkoopt usa Ivy Presto Headline (Adobe Typekit, requires CC subscription). MD operación interna no paga Adobe per-clone.
+- **Decisión:** Cormorant Garamond (Google Fonts, OFL 1.1) como substitute display. Wired via `next/font/google` en `layout.tsx` (auto-subset latin). Spec frontmatter `fonts_used[].substitute` documenta el mapeo.
+- **Trade-off aceptado:** Fidelidad visual ~92% vs 100%; aceptable para validation interna.
+
+### `/clone-site` SKILL ahora vive en disco como artefacto auditable
+- **Contexto:** Patrón D de Hugo (content sprint arsenal-as-disk-artifact) aplicado: `docs/arsenal-md/` contiene AP-1..AP-23 codificados, fidelity audit de 12 templates previas.
+- **Decisión:** SKILL pre-flight requiere leer `docs/arsenal-md/clone-anti-patterns.md` y citar ≥3 APs en `arsenal_md_consulted` del spec frontmatter.
+- **Resultado:** Sprint 0 produjo el arsenal; Sprint 1 lo wireó al schema; Sprint 2-3 lo respetaron (spec cita AP-1, AP-7, AP-11, AP-16, AP-17).
+
 ## 2026-04-13 (sesión 017)
 
 ### Visual Annotation Tool — Agentation como primera opción

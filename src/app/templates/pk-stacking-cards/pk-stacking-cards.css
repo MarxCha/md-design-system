@@ -1,0 +1,269 @@
+/* ─── PieterKoopt Stacking-Cards Template — Custom Styles ───────────────────── */
+/* All rules scoped under .pks-stacking-cards-template (AP-20: no @layer utilities) */
+/* Fonts injected by next/font/google in layout.tsx (--pks-font-* variables)         */
+
+/* ─── Base typography & color reset (AP-19 — scoped, NOT global) ───────────────── */
+.pks-stacking-cards-template {
+  font-family: var(--pks-font-body), system-ui, sans-serif;
+  color: #f5f1ea;
+  background-color: #171c1c;
+}
+
+.pks-stacking-cards-template h2,
+.pks-stacking-cards-template h3,
+.pks-stacking-cards-template p,
+.pks-stacking-cards-template span,
+.pks-stacking-cards-template div,
+.pks-stacking-cards-template a {
+  color: inherit;
+}
+
+/* ─── Section container ────────────────────────────────────────────────────────── */
+.pks-stacking-cards-template .pks-section_stacking-cards {
+  position: relative;
+  width: 100%;
+  background-color: #171c1c;
+}
+
+.pks-stacking-cards-template .pks-padding-global {
+  width: 100%;
+  padding-inline: clamp(1.25rem, 4vw, 4rem);
+}
+
+.pks-stacking-cards-template .pks-section-padding-256px {
+  padding-block: clamp(4rem, 12vw, 16rem);
+}
+
+.pks-stacking-cards-template .pks-padding-top {
+  padding-top: clamp(4rem, 12vw, 16rem);
+}
+
+.pks-stacking-cards-template .pks-container-col-11 {
+  width: min(100%, 1200px);
+  margin-inline: auto;
+}
+
+.pks-stacking-cards-template .pks-padding-bottom {
+  padding-bottom: clamp(2.5rem, 6vw, 5rem);
+}
+
+.pks-stacking-cards-template .pks-padding-80px {
+  padding-bottom: clamp(2.5rem, 6vw, 5rem);
+}
+
+.pks-stacking-cards-template .pks-max-width-col-03 {
+  width: min(100%, 56ch);
+}
+
+/* ─── Section header ───────────────────────────────────────────────────────────── */
+.pks-stacking-cards-template .pks-hiw-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.pks-stacking-cards-template .pks-heading-l {
+  font-family: var(--pks-font-display), "Times New Roman", serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  font-size: clamp(2.25rem, 6vw, 4.75rem);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.pks-stacking-cards-template .pks-text-color-green {
+  color: #c5d36a;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.pks-stacking-cards-template .pks-paragraph-l {
+  font-family: var(--pks-font-body), system-ui, sans-serif;
+  font-size: clamp(1.05rem, 1.3vw, 1.25rem);
+  line-height: 1.6;
+  color: rgba(245, 241, 234, 0.78);
+  margin: 0;
+}
+
+.pks-stacking-cards-template .pks-paragraph-l sup,
+.pks-stacking-cards-template .pks-paragraph-m sup {
+  font-size: 0.6em;
+  vertical-align: super;
+}
+
+/* ─── .mwg_effect031 — slide stack ─────────────────────────────────────────────── */
+.pks-stacking-cards-template .pks-mwg_effect031 {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pks-stacking-cards-template .pks-slide {
+  position: relative;
+  width: 100%;
+  /* Each slide is min 100vh tall so the pin range matches "+=window.innerHeight"
+   * end value in block 32. */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pks-stacking-cards-template .pks-content-wrapper {
+  position: relative;
+  width: 100%;
+  /* perspective lives here so rotationX (40deg) on .content has depth. */
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pks-stacking-cards-template .pks-content {
+  width: 100%;
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+/* ─── .stacking-card ───────────────────────────────────────────────────────────── */
+.pks-stacking-cards-template .pks-stacking-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  width: 100%;
+  background: rgba(245, 241, 234, 0.04);
+  border: 1px solid rgba(245, 241, 234, 0.08);
+  border-radius: 1.25rem;
+  padding: clamp(1.5rem, 3vw, 3rem);
+  backdrop-filter: blur(2px);
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .pks-stacking-cards-template .pks-stacking-card {
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+  }
+}
+
+.pks-stacking-cards-template .pks-stacking-card_info-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pks-stacking-cards-template .pks-card-number {
+  font-family: var(--pks-font-mono), ui-monospace, monospace;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  color: rgba(245, 241, 234, 0.5);
+  text-transform: uppercase;
+}
+
+.pks-stacking-cards-template .pks-card-number > div {
+  display: inline-block;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid rgba(245, 241, 234, 0.15);
+  border-radius: 9999px;
+}
+
+.pks-stacking-cards-template .pks-stacking-card_info {
+  display: flex;
+  flex-direction: column;
+}
+
+.pks-stacking-cards-template .pks-heading-wrapper {
+  font-family: var(--pks-font-display), "Times New Roman", serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.pks-stacking-cards-template .pks-heading-s {
+  display: block;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.pks-stacking-cards-template .pks-alt-heading {
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(245, 241, 234, 0.78);
+}
+
+.pks-stacking-cards-template .pks-padding-top {
+  padding-top: clamp(1.25rem, 2.5vw, 2.5rem);
+}
+
+.pks-stacking-cards-template .pks-padding-40px {
+  padding-top: clamp(1.25rem, 2.5vw, 2.5rem);
+}
+
+.pks-stacking-cards-template .pks-paragraph-m {
+  font-family: var(--pks-font-body), system-ui, sans-serif;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  line-height: 1.6;
+  color: rgba(245, 241, 234, 0.7);
+  margin: 0;
+  max-width: 56ch;
+}
+
+/* ─── .stacking-card_video ────────────────────────────────────────────────────── */
+.pks-stacking-cards-template .pks-stacking-card_video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #0c0f0f;
+}
+
+.pks-stacking-cards-template .pks-video-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pks-stacking-cards-template .pks-pointer-events-off {
+  pointer-events: none;
+}
+
+.pks-stacking-cards-template .pks-stacking-card_video video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ─── Responsive layout adjustments (AP-11) ────────────────────────────────────── */
+@media (max-width: 991px) {
+  .pks-stacking-cards-template .pks-stacking-card {
+    gap: 1.75rem;
+    padding: 1.75rem;
+  }
+
+  .pks-stacking-cards-template .pks-stacking-card_video {
+    aspect-ratio: 16 / 11;
+  }
+}
+
+@media (max-width: 480px) {
+  .pks-stacking-cards-template .pks-stacking-card {
+    padding: 1.25rem;
+    border-radius: 1rem;
+  }
+
+  .pks-stacking-cards-template .pks-section-padding-256px {
+    padding-block: 4rem;
+  }
+
+  .pks-stacking-cards-template .pks-padding-top {
+    padding-top: 4rem;
+  }
+}
