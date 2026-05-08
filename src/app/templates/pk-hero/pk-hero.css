@@ -1,0 +1,255 @@
+/* ─── PieterKoopt Hero Template — Custom Styles ─────────────────────────────────── */
+/* All rules scoped under .pk-hero-template to win over design-system globals */
+/* Fonts injected by next/font/google in layout.tsx (--pk-font-display etc.)  */
+
+/* ─── Initial CSS state — copied verbatim from inline <style> in pk source ── */
+.pk-hero-template .pk-hero {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  background-color: #171c1c;
+  display: flex;
+  overflow: hidden;
+}
+
+.pk-hero-template .pk-video-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  /* Initial inner-box clip-path — GSAP expands to full polygon on entrance */
+  clip-path: polygon(20% 20%, 80% 20%, 80% 80%, 20% 80%);
+  will-change: transform, clip-path;
+  overflow: hidden;
+}
+
+.pk-hero-template .pk-video-container video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+}
+
+/* ─── Heading reset (override design-system color rules) ──────────────────── */
+.pk-hero-template h1,
+.pk-hero-template h2,
+.pk-hero-template h3,
+.pk-hero-template h4,
+.pk-hero-template h5,
+.pk-hero-template h6,
+.pk-hero-template p,
+.pk-hero-template span,
+.pk-hero-template div {
+  color: inherit;
+}
+
+/* ─── Typography — Hero text uses Cormorant Garamond (substitute for Ivy Presto) ─ */
+.pk-hero-template {
+  font-family: var(--pk-font-body), system-ui, sans-serif;
+  color: #f5f1ea;
+}
+
+.pk-hero-template .pk-display {
+  font-family: var(--pk-font-display), "Times New Roman", serif;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+.pk-hero-template .pk-display .alt-heading {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.pk-hero-template .pk-mono {
+  font-family: var(--pk-font-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+}
+
+/* ─── SplitText reveal — initial state hidden until GSAP fires ────────────── */
+.pk-hero-template [data-pk-gsap-reveal] {
+  visibility: hidden;
+}
+
+/* ─── Intro overlay — full-screen until audio choice ──────────────────────── */
+.pk-hero-template .pk-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #171c1c;
+  pointer-events: auto;
+}
+
+.pk-hero-template .pk-intro-signature {
+  width: min(360px, 60vw);
+}
+
+.pk-hero-template .pk-intro-content {
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+  max-width: 560px;
+  padding: 0 1.5rem;
+}
+
+/* ─── Hero outline (decorative ring revealed during intro) ────────────────── */
+.pk-hero-template .pk-hero-outline_wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.pk-hero-template .pk-hero-outline {
+  width: min(420px, 70vw);
+  height: min(420px, 70vw);
+  border: 1px solid rgba(245, 241, 234, 0.35);
+  border-radius: 9999px;
+}
+
+/* ─── Callout (top-left painting metadata, ≥ md) ──────────────────────────── */
+.pk-hero-template .pk-callout {
+  position: absolute;
+  top: 2.5rem;
+  left: 2.5rem;
+  display: none;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: var(--pk-font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(245, 241, 234, 0.85);
+  z-index: 10;
+}
+
+@media (min-width: 992px) {
+  .pk-hero-template .pk-callout {
+    display: flex;
+  }
+}
+
+.pk-hero-template .pk-callout-line {
+  width: 2.5rem;
+  height: 1px;
+  background-color: rgba(245, 241, 234, 0.6);
+}
+
+/* ─── Hero content overlay (bottom-left) ──────────────────────────────────── */
+.pk-hero-template .pk-hh_content {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 5;
+  padding: 2.5rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .pk-hero-template .pk-hh_content {
+    padding: 4rem 4rem 5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .pk-hero-template .pk-hh_content {
+    padding: 5rem 6rem 6rem;
+  }
+}
+
+.pk-hero-template .pk-hh_title h1 {
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  max-width: 24ch;
+}
+
+.pk-hero-template .pk-hh_title p {
+  font-family: var(--pk-font-body), system-ui, sans-serif;
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  line-height: 1.55;
+  color: rgba(245, 241, 234, 0.78);
+  max-width: 60ch;
+  margin-top: 1.5rem;
+}
+
+/* ─── CTA button ──────────────────────────────────────────────────────────── */
+.pk-hero-template .pk-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.75rem;
+  background-color: #c5d36a;
+  color: #171c1c;
+  font-family: var(--pk-font-body), system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.pk-hero-template .pk-cta:hover {
+  background-color: #d4e07d;
+}
+
+.pk-hero-template .pk-cta-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* ─── Intro audio buttons ─────────────────────────────────────────────────── */
+.pk-hero-template .pk-intro-button-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pk-hero-template .pk-intro-button {
+  padding: 0.75rem 1.5rem;
+  font-family: var(--pk-font-body), system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+}
+
+.pk-hero-template .pk-intro-button.is-primary {
+  background-color: #c5d36a;
+  color: #171c1c;
+}
+
+.pk-hero-template .pk-intro-button.is-outline {
+  background-color: transparent;
+  color: rgba(245, 241, 234, 0.92);
+  border: 1px solid rgba(245, 241, 234, 0.35);
+}
+
+.pk-hero-template .pk-intro-button:hover {
+  filter: brightness(1.08);
+}

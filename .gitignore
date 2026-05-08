@@ -48,3 +48,6 @@ public/templates/zentry/audio/
 
 # Graphify — regenerable knowledge graph, rebuilt via post-commit hook
 graphify-out/
+
+# Runtime scratch from scripts/run-pk-hero-gates.py
+scripts/_fetch-scoped.mjs

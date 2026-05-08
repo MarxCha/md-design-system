@@ -1,0 +1,73 @@
+/*
+ * Caso A3 — MD-Design custom rebuild of pieterkoopt.nl
+ *
+ * Design tokens distilled from:
+ *  - Firecrawl branding scrape (colors, button styles, fontSizes)
+ *  - Visual inspection of the rendered screenshot (true page bg = olive, not charcoal)
+ *  - Webflow source classes (section_home-hero, section_cta-cards, section_stacking-cards)
+ *
+ * Important corrections vs raw Firecrawl output:
+ *  - "background" reported as #171C1C → that is the FOOTER HERO bg, not main canvas.
+ *    The main canvas is the olive/sage tone used in the upper sections.
+ *  - "fonts" reported as Basic Grotesque only → there is also a serif/condensed display
+ *    in the hero on the live site. Substitute: Instrument Serif (closest in MD DS) for
+ *    display, Basic Grotesque approximated by DM Sans (free, MD DS already loads it).
+ */
+
+@import "tailwindcss";
+
+@theme {
+  /* Colors — olive canvas + dark footer + cream accents */
+  --color-canvas: #6e7d5f;             /* sage olive — main page bg */
+  --color-canvas-2: #7a8b69;           /* slightly lighter olive — alternate sections */
+  --color-ink: #171c1c;                /* charcoal — body text + footer bg */
+  --color-cream: #d4c6b9;              /* warm cream — primary accent */
+  --color-cream-soft: #ece4d9;         /* lighter cream — sticky-card bg */
+  --color-link: #7a8b69;
+
+  /* Typography — display serif + grotesque body */
+  --font-display: "Instrument Serif", "Times New Roman", serif;
+  --font-body: "DM Sans", "Basic Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+
+  --text-h1: clamp(2.75rem, 6vw + 1rem, 5rem);    /* matches 60px+ at 1440 */
+  --text-h2: clamp(2rem, 4vw + 0.5rem, 3.25rem);
+  --text-h3: 1.4rem;
+  --text-eyebrow: 0.8125rem;                       /* 13px, mono */
+
+  /* Radius — Webflow used 3px (very subtle); MD DS standard is 6/8/12 */
+  --radius-pill: 9999px;
+  --radius-button: 6px;
+  --radius-card: 12px;
+
+  /* Spacing scale (matches MD DS 4px base) */
+  --space-section: clamp(4rem, 10vh, 7rem);
+}
+
+@layer base {
+  html, body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+  }
+
+  h1 { font-size: var(--text-h1); }
+  h2 { font-size: var(--text-h2); }
+  h3 { font-size: var(--text-h3); }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-eyebrow);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}

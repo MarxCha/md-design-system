@@ -1,0 +1,264 @@
+{
+  "_method": "C2 — crawl4ai heuristic CSS extraction (no LLM)",
+  "_wallTimeSec": 24.7,
+  "_licenseStatus": "Apache-2.0 (crawl4ai). Pure deterministic, $0 cost.",
+  "_success": true,
+  "_statusCode": 200,
+  "data": {
+    "h1": "Time changes everything.Except history.",
+    "h2_list": [
+      {
+        "text": "WhatsApp us"
+      },
+      {
+        "text": "Selling your"
+      },
+      {
+        "text": "SELLING PAINTINGS"
+      },
+      {
+        "text": "Every painting"
+      },
+      {
+        "text": "Selling a painting?"
+      }
+    ],
+    "h3_list": [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {
+        "text": "Upload yourArtwork"
+      },
+      {
+        "text": "Reviewby Pieter"
+      },
+      {
+        "text": "personalappointment"
+      }
+    ],
+    "navigation_links": [
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": "EN"
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {},
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      }
+    ],
+    "phone": "tel:+31653292939",
+    "email": "mailto:info@pieterkoopt.nl",
+    "whatsapp": "https://wa.me/31653292939",
+    "social_links": [
+      {},
+      {}
+    ],
+    "buttons": [
+      {
+        "text": "Sellyourpainting"
+      },
+      {
+        "text": "Sellyourpainting",
+        "href": "/sell-your-painting"
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {},
+      {},
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": "@media (min-width: 992px) {\n.icon-button_element.is-outline:hover .icon-btn_bg {\n    transform: translateX(0%) translateY(0%);\n}"
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": "Withoutaudio"
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": "@media (min-width: 992px) {\n.icon-button_element.is-outline:hover .icon-btn_bg {\n    transform: translateX(0%) translateY(0%);\n}"
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": "",
+        "href": "https://instagram.com/pieterkoopt"
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": "@media (min-width: 992px) {\n.icon-button_element.is-outline:hover .icon-btn_bg {\n    transform: translateX(0%) translateY(0%);\n}"
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": "@media (min-width: 992px) {\n.icon-button_element.is-outline:hover .icon-btn_bg {\n    transform: translateX(0%) translateY(0%);\n}"
+      },
+      {
+        "text": ""
+      }
+    ]
+  }
+}
