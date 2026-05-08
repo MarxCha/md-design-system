@@ -5,7 +5,7 @@
 /* ─── Base typography & color (AP-19 — scoped, NOT global) ─────────────────── */
 .psc-stories-cta-template {
   font-family: var(--psc-font-body), system-ui, sans-serif;
-  color: #171c1c;
+  color: #1d2520;
   background-color: #f5f1ea;
 }
 
@@ -18,56 +18,64 @@
   color: inherit;
 }
 
-/* ─── Section container ────────────────────────────────────────────────────── */
+/* ─── Section: full-viewport video bg with text overlay ────────────────────── */
 .psc-stories-cta-template .psc-section_stories-cta {
   position: relative;
   width: 100%;
+  min-height: 100vh;
   background-color: #f5f1ea;
+  overflow: hidden;
 }
 
 .psc-stories-cta-template .psc-section-padding-128px {
-  padding-block: clamp(4rem, 8vw, 8rem);
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .psc-stories-cta-template .psc-padding-global {
-  padding-inline: clamp(1.25rem, 4vw, 4rem);
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .psc-stories-cta-template .psc-container-col-12 {
-  width: min(100%, 1440px);
-  margin-inline: auto;
-}
-
-/* ─── .stories-cta wrapper ─────────────────────────────────────────────────── */
-.psc-stories-cta-template .psc-stories-cta {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(2.5rem, 5vw, 4.5rem);
-}
-
-/* ─── .image-parallax (substituted: static rounded video card) ─────────────── */
-.psc-stories-cta-template .psc-image-parallax {
   position: relative;
   width: 100%;
-  border-radius: clamp(1rem, 2vw, 1.75rem);
+  min-height: 100vh;
+}
+
+.psc-stories-cta-template .psc-stories-cta {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ─── .image-parallax — full-viewport video background ──────────────────────── */
+.psc-stories-cta-template .psc-image-parallax {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  background-color: #171c1c;
-  aspect-ratio: 16 / 9;
-  /* Soft top-down fade as a static substitute for Webflow's
-   * `.fade-bottom-custom` overlay. AP-16: documented substitution, not
-   * an invented animation. */
+  background-color: #1d2520;
   isolation: isolate;
 }
 
+/* Soft vignette for text contrast (substitutes Webflow .fade-bottom-custom) */
 .psc-stories-cta-template .psc-image-parallax::after {
   content: "";
   position: absolute;
-  inset: auto 0 0 0;
-  height: 35%;
+  inset: 0;
   background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.45),
-    rgba(0, 0, 0, 0)
+    180deg,
+    rgba(0, 0, 0, 0.04) 0%,
+    rgba(0, 0, 0, 0.08) 40%,
+    rgba(0, 0, 0, 0.55) 100%
   );
   pointer-events: none;
   z-index: 1;
@@ -88,17 +96,23 @@
   display: block;
 }
 
-/* ─── .stories-cta_content (heading + paragraph + CTA composition) ─────────── */
+/* ─── Text overlay: bottom of viewport, two columns ─────────────────────────── */
 .psc-stories-cta-template .psc-stories-cta_content {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 2;
+  width: 100%;
+  padding: clamp(2rem, 5vw, 5rem) clamp(1.5rem, 4vw, 4rem);
   display: grid;
   grid-template-columns: 1fr;
   gap: clamp(1.5rem, 3vw, 3rem);
   align-items: end;
+  color: #f5f1ea;
 }
 
 @media (min-width: 992px) {
   .psc-stories-cta-template .psc-stories-cta_content {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
     gap: clamp(2rem, 5vw, 6rem);
   }
 }
@@ -109,38 +123,42 @@
 
 .psc-stories-cta-template .psc-max-width-col-03 {
   width: 100%;
-  max-width: 56ch;
+  max-width: 60ch;
 }
 
-/* ─── Heading (AP-19 — explicit scoped font override) ──────────────────────── */
+/* ─── Heading: sans-serif uppercase + italic serif STORY ────────────────────── */
 .psc-stories-cta-template .psc-heading-wrapper {
   display: block;
-  font-family: var(--psc-font-display), "Times New Roman", serif;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  line-height: 1.05;
-  font-size: clamp(2.25rem, 6vw, 5rem);
   margin: 0;
-  color: #171c1c;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  color: #f5f1ea;
 }
 
 .psc-stories-cta-template .psc-heading-l {
   display: inline;
+  font-family: var(--psc-font-body), system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
   font-style: normal;
+  color: #f5f1ea;
 }
 
 .psc-stories-cta-template .psc-heading-l.psc-alt-heading {
+  font-family: var(--psc-font-display), "Times New Roman", serif;
   font-style: italic;
-  font-weight: 400;
-  color: rgba(23, 28, 28, 0.78);
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #f5f1ea;
 }
 
-/* ─── Paragraph ───────────────────────────────────────────────────────────── */
+/* ─── Paragraph (overlaid on video, light text on dark vignette) ─────────────── */
 .psc-stories-cta-template .psc-paragraph-l {
   font-family: var(--psc-font-body), system-ui, sans-serif;
-  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
   line-height: 1.55;
-  color: rgba(23, 28, 28, 0.74);
+  color: rgba(245, 241, 234, 0.92);
   max-width: 56ch;
   margin: 0;
 }
@@ -149,25 +167,24 @@
   margin: 0;
 }
 
-/* ─── padding-top padding-48px (CTA spacing) ───────────────────────────────── */
+/* ─── CTA button — light pill on dark bg ────────────────────────────────────── */
 .psc-stories-cta-template .psc-padding-top {
-  padding-top: clamp(1.75rem, 3vw, 3rem);
+  padding-top: clamp(1.5rem, 2.5vw, 2.25rem);
 }
 
 .psc-stories-cta-template .psc-display-inlineflex {
   display: inline-flex;
 }
 
-/* ─── CTA button (mirrors btn-animate-chars semantics) ─────────────────────── */
 .psc-stories-cta-template .psc-btn-animate-chars {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
   align-self: flex-start;
   padding: 0.95rem 1.5rem;
-  background-color: #171c1c;
+  background-color: #1d2520;
   color: #f5f1ea;
-  border: 1px solid #171c1c;
+  border: 1px solid #1d2520;
   border-radius: 9999px;
   font-family: var(--psc-font-body), system-ui, sans-serif;
   font-weight: 500;
@@ -183,14 +200,14 @@
 
 .psc-stories-cta-template .psc-btn-animate-chars:hover,
 .psc-stories-cta-template .psc-btn-animate-chars:focus-visible {
-  background-color: #c5d36a;
-  color: #171c1c;
-  border-color: #c5d36a;
+  background-color: #f5f1ea;
+  color: #1d2520;
+  border-color: #f5f1ea;
   transform: translateY(-1px);
 }
 
 .psc-stories-cta-template .psc-btn-animate-chars:focus-visible {
-  outline: 2px solid #171c1c;
+  outline: 2px solid #f5f1ea;
   outline-offset: 3px;
 }
 
@@ -204,7 +221,7 @@
   justify-content: center;
   width: 0.75rem;
   height: 0.75rem;
-  transform: rotate(90deg); /* button-icon {rotation-90} class semantic */
+  transform: rotate(90deg);
 }
 
 .psc-stories-cta-template .psc-icon-10px {
@@ -222,6 +239,7 @@
 @media (max-width: 991px) {
   .psc-stories-cta-template .psc-stories-cta_content {
     align-items: start;
+    padding-bottom: clamp(2rem, 6vw, 4rem);
   }
 }
 
@@ -229,10 +247,6 @@
   .psc-stories-cta-template .psc-btn-animate-chars {
     width: 100%;
     justify-content: space-between;
-  }
-
-  .psc-stories-cta-template .psc-image-parallax {
-    aspect-ratio: 4 / 3;
   }
 }
 

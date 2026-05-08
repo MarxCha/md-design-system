@@ -196,18 +196,6 @@ export default function CtaCards() {
                         </svg>
                       </span>
                     </a>
-
-                    {/* .cta-cards-wrap — static USP stack (left column) */}
-                    <div className="pkc-cta-cards-wrap">
-                      {ctaCardsContent.uspCards.map((card, idx) => (
-                        <div key={idx} className="pkc-uc-card pkc-is-usp">
-                          <h3 className="pkc-heading-s">{card.heading}</h3>
-                          <p className="pkc-paragraph-xl pkc-alt-heading">
-                            {card.description}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
                   </div>
                 </div>
               </div>

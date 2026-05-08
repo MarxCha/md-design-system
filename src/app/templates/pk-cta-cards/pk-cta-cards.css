@@ -5,8 +5,9 @@
 /* ─── Base typography & color reset (AP-19 — scoped, NOT global) ───────────────── */
 .pkc-cta-cards-template {
   font-family: var(--pkc-font-body), system-ui, sans-serif;
-  color: #f5f1ea;
-  background-color: #171c1c;
+  /* Sage green background — verbatim from pieterkoopt.nl section_cta-cards. */
+  background-color: #90a088;
+  color: #1d2520;
 }
 
 .pkc-cta-cards-template h2,
@@ -22,16 +23,14 @@
 .pkc-cta-cards-template .pkc-section_cta-cards {
   position: relative;
   width: 100%;
-  background-color: #171c1c;
-  /* Tall enough that the .panel pin (block 30) has scroll runway. The pin
-   * runs from "top top" to "bottom bottom" of .usp-cards-section. */
-  min-height: 200vh;
+  background-color: #90a088;
+  /* Tall enough that .panel pin (block 30) has scroll runway. The pin runs
+   * from "top top" to "bottom bottom" of .usp-cards-section. */
+  min-height: 400vh;
 }
 
 .pkc-cta-cards-template .pkc-container-col-12 {
-  width: min(100%, 1440px);
-  margin-inline: auto;
-  padding-inline: clamp(1.25rem, 4vw, 4rem);
+  width: 100%;
 }
 
 .pkc-cta-cards-template .pkc-usp-cards-section {
@@ -39,7 +38,6 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 0;
-  /* On desktop ≥992 we expect a two-column visual via panel + uc-container. */
 }
 
 @media (min-width: 992px) {
@@ -60,7 +58,7 @@
 
 .pkc-cta-cards-template .pkc-padding-global {
   width: 100%;
-  padding: clamp(2.5rem, 6vw, 5rem) 0;
+  padding: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 5vw, 5rem);
 }
 
 .pkc-cta-cards-template .pkc-cta-wrap {
@@ -78,33 +76,39 @@
 }
 
 /* ─── Heading (AP-19 — explicit override of global h-tag font) ─────────────────── */
+/* Original: "SELLING YOUR PAINTING?" sans-serif uppercase bold, "IT STARTS HERE"
+ * italic serif uppercase. Two distinct typefaces stacked. */
 .pkc-cta-cards-template .pkc-heading-wrapper {
   display: flex;
   flex-direction: column;
-  font-family: var(--pkc-font-display), "Times New Roman", serif;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  line-height: 1.05;
-  font-size: clamp(2.25rem, 5.5vw, 4.5rem);
   margin: 0;
+  font-size: clamp(2.25rem, 5.5vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
 }
 
 .pkc-cta-cards-template .pkc-heading-l {
   display: block;
+  font-family: var(--pkc-font-body), system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
   font-style: normal;
+  color: #1d2520;
 }
 
 .pkc-cta-cards-template .pkc-heading-l.pkc-alt-heading {
+  font-family: var(--pkc-font-display), "Times New Roman", serif;
   font-style: italic;
-  font-weight: 400;
-  color: rgba(245, 241, 234, 0.78);
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #1d2520;
 }
 
 .pkc-cta-cards-template .pkc-paragraph-m {
   font-family: var(--pkc-font-body), system-ui, sans-serif;
   font-size: clamp(1rem, 1.2vw, 1.125rem);
   line-height: 1.6;
-  color: rgba(245, 241, 234, 0.78);
+  color: rgba(29, 37, 32, 0.85);
   max-width: 56ch;
   margin: 0;
 }
@@ -114,7 +118,7 @@
   vertical-align: super;
 }
 
-/* ─── CTA button ───────────────────────────────────────────────────────────────── */
+/* ─── CTA button — rectangular outline (matches original) ──────────────────────── */
 .pkc-cta-cards-template .pkc-btn-animate-chars {
   display: inline-flex;
   align-items: center;
@@ -122,94 +126,49 @@
   align-self: flex-start;
   padding: 0.95rem 1.5rem;
   background-color: transparent;
-  color: #f5f1ea;
-  border: 1px solid rgba(245, 241, 234, 0.35);
-  border-radius: 9999px;
+  color: #1d2520;
+  border: 1px solid #1d2520;
+  border-radius: 0.25rem;
   font-family: var(--pkc-font-body), system-ui, sans-serif;
-  font-weight: 500;
-  font-size: 0.95rem;
-  letter-spacing: 0.02em;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   text-decoration: none;
   transition:
     background-color 0.2s ease,
-    color 0.2s ease,
-    border-color 0.2s ease;
+    color 0.2s ease;
 }
 
 .pkc-cta-cards-template .pkc-btn-animate-chars:hover {
-  background-color: #c5d36a;
-  color: #171c1c;
-  border-color: #c5d36a;
+  background-color: #1d2520;
+  color: #f5f1ea;
 }
 
 .pkc-cta-cards-template .pkc-button-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 0.75rem;
-  height: 0.75rem;
+  width: 0.65rem;
+  height: 0.65rem;
 }
 
 .pkc-cta-cards-template .pkc-icon-10px {
-  width: 0.75rem;
-  height: 0.75rem;
-}
-
-/* ─── .cta-cards-wrap (left column USP stack) ──────────────────────────────────── */
-.pkc-cta-cards-template .pkc-cta-cards-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.pkc-cta-cards-template .pkc-uc-card.pkc-is-usp {
-  padding: 1.5rem 1.75rem;
-  border-radius: 1rem;
-  background: rgba(245, 241, 234, 0.04);
-  border: 1px solid rgba(245, 241, 234, 0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  backdrop-filter: blur(2px);
-}
-
-.pkc-cta-cards-template .pkc-heading-s {
-  font-family: var(--pkc-font-display), "Times New Roman", serif;
-  font-weight: 600;
-  font-size: 1.25rem;
-  line-height: 1.2;
-  margin: 0;
-}
-
-.pkc-cta-cards-template .pkc-paragraph-xl {
-  font-family: var(--pkc-font-body), system-ui, sans-serif;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: rgba(245, 241, 234, 0.7);
-  margin: 0;
-}
-
-.pkc-cta-cards-template .pkc-paragraph-xl.pkc-alt-heading {
-  font-style: italic;
+  width: 0.65rem;
+  height: 0.65rem;
 }
 
 /* ─── .pin-height + .uc-container + .uc-circles (right column, GSAP block 31) ─── */
 .pkc-cta-cards-template .pkc-pin-height {
   position: relative;
   width: 100%;
-  /* Tall: gives .uc-container scroll runway across N segments. */
-  min-height: 250vh;
+  /* Tall: 3 segments of 100vh each (one per polaroid card cycle). */
+  min-height: 300vh;
 }
 
 @media (max-width: 991px) {
-  /* ≤991: block 31 is guarded off. Fall back to a static stack so content
-   * remains visible without the pin/rotation. */
   .pkc-cta-cards-template .pkc-pin-height {
     min-height: auto;
-    /* Mobile fallback: hide the duplicate circle stack since the static USP
-     * cards above cover the same content (matches AP-2 — show all states). */
-    display: none;
   }
 }
 
@@ -220,31 +179,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-block: 4rem;
+  padding: 2rem;
 }
 
+/* ─── .uc-circles — 3 polaroid cards stacked at SAME position ──────────────────── */
 .pkc-cta-cards-template .pkc-uc-circles {
   position: relative;
-  width: min(420px, 80%);
-  display: grid;
-  grid-template-columns: 1fr;
-  /* The 3 circles overlap so rotation reveals the stacked geometry. */
+  width: min(560px, 90%);
+  aspect-ratio: 4 / 3;
 }
 
+/* Each .uc-circle = invisible pivot wrapper for one polaroid card. All 3 stack
+ * at same position; GSAP block 31 rotates each by ±3°/0° as scroll progresses. */
 .pkc-cta-cards-template .pkc-uc-circle {
-  grid-row: 1;
-  grid-column: 1;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 9999px;
-  background: radial-gradient(
-    circle at 30% 30%,
-    rgba(197, 211, 106, 0.95),
-    rgba(140, 158, 80, 0.92)
-  );
-  box-shadow:
-    0 24px 60px -20px rgba(0, 0, 0, 0.6),
-    inset 0 0 60px rgba(255, 255, 255, 0.04);
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -252,29 +201,69 @@
   will-change: transform;
 }
 
+/* The actual polaroid card — rotated/translated by GSAP per card. */
 .pkc-cta-cards-template .pkc-uc-circle .pkc-card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 80%;
-  transform: translate(-50%, -50%);
-  background: rgba(23, 28, 28, 0.92);
-  color: #f5f1ea;
-  border-radius: 1.25rem;
-  padding: 1.5rem 1.75rem;
-  border: 1px solid rgba(245, 241, 234, 0.1);
+  width: 100%;
+  height: 100%;
+  background: #c5cfaf; /* darker sage — paper card on lighter sage background */
+  border-radius: 0.25rem;
+  border: 1px solid rgba(29, 37, 32, 0.18);
+  box-shadow:
+    0 18px 36px -16px rgba(29, 37, 32, 0.45),
+    0 4px 12px -4px rgba(29, 37, 32, 0.18);
+  padding: clamp(2rem, 4vw, 3rem);
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  justify-content: space-between;
+  transform-origin: center center;
   will-change: transform;
+  color: #1d2520;
 }
 
 .pkc-cta-cards-template .pkc-uc-circle .pkc-card .pkc-heading-s {
-  color: #f5f1ea;
+  font-family: var(--pkc-font-body), system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: #1d2520;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.05;
+  margin: 0;
 }
 
 .pkc-cta-cards-template .pkc-uc-circle .pkc-card .pkc-paragraph-xl {
-  color: rgba(245, 241, 234, 0.78);
+  font-family: var(--pkc-font-display), "Times New Roman", serif;
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.4vw, 1.35rem);
+  line-height: 1.4;
+  color: rgba(29, 37, 32, 0.85);
+  margin: 0;
+}
+
+/* Stack order: card 0 in front (visible initially), card 1 middle, card 2 back.
+ * Each card is slightly offset so the stack reads as physical paper layers.
+ * GSAP block 31 then rotates+slides each card by its segment as user scrolls. */
+.pkc-cta-cards-template .pkc-uc-circle:nth-child(1) {
+  z-index: 3;
+}
+.pkc-cta-cards-template .pkc-uc-circle:nth-child(2) {
+  z-index: 2;
+  transform: translate(2.5%, 3%) rotate(2deg);
+}
+.pkc-cta-cards-template .pkc-uc-circle:nth-child(3) {
+  z-index: 1;
+  transform: translate(5%, 6%) rotate(4deg);
+}
+
+/* Initial card tilt — card 0 sits flat (front of stack). */
+.pkc-cta-cards-template .pkc-uc-circle:nth-child(1) .pkc-card {
+  transform: rotate(-2deg);
+}
+.pkc-cta-cards-template .pkc-uc-circle:nth-child(2) .pkc-card {
+  transform: rotate(0deg);
+}
+.pkc-cta-cards-template .pkc-uc-circle:nth-child(3) .pkc-card {
+  transform: rotate(0deg);
 }
 
 /* ─── Responsive layout adjustments (AP-11) ────────────────────────────────────── */
@@ -285,15 +274,17 @@
 
   .pkc-cta-cards-template .pkc-panel {
     min-height: auto;
-    padding-block: 4rem;
+    padding-block: 3rem;
   }
 
-  .pkc-cta-cards-template .pkc-cta-wrap {
-    width: 100%;
+  .pkc-cta-cards-template .pkc-uc-container {
+    min-height: auto;
+    padding: 2rem 1.5rem;
   }
 
-  .pkc-cta-cards-template .pkc-cc_content {
-    gap: 2rem;
+  .pkc-cta-cards-template .pkc-uc-circles {
+    width: min(420px, 100%);
+    aspect-ratio: 4 / 3;
   }
 }
 
@@ -301,9 +292,5 @@
   .pkc-cta-cards-template .pkc-btn-animate-chars {
     width: 100%;
     justify-content: space-between;
-  }
-
-  .pkc-cta-cards-template .pkc-uc-card.pkc-is-usp {
-    padding: 1.25rem 1.4rem;
   }
 }

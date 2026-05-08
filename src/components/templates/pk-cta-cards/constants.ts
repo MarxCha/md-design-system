@@ -13,33 +13,20 @@ export const ctaCardsContent = {
     label: "Read more about Pieter Koopt",
     href: "/about",
   },
-  // .cta-cards-wrap (left column, static stack)
-  uspCards: [
-    {
-      heading: "No commission fees",
-      description: "100% of the offer is yours.",
-    },
-    {
-      heading: "Expert assessment at home",
-      description: "We come to you and arrange everything.",
-    },
-    {
-      heading: "Fast and personal process",
-      description: "A response to your submission within 48 hours.",
-    },
-  ],
-  // .uc-circles (right column, scroll-rotated stack)
+  /* .uc-circles — 3 polaroid-style cards stacked physically. Scroll-driven rotate
+   * + y:-50% per card cycles them through. Original has NO static left-column
+   * USP stack — just heading + body + CTA. */
   circleCards: [
     {
-      heading: "No hidden fees",
+      heading: "NO HIDDEN FEES",
       description: "You receive 100% of the offer.",
     },
     {
-      heading: "Expert assessment at home",
+      heading: "EXPERT ASSESSMENT AT HOME",
       description: "We come to you and arrange everything.",
     },
     {
-      heading: "Fast and personal process",
+      heading: "FAST AND PERSONAL PROCESS",
       description: "A response to your submission within 48 hours.",
     },
   ],

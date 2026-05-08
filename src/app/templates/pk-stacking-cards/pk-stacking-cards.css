@@ -92,10 +92,12 @@
   vertical-align: super;
 }
 
-/* ─── .mwg_effect031 — slide stack ─────────────────────────────────────────────── */
+/* ─── .mwg_effect031 — slide stack (full-bleed) ─────────────────────────────── */
 .pks-stacking-cards-template .pks-mwg_effect031 {
   position: relative;
   width: 100%;
+  /* Full-bleed: NOT inside container-col-11. Each slide is 100vh, content-wrapper
+   * is what GSAP pins. */
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -104,27 +106,26 @@
 .pks-stacking-cards-template .pks-slide {
   position: relative;
   width: 100%;
-  /* Each slide is min 100vh tall so the pin range matches "+=window.innerHeight"
-   * end value in block 32. */
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /* Each slide reserves 100vh of scroll height so the pin range matches
+   * "+= window.innerHeight" end value in block 32. */
+  height: 100vh;
 }
 
 .pks-stacking-cards-template .pks-content-wrapper {
   position: relative;
   width: 100%;
-  /* perspective lives here so rotationX (40deg) on .content has depth. */
-  perspective: 1200px;
-  transform-style: preserve-3d;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  /* perspective lives here so rotationX (40deg) on .content has depth. */
+  perspective: 1600px;
+  transform-style: preserve-3d;
+  padding-inline: clamp(1.25rem, 4vw, 4rem);
 }
 
 .pks-stacking-cards-template .pks-content {
-  width: 100%;
+  width: min(100%, 1200px);
   transform-origin: center center;
   will-change: transform, opacity;
 }

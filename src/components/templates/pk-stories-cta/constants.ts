@@ -6,6 +6,8 @@ export const TEMPLATE_NAME = "PieterKoopt Stories CTA (final video + CTA)";
 
 export const storiesCtaContent = {
   // Heading — split into a leading phrase + italic alt-heading word
+  /* Original: "EVERY PAINTING HAS A STORY" — sans-serif uppercase + serif italic
+   * "STORY" as alt-heading. CSS handles uppercase transform. */
   headingLead: "Every painting has a",
   headingAlt: "Story",
   // Paragraph (smart curly apostrophe verbatim from source HTML)

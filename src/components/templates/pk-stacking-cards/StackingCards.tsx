@@ -120,10 +120,10 @@ export default function StackingCards() {
       className="pks-section_stacking-cards"
       aria-label="PieterKoopt how it works — selling paintings"
     >
+      {/* Heading area — width-constrained to readable column */}
       <div className="pks-padding-global">
         <div className="pks-section-padding-256px pks-padding-top">
           <div className="pks-container-col-11">
-            {/* .hiw-header — heading + intro paragraph */}
             <div className="pks-padding-bottom pks-padding-80px">
               <div className="pks-hiw-header">
                 <h2 className="pks-heading-l">
@@ -141,71 +141,69 @@ export default function StackingCards() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
 
-            {/* .mwg_effect031 — the three stacking slides */}
-            <div className="pks-mwg_effect031" data-gsap-text="false">
-              {stackingCardsContent.steps.map((step, idx) => {
-                const isLast = idx === stackingCardsContent.steps.length - 1;
-                return (
-                  <div
-                    key={step.number}
-                    ref={(el) => {
-                      slidesRef.current[idx] = el;
-                    }}
-                    className={`pks-slide${isLast ? " pks-is-last" : ""}`}
-                  >
-                    <div className="pks-content-wrapper">
-                      <div className="pks-content">
-                        <div className="pks-stacking-card">
-                          <div className="pks-stacking-card_info-wrap">
-                            <div className="pks-card-number">
-                              <div>{step.number}</div>
-                            </div>
-                            <div className="pks-max-width-col-03">
-                              <div className="pks-stacking-card_info">
-                                <h3 className="pks-heading-wrapper">
-                                  <span className="pks-heading-s">
-                                    {step.headingLead}{" "}
-                                    <span className="pks-alt-heading">
-                                      {step.headingAlt}
-                                    </span>
-                                  </span>
-                                </h3>
-                                <div className="pks-padding-top pks-padding-40px">
-                                  <p className="pks-paragraph-m">
-                                    {step.description}
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="pks-stacking-card_video">
-                            <div className="pks-video-cover pks-pointer-events-off">
-                              {/* Vimeo signed MP4 — kept remote per AP-7 note;
-                                  foreman may mirror to public/templates/pk-stacking-cards/. */}
-                              <video
-                                width="100%"
-                                muted
-                                autoPlay
-                                loop
-                                playsInline
-                                preload="metadata"
-                                aria-hidden="true"
-                              >
-                                <source src={step.videoSrc} type="video/mp4" />
-                                Your browser doesn&apos;t support HTML5 video.
-                              </video>
-                            </div>
+      {/* .mwg_effect031 — full-bleed stacking slides (each 100vh, content-wrapper pinned) */}
+      <div className="pks-mwg_effect031" data-gsap-text="false">
+        {stackingCardsContent.steps.map((step, idx) => {
+          const isLast = idx === stackingCardsContent.steps.length - 1;
+          return (
+            <div
+              key={step.number}
+              ref={(el) => {
+                slidesRef.current[idx] = el;
+              }}
+              className={`pks-slide${isLast ? " pks-is-last" : ""}`}
+            >
+              <div className="pks-content-wrapper">
+                <div className="pks-content">
+                  <div className="pks-stacking-card">
+                    <div className="pks-stacking-card_info-wrap">
+                      <div className="pks-card-number">
+                        <div>{step.number}</div>
+                      </div>
+                      <div className="pks-max-width-col-03">
+                        <div className="pks-stacking-card_info">
+                          <h3 className="pks-heading-wrapper">
+                            <span className="pks-heading-s">
+                              {step.headingLead}{" "}
+                              <span className="pks-alt-heading">
+                                {step.headingAlt}
+                              </span>
+                            </span>
+                          </h3>
+                          <div className="pks-padding-top pks-padding-40px">
+                            <p className="pks-paragraph-m">
+                              {step.description}
+                            </p>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <div className="pks-stacking-card_video">
+                      <div className="pks-video-cover pks-pointer-events-off">
+                        <video
+                          width="100%"
+                          muted
+                          autoPlay
+                          loop
+                          playsInline
+                          preload="metadata"
+                          aria-hidden="true"
+                        >
+                          <source src={step.videoSrc} type="video/mp4" />
+                          Your browser doesn&apos;t support HTML5 video.
+                        </video>
+                      </div>
+                    </div>
                   </div>
-                );
-              })}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </section>
   );
