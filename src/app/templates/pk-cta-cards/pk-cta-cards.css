@@ -178,45 +178,51 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   padding: 2rem clamp(1rem, 4vw, 4rem);
 }
 
-/* ─── .uc-circles — 3 polaroid cards stacked at SAME position ──────────────────── */
-/* Sampled from original (cta-cards-original-cycle/scroll-04): single card = 419px
- * wide × 387px tall (~1.08 aspect, almost square). 3 fanned cards span ~625px.
- * x-offset per card-step: ~103px = 25% of card width. */
+/* ─── .uc-circles — viewport-centered pivot host. Holds 3 stacked circles. ─── */
 .pkc-cta-cards-template .pkc-uc-circles {
   position: relative;
-  /* Container sized to fit the FAN (single-card width + 2 horizontal steps). */
-  width: min(625px, 95%);
-  aspect-ratio: 1.08 / 1; /* square-ish, matches original */
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
-/* Each .uc-circle = invisible pivot wrapper for one polaroid card. All 3 stack
- * at same position; GSAP block 31 rotates each by ±3°/0° as scroll progresses. */
+/* ─── .uc-circle — wheel pivot wrapper (mirrors 3600px wheel from original) ──
+ * Original: each .uc-circle is 3600x3600 with .uc-card at top center; rotating
+ * the wheel ±3° swings the card ~±94px horizontally because pivot is far below.
+ *
+ * We mimic this with transform-origin pushed ~100vh below the card. The card
+ * itself is sized normally; the rotation pivot lives well outside the element. */
 .pkc-cta-cards-template .pkc-uc-circle {
   position: absolute;
-  /* Each card occupies LEFT 67% of container; siblings translate-x to fan right. */
-  inset: 0 33% 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform-origin: center center;
+  top: 50%;
+  left: 50%;
+  width: clamp(280px, 26vw, 420px);
+  height: clamp(220px, 22vw, 350px);
+  /* translate(-50%, -50%) centers the card on viewport center.
+   * transform-origin sits ~180vh below the element top → a 3° rotation moves
+   * the card ~5.2% × 180vh ≈ 84px horizontally on a 900px-tall viewport.
+   * Matches the original's 3600px-wheel pivot offset (the wheel was 3600 tall
+   * with the card pinned at top, so pivot was 1800px below the card center —
+   * roughly 2× viewport height). */
+  transform: translate(-50%, -50%);
+  transform-origin: 50% 180vh;
   will-change: transform;
 }
 
-/* The actual polaroid card — paper-like olive (DARKER than bg) per pixel sampling
- * #6e7d5f. Subtle drop shadow, no border, rounded corners ~12px. */
+/* ─── .uc-card — paper polaroid (DARKER than bg per pixel sample #6e7d5f) ───── */
 .pkc-cta-cards-template .pkc-uc-circle .pkc-card {
   width: 100%;
   height: 100%;
   background: #6e7d5f;
-  border-radius: 0.875rem;
+  border-radius: 0.5rem;
   box-shadow:
-    0 24px 48px -24px rgba(23, 28, 28, 0.5),
-    0 8px 16px -8px rgba(23, 28, 28, 0.25);
-  padding: clamp(1.75rem, 3.2vw, 2.75rem);
+    0 24px 48px -24px rgba(23, 28, 28, 0.45),
+    0 6px 14px -6px rgba(23, 28, 28, 0.25);
+  padding: clamp(1.25rem, 2.4vw, 2rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -246,17 +252,18 @@
   margin: 0;
 }
 
-/* Stack order: card 0 in front (visible initially), card 1 middle, card 2 back.
- * Initial fan x/y offsets are set in JS (gsap.set) so subsequent rotation
- * tweens don't clobber them. Rotation jitter is applied via GSAP block 31. */
+/* Stack order matches original: latest-emerged card sits on top.
+ * Card 0 starts visible at center; cards 1 & 2 start translated 100% down
+ * (below viewport) and slide up over the existing cards as the user scrolls
+ * through their segments. So card 2 ends in front, card 1 mid, card 0 back. */
 .pkc-cta-cards-template .pkc-uc-circle:nth-child(1) {
-  z-index: 3;
+  z-index: 1;
 }
 .pkc-cta-cards-template .pkc-uc-circle:nth-child(2) {
   z-index: 2;
 }
 .pkc-cta-cards-template .pkc-uc-circle:nth-child(3) {
-  z-index: 1;
+  z-index: 3;
 }
 
 /* ─── Responsive layout adjustments (AP-11) ────────────────────────────────────── */
@@ -275,9 +282,17 @@
     padding: 2rem 1.5rem;
   }
 
-  .pkc-cta-cards-template .pkc-uc-circles {
-    width: min(420px, 100%);
-    aspect-ratio: 4 / 3;
+  .pkc-cta-cards-template .pkc-uc-circle {
+    /* On mobile the section doesn't pin — show cards stacked statically. */
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    transform-origin: center;
+    margin-bottom: 1.5rem;
+  }
+  .pkc-cta-cards-template .pkc-uc-circle:not(:first-child) {
+    display: none;
   }
 }
 

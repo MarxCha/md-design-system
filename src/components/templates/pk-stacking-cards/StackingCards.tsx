@@ -66,15 +66,25 @@ export default function StackingCards() {
 
     const tweens: gsap.core.Tween[] = [];
 
+    // Create triggers SYNCHRONOUSLY at mount so they exist before the user
+    // can start scrolling. Deferring creation (e.g. to fonts.ready) caused a
+    // race where users scrolling early would skip past pins and slide-2 would
+    // never engage its pin (CEO observed "card 2 disappears").
+    //
+    // ScrollTrigger has its own auto-refresh on `load` and `resize` (per
+    // GSAP's autoRefreshEvents config). With invalidateOnRefresh:true, our
+    // start/end positions are recalculated cleanly after fonts/images settle.
     slides.forEach((slide, idx) => {
-      const wrapper = slide.querySelector<HTMLDivElement>(".pks-content-wrapper");
+      const wrapper = slide.querySelector<HTMLDivElement>(
+        ".pks-content-wrapper",
+      );
       const content = slide.querySelector<HTMLDivElement>(".pks-content");
       if (!wrapper || !content) return;
 
       // pks-card-rotate-and-shrink-{idx} + pks-content-pin-{idx}
       // Source: inline-gsap-blocks.js:409 — guarded `if (idx !== slides.length-1)`.
       if (idx !== slides.length - 1) {
-        // rand is computed once at mount → stable jitter, matches source behaviour.
+        // rand is computed once at mount → stable jitter, matches source.
         const rand = Math.random();
         const rotateTween = gsap.to(content, {
           rotationZ: animation.rotationZJitter * (rand - 0.5),
@@ -87,13 +97,14 @@ export default function StackingCards() {
             start: startPoint,
             end: () => "+=" + window.innerHeight,
             scrub: true,
+            invalidateOnRefresh: true,
           },
         });
         tweens.push(rotateTween);
       }
 
       // pks-card-fade-out-{idx}
-      // Source: inline-gsap-blocks.js:409 — runs on EVERY slide including last.
+      // Source: inline-gsap-blocks.js:409 — runs on EVERY slide.
       const fadeTween = gsap.to(content, {
         autoAlpha: 0,
         scrollTrigger: {
@@ -101,6 +112,7 @@ export default function StackingCards() {
           start: "top -80%",
           end: () => "+=" + animation.fadeEndFraction * window.innerHeight,
           scrub: true,
+          invalidateOnRefresh: true,
         },
       });
       tweens.push(fadeTween);

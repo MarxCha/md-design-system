@@ -82,35 +82,46 @@ export default function CtaCards() {
       },
     );
 
-    // Block 31 — per-circle rotation. Each circle (and its inner .uc-card)
-    // rotates as the user scrolls through one segment of the pinned range.
+    // Block 31 — original mechanic verified against scroll-+0/+1000/+1800/+2400
+    // reference frames in cta-cards-original-cycle/:
+    //   • 3 wheels stacked at viewport center; transform-origin ~100vh below.
+    //   • Card 0 starts visible at center; rotates 0 → -3° during segment 0.
+    //   • Cards 1 & 2 start translated 100% down (below viewport, hidden); each
+    //     slides up to yPercent 0 during its segment AND rotates to its target
+    //     (0° / +3°). DOM order + z-index makes card 2 land on top.
+    // The "fan emerges from a stack" feeling comes from the slide-up timing —
+    // card 1 emerges over card 0 mid-scroll, card 2 emerges over card 1 later.
     const r = animation.rotationStep;
-    let o = -((circles.length - 1) * r) / 2; // → starts at -3 for N=3, r=3
+    const targets = circles.map(
+      (_, idx) => -((circles.length - 1) * r) / 2 + idx * r,
+    ); // → [-3, 0, 3] for N=3, r=3
     const segmentHeight =
       (pinHeight.clientHeight - window.innerHeight) / circles.length;
 
     const circleTweens: gsap.core.Tween[] = [];
 
-    /* Animation IDs for citation tracking (Patrón Hugo A traceability):
+    // Initial slide-down for cards 1, 2 — pushed fully below viewport. yPercent
+    // 200 = 2× card height down from CSS center (which is 50% / 50%), so the
+    // card top sits below the viewport bottom on a typical 900-1000px viewport.
+    // Card 0 keeps its CSS center position so it's visible at scroll-0.
+    circles.forEach((circle, index) => {
+      if (index > 0) gsap.set(circle, { yPercent: 200 });
+    });
+
+    /* Animation IDs (Patrón Hugo A traceability):
      *   index 0 → pkc-circle-rotate-0 + pkc-card-rotate-and-shift-0
      *   index 1 → pkc-circle-rotate-1 + pkc-card-rotate-and-shift-1
      *   index 2 → pkc-circle-rotate-2 + pkc-card-rotate-and-shift-2
      * All sourced from inline-gsap-blocks.js:406 (block 31).
-     *
-     * Initial positions set via GSAP so subsequent gsap.to(rotation) doesn't
-     * clobber the resting fan offsets (sampled from original cycle frames:
-     * ~25% card-width step horizontally, ~1% vertically per card).
      */
     circles.forEach((circle, index) => {
       const card = circle.querySelector<HTMLDivElement>(".pkc-card");
+      const target = targets[index];
 
-      // Initial fan offset for this circle — preserved across GSAP animations.
-      const xPercent = index * 25;
-      const yPercent = index * 1;
-      gsap.set(circle, { xPercent, yPercent });
-
-      const rotateTween = gsap.to(circle, {
-        rotation: o,
+      // The wheel tween: rotation (always) + yPercent slide-up (cards 1, 2 only).
+      const wheelTween = gsap.to(circle, {
+        rotation: target,
+        yPercent: index > 0 ? 0 : undefined,
         ease: "power1.out",
         scrollTrigger: {
           trigger: pinHeight,
@@ -119,12 +130,13 @@ export default function CtaCards() {
           scrub: true,
         },
       });
-      circleTweens.push(rotateTween);
+      circleTweens.push(wheelTween);
 
+      // Card counter-rotates with the wheel (same direction — original matrix
+      // confirms card.rotation == wheel.rotation), giving the polaroid tilt.
       if (card) {
         const cardTween = gsap.to(card, {
-          rotation: o,
-          y: "-50%",
+          rotation: target,
           ease: "power1.out",
           scrollTrigger: {
             trigger: pinHeight,
@@ -135,8 +147,6 @@ export default function CtaCards() {
         });
         circleTweens.push(cardTween);
       }
-
-      o += r;
     });
 
     return () => {

@@ -1,12 +1,16 @@
 /* ─── PieterKoopt Stacking-Cards Template — Custom Styles ───────────────────── */
 /* All rules scoped under .pks-stacking-cards-template (AP-20: no @layer utilities) */
 /* Fonts injected by next/font/google in layout.tsx (--pks-font-* variables)         */
+/* Colors pixel-sampled from live original via inspect-stacking-cards-original.mjs   */
 
 /* ─── Base typography & color reset (AP-19 — scoped, NOT global) ───────────────── */
 .pks-stacking-cards-template {
   font-family: var(--pks-font-body), system-ui, sans-serif;
-  color: #f5f1ea;
-  background-color: #171c1c;
+  /* Original section bg is transparent — page bg is the dark color. We set it
+   * explicitly so the section renders dark even when mounted in isolation. */
+  background-color: #0c0e10;
+  /* Original text color: rgb(212, 198, 185) = beige/cream */
+  color: rgb(212, 198, 185);
 }
 
 .pks-stacking-cards-template h2,
@@ -22,67 +26,110 @@
 .pks-stacking-cards-template .pks-section_stacking-cards {
   position: relative;
   width: 100%;
-  background-color: #171c1c;
+  background-color: transparent;
 }
 
 .pks-stacking-cards-template .pks-padding-global {
+  /* Original padding-global: 18px L/R only. */
   width: 100%;
-  padding-inline: clamp(1.25rem, 4vw, 4rem);
+  padding-inline: clamp(1rem, 1.5vw, 1.5rem);
 }
 
+/* Original: padding-top 192px, padding-bottom 0. NOT symmetric padding-block. */
 .pks-stacking-cards-template .pks-section-padding-256px {
-  padding-block: clamp(4rem, 12vw, 16rem);
+  padding-top: clamp(4rem, 14vw, 12rem);
+  padding-bottom: 0;
 }
 
+/* `.padding-top` modifier in Webflow: noop when applied to an already-padded
+ * `.section-padding-256px` parent (the parent's padding-top is the source of
+ * truth). Keeping a no-op rule for traceability. */
 .pks-stacking-cards-template .pks-padding-top {
-  padding-top: clamp(4rem, 12vw, 16rem);
+  /* intentionally empty — source of truth lives on .pks-section-padding-256px */
 }
 
 .pks-stacking-cards-template .pks-container-col-11 {
-  width: min(100%, 1200px);
+  width: min(91.6667%, 1287px);
   margin-inline: auto;
 }
 
+/* Original .padding-bottom .padding-80px → padding-bottom: 60px. The "80px"
+ * suffix is a Webflow legacy class name; computed value is 60px. */
 .pks-stacking-cards-template .pks-padding-bottom {
-  padding-bottom: clamp(2.5rem, 6vw, 5rem);
+  padding-bottom: clamp(2rem, 5vw, 3.75rem); /* clamps to ~60px max */
 }
 
 .pks-stacking-cards-template .pks-padding-80px {
-  padding-bottom: clamp(2.5rem, 6vw, 5rem);
+  /* paired with .padding-bottom — total padding-bottom resolves to ~60px. */
+  padding-bottom: 0;
 }
 
 .pks-stacking-cards-template .pks-max-width-col-03 {
   width: min(100%, 56ch);
 }
 
-/* ─── Section header ───────────────────────────────────────────────────────────── */
-.pks-stacking-cards-template .pks-hiw-header {
-  display: flex;
-  flex-direction: column;
-  gap: 1.75rem;
+/* When .max-width-col-03 wraps the right-hand paragraph in .hiw-header,
+ * the original gives it ~355px (28% of container). */
+.pks-stacking-cards-template .pks-hiw-header > .pks-max-width-col-03 {
+  flex: 0 0 auto;
+  width: clamp(15rem, 30%, 22.5rem);
 }
 
+/* ─── Section header — flex ROW (heading left, paragraph right at same baseline)
+ * Original layout: heading width 720px on left, paragraph width 355px on right
+ * inside container-col-11 (1287px). Both rest on the same baseline-end. */
+.pks-stacking-cards-template .pks-hiw-header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 991px) {
+  .pks-stacking-cards-template .pks-hiw-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+}
+
+/* Original heading-l: sans-serif uppercase 'SELLING PAINTINGS' + serif italic
+ * uppercase green-accent 'WITHOUT THE HASSLE'. Mirrors the .heading-l + .alt
+ * pattern used across the site. */
 .pks-stacking-cards-template .pks-heading-l {
-  font-family: var(--pks-font-display), "Times New Roman", serif;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-family: var(--pks-font-body), system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
   line-height: 1.05;
-  font-size: clamp(2.25rem, 6vw, 4.75rem);
+  /* Original is 84px Basic Grotesque (condensed). Inter is wider, so we step
+   * down to ~64px so "SELLING PAINTINGS" fits on a single line at the same
+   * 56-60% column width as the original. */
+  font-size: clamp(2.25rem, 4.6vw, 4rem);
   margin: 0;
   text-transform: uppercase;
+  color: rgb(212, 198, 185);
+  flex: 1 1 60%;
+  max-width: min(64%, 50rem);
 }
 
 .pks-stacking-cards-template .pks-text-color-green {
-  color: #c5d36a;
+  font-family: var(--pks-font-display), "Times New Roman", serif;
+  color: rgb(122, 139, 105); /* sampled from .card-number original color */
   font-style: italic;
   font-weight: 400;
+  /* Force a deterministic line break before the alt-heading. Original wraps
+   * naturally at ~720px in Basic Grotesque (sans condensed); with the wider
+   * Cormorant italic substitute, we'd otherwise get an awkward 3-line wrap. */
+  display: block;
 }
 
 .pks-stacking-cards-template .pks-paragraph-l {
   font-family: var(--pks-font-body), system-ui, sans-serif;
-  font-size: clamp(1.05rem, 1.3vw, 1.25rem);
-  line-height: 1.6;
-  color: rgba(245, 241, 234, 0.78);
+  font-size: clamp(0.95rem, 1vw, 1.05rem);
+  line-height: 1.5;
+  color: rgb(212, 198, 185);
   margin: 0;
 }
 
@@ -96,8 +143,6 @@
 .pks-stacking-cards-template .pks-mwg_effect031 {
   position: relative;
   width: 100%;
-  /* Full-bleed: NOT inside container-col-11. Each slide is 100vh, content-wrapper
-   * is what GSAP pins. */
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -116,84 +161,115 @@
   width: 100%;
   height: 100vh;
   display: flex;
-  align-items: center;
+  /* Original .slide → align-items: flex-start. Card sits at TOP of the 100vh
+   * slide (just below the heading, only 60px gap from heading-end). NOT center. */
+  align-items: flex-start;
   justify-content: center;
   /* perspective lives here so rotationX (40deg) on .content has depth. */
   perspective: 1600px;
   transform-style: preserve-3d;
-  padding-inline: clamp(1.25rem, 4vw, 4rem);
+  padding-inline: clamp(1rem, 1.5vw, 1.5rem);
 }
 
 .pks-stacking-cards-template .pks-content {
-  width: min(100%, 1200px);
+  width: min(100%, 1287px);
   transform-origin: center center;
   will-change: transform, opacity;
 }
 
-/* ─── .stacking-card ───────────────────────────────────────────────────────────── */
+/* ─── .stacking-card — flex horizontal: text + square video ────────────────── */
+/* Original: bg #171c1c, border 1px #706d66, radius 6px, padding 24px 24px 24px 36px */
 .pks-stacking-cards-template .pks-stacking-card {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 4vw, 4rem);
   width: 100%;
-  background: rgba(245, 241, 234, 0.04);
-  border: 1px solid rgba(245, 241, 234, 0.08);
-  border-radius: 1.25rem;
-  padding: clamp(1.5rem, 3vw, 3rem);
-  backdrop-filter: blur(2px);
-  align-items: center;
+  background: #171c1c;
+  border: 1px solid #706d66;
+  border-radius: 6px;
+  padding: clamp(1.25rem, 2.5vw, 1.5rem) clamp(1.25rem, 2.5vw, 1.5rem)
+    clamp(1.25rem, 2.5vw, 1.5rem) clamp(1.5rem, 3vw, 2.25rem);
 }
 
-@media (min-width: 992px) {
+@media (max-width: 991px) {
   .pks-stacking-cards-template .pks-stacking-card {
-    grid-template-columns: 1fr 1fr;
-    gap: 3.5rem;
+    flex-direction: column;
+    gap: 2rem;
   }
 }
 
 .pks-stacking-cards-template .pks-stacking-card_info-wrap {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  flex: 1 1 auto;
+  justify-content: flex-start;
+  padding-block: clamp(1rem, 2vw, 2rem);
 }
 
+/* ─── Card number — HUGE serif italic, sage green ─────────────────────────── */
+/* Original: fontSize 78px, ivypresto-headline italic, color rgb(122, 139, 105),
+ * NO pill background, NO border, NO padding. */
 .pks-stacking-cards-template .pks-card-number {
-  font-family: var(--pks-font-mono), ui-monospace, monospace;
-  font-size: 0.95rem;
-  letter-spacing: 0.12em;
-  color: rgba(245, 241, 234, 0.5);
-  text-transform: uppercase;
+  font-family: var(--pks-font-display), "Times New Roman", serif;
+  font-size: clamp(3.75rem, 5.5vw, 4.875rem); /* clamps to ~78px max */
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1;
+  color: rgb(122, 139, 105);
+  letter-spacing: 0;
+  text-transform: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
 }
 
 .pks-stacking-cards-template .pks-card-number > div {
-  display: inline-block;
-  padding: 0.4rem 0.75rem;
-  border: 1px solid rgba(245, 241, 234, 0.15);
-  border-radius: 9999px;
+  display: block;
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  font: inherit;
+  color: inherit;
 }
 
 .pks-stacking-cards-template .pks-stacking-card_info {
   display: flex;
   flex-direction: column;
+  gap: 0;
 }
 
+/* ─── Heading — sans-serif uppercase + serif italic uppercase alt ─────────── */
+/* Original: fontSize 42px, fontWeight 400 (not bold!), uppercase, color rgb(212, 198, 185) */
 .pks-stacking-cards-template .pks-heading-wrapper {
-  font-family: var(--pks-font-display), "Times New Roman", serif;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1;
   margin: 0;
+  text-transform: uppercase;
 }
 
 .pks-stacking-cards-template .pks-heading-s {
   display: block;
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-family: var(--pks-font-body), system-ui, sans-serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 3.4vw, 2.625rem); /* clamps to ~42px max */
+  line-height: 1;
+  text-transform: uppercase;
+  color: rgb(212, 198, 185);
+  letter-spacing: -0.21px;
 }
 
 .pks-stacking-cards-template .pks-alt-heading {
+  font-family: var(--pks-font-display), "Times New Roman", serif;
   font-style: italic;
   font-weight: 400;
-  color: rgba(245, 241, 234, 0.78);
+  text-transform: uppercase;
+  color: rgb(212, 198, 185);
 }
 
 .pks-stacking-cards-template .pks-padding-top {
@@ -204,23 +280,27 @@
   padding-top: clamp(1.25rem, 2.5vw, 2.5rem);
 }
 
+/* Original paragraph-m: 15px / 21px line-height — small, subtle. */
 .pks-stacking-cards-template .pks-paragraph-m {
   font-family: var(--pks-font-body), system-ui, sans-serif;
-  font-size: clamp(1rem, 1.2vw, 1.125rem);
-  line-height: 1.6;
-  color: rgba(245, 241, 234, 0.7);
+  font-size: 0.9375rem; /* 15px */
+  line-height: 1.4;
+  color: rgb(212, 198, 185);
   margin: 0;
   max-width: 56ch;
 }
 
-/* ─── .stacking-card_video ────────────────────────────────────────────────────── */
+/* ─── .stacking-card_video — 430px SQUARE, no border-radius ───────────────── */
+/* Original: width 430px, aspect-ratio 1/1, borderRadius 0, transparent bg. */
 .pks-stacking-cards-template .pks-stacking-card_video {
   position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10;
+  flex: 0 0 auto;
+  width: clamp(280px, 30vw, 430px);
+  aspect-ratio: 1 / 1;
   overflow: hidden;
-  border-radius: 1rem;
-  background: #0c0f0f;
+  border-radius: 0;
+  background: transparent;
+  align-self: center;
 }
 
 .pks-stacking-cards-template .pks-video-cover {
@@ -240,16 +320,17 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 /* ─── Responsive layout adjustments (AP-11) ────────────────────────────────────── */
 @media (max-width: 991px) {
   .pks-stacking-cards-template .pks-stacking-card {
-    gap: 1.75rem;
-    padding: 1.75rem;
+    border-radius: 6px;
   }
 
   .pks-stacking-cards-template .pks-stacking-card_video {
+    width: 100%;
     aspect-ratio: 16 / 11;
   }
 }
@@ -257,7 +338,6 @@
 @media (max-width: 480px) {
   .pks-stacking-cards-template .pks-stacking-card {
     padding: 1.25rem;
-    border-radius: 1rem;
   }
 
   .pks-stacking-cards-template .pks-section-padding-256px {
