@@ -1,0 +1,183 @@
+/* ─── Page UI Template — Custom Styles ─────────────────────────────────── */
+/* ALL rules scoped under .page-ui-template to win over design system globals  */
+/* NO @layer utilities — that loses specificity to unscoped globals           */
+
+/* ─── Web Fonts ───────────────────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap");
+
+/* ─── Color Utilities (pu prefix, global scope) ──────────────────────── */
+.text-pu-primary   { color: #7C3AED !important; }
+.text-pu-accent    { color: #4F46E5 !important; }
+.text-pu-light     { color: #f1f5f9 !important; }
+.bg-pu-primary     { background-color: #7C3AED !important; }
+.bg-pu-accent      { background-color: #4F46E5 !important; }
+.bg-pu-dark        { background-color: #0c0a1a !important; }
+.bg-pu-surface     { background-color: #0f0d1c !important; }
+.bg-pu-border      { background-color: #1e1b30 !important; }
+
+/* ─── Base Styles ─────────────────────────────────────────────────────── */
+.page-ui-template {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  background-color: #0c0a1a;
+  color: #f1f5f9;
+}
+
+/* ─── Reset: override design system heading color rules ───────────────── */
+.page-ui-template h1,
+.page-ui-template h2,
+.page-ui-template h3,
+.page-ui-template h4,
+.page-ui-template h5,
+.page-ui-template h6,
+.page-ui-template p,
+.page-ui-template span,
+.page-ui-template div {
+  color: inherit;
+}
+
+/* DM Serif Display for headings */
+.page-ui-template .font-display {
+  font-family: "DM Serif Display", Georgia, serif !important;
+}
+
+/* ─── Gradient text ───────────────────────────────────────────────────── */
+.page-ui-template .pu-gradient-text {
+  background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 60%, #818cf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ─── Buttons ─────────────────────────────────────────────────────────── */
+.page-ui-template .pu-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  padding: 0.875rem 1.75rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
+  transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+}
+
+.page-ui-template .pu-btn-primary:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.45);
+}
+
+.page-ui-template .pu-btn-primary:active {
+  transform: scale(0.97);
+}
+
+.page-ui-template .pu-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  padding: 0.875rem 1.75rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  background: transparent;
+  border: 1px solid #1e1b30;
+  transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.page-ui-template .pu-btn-ghost:hover {
+  border-color: #4F46E5;
+  color: #f1f5f9;
+  transform: translateY(-1px);
+}
+
+.page-ui-template .pu-btn-ghost:active {
+  transform: scale(0.97);
+}
+
+/* ─── Shimmer badge ───────────────────────────────────────────────────── */
+.page-ui-template .pu-shimmer-badge {
+  position: relative;
+  overflow: hidden;
+  background: #1e1a35;
+  border: 1px solid #2d2550;
+  color: #c4b5fd;
+  isolation: isolate;
+}
+
+.page-ui-template .pu-shimmer-badge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(167, 139, 250, 0.18) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: pu-shimmer 2.8s ease-in-out infinite;
+}
+
+@keyframes pu-shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+/* ─── Dashboard glow border ───────────────────────────────────────────── */
+.page-ui-template .pu-dashboard-glow {
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 0.6) 0%,
+    rgba(79, 70, 229, 0.4) 50%,
+    rgba(30, 27, 48, 0.3) 100%
+  );
+  box-shadow:
+    0 0 40px rgba(124, 58, 237, 0.2),
+    0 0 80px rgba(79, 70, 229, 0.1);
+}
+
+/* ─── Pricing popular card ────────────────────────────────────────────── */
+.page-ui-template .pu-pricing-popular {
+  background: linear-gradient(145deg, #1e1a35 0%, #16133a 100%);
+  border: 1px solid #7C3AED;
+  box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.3), 0 20px 60px rgba(124, 58, 237, 0.2);
+}
+
+/* ─── Blob animation ──────────────────────────────────────────────────── */
+.page-ui-template .pu-blob {
+  animation: pu-blob-pulse 6s ease-in-out infinite;
+}
+
+@keyframes pu-blob-pulse {
+  0%, 100% {
+    transform: scale(1) translate(0, 0);
+    opacity: 0.3;
+  }
+  33% {
+    transform: scale(1.08) translate(20px, -20px);
+    opacity: 0.38;
+  }
+  66% {
+    transform: scale(0.95) translate(-15px, 15px);
+    opacity: 0.25;
+  }
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .page-ui-template .pu-btn-primary,
+  .page-ui-template .pu-btn-ghost {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-ui-template .pu-btn-primary {
+    padding: 0.875rem 2rem;
+  }
+}

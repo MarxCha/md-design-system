@@ -1,0 +1,20 @@
+{
+  "_method": "C1 — crawl4ai + Ollama (gemma3:12b)",
+  "_endpoint": "http://REDACTED:11434",
+  "_model": "gemma3:12b",
+  "_wallTimeSec": 606.0,
+  "_licenseStatus": "Apache-2.0 (crawl4ai) + self-hosted Ollama (no license cost). $0 marginal cost.",
+  "_success": true,
+  "_statusCode": 200,
+  "data": [
+    {
+      "index": 0,
+      "error": true,
+      "tags": [
+        "error"
+      ],
+      "content": "litellm.APIConnectionError: OllamaException - litellm.Timeout: Connection timed out. Timeout passed=600.0, time taken=600.078 seconds"
+    }
+  ],
+  "_llmUsage": null
+}

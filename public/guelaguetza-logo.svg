@@ -1,0 +1,15 @@
+<svg width="280" height="80" viewBox="0 0 280 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Circle icon -->
+  <circle cx="40" cy="40" r="30" fill="url(#gc-grad)"/>
+  <text x="40" y="48" text-anchor="middle" fill="white" font-family="system-ui, sans-serif" font-size="24" font-weight="800">GC</text>
+  <!-- Text -->
+  <text x="82" y="32" fill="white" font-family="system-ui, sans-serif" font-size="18" font-weight="800">Guelaguetza</text>
+  <text x="82" y="56" fill="url(#gc-grad)" font-family="system-ui, sans-serif" font-size="18" font-weight="800">Connect</text>
+  <defs>
+    <linearGradient id="gc-grad" x1="0" y1="0" x2="280" y2="80">
+      <stop offset="0%" stop-color="#e63946"/>
+      <stop offset="50%" stop-color="#f77f00"/>
+      <stop offset="100%" stop-color="#fcbf49"/>
+    </linearGradient>
+  </defs>
+</svg>

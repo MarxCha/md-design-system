@@ -1,0 +1,15 @@
+{
+  "_method": "C1b — crawl4ai + Ollama, minimal schema (3 fields)",
+  "_wallTimeSec": 605.5,
+  "_success": true,
+  "data": [
+    {
+      "index": 0,
+      "error": true,
+      "tags": [
+        "error"
+      ],
+      "content": "litellm.APIConnectionError: OllamaException - litellm.Timeout: Connection timed out. Timeout passed=600.0, time taken=600.072 seconds"
+    }
+  ]
+}

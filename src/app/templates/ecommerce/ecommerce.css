@@ -1,0 +1,186 @@
+/* ─── E-Commerce Template — Custom Styles ─────────────────────────────────── */
+/* ALL rules scoped under .ecommerce-template to win over design system globals  */
+/* NO @layer utilities — that loses specificity to unscoped globals           */
+
+/* ─── Web Fonts (Google Fonts CDN) ───────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&display=swap');
+
+/* ─── Color Utilities (ec prefix, global scope) ───────────────────────── */
+.text-ec-amber     { color: #D97706 !important; }
+.text-ec-stone     { color: #1C1917 !important; }
+.text-ec-muted     { color: #78716C !important; }
+.bg-ec-amber       { background-color: #D97706 !important; }
+.bg-ec-stone       { background-color: #1C1917 !important; }
+.bg-ec-surface     { background-color: #F5F5F4 !important; }
+
+/* ─── Base Styles ─────────────────────────────────────────────────────── */
+.ecommerce-template {
+  font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  background-color: #FFFFFF;
+  color: #1C1917;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Reset: override design system heading color rules ───────────────── */
+.ecommerce-template h1,
+.ecommerce-template h2,
+.ecommerce-template h3,
+.ecommerce-template h4,
+.ecommerce-template h5,
+.ecommerce-template h6,
+.ecommerce-template p,
+.ecommerce-template span,
+.ecommerce-template div {
+  color: inherit;
+}
+
+/* ─── Serif (Playfair Display) ────────────────────────────────────────── */
+.ecommerce-template .ec-serif {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+}
+
+/* ─── Primary Button (amber) ──────────────────────────────────────────── */
+.ecommerce-template .ec-btn-primary {
+  background-color: #D97706;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+.ecommerce-template .ec-btn-primary:hover {
+  background-color: #B45309;
+  box-shadow: 0 8px 24px rgba(217, 119, 6, 0.35);
+}
+
+/* ─── Ghost / outline button ──────────────────────────────────────────── */
+.ecommerce-template .ec-btn-ghost {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+/* ─── Outline button ──────────────────────────────────────────────────── */
+.ecommerce-template .ec-btn-outline {
+  cursor: pointer;
+}
+
+/* ─── Cart badge ──────────────────────────────────────────────────────── */
+.ecommerce-template .ec-cart-badge {
+  line-height: 1;
+}
+
+/* ─── Navbar ──────────────────────────────────────────────────────────── */
+.ecommerce-template .ec-navbar {
+  will-change: backdrop-filter;
+}
+
+/* ─── Hero product grid art ───────────────────────────────────────────── */
+.ecommerce-template .ec-product-grid-art {
+  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.08));
+}
+
+/* ─── Product card ────────────────────────────────────────────────────── */
+.ecommerce-template .ec-product-card {
+  cursor: pointer;
+}
+
+.ecommerce-template .ec-product-card:hover {
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.10);
+}
+
+/* ─── Product image container ─────────────────────────────────────────── */
+.ecommerce-template .ec-product-image {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── Add to cart button ──────────────────────────────────────────────── */
+.ecommerce-template .ec-btn-add-to-cart {
+  cursor: pointer;
+}
+
+/* ─── Rating stars ────────────────────────────────────────────────────── */
+.ecommerce-template .ec-stars {
+  display: inline-flex;
+  gap: 1px;
+  line-height: 1;
+}
+
+.ecommerce-template .ec-star {
+  font-size: 12px;
+  display: inline-block;
+}
+
+.ecommerce-template .ec-star-filled {
+  color: #D97706;
+}
+
+.ecommerce-template .ec-star-empty {
+  color: #D6D3D1;
+}
+
+/* ─── Category card ───────────────────────────────────────────────────── */
+.ecommerce-template .ec-cat-card {
+  cursor: pointer;
+}
+
+.ecommerce-template .ec-cat-card:hover {
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.12);
+}
+
+/* ─── Promo bar gradient ──────────────────────────────────────────────── */
+.ecommerce-template .ec-promo-bar {
+  background: linear-gradient(135deg, #D97706 0%, #B45309 40%, #92400E 100%);
+}
+
+/* ─── Countdown digit ─────────────────────────────────────────────────── */
+.ecommerce-template .ec-countdown-digit {
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+  font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ─── Newsletter gradient (same amber family, darker) ─────────────────── */
+.ecommerce-template .ec-newsletter-gradient {
+  background: linear-gradient(145deg, #B45309 0%, #92400E 60%, #78350F 100%);
+}
+
+/* ─── Focus ring override ─────────────────────────────────────────────── */
+.ecommerce-template *:focus-visible {
+  outline: 2px solid #D97706;
+  outline-offset: 2px;
+}
+
+/* ─── Smooth scroll ───────────────────────────────────────────────────── */
+.ecommerce-template {
+  scroll-behavior: smooth;
+}
+
+/* ─── Keyframes ───────────────────────────────────────────────────────── */
+@keyframes ec-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .ecommerce-template .ec-product-grid-art {
+    transform: scale(0.92);
+    transform-origin: top center;
+  }
+}
+
+@media (min-width: 768px) {
+  .ecommerce-template .ec-hero-art {
+    perspective: 1000px;
+  }
+
+  .ecommerce-template .ec-product-grid-art {
+    transform: perspective(1000px) rotateY(-4deg) rotateX(2deg);
+    transition: transform 0.6s ease;
+  }
+
+  .ecommerce-template .ec-product-grid-art:hover {
+    transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+  }
+}

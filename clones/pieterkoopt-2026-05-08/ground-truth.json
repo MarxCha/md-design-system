@@ -1,0 +1,57 @@
+{
+  "_instructions": "Hand-written before any extraction tool was run. Each later extraction is diff'd against this contract; mismatches are objective failures, not 'looks close'. Per Gemini's audit on 2026-05-08, this removes the developer-as-judge bias.",
+  "url": "https://www.pieterkoopt.nl/",
+  "captured_at": "2026-05-08T07:30Z",
+  "verbatim": {
+    "title": "Sell Your Painting Quickly & Safely | PieterKoopt®",
+    "h1": "Time changes everything. Except history.",
+    "h2": [
+      "WhatsApp us",
+      "Selling your painting? It starts here",
+      "SELLING PAINTINGS WITHOUT THE HASSLE",
+      "Every painting has a Story",
+      "Selling a painting? Pieter arranges it."
+    ],
+    "h3": [
+      "No commission fees",
+      "Expert assessment at home",
+      "Fast and personal process",
+      "No hidden fees"
+    ],
+    "primary_cta_text": "Sell your painting",
+    "secondary_cta_text": "Read more about Pieter Koopt",
+    "value_prop_lede": "Looking to sell your painting? At PieterKoopt®, we offer a quick, personal, and hassle-free selling experience - no fees, transparent offers within 48 hours."
+  },
+  "contact": {
+    "phone": "+31 6 53 29 29 39",
+    "email": "info@pieterkoopt.nl",
+    "whatsapp": "https://wa.me/31653292939",
+    "physical_address": "Johan de Wittstraat 33, 3311 KG Dordrecht",
+    "instagram": "https://instagram.com/pieterkoopt",
+    "tiktok": "https://www.tiktok.com/@pieterkoopt",
+    "linkedin": null
+  },
+  "sections": {
+    "expected_count": 6,
+    "ordered_slugs": [
+      "site-header",
+      "hero",
+      "process",
+      "value-cards",
+      "bottom-hero",
+      "site-footer"
+    ]
+  },
+  "languages_supported": ["en", "nl"],
+  "behaviours_observed": [
+    "site-header — sticky, background fades in past 50px scroll",
+    "hero — sticky cards stack with -3deg / +2deg / -1deg rotations, hover translateY(-4px)",
+    "process — static, no animation observed",
+    "value-cards — hover translateY(-1px) with 300ms transition",
+    "bottom-hero — radial gradient overlay, no animation",
+    "site-footer — hover underline on all anchor links"
+  ],
+  "pricing_or_pricing_policy": "No commission fees; you receive 100% of the offer.",
+  "framework_signature_visible_in_html": "Webflow (cdn.prod.website-files.com, w-* class prefixes, data-fc-* attrs)",
+  "_notes": "Distinctive: the index-card aesthetic in the hero (rotated, layered, cream-on-olive) and the dark band classical-painting bottom hero are the visual identity hooks. Any rebuild that doesn't preserve those two motifs is structurally not pieterkoopt."
+}

@@ -1,0 +1,262 @@
+/* ─── PieterKoopt Stories-CTA Template — Custom Styles ────────────────────── */
+/* All rules scoped under .psc-stories-cta-template (AP-20: no @layer utilities) */
+/* Fonts injected by next/font/google in layout.tsx (--psc-font-* variables)    */
+
+/* ─── Base typography & color (AP-19 — scoped, NOT global) ─────────────────── */
+.psc-stories-cta-template {
+  font-family: var(--psc-font-body), system-ui, sans-serif;
+  color: #1d2520;
+  background-color: #f5f1ea;
+}
+
+.psc-stories-cta-template h2,
+.psc-stories-cta-template h3,
+.psc-stories-cta-template p,
+.psc-stories-cta-template span,
+.psc-stories-cta-template div,
+.psc-stories-cta-template a {
+  color: inherit;
+}
+
+/* ─── Section: full-viewport video bg with text overlay ────────────────────── */
+.psc-stories-cta-template .psc-section_stories-cta {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f5f1ea;
+  overflow: hidden;
+}
+
+.psc-stories-cta-template .psc-section-padding-128px {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.psc-stories-cta-template .psc-padding-global {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.psc-stories-cta-template .psc-container-col-12 {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.psc-stories-cta-template .psc-stories-cta {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ─── .image-parallax — full-viewport video background ──────────────────────── */
+.psc-stories-cta-template .psc-image-parallax {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #1d2520;
+  isolation: isolate;
+}
+
+/* Soft vignette for text contrast (substitutes Webflow .fade-bottom-custom) */
+.psc-stories-cta-template .psc-image-parallax::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.04) 0%,
+    rgba(0, 0, 0, 0.08) 40%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.psc-stories-cta-template .psc-image-parallax_image,
+.psc-stories-cta-template .psc-video-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.psc-stories-cta-template .psc-video-cover video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ─── Text overlay: bottom of viewport, two columns ─────────────────────────── */
+.psc-stories-cta-template .psc-stories-cta_content {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 2;
+  width: 100%;
+  padding: clamp(2rem, 5vw, 5rem) clamp(1.5rem, 4vw, 4rem);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: end;
+  color: #f5f1ea;
+}
+
+@media (min-width: 992px) {
+  .psc-stories-cta-template .psc-stories-cta_content {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 6rem);
+  }
+}
+
+.psc-stories-cta-template .psc-max-width-col-05 {
+  width: 100%;
+}
+
+.psc-stories-cta-template .psc-max-width-col-03 {
+  width: 100%;
+  max-width: 60ch;
+}
+
+/* ─── Heading: sans-serif uppercase + italic serif STORY ────────────────────── */
+.psc-stories-cta-template .psc-heading-wrapper {
+  display: block;
+  margin: 0;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  color: #f5f1ea;
+}
+
+.psc-stories-cta-template .psc-heading-l {
+  display: inline;
+  font-family: var(--psc-font-body), system-ui, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-style: normal;
+  color: #f5f1ea;
+}
+
+.psc-stories-cta-template .psc-heading-l.psc-alt-heading {
+  font-family: var(--psc-font-display), "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #f5f1ea;
+}
+
+/* ─── Paragraph (overlaid on video, light text on dark vignette) ─────────────── */
+.psc-stories-cta-template .psc-paragraph-l {
+  font-family: var(--psc-font-body), system-ui, sans-serif;
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  line-height: 1.55;
+  color: rgba(245, 241, 234, 0.92);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.psc-stories-cta-template .psc-stories-cta_title {
+  margin: 0;
+}
+
+/* ─── CTA button — light pill on dark bg ────────────────────────────────────── */
+.psc-stories-cta-template .psc-padding-top {
+  padding-top: clamp(1.5rem, 2.5vw, 2.25rem);
+}
+
+.psc-stories-cta-template .psc-display-inlineflex {
+  display: inline-flex;
+}
+
+.psc-stories-cta-template .psc-btn-animate-chars {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  align-self: flex-start;
+  padding: 0.95rem 1.5rem;
+  background-color: #1d2520;
+  color: #f5f1ea;
+  border: 1px solid #1d2520;
+  border-radius: 9999px;
+  font-family: var(--psc-font-body), system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.psc-stories-cta-template .psc-btn-animate-chars:hover,
+.psc-stories-cta-template .psc-btn-animate-chars:focus-visible {
+  background-color: #f5f1ea;
+  color: #1d2520;
+  border-color: #f5f1ea;
+  transform: translateY(-1px);
+}
+
+.psc-stories-cta-template .psc-btn-animate-chars:focus-visible {
+  outline: 2px solid #f5f1ea;
+  outline-offset: 3px;
+}
+
+.psc-stories-cta-template .psc-btn-animate-chars__text {
+  display: inline-block;
+}
+
+.psc-stories-cta-template .psc-button-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.75rem;
+  height: 0.75rem;
+  transform: rotate(90deg);
+}
+
+.psc-stories-cta-template .psc-icon-10px {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* ─── psc-line wrappers used by splitIntoLines() ──────────────────────────── */
+.psc-stories-cta-template .psc-line {
+  display: block;
+  overflow: hidden;
+}
+
+/* ─── Responsive tweaks (AP-11) ───────────────────────────────────────────── */
+@media (max-width: 991px) {
+  .psc-stories-cta-template .psc-stories-cta_content {
+    align-items: start;
+    padding-bottom: clamp(2rem, 6vw, 4rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .psc-stories-cta-template .psc-btn-animate-chars {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* ─── Reduced motion (a11y) ───────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .psc-stories-cta-template .psc-btn-animate-chars {
+    transition: none;
+  }
+  .psc-stories-cta-template .psc-btn-animate-chars:hover,
+  .psc-stories-cta-template .psc-btn-animate-chars:focus-visible {
+    transform: none;
+  }
+}

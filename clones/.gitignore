@@ -1,0 +1,14 @@
+# Heavy snapshot outputs — reproducible from the documented commands in
+# clones/<run-dir>/reports/REPORT.md (wget, httrack, goclone, ArchiveBox).
+# Keep their metadata (sizes, file counts, logs) in the report; drop the raw
+# downloads from git so the repo doesn't balloon.
+*/caso-b-snapshot/wget/
+*/caso-b-snapshot/httrack/
+*/caso-b-snapshot/goclone/www.*/
+*/caso-b-snapshot/archivebox/
+
+# Python venv used by the run scripts (crawl4ai, browser-use, playwright).
+*/.venv-clone/
+
+# Browser-use's per-run agent transcript (large, not useful for review).
+*/caso-a-shadcn-rebuild/a1-browseruse-output/agent_*.json

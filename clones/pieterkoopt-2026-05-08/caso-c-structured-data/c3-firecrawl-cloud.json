@@ -1,0 +1,64 @@
+{
+  "_method": "C3 — Firecrawl Cloud API (firecrawl_extract endpoint)",
+  "_executedAt": "2026-05-08T06:25Z",
+  "_creditsUsed": 49,
+  "_tokensUsed": 726,
+  "_licenseStatus": "Cloud SaaS — license-safe (paid API). Self-hosted Firecrawl is AGPL-3.0; Cloud API is NOT AGPL-restricted for end users.",
+  "data": {
+    "site_name": "Pieter Koopt",
+    "tagline": "Selling a painting? Pieter arranges it.",
+    "value_prop": "At PieterKoopt®, we offer a quick, personal, and hassle-free selling experience - no fees, transparent offers within 48 hours.",
+    "services": [
+      "Sell your painting",
+      "Expert assessment at home",
+      "Personal appointment for offers",
+      "Hassle-free sales process"
+    ],
+    "process_steps": [
+      {
+        "step_number": "01",
+        "title": "Upload your Artwork",
+        "description": "Take clear photos, tell the story behind your artwork and upload everything easily via our platform."
+      },
+      {
+        "step_number": "02",
+        "title": "Review by Pieter",
+        "description": "We carefully review your submission. If your painting qualifies, we'll arrange a personal viewing. You will hear from us within 48 hours."
+      },
+      {
+        "step_number": "03",
+        "title": "Personal Appointment",
+        "description": "If your artwork is suitable, we will schedule an appointment. Pieter will visit you together with a specialist and give you a fair offer straight away."
+      }
+    ],
+    "pricing_info": "No commission fees; you receive 100% of the offer.",
+    "geographic_coverage": "Dordrecht, Netherlands",
+    "contact_channels": {
+      "phone": "+31 6 53 29 29 39",
+      "whatsapp": "https://wa.me/31653292939",
+      "email": "info@pieterkoopt.nl",
+      "physical_address": "Johan de Wittstraat 33, 3311 KG Dordrecht"
+    },
+    "ctas": {
+      "primary": "Request Offer",
+      "secondary": "Sell Your Painting"
+    },
+    "social_proof": {
+      "stats": [
+        "100% of the offer is yours",
+        "Response within 48 hours"
+      ]
+    },
+    "tech_stack_detected": ["CDN", "HTML5"],
+    "pages_referenced": ["How it works", "About us", "Stories", "City tour", "Contact", "Sell your painting"],
+    "target_audience": "Individuals looking to sell their paintings",
+    "languages_supported": ["en", "nl"]
+  },
+  "_qualityNotes": [
+    "CTA classification disagrees with branding endpoint: branding said primary=\"Sell your painting\" (dark bg, button #2). Extract said primary=\"Request Offer\". Reasonable LLM ambiguity since site has multiple CTAs in different contexts (nav, hero, sticky footer). Both are valid; report this as evidence that LLM judgment varies between calls.",
+    "Tech stack detection shallow (just \"CDN\", \"HTML5\"). Did NOT identify Webflow despite obvious markers (cdn.prod.website-files.com, w-* class prefixes). Suggests need for explicit prompt about framework signatures.",
+    "Process step descriptions captured verbatim — high quality.",
+    "Address geocoded correctly (Johan de Wittstraat 33, Dordrecht).",
+    "Nothing hallucinated — all output verifiable in source HTML."
+  ]
+}

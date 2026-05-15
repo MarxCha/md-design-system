@@ -1,0 +1,22 @@
+{
+  "title": "Sell Your Painting Quickly & Safely | PieterKoopt®",
+  "language": "en",
+  "ogImage": "https://cdn.prod.website-files.com/67890d3b1a9365a1173c954e/6847f41c2c055982f1c1fd4c_Thumb%20pk.webp",
+  "description": "Looking to sell your painting? At PieterKoopt®, we offer a quick, personal, and hassle-free selling experience - no fees, transparent offers within 48 hours.",
+  "twitter:image": "https://cdn.prod.website-files.com/67890d3b1a9365a1173c954e/6847f41c2c055982f1c1fd4c_Thumb%20pk.webp",
+  "og:image": "https://cdn.prod.website-files.com/67890d3b1a9365a1173c954e/6847f41c2c055982f1c1fd4c_Thumb%20pk.webp",
+  "viewport": [
+    "width=device-width, initial-scale=1",
+    "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+  ],
+  "favicon": "https://cdn.prod.website-files.com/67890d3b1a9365a1173c954e/6847f22fb31dc1494ed8bbb9_facicon.png",
+  "scrapeId": "019e0640-2a77-7079-880e-aece1652f282",
+  "sourceURL": "https://www.pieterkoopt.nl/",
+  "url": "https://www.pieterkoopt.nl/",
+  "statusCode": 200,
+  "contentType": "text/html; charset=utf-8",
+  "timezone": "America/New_York",
+  "proxyUsed": "basic",
+  "creditsUsed": 1,
+  "concurrencyLimited": false
+}

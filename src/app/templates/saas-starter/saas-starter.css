@@ -1,0 +1,147 @@
+/* ─── SaaS Starter Template — Custom Styles ─────────────────────────────────── */
+/* ALL rules scoped under .saas-starter-template to win over design system globals  */
+/* NO @layer utilities — that loses specificity to unscoped globals           */
+
+/* ─── Web Fonts (Google Fonts CDN) ──────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+/* ─── Color Utilities (ss prefix, global scope) ──────────────────────────── */
+.text-ss-primary  { color: #4F46E5 !important; }
+.text-ss-accent   { color: #06B6D4 !important; }
+.text-ss-muted    { color: #64748B !important; }
+.bg-ss-primary    { background-color: #4F46E5 !important; }
+.bg-ss-accent     { background-color: #06B6D4 !important; }
+.bg-ss-surface    { background-color: #FFFFFF !important; }
+.bg-ss-base       { background-color: #FAFAFA !important; }
+
+/* ─── Base Styles ─────────────────────────────────────────────────────── */
+.saas-starter-template {
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  background-color: #FAFAFA;
+  color: #0F172A;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Reset: override design system heading color rules ───────────────── */
+.saas-starter-template h1,
+.saas-starter-template h2,
+.saas-starter-template h3,
+.saas-starter-template h4,
+.saas-starter-template h5,
+.saas-starter-template h6,
+.saas-starter-template p,
+.saas-starter-template span,
+.saas-starter-template div {
+  color: inherit;
+}
+
+/* ─── Gradient Text ───────────────────────────────────────────────────── */
+.saas-starter-template .ss-gradient-text {
+  background: linear-gradient(135deg, #4F46E5 0%, #06B6D4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glassmorphism Card ──────────────────────────────────────────────── */
+.saas-starter-template .ss-glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* ─── Primary Button ──────────────────────────────────────────────────── */
+.saas-starter-template .ss-btn-primary {
+  background: linear-gradient(135deg, #4F46E5 0%, #4338CA 100%);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+.saas-starter-template .ss-btn-primary:hover {
+  background: linear-gradient(135deg, #4338CA 0%, #3730A3 100%);
+}
+
+/* ─── Pricing Popular Card ────────────────────────────────────────────── */
+.saas-starter-template .ss-pricing-popular {
+  background: linear-gradient(160deg, #4F46E5 0%, #3730A3 50%, #1E3A5F 100%);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  color: #ffffff;
+}
+
+/* ─── CTA Section Gradient ────────────────────────────────────────────── */
+.saas-starter-template .ss-cta-gradient {
+  background: linear-gradient(135deg, #4F46E5 0%, #2563EB 40%, #06B6D4 100%);
+}
+
+/* ─── Dashboard Mock Container ───────────────────────────────────────── */
+.saas-starter-template .ss-dashboard-mock {
+  perspective: 1200px;
+}
+
+/* ─── Pulse animation for badge dot ──────────────────────────────────── */
+.saas-starter-template .ss-pulse-dot {
+  position: relative;
+  display: inline-block;
+}
+
+.saas-starter-template .ss-pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: currentColor;
+  animation: ss-pulse 2s ease-in-out infinite;
+}
+
+/* ─── Navbar sticky blur ──────────────────────────────────────────────── */
+.saas-starter-template .ss-navbar {
+  will-change: backdrop-filter;
+}
+
+/* ─── Smooth scroll behavior ─────────────────────────────────────────── */
+.saas-starter-template {
+  scroll-behavior: smooth;
+}
+
+/* ─── Focus ring override ─────────────────────────────────────────────── */
+.saas-starter-template *:focus-visible {
+  outline: 2px solid #4F46E5;
+  outline-offset: 2px;
+}
+
+/* ─── Keyframes ───────────────────────────────────────────────────────── */
+@keyframes ss-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .saas-starter-template .ss-pricing-popular {
+    transform: scale(1) !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .saas-starter-template .ss-pricing-popular {
+    transform: scale(1.05);
+  }
+
+  .saas-starter-template .ss-dashboard-mock {
+    transform: perspective(1200px) rotateX(4deg);
+    transition: transform 0.6s ease;
+  }
+
+  .saas-starter-template .ss-dashboard-mock:hover {
+    transform: perspective(1200px) rotateX(0deg);
+  }
+}

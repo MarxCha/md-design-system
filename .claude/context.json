@@ -1,0 +1,75 @@
+{
+  "project": "md-design-system",
+  "description": "Design System compartido de MD Consultoría TI para CuentosIA, Palabras Vivas, dashboards y landing pages",
+  "repo": "MarxCha/md-design-system",
+  "stack": {
+    "framework": "Next.js 15.5.14",
+    "language": "TypeScript",
+    "styling": "Tailwind CSS 4",
+    "components": "shadcn/ui (20) + custom (17) + layout (2) + dashboard (8) + landing (5) + responsive (5) + scroll (4) + navigation (4) + video (10) + docs-kit (8)",
+    "animation": ["GSAP + ScrollTrigger + SplitText", "Lenis", "Framer Motion"],
+    "charts": "Recharts",
+    "audio": "Howler.js",
+    "3d": "Three.js + R3F v9.5 + drei v10.7",
+    "video": "Remotion v4.0.440 (10 compositions ALL working + 9 editor-pro-max components + 12 transitions + 5 presets)",
+    "docs": "docs-kit (slide-deck + one-pager + notebook-pack) + notebooklm-py v0.3.4",
+    "state": "Zustand",
+    "testing": "Vitest 4.1 + Testing Library + happy-dom + Playwright",
+    "other": ["Lottie", "Lucide Icons", "CVA", "Zod 4.3.6", "Sonner", "cmdk"]
+  },
+  "status": "crece-landing-v1-shipped-6-sections-institutional-gold",
+  "lastSession": "2026-04-14",
+  "branch": "feat/design-system-scaffold",
+  "pr": "https://github.com/MarxCha/md-design-system/pull/1",
+  "commits": 30,
+  "stats": {
+    "sourceFiles": 315,
+    "testFiles": 33,
+    "testsPassing": 151,
+    "demoPages": 19,
+    "templates": 12,
+    "typescriptErrors": 0
+  },
+  "templateFidelity": {
+    "A": ["zentry"],
+    "B": ["iphone-15"],
+    "C": ["gsap-cocktails (WIP→replicating)", "gsap-macbook", "saas-starter", "page-ui", "cruip-open", "astrowind"],
+    "unaudited": ["ai-sales", "dashboard-pro", "ecommerce", "form-builder"]
+  },
+  "knownIssues": [
+    {
+      "id": "node-version",
+      "description": "Node 25 causa SyntaxError en Next.js 15 builds. Usar Node 22 LTS.",
+      "severity": "high",
+      "workaround": "export PATH=\"/opt/homebrew/opt/node@22/bin:$PATH\""
+    },
+    {
+      "id": "gsap-cocktails-hero-video",
+      "description": "Video del cocktail se muestra pero tapa textos y hojas. Z-index layering entre video/textos/hojas necesita polish.",
+      "severity": "medium",
+      "workaround": "Video está dentro de #hero con !z-0, textos con z-20, hojas con z-10. Falta ajuste fino."
+    },
+    {
+      "id": "templates-are-scaffolds",
+      "description": "6 de 8 templates auditados son rewrites genéricos (C-grade), no clones del repo fuente. Requieren replicación correcta.",
+      "severity": "high",
+      "workaround": "Proceso: clonar repo original → copiar assets → portar código → verificar vs demo original"
+    }
+  ],
+  "toolsAvailable": {
+    "video": ["Remotion 4.0 + Studio", "Playwright recording", "FFmpeg 8.x (sin drawtext)"],
+    "design": ["Blender 5.0 + CLI skill", "GIMP + CLI skill", "Inkscape 1.4 + CLI skill", "ImageMagick 7"],
+    "annotation": ["Agentation v3.0.2 (visual feedback toolbar + MCP server port 4747)"],
+    "ci": [".github/workflows/ci.yml (created, Node 22, tsc+eslint+vitest)"]
+  },
+  "nextSteps": [
+    "CRECE landing: CEO review with Agentation annotations on /landing/crece",
+    "CRECE landing Sprint C: responsive mobile audit + fix (6 sections)",
+    "CRECE landing Sprint D: handoff to Carlos (crece-v2), exportable components",
+    "CRECE landing: add testimonials section if Carlos provides quotes",
+    "CRECE landing: add video loop if dashboard real is available (avoid AI slop)",
+    "Resume Sprint 1: gsap-cocktails polish with Agentation feedback loop",
+    "Sprint 2: Replicate gsap-macbook from source (46 assets + possible R3F 3D)",
+    "Start agentation-mcp server before dev: npx agentation-mcp server --port 4747"
+  ]
+}

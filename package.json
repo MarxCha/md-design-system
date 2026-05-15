@@ -1,0 +1,140 @@
+{
+  "name": "@md-consultoria/design-system",
+  "version": "0.1.0",
+  "private": false,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MarxCha/md-design-system.git"
+  },
+  "license": "MIT",
+  "author": "MD Consultoría TI",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "files": [
+    "src/components",
+    "src/hooks",
+    "src/lib",
+    "src/styles",
+    "src/lint",
+    "src/index.ts"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./ui": "./src/components/ui/index.ts",
+    "./hooks": "./src/hooks/index.ts",
+    "./styles": "./src/styles/globals.css",
+    "./theme": "./src/lib/theme.ts",
+    "./animation-presets": "./src/lib/animation-presets.ts",
+    "./utils": "./src/lib/utils.ts",
+    "./responsive": "./src/components/responsive/index.ts",
+    "./lint": "./src/lint/index.ts",
+    "./video": "./src/components/video/index.ts",
+    "./docs-kit": "./src/docs-kit/index.ts"
+  },
+  "typesVersions": {
+    "*": {
+      "ui": [
+        "./src/components/ui/index.ts"
+      ],
+      "hooks": [
+        "./src/hooks/index.ts"
+      ],
+      "theme": [
+        "./src/lib/theme.ts"
+      ],
+      "animation-presets": [
+        "./src/lib/animation-presets.ts"
+      ],
+      "utils": [
+        "./src/lib/utils.ts"
+      ],
+      "responsive": [
+        "./src/components/responsive/index.ts"
+      ],
+      "lint": [
+        "./src/lint/index.ts"
+      ],
+      "video": [
+        "./src/components/video/index.ts"
+      ],
+      "docs-kit": [
+        "./src/docs-kit/index.ts"
+      ]
+    }
+  },
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "video:studio": "npx remotion studio",
+    "video:render": "npx remotion render",
+    "video:preview": "npx remotion preview",
+    "docs:new": "node scripts/new-docs.mjs",
+    "docs:export": "node scripts/export-docs.mjs",
+    "template:new": "node scripts/new-template.mjs",
+    "template:screenshot": "node scripts/capture-screenshots.mjs",
+    "test:visual": "node scripts/visual-regression.mjs"
+  },
+  "dependencies": {
+    "@eslint/eslintrc": "^3.3.5",
+    "@gsap/react": "^2.1.2",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.5.0",
+    "@remotion/cli": "^4.0.440",
+    "@remotion/media-utils": "^4.0.440",
+    "@remotion/noise": "^4.0.440",
+    "@remotion/player": "^4.0.440",
+    "@remotion/shapes": "^4.0.440",
+    "@remotion/transitions": "^4.0.440",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
+    "framer-motion": "^11.18.2",
+    "gsap": "^3.12.7",
+    "howler": "^2.2.4",
+    "lenis": "^1.2.3",
+    "lottie-react": "^2.4.0",
+    "lucide-react": "^0.468.0",
+    "next": "^15.5.14",
+    "next-themes": "^0.4.6",
+    "radix-ui": "^1.4.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "recharts": "^3.8.0",
+    "remotion": "^4.0.440",
+    "sonner": "^2.0.7",
+    "split-type": "^0.3.4",
+    "tailwind-merge": "^2.6.0",
+    "three": "^0.173.0",
+    "zod": "^4.3.6",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/howler": "^2.2.12",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/three": "^0.173.0",
+    "@vitejs/plugin-react": "^6.0.1",
+    "agentation": "^3.0.2",
+    "eslint": "^9",
+    "eslint-config-next": "^15.5.14",
+    "happy-dom": "^20.8.7",
+    "playwright": "^1.58.2",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "vitest": "^4.1.1"
+  }
+}

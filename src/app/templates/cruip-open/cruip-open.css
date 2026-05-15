@@ -1,0 +1,267 @@
+/* ─── Cruip Open Template — Custom Styles ─────────────────────────────────── */
+/* ALL rules scoped under .cruip-open-template to win over design system globals  */
+/* NO @layer utilities — that loses specificity to unscoped globals           */
+
+/* ─── Web Fonts (Google Fonts CDN) ──────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+/* ─── Color Utilities (co prefix, global scope) ──────────────────────────── */
+.text-co-primary   { color: #6366F1 !important; }
+.text-co-accent    { color: #8B5CF6 !important; }
+.text-co-muted     { color: #6B7280 !important; }
+.bg-co-dark        { background-color: #111827 !important; }
+.bg-co-darker      { background-color: #0D1117 !important; }
+.bg-co-deepest     { background-color: #080C14 !important; }
+.bg-co-primary     { background-color: #6366F1 !important; }
+
+/* ─── Base Styles ─────────────────────────────────────────────────────── */
+.cruip-open-template {
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  background-color: #111827;
+  color: #F9FAFB;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Reset: override design system heading color rules ───────────────── */
+.cruip-open-template h1,
+.cruip-open-template h2,
+.cruip-open-template h3,
+.cruip-open-template h4,
+.cruip-open-template h5,
+.cruip-open-template h6,
+.cruip-open-template p,
+.cruip-open-template span,
+.cruip-open-template div {
+  color: inherit;
+}
+
+/* ─── Space Grotesk headings ──────────────────────────────────────────── */
+.cruip-open-template h1,
+.cruip-open-template h2,
+.cruip-open-template h3 {
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ─── Gradient Text ───────────────────────────────────────────────────── */
+.cruip-open-template .co-gradient-text {
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #A78BFA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: co-gradient-cycle 6s ease infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes co-gradient-cycle {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ─── Eyebrow Badge ───────────────────────────────────────────────────── */
+.cruip-open-template .co-eyebrow {
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #A5B4FC;
+}
+
+/* ─── Hero Badge (pulse) ──────────────────────────────────────────────── */
+.cruip-open-template .co-badge {
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  color: #A5B4FC;
+}
+
+.cruip-open-template .co-pulse-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #6366F1;
+  animation: co-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes co-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+/* ─── Grid dot background ─────────────────────────────────────────────── */
+.cruip-open-template .co-grid-bg {
+  background-image: radial-gradient(circle, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ─── Glowing orbs ────────────────────────────────────────────────────── */
+.cruip-open-template .co-glow-orb {
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.cruip-open-template .co-glow-orb--indigo {
+  background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.35) 0%, transparent 70%);
+}
+
+.cruip-open-template .co-glow-orb--purple {
+  background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.25) 0%, transparent 70%);
+}
+
+/* ─── Primary Button ──────────────────────────────────────────────────── */
+.cruip-open-template .co-btn-primary {
+  background: linear-gradient(135deg, #6366F1 0%, #7C3AED 100%);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+}
+
+.cruip-open-template .co-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5);
+}
+
+.cruip-open-template .co-btn-primary:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* ─── Glassmorphism Button ────────────────────────────────────────────── */
+.cruip-open-template .co-btn-glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #E5E7EB;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.cruip-open-template .co-btn-glass:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.cruip-open-template .co-btn-glass:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* ─── App window mock ─────────────────────────────────────────────────── */
+.cruip-open-template .co-app-window {
+  background: #161B27;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 40px 80px rgba(0, 0, 0, 0.6),
+    0 0 80px rgba(99, 102, 241, 0.08);
+}
+
+.cruip-open-template .co-window-chrome {
+  background: #0F1520;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ─── KPI cards ───────────────────────────────────────────────────────── */
+.cruip-open-template .co-kpi-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ─── Chart/inner cards ───────────────────────────────────────────────── */
+.cruip-open-template .co-chart-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ─── Feature Cards ───────────────────────────────────────────────────── */
+.cruip-open-template .co-feature-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.cruip-open-template .co-feature-card:hover {
+  background: rgba(99, 102, 241, 0.06);
+  border-color: rgba(99, 102, 241, 0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(99, 102, 241, 0.12);
+}
+
+/* ─── Feature icon ────────────────────────────────────────────────────── */
+.cruip-open-template .co-feature-icon {
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+/* ─── Workflow connector line ─────────────────────────────────────────── */
+.cruip-open-template .co-connector-line {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(99, 102, 241, 0.3) 20%,
+    rgba(99, 102, 241, 0.3) 80%,
+    transparent 100%
+  );
+}
+
+/* ─── Workflow step number ────────────────────────────────────────────── */
+.cruip-open-template .co-step-number {
+  font-family: 'Space Grotesk', ui-sans-serif, sans-serif;
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 1;
+}
+
+/* ─── Workflow step icon box ──────────────────────────────────────────── */
+.cruip-open-template .co-step-icon {
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ─── Social buttons ──────────────────────────────────────────────────── */
+.cruip-open-template .co-social-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.cruip-open-template .co-social-btn:hover {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.4);
+  color: #A5B4FC;
+}
+
+/* ─── Email input ─────────────────────────────────────────────────────── */
+.cruip-open-template .co-email-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cruip-open-template .co-email-input:focus {
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* ─── Keyframes ───────────────────────────────────────────────────────── */
+@keyframes co-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+/* ─── Responsive ──────────────────────────────────────────────────────── */
+@media (min-width: 640px) {
+  .cruip-open-template .co-feature-card {
+    padding: 1.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cruip-open-template .co-feature-card:nth-child(1),
+  .cruip-open-template .co-feature-card:nth-child(4) {
+    border-left: 1px solid rgba(99, 102, 241, 0.15);
+  }
+}

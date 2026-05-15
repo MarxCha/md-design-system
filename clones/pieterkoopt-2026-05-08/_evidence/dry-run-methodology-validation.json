@@ -1,0 +1,143 @@
+{
+  "_method": "Dry-run methodology validation — would the SKILL pre-flight checklist have caught the silent fail?",
+  "_executedAt": "2026-05-08T13:15Z",
+  "_summary": {
+    "total_checks": 13,
+    "info": 8,
+    "minor": 2,
+    "major": 2,
+    "blocker": 1
+  },
+  "_verdict": "BLOCKER COUNT > 0",
+  "_methodologyClaim": "If the SKILL's pre-flight had been followed (ground-truth.json written by hand, Pydantic strict validation on the C2 heuristic output before writing any spec), the H3-text silent failure would have raised at the validation step instead of being discovered by manual inspection 2 hours later. The SKILL closes the bias loop Gemini flagged: developer-as-judge becomes test-as-judge.",
+  "checks": [
+    {
+      "case": "C2",
+      "field": "h1",
+      "expected": "Time changes everything. Except history.",
+      "actual": "Time changes everything.Except history.",
+      "severity": "info",
+      "note": "Matches modulo whitespace/punctuation merging in source DOM"
+    },
+    {
+      "case": "C2",
+      "field": "h3_text",
+      "expected": [
+        "No commission fees",
+        "Expert assessment at home",
+        "Fast and personal process",
+        "No hidden fees"
+      ],
+      "actual": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "Upload yourArtwork",
+        "Reviewby Pieter",
+        "personalappointment"
+      ],
+      "severity": "blocker",
+      "note": "6/9 h3 entries returned empty strings — SILENT FAILURE. Pydantic strict validation per Gemini's audit would have caught this BEFORE the spec file was written."
+    },
+    {
+      "case": "C2",
+      "field": "phone",
+      "expected": "+31 6 53 29 29 39",
+      "actual": "+31653292939",
+      "severity": "info",
+      "note": "Matches (modulo formatting)"
+    },
+    {
+      "case": "C2",
+      "field": "email",
+      "expected": "info@pieterkoopt.nl",
+      "actual": "info@pieterkoopt.nl",
+      "severity": "info",
+      "note": "Match"
+    },
+    {
+      "case": "C2",
+      "field": "whatsapp",
+      "expected": "https://wa.me/31653292939",
+      "actual": "https://wa.me/31653292939",
+      "severity": "info",
+      "note": "Match"
+    },
+    {
+      "case": "C2",
+      "field": "social_links",
+      "expected": [
+        "https://instagram.com/pieterkoopt",
+        "https://www.tiktok.com/@pieterkoopt"
+      ],
+      "actual": [
+        {},
+        {}
+      ],
+      "severity": "major",
+      "note": "social_links populated as 2 empty objects — same selector traversal issue as h3_text. Pydantic strict would have caught this."
+    },
+    {
+      "case": "C3",
+      "field": "site_name",
+      "expected": "PieterKoopt (or PieterKoopt®)",
+      "actual": "Pieter Koopt",
+      "severity": "major",
+      "note": "Match modulo ® registered-trademark glyph"
+    },
+    {
+      "case": "C3",
+      "field": "tagline",
+      "expected": "Selling a painting? Pieter arranges it.",
+      "actual": "Selling a painting? Pieter arranges it.",
+      "severity": "info",
+      "note": "Match"
+    },
+    {
+      "case": "C3",
+      "field": "phone",
+      "expected": "+31 6 53 29 29 39",
+      "actual": "+31 6 53 29 29 39",
+      "severity": "info",
+      "note": "Match modulo whitespace"
+    },
+    {
+      "case": "C3",
+      "field": "address",
+      "expected": "Johan de Wittstraat 33, 3311 KG Dordrecht",
+      "actual": "Johan de Wittstraat 33, 3311 KG Dordrecht",
+      "severity": "info",
+      "note": "Match"
+    },
+    {
+      "case": "C3",
+      "field": "process_steps_count",
+      "expected": 3,
+      "actual": 3,
+      "severity": "info",
+      "note": "Match"
+    },
+    {
+      "case": "C3",
+      "field": "primary_cta",
+      "expected": "Sell your painting",
+      "actual": "Request Offer",
+      "severity": "minor",
+      "note": "C3 extract picked 'Request Offer' as primary, ground-truth picked 'Sell your painting'. Both are real CTAs in different page contexts — LLM judgement varies. Per Gemini's audit, the rubric-injected approach (dictate scoring before LLM picks) would resolve."
+    },
+    {
+      "case": "C3",
+      "field": "framework",
+      "expected": "Webflow",
+      "actual": [
+        "CDN",
+        "HTML5"
+      ],
+      "severity": "minor",
+      "note": "Stack detection shallow — did not flag Webflow despite obvious markers (cdn.prod.website-files.com, w-* prefixes). Prompt should ask explicitly for framework signatures."
+    }
+  ]
+}

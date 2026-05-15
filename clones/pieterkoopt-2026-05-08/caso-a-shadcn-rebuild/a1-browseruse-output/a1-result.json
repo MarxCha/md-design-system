@@ -1,0 +1,11 @@
+{
+  "_method": "A1 — browser-use + Ollama (gemma3:12b)",
+  "_wallTimeSec": 486.3,
+  "_licenseStatus": "MIT (browser-use). Self-hosted Ollama, $0 marginal cost.",
+  "_useVision": false,
+  "_visionModelAvailable": false,
+  "_visionLimitationNote": "gemma3:12b is text-only. browser-use therefore feeds DOM-text/a11y-tree context to the model instead of screenshots. Token extraction quality is expected to be lower than a vision-capable model would deliver.",
+  "data": null,
+  "_isDone": false,
+  "_isSuccessful": null
+}
