@@ -47,7 +47,7 @@
     s.appendChild(el("line", { x1: x1, y1: y, x2: x2, y2: y, stroke: "#e6e9ee" }));
   }
   function label(s, x, y, txt) {
-    var t = el("text", { x: x, y: y, "text-anchor": "middle", "font-size": 8, fill: "#7a8590" });
+    var t = el("text", { x: x, y: y, "text-anchor": "middle", "font-size": 8, fill: "#677079" });
     t.setAttribute("class", "svg-label");
     t.textContent = txt;
     s.appendChild(t);

@@ -33,7 +33,7 @@
   --amber:      var(--brand-gold);
   --ink:        var(--brand-ink);
   --ink-soft:   #3d4753;
-  --muted:      #7a8590;
+  --muted:      #677079;   /* WCAG AA: 5.0:1 sobre papel (texto pequeño ≥4.5) */
   --rule:       #e6e9ee;
   --rule-soft:  #f0f2f5;
   --paper:      var(--brand-paper);
@@ -180,7 +180,9 @@ table.tbl .g { color: var(--green-dk); font-weight: 700; }
 
 /* ---------- Componentes data-viz estilo Doing Business (#21–26) ---------- */
 /* Panel verde sólido (KPI hero, tipo "Principales variables") */
-.panel-green { background: linear-gradient(160deg,var(--green),var(--green-dk)); color:#fff; border-radius:4px; padding:.26in .28in; }
+/* gradiente verde-oscuro→más oscuro: white pasa AA en TODO el degradado (5.5:1 a 9.9:1);
+   el verde brillante claro daba 2.3:1 con texto blanco (fallo AA). */
+.panel-green { background: linear-gradient(160deg,var(--green-dk),#024d38); color:#fff; border-radius:4px; padding:.26in .28in; }
 .panel-green .k { font-family:var(--sans); font-size:8.5pt; font-weight:600; letter-spacing:.04em; color:rgba(255,255,255,.88); text-transform:uppercase; }
 .panel-green .v { font-family:var(--display); font-weight:400; font-size:30pt; line-height:1; letter-spacing:-.02em; color:#fff; margin-top:.02in; }
 .panel-green .u { font-size:8pt; color:rgba(255,255,255,.82); margin-top:.03in; }
