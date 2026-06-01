@@ -78,6 +78,7 @@
     "video:preview": "npx remotion preview",
     "docs:new": "node scripts/new-docs.mjs",
     "docs:export": "node scripts/export-docs.mjs",
+    "report:build": "bash src/docs-kit/report/build.sh",
     "template:new": "node scripts/new-template.mjs",
     "template:screenshot": "node scripts/capture-screenshots.mjs",
     "test:visual": "node scripts/visual-regression.mjs"
