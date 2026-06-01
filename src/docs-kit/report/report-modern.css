@@ -8,22 +8,38 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap");
 
+/* ── CAPA DE MARCA (re-skineable por cliente) ──────────────────────────────
+   Para proponer a OTRO cliente: sobreescribe estos --brand-* (en un <style> del
+   doc o en brands/<cliente>.css) y todo el kit se re-tematiza. Default = MD. */
 :root {
-  --green:      #10b981;   /* emerald MD = el "verde Deloitte" */
-  --green-lime: #4cc88f;
-  --green-dk:   #047857;
-  --blue:       #1e3a5f;
-  --blue-700:   #16293f;
-  --amber:      #d4a853;
-  --ink:        #15202b;   /* casi negro */
+  --brand-primary:      #1e3a5f;   /* azul institucional */
+  --brand-primary-700:  #16293f;
+  --brand-accent:       #10b981;   /* acento (verde MD) */
+  --brand-accent-lime:  #4cc88f;
+  --brand-accent-dk:    #047857;
+  --brand-gold:         #d4a853;   /* dato secundario */
+  --brand-ink:          #15202b;
+  --brand-paper:        #ffffff;
+  --brand-black:        #0a0a0b;   /* portadas */
+  --brand-display: "Instrument Sans", Georgia, sans-serif;
+  --brand-sans:    "DM Sans", system-ui, sans-serif;
+
+  /* ── Mapeo interno (NO editar; los componentes consumen estos) ── */
+  --green:      var(--brand-accent);
+  --green-lime: var(--brand-accent-lime);
+  --green-dk:   var(--brand-accent-dk);
+  --blue:       var(--brand-primary);
+  --blue-700:   var(--brand-primary-700);
+  --amber:      var(--brand-gold);
+  --ink:        var(--brand-ink);
   --ink-soft:   #3d4753;
   --muted:      #7a8590;
   --rule:       #e6e9ee;
   --rule-soft:  #f0f2f5;
-  --paper:      #ffffff;
-  --black:      #0a0a0b;   /* portada */
-  --sans:    "DM Sans", system-ui, sans-serif;
-  --display: "Instrument Sans", Georgia, sans-serif;
+  --paper:      var(--brand-paper);
+  --black:      var(--brand-black);
+  --sans:    var(--brand-sans);
+  --display: var(--brand-display);
 }
 
 * { box-sizing: border-box; }
@@ -164,7 +180,7 @@ table.tbl .g { color: var(--green-dk); font-weight: 700; }
 
 /* ---------- Componentes data-viz estilo Doing Business (#21–26) ---------- */
 /* Panel verde sólido (KPI hero, tipo "Principales variables") */
-.panel-green { background: linear-gradient(160deg,#10b981,#047857); color:#fff; border-radius:4px; padding:.26in .28in; }
+.panel-green { background: linear-gradient(160deg,var(--green),var(--green-dk)); color:#fff; border-radius:4px; padding:.26in .28in; }
 .panel-green .k { font-family:var(--sans); font-size:8.5pt; font-weight:600; letter-spacing:.04em; color:rgba(255,255,255,.88); text-transform:uppercase; }
 .panel-green .v { font-family:var(--display); font-weight:400; font-size:30pt; line-height:1; letter-spacing:-.02em; color:#fff; margin-top:.02in; }
 .panel-green .u { font-size:8pt; color:rgba(255,255,255,.82); margin-top:.03in; }
@@ -188,9 +204,9 @@ table.tbl.band tbody tr:first-child td { padding-top:.08in; }
 .waffle-cap { text-align:center; }
 .waffle { display:grid; grid-template-columns:repeat(10,9px); grid-auto-rows:9px; gap:2px; margin:0 auto .08in; }
 .waffle i { width:9px; height:9px; background:var(--rule-soft); border-radius:1.5px; }
-.waffle i.a { background:#d4a853; }   /* ámbar — estado inicial */
-.waffle i.b { background:#1e3a5f; }   /* azul — tras corrección */
-.waffle i.g { background:#10b981; }   /* verde — tras sanación */
+.waffle i.a { background:var(--amber); }   /* estado inicial */
+.waffle i.b { background:var(--blue); }     /* tras corrección */
+.waffle i.g { background:var(--green); }    /* tras sanación */
 .waffle-cap .n { font-family:var(--display); font-weight:400; font-size:24pt; line-height:1; color:var(--ink); }
 .waffle-cap .t { font-size:8.5pt; color:var(--muted); display:block; margin-top:.02in; }
 .waffle-arrow { font-family:var(--display); font-size:20pt; color:var(--muted); padding-bottom:.22in; }

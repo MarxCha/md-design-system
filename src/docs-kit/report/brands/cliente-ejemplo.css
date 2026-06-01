@@ -1,0 +1,14 @@
+/* Marca DEMO (cliente ejemplo) — muestra el re-skin del kit sin tocar componentes.
+   Paleta contrastante: azul marino + naranja + teal · fuentes alternas. */
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap");
+:root{
+  --brand-primary:     #0b2a4a;
+  --brand-primary-700: #07203a;
+  --brand-accent:      #e8763b;   /* naranja */
+  --brand-accent-lime: #f0a06a;
+  --brand-accent-dk:   #b8501b;
+  --brand-gold:        #3aa6a0;   /* teal como secundario */
+  --brand-ink:         #14181d;
+  --brand-display: "Newsreader", Georgia, serif;
+  --brand-sans:    "Libre Franklin", system-ui, sans-serif;
+}

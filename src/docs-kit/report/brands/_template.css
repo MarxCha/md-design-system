@@ -1,0 +1,24 @@
+/* =============================================================================
+   PLANTILLA DE MARCA — report-kit
+   Para proponer/replicar a OTRO cliente:
+     1. Copia este archivo a  brands/<cliente>.css
+     2. Ajusta los valores --brand-*  (paleta + fuentes del cliente)
+     3. Enlázalo DESPUÉS de report-modern.css en el documento:
+          <link rel="stylesheet" href="../../report-modern.css">
+          <link rel="stylesheet" href="../../brands/<cliente>.css">
+   Todo el kit (charts, tablas, paneles, waffle, KPIs) se re-tematiza solo.
+   Default (sin marca enlazada) = MD Consultoría.
+   ============================================================================= */
+:root{
+  --brand-primary:     #1e3a5f;   /* color institucional principal (bandas, portadas) */
+  --brand-primary-700: #16293f;   /* variante oscura del principal */
+  --brand-accent:      #10b981;   /* acento: gráficas, reglas, números clave */
+  --brand-accent-lime: #4cc88f;   /* acento claro (sub-bandas, líneas) */
+  --brand-accent-dk:   #047857;   /* acento oscuro (texto sobre claro) */
+  --brand-gold:        #d4a853;   /* dato secundario / advertencia suave */
+  --brand-ink:         #15202b;   /* texto casi-negro */
+  --brand-paper:       #ffffff;   /* fondo de página */
+  --brand-black:       #0a0a0b;   /* portadas/divisores oscuros */
+  --brand-display: "Instrument Sans", Georgia, sans-serif;  /* titulares */
+  --brand-sans:    "DM Sans", system-ui, sans-serif;        /* cuerpo */
+}

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>MD · Biblioteca de componentes data-viz (Doing Business → MD)</title>
+<link rel="stylesheet" href="../../report-modern.css">
+<link rel="stylesheet" href="../../brands/cliente-ejemplo.css">
+</head>
+<body>
+
+<!-- sprite de íconos de línea -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v4h4"/><path d="M9 12h6M9 16h6"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V4"/><path d="M4 20h16"/><path d="M8 16v-4M13 16V8M18 16v-6"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2 2M16.4 16.4l2 2M18.4 5.6l-2 2M7.6 16.4l-2 2"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 5 14h6l-1 8 8-12h-6z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6z"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-8 6-13 14-13 0 8-6 14-14 13z"/><path d="M5 19c4-5 7-7 10-8"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z"/></symbol>
+</svg>
+
+<!-- ════════ 1 · PORTADA + A (barra rankeada) + B (mini-tablas) ════════ -->
+<section class="page">
+  <div class="rh">MD · Biblioteca de componentes <span class="reg">| data-viz</span></div>
+  <div class="frame">
+    <div class="eyebrow">Sistema de visualización</div>
+    <h1 class="title" style="margin:.1in 0 .04in">Componentes <em>data-viz</em> MD.</h1>
+    <p class="subt" style="margin-bottom:.3in">Lenguaje Doing Business / Deloitte replicado en marca MD · datos ilustrativos.</p>
+
+    <div class="label">A · Barra rankeada con íconos</div>
+    <div class="subt" style="margin-bottom:.1in">Proyectos por línea de servicio · ilustrativo</div>
+    <div class="rankbar">
+      <div class="b"><div class="val">31</div><div class="bar" style="height:100%;background:#047857"></div></div>
+      <div class="b"><div class="val">24</div><div class="bar" style="height:77%;background:#10b981"></div></div>
+      <div class="b"><div class="val">18</div><div class="bar" style="height:58%;background:#5cc79f"></div></div>
+      <div class="b"><div class="val">12</div><div class="bar" style="height:39%;background:#9fdcc4"></div></div>
+      <div class="b"><div class="val">9</div><div class="bar" style="height:29%;background:#b9bec2"></div></div>
+      <div class="b"><div class="val">6</div><div class="bar" style="height:19%;background:#8a9095"></div></div>
+    </div>
+    <div class="rankbar-x">
+      <div class="lx"><span class="ic"><svg><use href="#i-doc"/></svg></span><span class="t">Libros Blancos</span></div>
+      <div class="lx"><span class="ic"><svg><use href="#i-chart"/></svg></span><span class="t">Estudios económicos</span></div>
+      <div class="lx"><span class="ic"><svg><use href="#i-gear"/></svg></span><span class="t">Tecnologías</span></div>
+      <div class="lx"><span class="ic"><svg><use href="#i-shield"/></svg></span><span class="t">Control interno</span></div>
+      <div class="lx"><span class="ic"><svg><use href="#i-bolt"/></svg></span><span class="t">Energía</span></div>
+      <div class="lx"><span class="ic"><svg><use href="#i-drop"/></svg></span><span class="t">Hídrico</span></div>
+    </div>
+
+    <div class="label" style="margin-top:.34in">B · Mini-tablas KPI con íconos</div>
+    <div class="subt" style="margin-bottom:.08in">Cobertura por sector · ilustrativo</div>
+    <div class="kpiflags">
+      <div class="hd">
+        <div class="c"><span class="ic sm"><svg><use href="#i-bolt"/></svg></span>Energético</div>
+        <div class="c"><span class="ic sm"><svg><use href="#i-drop"/></svg></span>Hídrico</div>
+        <div class="c"><span class="ic sm"><svg><use href="#i-doc"/></svg></span>Social</div>
+        <div class="c"><span class="ic sm"><svg><use href="#i-gear"/></svg></span>Tecnología</div>
+      </div>
+      <div class="row"><div class="v">8</div><div class="v">11</div><div class="v">5</div><div class="v">7</div></div>
+      <div class="row share"><div class="v">26%</div><div class="v">35%</div><div class="v">16%</div><div class="v">23%</div></div>
+    </div>
+  </div>
+  <div class="pageno">01</div>
+</section>
+
+<!-- ════════ 2 · C (apiladas+línea) + D (line doble eje) ════════ -->
+<section class="page">
+  <div class="rh">MD · Biblioteca de componentes <span class="reg">| data-viz</span></div>
+  <div class="frame">
+    <div class="label">C · Barras apiladas + línea overlay</div>
+    <div class="subt" style="margin-bottom:.04in">Avance por trimestre y componentes · ilustrativo</div>
+    <div class="legend"><div class="it"><span class="sw" style="background:#10b981"></span>Composición</div><div class="it"><span class="sw" style="background:#d4a853"></span>Auditoría</div><div class="it"><span class="sw" style="background:#1e3a5f"></span>Sanación</div><div class="it"><span class="sw" style="background:#4cc88f;height:3px;width:18px"></span>Índice</div></div>
+    <svg class="chart" viewBox="0 0 360 175" xmlns="http://www.w3.org/2000/svg">
+      <line x1="22" y1="145" x2="350" y2="145" stroke="#e6e9ee"/>
+      <!-- 6 barras apiladas -->
+      <g>
+        <rect x="30" y="110" width="30" height="35" fill="#10b981"/><rect x="30" y="92" width="30" height="18" fill="#d4a853"/><rect x="30" y="80" width="30" height="12" fill="#1e3a5f"/>
+        <rect x="83" y="100" width="30" height="45" fill="#10b981"/><rect x="83" y="82" width="30" height="18" fill="#d4a853"/><rect x="83" y="68" width="30" height="14" fill="#1e3a5f"/>
+        <rect x="136" y="108" width="30" height="37" fill="#10b981"/><rect x="136" y="90" width="30" height="18" fill="#d4a853"/><rect x="136" y="78" width="30" height="12" fill="#1e3a5f"/>
+        <rect x="189" y="92" width="30" height="53" fill="#10b981"/><rect x="189" y="74" width="30" height="18" fill="#d4a853"/><rect x="189" y="60" width="30" height="14" fill="#1e3a5f"/>
+        <rect x="242" y="104" width="30" height="41" fill="#10b981"/><rect x="242" y="86" width="30" height="18" fill="#d4a853"/><rect x="242" y="74" width="30" height="12" fill="#1e3a5f"/>
+        <rect x="295" y="86" width="30" height="59" fill="#10b981"/><rect x="295" y="68" width="30" height="18" fill="#d4a853"/><rect x="295" y="56" width="30" height="12" fill="#1e3a5f"/>
+      </g>
+      <polyline points="45,72 98,60 151,70 204,52 257,66 310,48" fill="none" stroke="#4cc88f" stroke-width="2"/>
+      <g fill="#4cc88f"><circle cx="45" cy="72" r="2.4"/><circle cx="98" cy="60" r="2.4"/><circle cx="151" cy="70" r="2.4"/><circle cx="204" cy="52" r="2.4"/><circle cx="257" cy="66" r="2.4"/><circle cx="310" cy="48" r="2.4"/></g>
+      <g class="svg-label" fill="#7a8590" font-size="8" text-anchor="middle"><text x="45" y="160">T1</text><text x="98" y="160">T2</text><text x="151" y="160">T3</text><text x="204" y="160">T4</text><text x="257" y="160">T5</text><text x="310" y="160">T6</text></g>
+    </svg>
+
+    <div class="label" style="margin-top:.3in">D · Line chart de doble eje</div>
+    <div class="subt" style="margin-bottom:.04in">Dos series con ejes independientes · ilustrativo</div>
+    <div class="legend"><div class="it"><span class="sw" style="background:#10b981;height:3px;width:18px"></span>Serie A (eje izq.)</div><div class="it"><span class="sw" style="background:#1e3a5f;height:3px;width:18px"></span>Serie B (eje der.)</div></div>
+    <svg class="chart" viewBox="0 0 360 165" xmlns="http://www.w3.org/2000/svg">
+      <line x1="30" y1="128" x2="334" y2="128" stroke="#e6e9ee"/>
+      <g class="svg-label" fill="#a7abad" font-size="7"><text x="6" y="40">80</text><text x="6" y="85">40</text><text x="6" y="128">0</text><text x="340" y="40">24</text><text x="340" y="85">16</text><text x="340" y="128">8</text></g>
+      <polyline points="30,90 80,70 130,80 180,55 230,62 280,45 330,52" fill="none" stroke="#10b981" stroke-width="2"/>
+      <polyline points="30,104 80,98 130,88 180,90 230,72 280,80 330,66" fill="none" stroke="#1e3a5f" stroke-width="2"/>
+      <g class="svg-label" fill="#7a8590" font-size="7.5" text-anchor="middle"><text x="30" y="142">2020</text><text x="80" y="142">2021</text><text x="130" y="142">2022</text><text x="180" y="142">2023</text><text x="230" y="142">2024</text><text x="280" y="142">2025</text><text x="330" y="142">2026</text></g>
+    </svg>
+  </div>
+  <div class="pageno">02</div>
+</section>
+
+<!-- ════════ 3 · F (tabla macro) + G (tarjetas ranking) ════════ -->
+<section class="page">
+  <div class="rh">MD · Biblioteca de componentes <span class="reg">| data-viz</span></div>
+  <div class="frame">
+    <div class="label">F · Tabla macro de indicadores</div>
+    <div class="subt" style="margin-bottom:.06in">MD en cifras (datos reales) + contexto</div>
+    <table class="macro">
+      <thead><tr><th>Indicador</th><th class="num">Valor</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Trayectoria</td><td class="num">15<span class="u">Años de operación</span></td></tr>
+        <tr><td class="k">Revista Consultoría</td><td class="num">#12<span class="u">Sector hidráulico · 2021</span></td></tr>
+        <tr><td class="k">Áreas de práctica</td><td class="num">05<span class="u">Líneas de servicio</span></td></tr>
+        <tr><td class="k">RNP-INE</td><td class="num">Vigente<span class="u">Proveedor registrado</span></td></tr>
+        <tr><td class="k">Sede</td><td class="num">Tlalnepantla<span class="u">Estado de México</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="label" style="margin-top:.34in">G · Tarjetas de ranking</div>
+    <div class="subt" style="margin-bottom:.12in">Número grande + denominador + ícono</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.4in">
+      <div class="rankcard"><span class="ic"><svg><use href="#i-chart"/></svg></span><div><div class="lab">Revista Consultoría<span class="s">Sector hidráulico</span></div><div class="big">#12</div></div></div>
+      <div class="rankcard"><span class="ic"><svg><use href="#i-shield"/></svg></span><div><div class="lab">Trayectoria<span class="s">Institucional</span></div><div class="big">15<span class="den"> años</span></div></div></div>
+      <div class="rankcard"><span class="ic"><svg><use href="#i-doc"/></svg></span><div><div class="lab">Áreas de práctica<span class="s">Líneas de servicio</span></div><div class="big">05<span class="den"> / 05</span></div></div></div>
+    </div>
+  </div>
+  <div class="pageno">03</div>
+</section>
+
+<!-- ════════ 4 · H (tabla banda+íconos) + J (coroplético) ════════ -->
+<section class="page">
+  <div class="rh">MD · Biblioteca de componentes <span class="reg">| data-viz</span></div>
+  <div class="frame">
+    <div class="label">H · Tabla con banda lime + íconos de fila</div>
+    <div class="subt" style="margin-bottom:.06in">Capacidades por línea · ilustrativo</div>
+    <table class="tbl band">
+      <thead><tr><th>Línea</th><th>Capacidad</th><th class="num">Proyectos</th></tr></thead>
+      <tbody>
+        <tr class="subband"><td colspan="3">Producción editorial</td></tr>
+        <tr><td class="lead"><span class="rowic ic sm"><svg><use href="#i-doc"/></svg></span>Libros Blancos</td><td>Memorias documentales, listas para imprenta</td><td class="num">31</td></tr>
+        <tr><td class="lead"><span class="rowic ic sm"><svg><use href="#i-chart"/></svg></span>Maquetación GALERA</td><td>Composición + auditoría automática</td><td class="num">12</td></tr>
+        <tr class="subband"><td colspan="3">Tecnología e información</td></tr>
+        <tr><td class="lead"><span class="rowic ic sm"><svg><use href="#i-gear"/></svg></span>Sistemas a la medida</td><td>Automatización y datos</td><td class="num">18</td></tr>
+      </tbody>
+    </table>
+
+    <div class="label" style="margin-top:.34in">J · Mapa coroplético (tile-grid de regiones)</div>
+    <div class="subt" style="margin-bottom:.1in">Presencia por región · ilustrativo</div>
+    <div class="choro" style="grid-template-columns:repeat(6,26px)">
+      <div class="cell g2">NO</div><div class="cell g1"></div><div class="cell g3">N</div><div class="cell g2"></div><div class="cell g4">NE</div><div class="cell g1"></div>
+      <div class="cell g1"></div><div class="cell g3">O</div><div class="cell g5">C</div><div class="cell g4">E</div><div class="cell g2"></div><div class="cell g3">G</div>
+      <div class="cell g2">SO</div><div class="cell g4">S</div><div class="cell g3"></div><div class="cell g5">SE</div><div class="cell g4">P</div><div class="cell g2"></div>
+    </div>
+    <div class="choro-legend"><span>Menor</span><span class="sw g1"></span><span class="sw g2"></span><span class="sw g3"></span><span class="sw g4"></span><span class="sw g5"></span><span>Mayor</span></div>
+
+    <p class="fuente" style="margin-top:.4in"><b>Nota.</b> Todos los componentes usan la paleta MD (Deep Blue / Amber / Emerald) y se imprimen como SVG/HTML nítido. Las cifras son ilustrativas salvo "MD en cifras" (reales).</p>
+  </div>
+  <div class="pageno">04</div>
+</section>
+
+</body>
+</html>
