@@ -9,31 +9,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap");
 
 :root {
-  /* Marca MD */
-  --blue:        #1e3a5f;          /* primary 600 */
-  --blue-700:    #16293f;
-  --blue-800:    #0f1d2d;
-  --blue-300:    #5b87b8;
-  --blue-100:    #d7e1ee;
-  --amber:       #d4a853;          /* secondary */
-  --amber-700:   #9a7327;
-  --emerald:     #10b981;          /* accent */
-  --emerald-300: #6ee7b7;
-  --emerald-700: #047857;
-  --rose:        #e2474a;          /* destructive, para deltas negativos */
+  /* ── Capa de marca (re-skineable; default MD). Igual contrato que report-modern.css.
+     Para otro cliente: sobreescribe --brand-* en brands/<cliente>.css ── */
+  --brand-primary:#1e3a5f; --brand-primary-700:#16293f;
+  --brand-accent:#10b981; --brand-accent-lime:#4cc88f; --brand-accent-dk:#047857;
+  --brand-gold:#d4a853; --brand-ink:#15202b; --brand-paper:#ffffff;
+  --brand-display:"Instrument Sans", Georgia, sans-serif;
+  --brand-sans:"DM Sans", system-ui, sans-serif;
 
-  /* Neutros cálidos */
+  /* ── Mapeo interno (NO editar; los componentes consumen estos). Matices vía color-mix
+     para que deriven del token de marca y el re-skin sea total. ── */
+  --blue:        var(--brand-primary);
+  --blue-700:    var(--brand-primary-700);
+  --blue-800:    color-mix(in srgb, var(--brand-primary) 72%, #000);
+  --blue-300:    color-mix(in srgb, var(--brand-primary) 55%, #fff);
+  --blue-100:    color-mix(in srgb, var(--brand-primary) 18%, #fff);
+  --amber:       var(--brand-gold);
+  --amber-700:   color-mix(in srgb, var(--brand-gold) 58%, #000);
+  --emerald:     var(--brand-accent);
+  --emerald-300: var(--brand-accent-lime);
+  --emerald-700: var(--brand-accent-dk);
+  --rose:        #e2474a;
+
   --bg:        #FAFBFC;
-  --paper:     #FFFFFF;
-  --ink:       #0f1d2d;            /* casi negro azulado */
+  --paper:     var(--brand-paper);
+  --ink:       var(--brand-ink);
   --ink-soft:  #33414f;
   --muted:     #6b7785;
   --rule:      #e1e6ec;
   --rule-soft: #eef1f5;
   --row-alt:   #f5f7f9;
 
-  --serifless-display: "Instrument Sans", Georgia, sans-serif;
-  --sans: "DM Sans", system-ui, sans-serif;
+  --serifless-display: var(--brand-display);
+  --sans: var(--brand-sans);
 }
 
 * { box-sizing: border-box; }

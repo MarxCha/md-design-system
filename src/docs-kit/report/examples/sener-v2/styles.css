@@ -6,20 +6,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap");
 
 :root{
+  /* Capa de marca (re-skineable; default MD). Mismo contrato que el kit. */
+  --brand-primary:#1e3a5f; --brand-primary-700:#16293f;
+  --brand-accent:#10b981; --brand-accent-lime:#4cc88f; --brand-accent-dk:#047857;
+  --brand-gold:#d4a853;
+  --brand-display:'Instrument Sans', Georgia, sans-serif;
+  --brand-sans:'DM Sans', system-ui, -apple-system, sans-serif;
+
   --ink:#15202b; --ink-soft:#3d4753; --muted:#7a8590; --faint:#a7abad;
   --rule:#e6e9ee; --rule-soft:#f0f2f5; --paper:#fff; --paper-warm:#fafbfc;
 
-  /* Verdes — marca OFICIAL MD (esmeralda) */
-  --g-deep:#047857; --g:#10b981; --g-head:#10b981; --g-lime:#4cc88f;
-  --g-panel:#10b981; --g-toc:#10b981; --g-tint:#e8f7f0; --g-soft:#9fdcc4;
+  /* Verdes — derivados del token de acento */
+  --g-deep:var(--brand-accent-dk); --g:var(--brand-accent); --g-head:var(--brand-accent); --g-lime:var(--brand-accent-lime);
+  --g-panel:var(--brand-accent); --g-toc:var(--brand-accent);
+  --g-tint:color-mix(in srgb, var(--brand-accent) 12%, #fff); --g-soft:color-mix(in srgb, var(--brand-accent) 40%, #fff);
 
-  /* Azules de datos (mapa/figuras) — azul institucional MD */
-  --b1:#1e3a5f; --b2:#1f5f9e; --b3:#2e8bc0; --b4:#6cb7e0; --b5:#aad6ef;
+  /* Azules de datos — derivados del token primario */
+  --b1:var(--brand-primary); --b2:color-mix(in srgb, var(--brand-primary) 78%, #fff);
+  --b3:color-mix(in srgb, var(--brand-primary) 55%, #fff); --b4:color-mix(in srgb, var(--brand-primary) 35%, #fff);
+  --b5:color-mix(in srgb, var(--brand-primary) 18%, #fff);
 
-  --amber:#d4a853; --neutral:#c6c9c4; --neutral-dk:#8d9290;
+  --amber:var(--brand-gold); --neutral:#c6c9c4; --neutral-dk:#8d9290;
 
-  --sans:'DM Sans', system-ui, -apple-system, sans-serif;
-  --display:'Instrument Sans', Georgia, sans-serif;
+  --sans:var(--brand-sans); --display:var(--brand-display);
 
   --page-w:816px; --page-h:1056px; --mx:74px; --mt:62px;
 }

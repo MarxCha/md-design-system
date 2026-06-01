@@ -272,7 +272,11 @@ table.tbl.band td .rowic { display:inline-flex; vertical-align:middle; margin-ri
 .choro-legend .sw { width:12px; height:12px; border-radius:2px; }
 
 /* Escala de verdes para coroplético / heat */
-.g1{background:#d7efe5} .g2{background:#9fdcc4} .g3{background:#5cc79f} .g4{background:#10b981} .g5{background:#047857}
+.g1{background:color-mix(in srgb,var(--brand-accent) 14%,#fff)}
+.g2{background:color-mix(in srgb,var(--brand-accent) 38%,#fff)}
+.g3{background:color-mix(in srgb,var(--brand-accent) 62%,#fff)}
+.g4{background:var(--brand-accent)}
+.g5{background:var(--brand-accent-dk)}
 
 @media print {
   html, body { background: #fff; }
