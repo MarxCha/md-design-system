@@ -212,6 +212,8 @@ table.tbl.band tbody tr:first-child td { padding-top:.08in; }
 .waffle-arrow { font-family:var(--display); font-size:20pt; color:var(--muted); padding-bottom:.22in; }
 
 svg text { font-family: "DM Sans", sans-serif; }
+.chart { display:block; width:100%; height:auto; margin:0 0 .04in; }
+.svg-label { font-family:"DM Sans", sans-serif; }
 
 /* ============================================================================
    BIBLIOTECA DE VIZ (réplica Doing Business en marca MD) — Sprint 1
