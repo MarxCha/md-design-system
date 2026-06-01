@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MD Consultoría · Capacidades de Producción Editorial · SENER</title>
+<link rel="stylesheet" href="../../report.css">
+<style>
+  /* Slot de imagen hero: si dejas assets/cover.jpg / opener.jpg, aparece con duotono MD.
+     Sin imagen, queda un panel azul limpio (fallback). */
+  /* background-image directo (no var) — confiable en print. Deja los .jpg en assets/ y re-renderiza. */
+  .cover.photo .hero { background-image:
+    linear-gradient(160deg, rgba(30,58,95,.38), rgba(15,29,45,.80)), url("assets/cover.jpg"); }
+  #op-galera .bgimg { background-image:
+    linear-gradient(180deg, rgba(15,29,45,.50), rgba(15,29,45,.32) 42%, rgba(15,29,45,.92)), url("assets/opener-galera.jpg"); }
+  .spread { width:100%; display:block; border:0.5px solid var(--rule); border-radius:3px; background:#fff; }
+  .spread-cap { font-size:8.5pt; color:var(--muted); margin-top:.05in; }
+  .ph { width:100%; aspect-ratio:8.5/11; border:1px dashed var(--rule); background:var(--row-alt);
+        display:flex; align-items:center; justify-content:center; text-align:center;
+        color:var(--muted); font-size:8.5pt; padding:.2in; border-radius:3px; }
+</style>
+</head>
+<body>
+
+<!-- ════════ 01 · PORTADA (foto + duotono MD; fallback panel azul) ════════ -->
+<section class="page">
+  <div class="cover photo">
+    <div class="top">
+      <div class="wordmark">MD<span class="dot">.</span> Consultoría</div>
+      <div class="folio">MD-2026-SENER-001</div>
+    </div>
+    <div class="hero"></div>
+    <div class="mid">
+      <div class="overline">Presentación de capacidades</div>
+      <h1 class="display">Producción editorial <em>institucional</em>.</h1>
+      <div class="sub">Secretaría de Energía<span class="sep">·</span>Libro técnico de 300 páginas</div>
+    </div>
+    <div class="foot">
+      <div><div class="k">Documento</div><div class="v">Capacidades editoriales</div></div>
+      <div><div class="k">Emitido</div><div class="v">Mayo 2026</div></div>
+      <div class="slogan">Soluciones reales y prácticas a tus proyectos.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 02 · CARTA ════════ -->
+<section class="page">
+  <div class="runhead"><div>MD Consultoría · Capacidades Editoriales · SENER</div><div class="r">Carta de Presentación</div></div>
+  <div class="frame">
+    <div class="cols">
+      <div class="main">
+        <div style="display:flex;justify-content:space-between;font-size:8.5pt;color:var(--muted);letter-spacing:.06em;margin-bottom:.32in">
+          <div><span class="kicker">Folio</span><br>MD-2026-SENER-001</div>
+          <div style="text-align:right"><span class="kicker">Ciudad de México</span><br>Mayo de 2026</div>
+        </div>
+        <p style="margin-bottom:.06in"><strong style="font-size:11.5pt">C. Titular de la Secretaría de Energía</strong><br>
+          <span style="color:var(--ink)">Secretaría de Energía · Gobierno de México</span><br>
+          <span style="color:var(--muted)">Presente.</span></p>
+        <p style="font-family:var(--serifless-display);font-size:14pt;color:var(--ink);margin:.16in 0">Distinguida autoridad:</p>
+        <p>Por medio de la presente, <strong>MD Consultoría S.C.</strong> expone su capacidad para la
+          <strong>producción editorial de un libro técnico institucional de aproximadamente 300
+          páginas</strong> —con tablas, cuadros, diagramas y gráficas— para la Secretaría de Energía.</p>
+        <p>MD Consultoría ha elaborado <em>Libros Blancos</em> y <em>memorias documentales</em> para
+          dependencias federales y estatales durante quince años, incluyendo obras del sector
+          energético. Esa trayectoria se conjuga hoy con <strong>GALERA</strong>, nuestro motor de
+          maquetación editorial automatizada, que compone, audita y corrige obras extensas con
+          control de calidad medible.</p>
+        <p>Este documento integra la trayectoria editorial verificable de la firma, la descripción del
+          motor de producción y una muestra de maqueta. No incluye condiciones económicas; acredita
+          capacidad técnica para el encargo.</p>
+        <p>Quedamos a sus órdenes para cualquier aclaración. Reciba un cordial saludo.</p>
+        <div style="margin-top:.4in">
+          <div style="border-top:1px solid var(--ink);width:2.4in;margin-bottom:.05in"></div>
+          <div style="font-weight:700;letter-spacing:.04em;color:var(--ink)">MARX CHÁVEZ</div>
+          <div class="small">Director General · MD Consultoría S.C.</div>
+        </div>
+      </div>
+      <div class="aside">
+        <div class="statcard"><div class="k">Trayectoria</div><div class="v">15</div><div class="u">Años · gobierno e institucional</div></div>
+        <div class="statcard gold" style="margin-top:.18in"><div class="k">Reconocimiento</div><div class="v">#12</div><div class="u">Revista Consultoría · 2021</div></div>
+        <div class="statcard blue" style="margin-top:.18in"><div class="k">Encargo</div><div class="v">300<small> PP</small></div><div class="u">Tablas · cuadros · diagramas · gráficas</div></div>
+        <div class="rule"></div>
+        <p class="small">Documento de capacidades dirigido a la Secretaría de Energía. No constituye
+          oferta económica ni compromiso de precio.</p>
+      </div>
+    </div>
+  </div>
+  <div class="runfoot"><div>MD Consultoría S.C.</div><div class="pageno"><b>02</b> / 09</div></div>
+</section>
+
+<!-- ════════ 03 · SUMARIO ════════ -->
+<section class="page">
+  <div class="runhead"><div>MD Consultoría · Capacidades Editoriales · SENER</div><div class="r">Sumario Ejecutivo</div></div>
+  <div class="frame">
+    <div class="eyebrow"><span class="num">01</span> &nbsp;Sumario Ejecutivo</div>
+    <h2 class="head" style="margin-top:.12in">Un libro de 300 páginas, producido como <em>ingeniería</em>.</h2>
+    <div class="grid-4" style="margin:.22in 0 .26in">
+      <div class="statcard blue"><div class="k">Extensión objetivo</div><div class="v">300<small> PP</small></div><div class="u">Probado en 250+ páginas</div></div>
+      <div class="statcard"><div class="k">Elementos</div><div class="v">Tablas<small> + figuras</small></div><div class="u">Cuadros · diagramas · gráficas</div></div>
+      <div class="statcard"><div class="k">Auditoría</div><div class="v">0</div><div class="u">Defectos como meta</div></div>
+      <div class="statcard gold"><div class="k">Composición</div><div class="v">Typst</div><div class="u">Render en segundos</div></div>
+    </div>
+    <div class="cols">
+      <div class="main">
+        <p class="lede">Una obra técnica de 300 páginas con tablas extensas, cuadros, diagramas y
+          gráficas no es un problema de redacción: es un problema de maquetación a escala y de control
+          de calidad sostenido, página por página.</p>
+        <p>MD Consultoría lo aborda con dos fortalezas que se complementan: una <strong>trayectoria
+          editorial institucional verificable</strong> —Libros Blancos y memorias documentales para
+          dependencias— y <strong>GALERA</strong>, un motor propio que compone la maqueta de forma
+          programática y la somete a una auditoría determinista de defectos.</p>
+        <h3 class="sub">Alcance de la capacidad</h3>
+        <ul class="clean">
+          <li>Composición de obra extensa: capítulos, índice, folios, figuras, tablas y gráficas.</li>
+          <li>Auditoría automática: desbordes, tablas partidas, viudas y huérfanas.</li>
+          <li>Auto-sanación de la fuente con regla "conservar solo si mejora la medición".</li>
+          <li>Salida lista para imprenta, reproducible y trazable.</li>
+        </ul>
+      </div>
+      <div class="aside">
+        <div class="callout"><p>La calidad de la maqueta no se opina: se mide. Ninguna corrección se
+          conserva si aumenta el conteo de defectos.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="runfoot"><div>MD Consultoría S.C.</div><div class="pageno"><b>03</b> / 09</div></div>
+</section>
+
+<!-- ════════ 04 · TRAYECTORIA EDITORIAL ════════ -->
+<section class="page">
+  <div class="runhead"><div>MD Consultoría · Capacidades Editoriales · SENER</div><div class="r">Trayectoria Editorial</div></div>
+  <div class="frame">
+    <div class="eyebrow"><span class="num">02</span> &nbsp;Trayectoria Editorial</div>
+    <h2 class="head" style="margin-top:.12in">Libros Blancos y memorias documentales <em>para el Estado</em>.</h2>
+    <p class="lede">La elaboración de Libros Blancos y memorias documentales es un servicio consolidado
+      de MD Consultoría, con obras entregadas en los sectores energético, hídrico y de comunicaciones.</p>
+    <table class="t" style="margin-top:.14in">
+      <thead><tr><th>Cliente / Institución</th><th>Obra editorial</th><th>Sector</th></tr></thead>
+      <tbody>
+        <tr><td class="lead">Intelligence Works</td><td>Libros Blancos y memorias documentales de proyectos de infraestructura — obras magnas</td><td><span class="chip em">Energético</span></td></tr>
+        <tr><td class="lead">SAPAO · Oaxaca</td><td>Memoria documental y Libro Electrónico <em>"Logros y Retos en materia de Agua Potable y Alcantarillado"</em></td><td><span class="chip">Hídrico</span></td></tr>
+        <tr><td class="lead">Comisión Estatal del Agua · Morelos</td><td>Memoria documental y Libro Electrónico <em>"Estadística del Agua en Morelos 2016"</em></td><td><span class="chip">Hídrico</span></td></tr>
+        <tr><td class="lead">Comisión Federal de Electricidad</td><td>Análisis y presentación de proyectos del Programa de Ahorro de Energía del Sector Eléctrico (PAESE)</td><td><span class="chip em">Energético</span></td></tr>
+        <tr><td class="lead">SEDESOL</td><td>Diagnósticos y metodologías documentadas (programas alimentarios, FONART)</td><td><span class="chip gold">Social</span></td></tr>
+      </tbody>
+    </table>
+    <h3 class="sub">Lo que distingue estas obras</h3>
+    <div class="grid-3">
+      <div class="feature"><h5>Rigor documental</h5><p>Estructura de Libro Blanco: antecedentes, marco normativo, acciones, resultados y anexos, con trazabilidad de fuentes.</p></div>
+      <div class="feature"><h5>Datos cuantificados</h5><p>Tablas, cuadros y gráficas con cifras verificables; sin maquillaje editorial sobre datos incompletos.</p></div>
+      <div class="feature"><h5>Lista para imprenta</h5><p>Salida final con folios, índice y figuras numeradas, revisada antes de entrega.</p></div>
+    </div>
+  </div>
+  <div class="runfoot"><div>MD Consultoría S.C.</div><div class="pageno"><b>04</b> / 09</div></div>
+</section>
+
+<!-- ════════ 05 · GALERA OPENER (foto full-bleed + duotono; fallback azul) ════════ -->
+<section class="page ink">
+  <div id="op-galera" class="opener photo">
+    <div class="bgimg"></div>
+    <div class="eyebrow">El diferenciador</div>
+    <h2>GALERA — composición editorial <em>automatizada</em>.</h2>
+    <div class="deck">Un motor que compone el libro de forma programática, detecta los defectos de
+      maqueta y los corrige en la fuente, recompilando hasta converger.</div>
+    <div class="quick">
+      <div><div class="k">Motor</div><div class="v">Typst</div></div>
+      <div><div class="k">Auditoría</div><div class="v">Determinista</div></div>
+      <div><div class="k">Corrección</div><div class="v"><em>Auto-sanación</em></div></div>
+      <div><div class="k">Escala</div><div class="v">300 pp</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 06 · CÓMO FUNCIONA + CHART DE DEFECTOS ════════ -->
+<section class="page">
+  <div class="runhead"><div>MD Consultoría · Capacidades Editoriales · SENER</div><div class="r">GALERA · Cómo Funciona</div></div>
+  <div class="frame">
+    <div class="eyebrow"><span class="num">03</span> &nbsp;Cómo Funciona</div>
+    <h2 class="head" style="margin-top:.12in">Maquetación con control de calidad <em>medible</em>.</h2>
+    <div class="cols">
+      <div class="main">
+        <div class="grid-2">
+          <div class="feature"><h5>Composición programática</h5><p>El contenido estructurado se compone con Typst: portada, índice, folios, figuras y gráficas.</p></div>
+          <div class="feature"><h5>Auditoría determinista</h5><p>Se mide la posición de cada elemento: desbordes, tablas cortadas, viudas y huérfanas.</p></div>
+          <div class="feature"><h5>Auto-sanación (ReLook)</h5><p>El motor edita la fuente y recompila; conserva el cambio solo si bajan los defectos.</p></div>
+          <div class="feature"><h5>Escape a revisión</h5><p>Si una página no converge, se marca para revisión humana. Nunca se "maquilla" un defecto.</p></div>
+        </div>
+        <h3 class="sub">Caso real · libro de 245 páginas</h3>
+        <p class="chart-title">Defectos de maqueta · detección → corrección estructural → auto-sanación</p>
+        <svg class="chart" viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg">
+          <line class="svg-axis" x1="0" y1="108" x2="320" y2="108"/>
+          <!-- escala: 45 → 96px -->
+          <rect class="svg-bar gold" x="22" y="12" width="62" height="96" rx="2"/>
+          <text class="svg-value" x="53" y="6" text-anchor="middle">45</text>
+          <text class="svg-label" x="53" y="122" text-anchor="middle">Detectados</text>
+          <rect class="svg-bar soft" x="129" y="89" width="62" height="19" rx="2"/>
+          <text class="svg-value" x="160" y="83" text-anchor="middle">9</text>
+          <text class="svg-label" x="160" y="122" text-anchor="middle">Tras corrección</text>
+          <rect class="svg-bar em" x="236" y="99" width="62" height="9" rx="2"/>
+          <text class="svg-value" x="267" y="93" text-anchor="middle">4</text>
+          <text class="svg-label" x="267" y="122" text-anchor="middle">Tras sanación</text>
+        </svg>
+        <p class="small">Los 4 restantes corresponden a casos límite marcados para revisión humana —
+          no se ocultan ni se fuerzan.</p>
+      </div>
+      <div class="aside">
+        <h3 class="sub" style="margin-top:0">Capas de auditoría</h3>
+        <table class="t">
+          <thead><tr><th>Capa</th><th>Detecta</th></tr></thead>
+          <tbody>
+            <tr><td class="lead">Introspección</td><td>Tabla/figura cortada o al borde</td></tr>
+            <tr><td class="lead">Post-render</td><td>Desborde, viudas, huérfanas</td></tr>
+            <tr><td class="lead">Guardrail</td><td>¿Mejoró el conteo?</td></tr>
+          </tbody>
+        </table>
+        <p class="small"><strong>Editar la fuente, no el PDF.</strong> El "milímetro" se ajusta
+          recompilando, lo que mantiene la obra reproducible.</p>
+      </div>
+    </div>
+  </div>
+  <div class="runfoot"><div>MD Consultoría S.C.</div><div class="pageno"><b>06</b> / 09</div></div>
+</section>
+
+<!-- ════════ 07 · MUESTRA DE MAQUETA ════════ -->
+<section class="page">
+  <div class="runhead"><div>MD Consultoría · Capacidades Editoriales · SENER</div><div class="r">Muestra de Maqueta</div></div>
+  <div class="frame">
+    <div class="eyebrow"><span class="num">04</span> &nbsp;Muestra de Maqueta</div>
+    <h2 class="head" style="margin-top:.12in">Páginas producidas y auditadas por GALERA.</h2>
+    <p class="lede">Las siguientes páginas fueron compuestas y auditadas por el motor (0 defectos).
+      El contenido es ilustrativo.</p>
+    <div class="grid-2" style="margin-top:.16in">
+      <div>
+        <img class="spread" src="assets/spread-1.png" alt="Muestra de maqueta — tabla y gráfica">
+        <div class="spread-cap">Muestra 1 — Tabla cuantificada, gráfica de datos y folio editorial.</div>
+      </div>
+      <div>
+        <img class="spread" src="assets/spread-2.png" alt="Muestra de maqueta — apertura de capítulo">
+        <div class="spread-cap">Muestra 2 — Apertura de capítulo y texto compuesto.</div>
+      </div>
+    </div>
+  </div>
+  <div class="runfoot"><div>MD Consultoría S.C.</div><div class="pageno"><b>07</b> / 09</div></div>
+</section>
+
+<!-- ════════ 08 · SOBRE MD ════════ -->
+<section class="page">
+  <div class="runhead"><div>MD Consultoría · Capacidades Editoriales · SENER</div><div class="r">Sobre MD Consultoría</div></div>
+  <div class="frame">
+    <div class="eyebrow"><span class="num">05</span> &nbsp;Sobre MD Consultoría</div>
+    <h2 class="head" style="margin-top:.12in">Quince años de consultoría <em>institucional</em>.</h2>
+    <div class="cols">
+      <div class="main">
+        <p>MD Consultoría S.C. es un grupo de consultores con servicios en materia técnica, jurídica,
+          económica, financiera y de tecnologías de la información, para gobierno e instituciones.
+          Fue destacada en la revista <em>Consultoría</em> del sector hidráulico en las posiciones
+          #45 (2019), #12 (2021) y #24 (2022).</p>
+        <h3 class="sub">Algunos clientes institucionales</h3>
+        <ul class="clean">
+          <li>Comisión Nacional del Agua (CONAGUA) — Organismos de Cuenca.</li>
+          <li>Comisión Federal de Electricidad (CFE) — programas de ahorro de energía.</li>
+          <li>Secretaría de Economía · Secretaría de Desarrollo Social.</li>
+          <li>Instituto Nacional de Pesca · Comisión Nacional de Acuacultura y Pesca.</li>
+          <li>Instituto Politécnico Nacional · universidades estatales.</li>
+        </ul>
+        <h3 class="sub">Áreas de práctica</h3>
+        <ul class="clean">
+          <li>Libros Blancos y memorias documentales (producción editorial).</li>
+          <li>Estudios económicos, planeación estratégica y control interno.</li>
+          <li>Tecnologías de la información: automatización, desarrollo y datos.</li>
+        </ul>
+      </div>
+      <div class="aside">
+        <div class="statcard"><div class="k">Trayectoria</div><div class="v">15</div><div class="u">Años de operación</div></div>
+        <div class="statcard blue" style="margin-top:.18in"><div class="k">RNP-INE</div><div class="v" style="font-size:14pt;letter-spacing:0">2021&shy;04221151044</div><div class="u">Registro vigente</div></div>
+        <div class="statcard gold" style="margin-top:.18in"><div class="k">Sede</div><div class="v" style="font-size:17pt">Tlalnepantla</div><div class="u">Estado de México</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="runfoot"><div>MD Consultoría S.C.</div><div class="pageno"><b>08</b> / 09</div></div>
+</section>
+
+<!-- ════════ 09 · CIERRE ════════ -->
+<section class="page">
+  <div class="back">
+    <div class="hero">
+      <div class="eyebrow">Cierre</div>
+      <h2 style="margin-top:.14in">Quedamos a sus <em>órdenes</em>.</h2>
+      <div class="deck">MD Consultoría reafirma su capacidad para producir, con calidad medible y
+        trazable, el libro técnico institucional que la Secretaría de Energía requiera.</div>
+    </div>
+    <div class="info">
+      <div><div class="k">Contacto</div><div class="v"><strong>Marx Chávez</strong><br>Director General<br>contacto@consultoriamd.com.mx<br>Tel. (55) 5616-5238</div></div>
+      <div><div class="k">Domicilio</div><div class="v">Av. Teotihuacán 315, Int. 7<br>Col. La Romana<br>Tlalnepantla de Baz, Edo. Méx.<br>C.P. 54030</div></div>
+      <div><div class="k">Datos institucionales</div><div class="v">MD Consultoría S.C.<br>RFC: MCO100329ED8<br>RNP-INE 202104221151044<br>www.consultoriamd.com.mx</div></div>
+    </div>
+    <div class="strip">
+      <div>MD Consultoría S.C.</div>
+      <div>Capacidades Editoriales · SENER · MD-2026-SENER-001</div>
+      <div class="em">Soluciones reales y prácticas a tus proyectos.</div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

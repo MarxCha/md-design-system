@@ -1,0 +1,6 @@
+# Material de cliente y assets generados — NUNCA a git (regla de gobernanza MD)
+examples/*/assets/
+# El ejemplo MC contiene precios y marca de cliente en el HTML
+examples/mc-cdmx/
+# PDFs renderizados (pueden embeber material de cliente)
+*.pdf

@@ -1,0 +1,204 @@
+/* =============================================================================
+   MD · REPORT KIT — MODERN  ("Doing Business / Deloitte" editorial language)
+   Convive con report.css (no lo reemplaza). Marca MD (emerald-forward + deep blue)
+   en el lenguaje del gold: portada negra, banners de foto a sangre, titulares
+   GRANDES y LIGEROS, texto a 3 columnas, tablas de regla verde (sin relleno),
+   line/área charts con leyenda y doble eje, mucho aire. Letter portrait.
+   ============================================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap");
+
+:root {
+  --green:      #10b981;   /* emerald MD = el "verde Deloitte" */
+  --green-lime: #4cc88f;
+  --green-dk:   #047857;
+  --blue:       #1e3a5f;
+  --blue-700:   #16293f;
+  --amber:      #d4a853;
+  --ink:        #15202b;   /* casi negro */
+  --ink-soft:   #3d4753;
+  --muted:      #7a8590;
+  --rule:       #e6e9ee;
+  --rule-soft:  #f0f2f5;
+  --paper:      #ffffff;
+  --black:      #0a0a0b;   /* portada */
+  --sans:    "DM Sans", system-ui, sans-serif;
+  --display: "Instrument Sans", Georgia, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0; background: #d9dde2;
+  font-family: var(--sans); color: var(--ink);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+
+.page {
+  width: 8.5in; height: 11in; background: var(--paper); margin: 0.5in auto;
+  position: relative; overflow: hidden; page-break-after: always; break-after: page;
+  box-shadow: 0 1px 2px rgba(15,29,45,.10), 0 18px 50px rgba(15,29,45,.16);
+}
+.page:last-child { page-break-after: auto; }
+.page.black { background: var(--black); color: #f3f5f7; }
+
+/* Marco aireado (márgenes generosos tipo DB) */
+.frame { position: absolute; top: 0.9in; right: 0.9in; bottom: 0.8in; left: 0.9in;
+  display: flex; flex-direction: column; }
+
+/* Header corrido itálico (DB) + folio abajo-izquierda */
+.rh { position: absolute; top: 0.5in; left: 0.9in; right: 0.9in;
+  font-family: var(--display); font-style: italic; font-size: 9.5pt; color: var(--ink); }
+.rh .reg { font-style: normal; color: var(--muted); font-family: var(--sans); }
+.pageno { position: absolute; bottom: 0.45in; left: 0.9in; font-family: var(--sans);
+  font-size: 9pt; font-weight: 700; color: var(--ink); }
+.page.black .rh, .page.black .pageno { color: #f3f5f7; }
+.page.black .rh .reg { color: rgba(243,245,247,.6); }
+
+/* ---------- Tipografía ---------- */
+.label { font-family: var(--sans); font-size: 9pt; font-weight: 700; color: var(--ink);
+  letter-spacing: 0; }                 /* "Gráfica 3." / "Cuadro 1." */
+.eyebrow { font-family: var(--sans); font-size: 8.5pt; font-weight: 600; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--green-dk); }
+h1,h2,h3 { font-family: var(--display); margin: 0; color: var(--ink); font-weight: 400; }
+/* titular GRANDE y LIGERO (clave del look) */
+h1.title { font-size: 34pt; font-weight: 400; line-height: 1.06; letter-spacing: -0.01em; }
+h1.title em { font-style: italic; color: var(--green-dk); }
+h2.h { font-size: 26pt; font-weight: 400; line-height: 1.08; letter-spacing: -0.008em; margin-bottom: 0.1in; }
+h2.h em { font-style: italic; color: var(--green-dk); }
+h3.eh { font-family: var(--sans); font-size: 9.5pt; font-weight: 700; color: var(--ink); margin: 0 0 0.05in; }
+.subt { font-family: var(--sans); font-size: 9pt; color: var(--muted); margin: 0.02in 0 0; }   /* subtítulo de gráfica */
+
+p, li { font-size: 9.5pt; line-height: 1.5; color: var(--ink-soft); }
+p { margin: 0 0 0.1in; }
+.lede { font-family: var(--display); font-size: 15pt; font-weight: 300; line-height: 1.34;
+  color: var(--ink); letter-spacing: -0.005em; }
+.small { font-size: 8pt; line-height: 1.5; color: var(--muted); }
+strong { font-weight: 600; color: var(--ink); }
+.page.black p, .page.black li { color: rgba(243,245,247,.85); }
+.page.black h1, .page.black h2 { color: #fff; }
+
+/* texto a 3 / 2 columnas (DB) */
+.flow3 { column-count: 3; column-gap: 0.38in; }
+.flow2 { column-count: 2; column-gap: 0.4in; }
+.flow3 p, .flow2 p { font-size: 9pt; line-height: 1.48; }
+
+ul.dash { list-style: none; margin: 0; padding: 0; }
+ul.dash > li { position: relative; padding-left: 0.2in; margin-bottom: 0.06in; font-size: 9pt; }
+ul.dash > li::before { content: ""; position: absolute; left: 0; top: 0.085in; width: 0.11in;
+  height: 2px; background: var(--green); }
+
+.fuente { font-size: 8pt; color: var(--muted); margin-top: 0.1in; }
+.fuente b { color: var(--ink); font-weight: 700; }
+
+/* ---------- Banner de foto full-width ---------- */
+.banner { width: 100%; height: 2.3in; object-fit: cover; display: block; border-radius: 2px; }
+.banner.tall { height: 3.2in; }
+
+/* ---------- Tabla regla verde (sin relleno) ---------- */
+table.tbl { width: 100%; border-collapse: collapse; font-size: 9pt; margin: 0.06in 0;
+  font-variant-numeric: tabular-nums; }
+table.tbl thead th { color: var(--green-dk); font-family: var(--sans); font-weight: 700;
+  font-size: 8.5pt; text-align: left; padding: 0.06in 0.1in 0.07in; border-bottom: 2px solid var(--green); }
+table.tbl thead th.num { text-align: right; }
+table.tbl tbody td { padding: 0.07in 0.1in; border-bottom: 1px solid var(--rule);
+  color: var(--ink-soft); vertical-align: top; }
+table.tbl tbody td.num { text-align: right; color: var(--ink); }
+table.tbl tbody td.lead, table.tbl tbody tr.tot td { color: var(--ink); font-weight: 600; }
+table.tbl tbody tr.tot td { border-top: 1.5px solid var(--ink); border-bottom: 0; }
+table.tbl .g { color: var(--green-dk); font-weight: 700; }
+
+/* ---------- Números grandes (KPI strip) ---------- */
+.kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: 0.3in; }
+.kpi .k { font-size: 8pt; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.06in; }
+.kpi .v { font-family: var(--display); font-weight: 400; font-size: 33pt; line-height: 0.95;
+  letter-spacing: -0.02em; color: var(--ink); font-variant-numeric: tabular-nums; }
+.kpi .v small { font-size: 0.4em; font-weight: 500; color: var(--muted); }
+.kpi .v.g { color: var(--green-dk); }
+.kpi .u { font-size: 8.5pt; color: var(--muted); margin-top: 0.05in; }
+.kpi .top { border-top: 2px solid var(--green); padding-top: 0.1in; }
+.page.black .kpi .v { color: #fff; } .page.black .kpi .v.g { color: var(--green-lime); }
+.page.black .kpi .k, .page.black .kpi .u { color: rgba(243,245,247,.6); }
+
+/* ---------- Leyenda de chart (DB: línea + label, centrada arriba) ---------- */
+.legend { display: flex; gap: 0.3in; justify-content: center; margin: 0.04in 0 0.12in; }
+.legend .it { display: flex; align-items: center; gap: 0.07in; font-size: 8.5pt; color: var(--ink-soft); }
+.legend .ln { width: 18px; height: 2.5px; border-radius: 2px; }
+
+/* ---------- Full-bleed photo cover / opener ---------- */
+.cover-bleed, .opener-bleed { position: absolute; inset: 0; display: flex; flex-direction: column; }
+.opener-bleed { justify-content: flex-end; padding: 0 0.9in 1in; }
+.bleed-img { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center; }
+.cover-bleed > *:not(.bleed-img), .opener-bleed > *:not(.bleed-img) { position: relative; z-index: 1; }
+.opener-bleed .eyebrow { color: var(--green-lime); margin-bottom: 0.16in; }
+.opener-bleed h2 { font-family: var(--display); font-weight: 600; font-size: 40pt; line-height: 1;
+  letter-spacing: -0.018em; color: #fff; max-width: 6.2in; margin: 0 0 0.2in; }
+.opener-bleed h2 em { font-style: normal; color: var(--green-lime); }
+.opener-bleed .deck { font-family: var(--display); font-weight: 300; font-size: 15pt; line-height: 1.4;
+  color: rgba(243,245,247,.9); max-width: 5.6in; }
+.opener-bleed .quick { display: grid; grid-template-columns: repeat(4,1fr); gap: 0.22in;
+  margin-top: 0.36in; border-top: 1px solid rgba(255,255,255,.25); padding-top: 0.18in; max-width: 7in; }
+.opener-bleed .quick .k { font-size: 8pt; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(243,245,247,.6); margin-bottom: 0.04in; }
+.opener-bleed .quick .v { font-family: var(--display); font-size: 16pt; font-weight: 500; color: #fff; }
+.opener-bleed .quick .v em { font-style: normal; color: var(--green-lime); }
+
+/* ---------- Portada negra (DB) ---------- */
+.cover-black { position: absolute; inset: 0; background: var(--black); color: #fff; padding: 0.85in 0.9in; display: flex; flex-direction: column; }
+.cover-black .wm { font-family: var(--display); font-weight: 700; font-size: 22pt; letter-spacing: -0.01em; }
+.cover-black .wm .dot { color: var(--green); }
+.cover-black .art { flex: 1; position: relative; }
+.cover-black .art .img { position: absolute; inset: 0; background-size: contain; background-position: center; background-repeat: no-repeat; }
+.cover-black .t { font-family: var(--display); }
+.cover-black .t .eg { font-style: italic; font-weight: 400; font-size: 30pt; color: var(--green-lime); line-height: 1.05; }
+.cover-black .t .wt { font-weight: 300; font-size: 30pt; color: #fff; line-height: 1.05; }
+.cover-black .yr { font-weight: 700; font-size: 11pt; margin-top: 0.3in; }
+
+/* ---------- Feature row (reemplaza cajitas: lista limpia con regla verde a la izq) ---------- */
+.frow { display: grid; grid-template-columns: 1fr 1fr; gap: 0.16in 0.4in; }
+.frow .it { padding-left: 0.16in; border-left: 2px solid var(--green); }
+.frow .it h4 { font-family: var(--sans); font-size: 9.5pt; font-weight: 700; color: var(--ink); margin: 0 0 0.03in; }
+.frow .it p { font-size: 8.5pt; line-height: 1.4; margin: 0; color: var(--ink-soft); }
+
+/* ---------- Muestra (spread) marco moderno ---------- */
+.shot { width: 100%; display: block; border: 1px solid var(--rule); border-radius: 2px; box-shadow: 0 2px 10px rgba(15,29,45,.08); }
+.shot-cap { font-size: 8pt; color: var(--muted); margin-top: 0.06in; }
+
+/* ---------- Componentes data-viz estilo Doing Business (#21–26) ---------- */
+/* Panel verde sólido (KPI hero, tipo "Principales variables") */
+.panel-green { background: linear-gradient(160deg,#10b981,#047857); color:#fff; border-radius:4px; padding:.26in .28in; }
+.panel-green .k { font-family:var(--sans); font-size:8.5pt; font-weight:600; letter-spacing:.04em; color:rgba(255,255,255,.88); text-transform:uppercase; }
+.panel-green .v { font-family:var(--display); font-weight:400; font-size:30pt; line-height:1; letter-spacing:-.02em; color:#fff; margin-top:.02in; }
+.panel-green .u { font-size:8pt; color:rgba(255,255,255,.82); margin-top:.03in; }
+.panel-green hr { border:0; border-top:1px solid rgba(255,255,255,.25); margin:.16in 0; }
+.panel-green .duo { display:flex; gap:.3in; }
+.panel-green .duo .v { font-size:19pt; }
+
+/* Tarjeta KPI con número grande + denominador (tipo "56 / 57", "12 / 193") */
+.kpi-rank { border-top:2px solid var(--green); padding-top:.1in; }
+.kpi-rank .lab { font-family:var(--sans); font-size:8.5pt; font-weight:600; color:var(--ink); letter-spacing:.02em; }
+.kpi-rank .big { font-family:var(--display); font-weight:400; font-size:30pt; line-height:1; color:var(--ink); margin:.05in 0 .02in; font-variant-numeric:tabular-nums; }
+.kpi-rank .big .den { color:var(--muted); font-size:.5em; }
+.kpi-rank .u { font-size:8pt; color:var(--muted); }
+
+/* Tabla con banda de encabezado verde (sin regla; tipo comercio exterior #26) */
+table.tbl.band thead th { background:var(--green); color:#fff; border-bottom:0; padding:.07in .1in; font-weight:600; }
+table.tbl.band tbody tr:first-child td { padding-top:.08in; }
+
+/* ---------- Waffle / cuadrícula de impacto (cada cuadro = 1 unidad) ---------- */
+.waffle-wrap { display:flex; gap:.32in; align-items:flex-end; justify-content:center; margin:.1in 0 .12in; }
+.waffle-cap { text-align:center; }
+.waffle { display:grid; grid-template-columns:repeat(10,9px); grid-auto-rows:9px; gap:2px; margin:0 auto .08in; }
+.waffle i { width:9px; height:9px; background:var(--rule-soft); border-radius:1.5px; }
+.waffle i.a { background:#d4a853; }   /* ámbar — estado inicial */
+.waffle i.b { background:#1e3a5f; }   /* azul — tras corrección */
+.waffle i.g { background:#10b981; }   /* verde — tras sanación */
+.waffle-cap .n { font-family:var(--display); font-weight:400; font-size:24pt; line-height:1; color:var(--ink); }
+.waffle-cap .t { font-size:8.5pt; color:var(--muted); display:block; margin-top:.02in; }
+.waffle-arrow { font-family:var(--display); font-size:20pt; color:var(--muted); padding-bottom:.22in; }
+
+svg text { font-family: "DM Sans", sans-serif; }
+
+@media print {
+  html, body { background: #fff; }
+  .page { margin: 0; box-shadow: none; }
+  @page { size: letter portrait; margin: 0; }
+}
