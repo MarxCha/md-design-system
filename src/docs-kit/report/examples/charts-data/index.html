@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>MD · Charts data-driven (charts.js)</title>
+<link rel="stylesheet" href="../../report-modern.css">
+<!-- Para re-skinear esta MISMA página, descomenta una marca; los datos NO cambian:
+     <link rel="stylesheet" href="../../brands/cliente-ejemplo.css"> -->
+</head>
+<body>
+
+<section class="page">
+  <div class="rh">MD · Charts <span class="reg">| data-driven</span></div>
+  <div class="frame">
+    <div class="eyebrow">Sistema de visualización</div>
+    <h1 class="title" style="margin:.1in 0 .04in">Charts <em>desde datos</em>.</h1>
+    <p class="subt" style="margin-bottom:.26in">Misma geometría, cero hex/coords a mano. Colores desde
+      tokens <code>--brand-*</code> → re-skin 100% por marca. Datos ilustrativos.</p>
+
+    <div class="label">Barra rankeada (type:bar, ramp)</div>
+    <div class="subt" style="margin-bottom:.06in">Proyectos por línea de servicio</div>
+    <figure style="margin:0" data-chart='{"type":"bar","ramp":true,
+      "values":[31,24,18,12,9,6],
+      "labels":["Libros B.","Estudios","Tecnología","Control","Energía","Hídrico"]}'></figure>
+
+    <div class="label" style="margin-top:.3in">Línea, eje invertido (type:line, invert)</div>
+    <div class="subt" style="margin-bottom:.06in">Ranking revista Consultoría — menor es mejor</div>
+    <figure style="margin:0" data-chart='{"type":"line","labels":["2019","2021","2022"],
+      "series":[{"points":[45,12,24],"invert":true,"prefix":"#"}]}'></figure>
+  </div>
+  <div class="pageno">01</div>
+</section>
+
+<section class="page">
+  <div class="rh">MD · Charts <span class="reg">| data-driven</span></div>
+  <div class="frame">
+    <div class="label">Barras apiladas (type:stacked)</div>
+    <div class="subt" style="margin-bottom:.06in">Avance por trimestre y componente</div>
+    <div class="legend">
+      <div class="it"><span class="ln" style="background:var(--brand-accent)"></span>Composición</div>
+      <div class="it"><span class="ln" style="background:var(--brand-gold)"></span>Auditoría</div>
+      <div class="it"><span class="ln" style="background:var(--brand-primary)"></span>Sanación</div>
+    </div>
+    <figure style="margin:0" data-chart='{"type":"stacked",
+      "seriesLabels":["Composición","Auditoría","Sanación"],
+      "labels":["T1","T2","T3","T4","T5","T6"],
+      "groups":[[35,18,12],[45,18,14],[37,18,12],[53,18,14],[41,18,12],[59,18,12]]}'></figure>
+
+    <div class="label" style="margin-top:.3in">Línea, doble serie (type:line, multi)</div>
+    <div class="subt" style="margin-bottom:.06in">Dos series, colores de marca por orden</div>
+    <div class="legend">
+      <div class="it"><span class="ln" style="background:var(--brand-accent)"></span>Serie A</div>
+      <div class="it"><span class="ln" style="background:var(--brand-gold)"></span>Serie B</div>
+    </div>
+    <figure style="margin:0" data-chart='{"type":"line","labels":["2020","2021","2022","2023","2024","2025"],
+      "series":[{"points":[32,50,42,65,58,76],"showValues":false},
+                {"points":[20,28,36,34,50,42],"showValues":false}]}'></figure>
+
+    <p class="fuente" style="margin-top:.4in"><b>Re-skin.</b> Para una instancia de cliente, enlazar
+      una hoja de marca (<code>brands/&lt;cliente&gt;.css</code>) que redefina <code>--brand-*</code>:
+      los charts cambian de color sin tocar una sola cifra ni coordenada.</p>
+  </div>
+  <div class="pageno">02</div>
+</section>
+
+<script src="../../charts.js"></script>
+</body>
+</html>
