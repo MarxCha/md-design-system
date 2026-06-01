@@ -197,6 +197,67 @@ table.tbl.band tbody tr:first-child td { padding-top:.08in; }
 
 svg text { font-family: "DM Sans", sans-serif; }
 
+/* ============================================================================
+   BIBLIOTECA DE VIZ (réplica Doing Business en marca MD) — Sprint 1
+   Charts = SVG inline (el doc dibuja la geometría); aquí los estilos/contenedores.
+   ============================================================================ */
+
+/* Ícono circular de línea (anillo + glifo SVG) — para tarjetas/tablas */
+.ic { width:30px; height:30px; border:1.5px solid var(--green); border-radius:999px;
+  display:inline-flex; align-items:center; justify-content:center; color:var(--green-dk); }
+.ic svg { width:15px; height:15px; stroke:currentColor; fill:none; stroke-width:1.6; }
+.ic.sm { width:22px; height:22px; } .ic.sm svg { width:11px; height:11px; }
+
+/* (G) Tarjeta de ranking: ícono + número grande "/total" + etiqueta */
+.rankcard { display:flex; gap:.14in; align-items:flex-start; }
+.rankcard .ic { flex:0 0 auto; margin-top:.04in; }
+.rankcard .lab { font-family:var(--sans); font-size:9.5pt; font-weight:600; color:var(--ink); line-height:1.2; }
+.rankcard .lab .s { display:block; font-weight:400; font-size:8pt; color:var(--muted); }
+.rankcard .big { font-family:var(--display); font-weight:400; font-size:26pt; line-height:1; color:var(--ink); margin-top:.04in; font-variant-numeric:tabular-nums; }
+.rankcard .big .den { color:var(--muted); font-size:.5em; }
+
+/* (B) Mini-tabla KPI con íconos (comparativa corta tipo IED) */
+.kpiflags { display:grid; gap:0; border-top:2px solid var(--green); }
+.kpiflags .hd { display:grid; grid-auto-flow:column; grid-auto-columns:1fr; gap:.2in; padding:.08in 0; }
+.kpiflags .hd .c { display:flex; align-items:center; gap:.06in; font-family:var(--sans); font-size:9pt; font-weight:700; color:var(--green-dk); }
+.kpiflags .row { display:grid; grid-auto-flow:column; grid-auto-columns:1fr; gap:.2in; padding:.06in 0; border-top:1px solid var(--rule); }
+.kpiflags .row .v { font-variant-numeric:tabular-nums; color:var(--ink); font-size:10pt; font-weight:600; }
+.kpiflags .row.share .v { color:var(--muted); font-weight:400; font-size:9pt; }
+
+/* (F) Tabla macro de indicadores (regla verde + dato/unidad) */
+table.macro { width:100%; border-collapse:collapse; font-size:9pt; }
+table.macro thead th { text-align:left; color:var(--green-dk); font-weight:700; font-size:8.5pt;
+  border-bottom:2px solid var(--green); padding:.06in .1in; }
+table.macro thead th.num { text-align:right; }
+table.macro td { padding:.055in .1in; border-bottom:1px solid var(--rule); vertical-align:top; }
+table.macro td.k { color:var(--ink); font-weight:600; }
+table.macro td.num { text-align:right; font-variant-numeric:tabular-nums; color:var(--ink); }
+table.macro td .u { display:block; font-size:7.5pt; color:var(--muted); }
+
+/* (H) Tabla con banda lime + sub-banda (comercio exterior) */
+table.tbl.band .subband td { background:var(--green-lime); color:#fff; font-weight:700; font-size:8.5pt; }
+table.tbl.band td .rowic { display:inline-flex; vertical-align:middle; margin-right:.06in; }
+
+/* (A) Barra rankeada — la barra y los íconos van en SVG/HTML del doc; helpers: */
+.rankbar { display:flex; align-items:flex-end; gap:.12in; height:1.5in; border-bottom:1px solid var(--rule); padding-bottom:0; }
+.rankbar .b { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; }
+.rankbar .b .bar { width:64%; border-radius:2px 2px 0 0; }
+.rankbar .b .val { font-family:var(--display); font-size:10pt; font-weight:400; color:var(--ink); margin-bottom:.03in; }
+.rankbar-x { display:flex; gap:.12in; margin-top:.06in; }
+.rankbar-x .lx { flex:1; text-align:center; }
+.rankbar-x .lx .ic { margin:0 auto .03in; }
+.rankbar-x .lx .t { font-size:7pt; color:var(--muted); display:block; line-height:1.1; }
+
+/* (J) Mapa coroplético — tile-grid (regiones), genérico, sin outline pesado */
+.choro { display:inline-grid; gap:3px; }
+.choro .cell { width:26px; height:26px; border-radius:3px; background:var(--rule-soft);
+  display:flex; align-items:center; justify-content:center; font-size:6.5pt; color:#fff; font-weight:700; }
+.choro-legend { display:flex; gap:.12in; align-items:center; font-size:8pt; color:var(--muted); margin-top:.08in; }
+.choro-legend .sw { width:12px; height:12px; border-radius:2px; }
+
+/* Escala de verdes para coroplético / heat */
+.g1{background:#d7efe5} .g2{background:#9fdcc4} .g3{background:#5cc79f} .g4{background:#10b981} .g5{background:#047857}
+
 @media print {
   html, body { background: #fff; }
   .page { margin: 0; box-shadow: none; }
